@@ -10,8 +10,7 @@
 :root {
 --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
 --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --tk: #ffffff; --pr: #BD081C; --in: #0077B5;
---wa-color: #25D366;
---cream-bg: #fdf9f3;
+--wa-color: #25D366; --cream-bg: #fdf9f3;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html { scroll-behavior: smooth; }
@@ -25,7 +24,7 @@ animation: kenBurns 35s ease-in-out infinite alternate;
 }
 @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35);} 100% { transform: scale(1.18); filter: brightness(0.55);} }
 
-/* تعديل شريط التنقل حسب الصورة المطلوبة */
+/* شريط التنقل */
 .navbar {
 min-height: 90px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
 position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
@@ -33,10 +32,26 @@ display: flex; align-items: center; justify-content: center;
 }
 .nav-container { width: 95%; max-width: 1400px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; }
 
-/* اليمين: العلم والروابط */
-.nav-right-side { display: flex; align-items: center; gap: 20px; }
-.lang-flag { width: 45px; height: auto; border: 1px solid var(--gold); border-radius: 4px; cursor: pointer; }
+/* قسم اللغة والقائمة المنسدلة */
+.lang-wrapper { position: relative; display: inline-block; }
+.lang-flag-current { width: 45px; height: 30px; border: 1px solid var(--gold); border-radius: 4px; cursor: pointer; object-fit: cover; }
+.lang-dropdown {
+    position: absolute; top: 50px; right: 0; background: rgba(0,0,0,0.95);
+    border: 1px solid var(--gold); border-radius: 8px; width: 220px;
+    max-height: 400px; overflow-y: auto; display: none; z-index: 10002;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+.lang-dropdown::-webkit-scrollbar { width: 5px; }
+.lang-dropdown::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+.lang-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 15px; color: var(--gold); text-decoration: none;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2); transition: 0.3s; cursor: pointer;
+}
+.lang-item:hover { background: rgba(212, 175, 55, 0.1); color: #fff; }
+.lang-item img { width: 25px; height: 15px; object-fit: cover; border: 1px solid #555; }
 
+.nav-right-side { display: flex; align-items: center; gap: 20px; }
 .nav-links { display: flex; gap: 12px; align-items: center; }
 .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 0.85rem; white-space: nowrap; }
 .nav-links a:hover { color: #fff; }
@@ -92,7 +107,12 @@ display: flex; align-items: center; justify-content: center;
 <nav class="navbar">
     <div class="nav-container">
         <div class="nav-right-side">
-            <img src="https://flagcdn.com/w80/eg.png" class="lang-flag" alt="اللغة العربية">
+            <div class="lang-wrapper">
+                <img src="https://flagcdn.com/w80/eg.png" class="lang-flag-current" id="currentFlag" onclick="toggleLang()" alt="اللغة الحالية">
+                <div class="lang-dropdown" id="langBox">
+                    </div>
+            </div>
+
             <div class="nav-links">
                 <a href="#">من نحن</a>
                 <a href="#">أهدافنا</a>
@@ -128,7 +148,7 @@ display: flex; align-items: center; justify-content: center;
 <div class="news-ticker">
     <div class="ticker-track animate-news">
         <span>🌍 تسونامي الوهم الرقمي: صرخة عالمية للرحمة الرقمية من مهد الحضارات مصر</span>
-        <span>⚠️ ألف حالة طلاق سنويًّا in مصر بسبب سوء استخدام الشاشات</span>
+        <span>⚠️ ألف حالة طلاق سنويًّا في مصر بسبب سوء استخدام الشاشات</span>
         <span>📞 تواصل معنا: 00201009995015</span>
     </div>
 </div>
@@ -171,6 +191,56 @@ display: flex; align-items: center; justify-content: center;
 <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
 <script>
+// بيانات اللغات الـ 86 مع أعلامها
+const languages = [
+    { n: "عربي", c: "eg" }, { n: "English", c: "gb" }, { n: "Français", c: "fr" }, { n: "Español", c: "es" },
+    { n: "Deutsch", c: "de" }, { n: "Italiano", c: "it" }, { n: "Português", c: "pt" }, { n: "Türkçe", c: "tr" },
+    { n: "Ελληνικά", c: "gr" }, { n: "Nederlands", c: "nl" }, { n: "Română", c: "ro" }, { n: "Svenska", c: "se" },
+    { n: "Polski", c: "pl" }, { n: "Suomi", c: "fi" }, { n: "Dansk", c: "dk" }, { n: "Norsk", c: "no" },
+    { n: "Magyar", c: "hu" }, { n: "Slovenčina", c: "sk" }, { n: "Hrvatski", c: "hr" }, { n: "Slovenščina", c: "si" },
+    { n: "Български", c: "bg" }, { n: "Српски", c: "rs" }, { n: "Čeština", c: "cz" }, { n: "Русский", c: "ru" },
+    { n: "Українська", c: "ua" }, { n: "中文", c: "cn" }, { n: "日本語", c: "jp" }, { n: "한국어", c: "kr" },
+    { n: "हिन्दी", c: "in" }, { n: "తెలుగు", c: "in" }, { n: "मराठी", c: "in" }, { n: "தமிழ்", c: "in" },
+    { n: "اردو", c: "pk" }, { n: "ગુજરાતી", c: "in" }, { n: "ಕನ್ನಡ", c: "in" }, { n: "മലയാളം", c: "in" },
+    { n: "ଓଡ଼ିଆ", c: "in" }, { n: "ਪੰਜਾਬੀ", c: "pk" }, { n: "سنڌي", c: "pk" }, { n: "پښتو", c: "pk" },
+    { n: "بلوچی", c: "pk" }, { n: "සිංහල", c: "lk" }, { n: "বাংলা", c: "bd" }, { n: "Bahasa Melayu", c: "my" },
+    { n: "Bahasa Indonesia", c: "id" }, { n: "Jawa", c: "id" }, { n: "Sunda", c: "id" }, { n: "Batak", c: "id" },
+    { n: "ဗမာစာ", c: "mm" }, { n: "ကရင်", c: "mm" }, { n: "ရခိုင်", c: "mm" }, { n: "မွန်", c: "mm" },
+    { n: "ရှမ်း", c: "mm" }, { n: "Kurdî", c: "iq" }, { n: "Azərbaycanca", c: "az" }, { n: "Oʻzbekcha", c: "uz" },
+    { n: "Қазақша", c: "kz" }, { n: "Tagalog", c: "ph" }, { n: "ไทย", c: "th" }, { n: "Tiếng Việt", c: "vn" },
+    { n: "فارسی", c: "ir" }, { n: "Yorùbá", c: "ng" }, { n: "አማርኛ", c: "et" }, { n: "Kiswahili", c: "tz" },
+    { n: "Lingála", c: "cd" }, { n: "isiZulu", c: "za" }, { n: "Luganda", c: "ug" }, { n: "Akan", c: "gh" },
+    { n: "Fula", c: "cm" }, { n: "Dioula", c: "ci" }, { n: "Malagasy", c: "mg" }, { n: "Dinka", c: "ss" },
+    { n: "Sara", c: "td" }, { n: "Soomaali", c: "so" }, { n: "Shona", c: "zw" }, { n: "Bemba", c: "zm" },
+    { n: "Chichewa", c: "mw" }, { n: "Wolof", c: "sn" }, { n: "Bambara", c: "ml" }, { n: "Hausa", c: "ne" },
+    { n: "Mossi", c: "bf" }, { n: "Kinyarwanda", c: "rw" }, { n: "Kirundi", c: "bi" }
+];
+
+// توليد قائمة اللغات تلقائياً
+const langBox = document.getElementById('langBox');
+languages.forEach(lang => {
+    const div = document.createElement('div');
+    div.className = 'lang-item';
+    div.innerHTML = `<span>${lang.n}</span> <img src="https://flagcdn.com/w40/${lang.c}.png">`;
+    div.onclick = () => {
+        document.getElementById('currentFlag').src = `https://flagcdn.com/w80/${lang.c}.png`;
+        langBox.style.display = 'none';
+        // ملاحظة: هنا سنضع رابط الصفحة عند توفر الترجمة مستقبلاً
+    };
+    langBox.appendChild(div);
+});
+
+function toggleLang() {
+    langBox.style.display = langBox.style.display === 'block' ? 'none' : 'block';
+}
+
+// إغلاق القائمة عند الضغط خارجها
+window.onclick = function(event) {
+    if (!event.target.matches('.lang-flag-current')) {
+        langBox.style.display = 'none';
+    }
+}
+
 window.onscroll = function() {
     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
         document.getElementById("btnUp").style.display = "flex";

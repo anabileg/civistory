@@ -2,70 +2,94 @@
 <html id="htmlTag" lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CiviStories - قصص الحضارات</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CiviStories</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;900&family=Cairo:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { color: var(--white); font-family: 'Tajawal', sans-serif; background: #000; overflow-x: hidden; font-weight: bold; }
-        .site-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('assets/image_390e08.jpg'); background-size: cover; z-index: -1; filter: brightness(0.3); }
-        .navbar { min-height: 90px; background: rgba(0,0,0,0.95); border-bottom: 2px solid var(--gold); position: fixed; top: 0; width: 100%; z-index: 10001; display: flex; align-items: center; }
-        .nav-container { width: 95%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .lang-dropdown { position: relative; }
-        .lang-btn-display { cursor: pointer; display: flex; align-items: center; gap: 8px; background: #222; padding: 5px 10px; border: 1px solid var(--gold); border-radius: 5px; }
-        .lang-dropdown-list { position: absolute; top: 110%; left: 0; background: white; color: black; width: 200px; max-height: 400px; overflow-y: auto; display: none; border-radius: 8px; z-index: 9999; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        :root { --gold: #d4af37; --white: #ffffff; }
+        body { background: #000; color: white; font-family: 'Tajawal', sans-serif; margin: 0; }
+        
+        .navbar { 
+            background: #000; 
+            border-bottom: 2px solid var(--gold); 
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* تنسيق قائمة اللغات المطلوبة */
+        .lang-dropdown { position: relative; cursor: pointer; }
+        
+        .lang-btn-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid var(--gold);
+            padding: 8px 15px;
+            border-radius: 5px;
+            background: #1a1a1a;
+        }
+
+        .lang-btn-display img { width: 25px; order: 1; } /* العلم أقصى اليمين */
+        .lang-btn-display span { 
+            font-weight: 900; /* خط سميك جداً */
+            color: var(--white);
+            order: 2;
+        }
+
+        .lang-dropdown-list {
+            position: absolute;
+            top: 110%;
+            right: 0;
+            background: white;
+            color: black;
+            width: 180px;
+            display: none;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            list-style: none;
+            padding: 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
         .lang-dropdown-list.show { display: block; }
-        .nav-links { display: flex; gap: 15px; }
-        .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.85rem; cursor: pointer; }
-        .nav-left-group { display: flex; align-items: center; gap: 20px; }
-        .nav-logo-img { height: 65px; }
-        .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 60s linear infinite; }
-        .ticker-track span { padding: 0 40px; font-size: 1.1rem; }
-        @keyframes marquee { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
-        .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        .main-alert-title { text-align: center; margin-bottom: 50px; font-size: 2.2rem; line-height: 1.4; max-width: 900px; }
-        .hero-container { display: flex; gap: 40px; width: 100%; max-width: 1200px; justify-content: center; flex-wrap: wrap; }
-        .book-box { width: 320px; text-align: center; }
-        .book-box img { width: 100%; border: 3px solid var(--gold); border-radius: 15px; margin-bottom: 15px; }
-        .video-box { flex: 1; min-width: 320px; height: 450px; border: 3px solid var(--gold); border-radius: 20px; overflow: hidden; background: #000; }
-        .btn-action { display: block; background: var(--gold); color: #000; text-decoration: none; padding: 18px; border-radius: 10px; font-weight: 900; font-size: 1.1rem; text-align: center; }
+
+        .lang-dropdown-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            transition: 0.3s;
+        }
+
+        .lang-dropdown-list li:hover { background: #f0f0f0; }
+        .lang-dropdown-list li img { width: 20px; order: 1; } /* العلم يمين داخل القائمة */
+        .lang-dropdown-list li span { font-weight: 700; order: 2; } /* الاسم بجانبه */
+
     </style>
 </head>
 <body>
-<div class="site-bg"></div>
+
 <nav class="navbar">
-    <div class="nav-container">
-        <div class="lang-dropdown">
-            <div id="lang-btn" class="lang-btn-display">
-                <img id="selected-flag" src="https://flagcdn.com/w20/eg.png" width="25">
-                <span id="selected-lang-name" style="color:#fff">عربي</span>
-            </div>
-            <div id="lang-dropdown-list" class="lang-dropdown-list"><ul id="lang-list" style="list-style:none;"></ul></div>
+    <div class="lang-dropdown" id="lang-btn">
+        <div class="lang-btn-display">
+            <img id="selected-flag" src="https://flagcdn.com/w20/eg.png">
+            <span id="selected-lang-name">عربي</span>
         </div>
-        <div class="nav-links">
-            <a data-i18n="nav_who">من نحن</a>
-            <a data-i18n="nav_goals">أهدافنا</a>
-            <a data-i18n="nav_cry">صرختنا</a>
-        </div>
-        <div class="nav-left-group"><img src="assets/logo.png" class="nav-logo-img"></div>
+        <ul id="lang-list" class="lang-dropdown-list">
+            </ul>
     </div>
+
+    <img src="assets/logo.png" style="height: 50px;">
 </nav>
-<div class="news-ticker"><div class="ticker-track" id="tickerTrack"></div></div>
-<section class="hero">
-    <h1 class="main-alert-title" id="mainTitle" data-i18n="hero_title"></h1>
-    <div class="hero-container">
-        <div class="book-box">
-            <img src="assets/CIVISTORIES Book.png">
-            <a id="bookBtn" href="#" target="_blank" class="btn-action" data-i18n="btn_book">تصفح الكتاب</a>
-        </div>
-        <div class="video-box">
-            <iframe id="mainVideo" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
-</section>
+
 <script src="i18n.js"></script>
 </body>
 </html>

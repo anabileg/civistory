@@ -3,108 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قصص الحضارات - صرخة عالمية للرحمة الرقمية</title>
+    <title>CiviStory | قصص الحضارات</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-
-    <style>
-        :root { --gold: #d4af37; --black: #000; --white: #fff; --wa: #25D366; }
-        body { background: var(--black); color: var(--white); font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
-        
-        /* الهيدر ونظام اللغة */
-        header { border-bottom: 2px solid var(--gold); padding: 15px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 1000; }
-        .lang-btn { background: var(--white); border: 1px solid var(--gold); padding: 5px 12px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: bold; }
-        .lang-dropdown { display: none; position: absolute; top: 50px; left: 10px; background: white; color: black; min-width: 180px; max-height: 300px; overflow-y: auto; border-radius: 8px; z-index: 9999; }
-        .lang-dropdown.show { display: block; }
-        .lang-dropdown li { padding: 10px; list-style: none; cursor: pointer; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; }
-
-        /* الأقسام المستخرجة من ملفك */
-        .hero { text-align: center; padding: 60px 20px; }
-        .gold-text { color: var(--gold); font-size: 2.5rem; margin-bottom: 10px; }
-        .main-nav { text-align: center; margin-bottom: 40px; }
-        .main-nav a { color: var(--white); text-decoration: none; margin: 0 15px; font-weight: bold; }
-        
-        .section-box { border: 1px solid var(--gold); padding: 20px; border-radius: 10px; margin: 20px auto; max-width: 800px; text-align: center; background: rgba(212, 175, 55, 0.05); }
-
-        /* أزرار الواتساب والصعود */
-        .wa-float { position: fixed; bottom: 20px; right: 20px; background: var(--wa); color: white; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 10px; z-index: 1000; }
-        #btnUp { position: fixed; bottom: 80px; left: 20px; background: var(--gold); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: none; justify-content: center; align-items: center; }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <header>
-        <div style="color: var(--gold); font-size: 24px; font-weight: bold;">CiviStory</div>
-        <div class="lang-wrapper">
-            <button class="lang-btn" onclick="toggleLang()">
-                <img id="selected-flag" src="https://flagcdn.com/w20/eg.png" width="20">
-                <span id="selected-lang-name">عربي</span>
-            </button>
-            <div id="lang-dropdown-list" class="lang-dropdown">
-                <ul id="lang-list"></ul>
+    <div class="site-bg"></div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <h1>CiviStory</h1>
+            </div>
+            
+            <div class="lang-wrapper">
+                <button id="lang-btn" class="lang-button">
+                    <img src="https://flagcdn.com/w20/eg.png" alt="Ar">
+                    <span>العربية</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <div class="hero">
-        <h1 class="gold-text">قصص الحضارات</h1>
-        <h3>صرخة عالمية للرحمة الرقمية</h3>
+    <div class="news-ticker">
+        <div class="ticker-track animate-news">
+            <span>🌍 مرحباً بكم في منصة قصص الحضارات.. صرخة عالمية للرحمة الرقمية</span>
+            <span>✨ قريباً: إضافة 86 لغة عالمية للمنصة</span>
+            <span>⚠️ إحصائية: ألف حالة طلاق سنويًّا بسبب سوء استخدام الشاشات</span>
+        </div>
     </div>
 
-    <nav class="main-nav">
-        <a href="#home">الرئيسية</a>
-        <a href="#stories">الأقسام</a>
-        <a href="#about">عن المنصة</a>
-    </nav>
+    <section class="hero-section">
+        <h2 class="gold-text">قصص الحضارات</h2>
+        <p style="font-size: 1.2rem; color: #eee; margin-bottom: 40px;">صرخة عالمية للرحمة الرقمية</p>
+        
+        <div class="grid-container">
+            <div class="story-card">
+                <i class="fas fa-envelope-open-text" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 15px;"></i>
+                <h3>رسالاتنا العالمية</h3>
+                <p>نداء إنساني مفتوح لحماية الكرامة الرقمية</p>
+            </div>
+            
+            <div class="story-card">
+                <i class="fas fa-landmark" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 15px;"></i>
+                <h3>مرجعيتنا الإنسانية</h3>
+                <p>رؤية الحضارات (الجاينية، الإفريقية، الكونفوشيوسية)</p>
+            </div>
 
-    <div class="section-box">
-        <h2 style="color: var(--gold);">آخر الأخبار والتحديثات</h2>
-        <p>هنا سيتم وضع العناوين والبيانات التي سنغيرها معاً خطوة بخطوة.</p>
-    </div>
+            <div class="story-card">
+                <i class="fas fa-scroll" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 15px;"></i>
+                <h3>موسوعة الحضارات</h3>
+                <p>استكشف حكمة الأقدمين في التعامل مع الإنسان</p>
+            </div>
+        </div>
+    </section>
 
-    <a href="https://wa.me/201234567890" class="wa-float">
+    <a href="https://wa.me/201234567890" class="wa-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
-        <span>انضم لمجموعتنا</span>
+        <span>تواصل معنا</span>
     </a>
 
-    <button id="btnUp" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fas fa-arrow-up"></i></button>
+    <div id="btnUp" class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
-    <script>
-        // مصفوفة الـ 86 لغة (تم دمجها هنا لتعمل فوراً)
-        const languages = [
-            { code: 'ar', name: 'عربي', flag: 'https://flagcdn.com/w20/eg.png' },
-            { code: 'en', name: 'English', flag: 'https://flagcdn.com/w20/gb.png' },
-            // سيتم إضافة باقي القائمة هنا لاحقاً لعدم إطالة الملف حالياً
-        ];
-
-        function toggleLang() {
-            document.getElementById('lang-dropdown-list').classList.toggle('show');
-        }
-
-        function renderLangs() {
-            const list = document.getElementById('lang-list');
-            languages.forEach(lang => {
-                const li = document.createElement('li');
-                li.innerHTML = `<img src="${lang.flag}" width="20"> ${lang.name}`;
-                li.onclick = () => {
-                    document.getElementById('selected-flag').src = lang.flag;
-                    document.getElementById('selected-lang-name').innerText = lang.name;
-                    toggleLang();
-                    // هنا سيتم تغيير نصوص الموقع لاحقاً
-                };
-                list.appendChild(li);
-            });
-        }
-
-        window.onscroll = function() {
-            document.getElementById('btnUp').style.display = (window.scrollY > 300) ? "flex" : "none";
-        };
-
-        renderLangs();
-        window.onclick = function(e) {
-            if (!e.target.closest('.lang-wrapper')) document.getElementById('lang-dropdown-list').classList.remove('show');
-        }
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

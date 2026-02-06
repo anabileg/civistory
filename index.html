@@ -16,10 +16,8 @@
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html { scroll-behavior: smooth; }
 body { color: var(--white); font-family: 'Tajawal', 'Cairo', sans-serif; background: #000; overflow-x: hidden; width: 100%; font-weight: bold; font-size: 1rem; }
-.section-main-title { text-align: center; color: var(--gold); font-size: 2.5rem; margin-bottom: 25px; font-weight: bold; }
-.awareness-card, .awareness-card span, #awareness-main-title { user-select: none; -webkit-user-select: none; -ms-user-select: none; outline: none; }
 
-/* الخلفية من الملفات التي زودتني بها */
+/* الخلفية */
 .site-bg {
 position: fixed; top: 0; left: 0; width: 100%; height: 100%;
 background-image: url('assets/image_390e08.jpg'); background-position: center; background-size: cover; z-index: -1;
@@ -27,75 +25,63 @@ animation: kenBurns 35s ease-in-out infinite alternate;
 }
 @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35);} 100% { transform: scale(1.18); filter: brightness(0.55);} }
 
+/* تعديل شريط التنقل حسب الصورة المطلوبة */
 .navbar {
 min-height: 90px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
 position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
 display: flex; align-items: center; justify-content: center;
 }
 .nav-container { width: 95%; max-width: 1400px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; }
-.nav-right-group { display: flex; align-items: center; gap: 20px; position: relative; }
-.nav-logo-img { height: 65px; }
-.social-icons { display: flex; gap: 12px; align-items: center; }
-.social-icons a { font-size: 1.2rem; transition: 0.3s; text-decoration: none; }
-.nav-links { display: flex; gap: 20px; align-items: center; }
-.nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
+
+/* اليمين: العلم والروابط */
+.nav-right-side { display: flex; align-items: center; gap: 20px; }
+.lang-flag { width: 45px; height: auto; border: 1px solid var(--gold); border-radius: 4px; cursor: pointer; }
+
+.nav-links { display: flex; gap: 15px; align-items: center; }
+.nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 0.9rem; white-space: nowrap; }
 .nav-links a:hover { color: #fff; }
 
-/* ألوان السوشيال ميديا */
-.ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
+/* اليسار: السوشيال واللوجو */
+.nav-left-side { display: flex; align-items: center; gap: 20px; }
+.social-icons { display: flex; gap: 10px; align-items: center; }
+.social-icons a { font-size: 1.1rem; transition: 0.3s; text-decoration: none; }
+.nav-logo-img { height: 65px; }
 
-.lang-selector { position: relative; display: inline-block; }
-.lang-toggle-btn { background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
-.lang-toggle-btn img { width: 40px; height: auto; border-radius: 4px; display: block; filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); }
-.lang-dropdown { position: absolute; top: 100%; right: 0; background: #000; border: 1px solid var(--gold); border-radius: 8px; z-index: 10002; display: none; min-width: 200px; max-height: 300px; overflow-y: auto; }
-.lang-dropdown.show { display: block; }
-.lang-option { display: flex; align-items: center; gap: 10px; padding: 10px 15px; cursor: pointer; color: var(--white); text-decoration: none; }
-.lang-option:hover { background: rgba(212, 175, 55, 0.2); }
-.lang-option img { width: 24px; height: 16px; object-fit: contain; border-radius: 2px; }
+/* ألوان السوشيال */
+.ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
 
+/* شريط الأخبار */
 .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
 .ticker-track { display: flex; white-space: nowrap; width: max-content; }
 .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; }
-.animate-news { animation: marqueeNews 150s linear infinite; }
-@keyframes marqueeNews { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
+.animate-news { animation: marqueeNews 30s linear infinite; }
+@keyframes marqueeNews { 0% { transform: translateX(0);} 100% { transform: translateX(100%);} }
 
-.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 160px 5% 60px; }
-.main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); max-width: 100%; }
+/* المحتوى الرئيسي */
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 180px 5% 60px; }
+.main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
 .main-alert-title span.highlight { color: var(--red-num); font-weight: 900; }
 .main-alert-title span.gold-text { color: var(--gold); font-weight: 900; }
 
-.hero-container { display: flex; gap: 40px; width: 100%; align-items: stretch; justify-content: center; }
+.hero-container { display: flex; gap: 40px; width: 100%; align-items: stretch; justify-content: center; flex-wrap: wrap; }
 .book-static { flex: 0 0 320px; display: flex; flex-direction: column; justify-content: space-between; height: 450px; }
-.book-wrapper { height: calc(100% - 70px); display: flex; align-items: center; justify-content: center; }
-.book-wrapper img { max-height: 100%; width: auto; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 10px 30px rgba(212,175,55,0.3); animation: bookFloat 3s ease-in-out infinite; }
-@keyframes bookFloat { 0%, 100% { transform: translateY(0) rotate(0);} 50% { transform: translateY(-15px) rotate(2deg); } }
+.book-wrapper img { width: 100%; border-radius: 15px; border: 2px solid var(--gold); animation: bookFloat 3s ease-in-out infinite; }
+@keyframes bookFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-.video-container-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; box-shadow: 0 0 25px rgba(212,175,55,0.2);}
-.video-container-box iframe { width: 100%; height: 100%; border: none; }
+.video-container-box { flex: 1; max-width: 800px; min-width: 300px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; }
 
-.awareness-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
-.awareness-card { background: rgba(0,0,0,0.6); border: 1px solid var(--gold); border-radius: 20px; padding: 25px 10px; cursor: pointer; transition: 0.3s; text-align: center; position: relative; }
+.awareness-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; width: 100%; max-width: 1200px; }
+.awareness-card { background: rgba(0,0,0,0.6); border: 1px solid var(--gold); border-radius: 20px; padding: 25px; cursor: pointer; transition: 0.3s; text-align: center; }
 .awareness-card:hover { background: rgba(212, 175, 55, 0.1); transform: translateY(-5px); }
 .awareness-card i { font-size: 2.2rem; margin-bottom: 12px; display: block; color: var(--gold); }
-.awareness-card span { font-weight: bold; font-size: 1.1rem; display: block; line-height: 1.3; }
 
-/* المربعات الحوارية بخلفية الصورة الذهبية */
-.vision-section, .glass-box, .references-section { 
-    text-align: center; border: 4px solid var(--gold); border-radius: 40px; padding: 60px 5%; margin: 40px 0; 
-    background-image: url('assets/image_3a7328.jpg'); background-size: cover; background-position: center; position: relative; overflow: hidden; 
-}
-.vision-section::before, .glass-box::before, .references-section::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 0; }
-
-.btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; position: relative; z-index: 1; }
-#btnUp { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; background: var(--gold); color: #000; border-radius: 50%; display: none; justify-content: center; align-items: center; font-size: 24px; cursor: pointer; z-index: 9999; }
+.btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; }
+#btnUp { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; background: var(--gold); color: #000; border-radius: 50%; display: none; justify-content: center; align-items: center; z-index: 9999; cursor: pointer; }
 
 @media (max-width: 992px) {
-.nav-container { flex-direction: column; gap: 15px; }
-.news-ticker { top: 160px; }
-.hero { padding-top: 240px; }
-.hero-container { flex-direction: column; align-items: center; }
-.video-container-box { width: 100%; height: 250px; }
-.awareness-grid, .references-grid { grid-template-columns: repeat(1, 1fr); }
+    .navbar { min-height: auto; padding: 10px 0; }
+    .nav-container { flex-direction: column; gap: 10px; }
+    .hero { padding-top: 280px; }
 }
 </style>
 </head>
@@ -105,28 +91,34 @@ display: flex; align-items: center; justify-content: center;
 
 <nav class="navbar">
     <div class="nav-container">
-        <div class="nav-right-group">
-            <img src="assets/100.png" class="nav-logo-img" alt="الأزهر">
-            <img src="assets/200.png" class="nav-logo-img" alt="الأوقاف">
-            <img src="assets/300.png" class="nav-logo-img" alt="الكنيسة">
+        <div class="nav-right-side">
+            <img src="https://flagcdn.com/w80/eg.png" class="lang-flag" alt="اللغة العربية">
+            <div class="nav-links">
+                <a href="#">أهدافنا</a>
+                <a href="#">صرختنا</a>
+                <a href="#">رسالاتنا</a>
+                <a href="#">وعي وطني</a>
+                <a href="#">ميديا</a>
+                <a href="#">إحصائيات</a>
+                <a href="#">خسائر</a>
+                <a href="#">برامج توعوية</a>
+                <a href="#">رؤية إنسانية</a>
+                <a href="#">مرجعيتنا الإنسانية</a>
+                <a href="#">تواصل معنا</a>
+            </div>
         </div>
 
-        <div class="nav-links">
-            <a href="#cry">صرختنا</a>
-            <a href="#messages" onclick="openMessagesModal()">رسالاتنا</a>
-            <a href="#national">وعي وطني</a>
-            <a href="#stats">إحصائيات</a>
-            <a href="mailto:civistories@gmail.com?bcc=anabileg@gmail.com">تواصل معنا</a>
-        </div>
-
-        <div class="social-icons">
-            <a href="https://www.youtube.com/@CiviStories" class="ic-yt"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=100093677167187" class="ic-fb"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://x.com/civistories" class="ic-tw"><i class="fab fa-x-twitter"></i></a>
-            <a href="https://www.instagram.com/civi.stories" class="ic-ig"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.pinterest.com/civistories/" class="ic-pr"><i class="fab fa-pinterest-p"></i></a>
-            <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" class="ic-in"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://wa.me/201009995015" style="color:var(--wa-color)"><i class="fab fa-whatsapp"></i></a>
+        <div class="nav-left-side">
+            <div class="social-icons">
+                <a href="#" class="ic-yt"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="ic-fb"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="ic-tw"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" class="ic-ig"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="ic-pr"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#" class="ic-in"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" style="color:var(--wa-color)"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <img src="assets/logo.png" class="nav-logo-img" alt="Civistory Logo">
         </div>
     </div>
 </nav>
@@ -159,39 +151,24 @@ display: flex; align-items: center; justify-content: center;
     </div>
 
     <div class="awareness-grid">
-        <div class="awareness-card" onclick="openMessagesModal()">
+        <div class="awareness-card">
             <i class="fas fa-dove"></i>
             <span>رسالاتنا الإنسانية</span>
         </div>
-        <div class="awareness-card" onclick="openReferenceModal('reference-eastern')">
+        <div class="awareness-card">
             <i class="fas fa-dharmachakra"></i>
             <span>الرؤية الجاينية</span>
         </div>
-        <div class="awareness-card" onclick="openReferenceModal('reference-african')">
+        <div class="awareness-card">
             <i class="fas fa-fist-raised"></i>
             <span>الفلسفة الإفريقية</span>
         </div>
     </div>
 </section>
 
-<section class="references-section">
-    <h2 style="color:var(--gold); position:relative; z-index:1;">مرجعيتنا الإنسانية</h2>
-    <div class="awareness-grid" style="position:relative; z-index:1;">
-        <div class="awareness-card" onclick="openReferenceModal('reference-confucianism')">
-            <span>الحكمة الكونفوشيوسية</span>
-        </div>
-        </div>
-</section>
-
 <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
 <script>
-function openMessagesModal() { document.getElementById('messages-modal').style.display = 'flex'; }
-function closeMessagesModal() { document.getElementById('messages-modal').style.display = 'none'; }
-
-function openReferenceModal(id) { document.getElementById(id).style.display = 'flex'; }
-function closeReferenceModal(id) { document.getElementById(id).style.display = 'none'; }
-
 window.onscroll = function() {
     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
         document.getElementById("btnUp").style.display = "flex";

@@ -1,0 +1,243 @@
+/* =========================================
+   نظام الترجمة الدولي - i18n.js
+   ========================================= */
+
+const i18n = {
+    currentLanguage: 'ar',
+    
+    // قائمة اللغات (86 لغة)
+    languages: [
+        { code: 'ar', name: 'عربي', flag: 'https://flagcdn.com/w20/eg.png' },
+        { code: 'en', name: 'English', flag: 'https://flagcdn.com/w20/gb.png' },
+        { code: 'fr', name: 'Français', flag: 'https://flagcdn.com/w20/fr.png' },
+        { code: 'es', name: 'Español', flag: 'https://flagcdn.com/w20/es.png' },
+        { code: 'de', name: 'Deutsch', flag: 'https://flagcdn.com/w20/de.png' },
+        { code: 'it', name: 'Italiano', flag: 'https://flagcdn.com/w20/it.png' },
+        { code: 'pt', name: 'Português', flag: 'https://flagcdn.com/w20/pt.png' },
+        { code: 'tr', name: 'Türkçe', flag: 'https://flagcdn.com/w20/tr.png' },
+        { code: 'el', name: 'Ελληνικά', flag: 'https://flagcdn.com/w20/gr.png' },
+        { code: 'nl', name: 'Nederlands', flag: 'https://flagcdn.com/w20/nl.png' },
+        { code: 'ro', name: 'Română', flag: 'https://flagcdn.com/w20/ro.png' },
+        { code: 'sv', name: 'Svenska', flag: 'https://flagcdn.com/w20/se.png' },
+        { code: 'pl', name: 'Polski', flag: 'https://flagcdn.com/w20/pl.png' },
+        { code: 'fi', name: 'Suomi', flag: 'https://flagcdn.com/w20/fi.png' },
+        { code: 'da', name: 'Dansk', flag: 'https://flagcdn.com/w20/dk.png' },
+        { code: 'no', name: 'Norsk', flag: 'https://flagcdn.com/w20/no.png' },
+        { code: 'hu', name: 'Magyar', flag: 'https://flagcdn.com/w20/hu.png' },
+        { code: 'sk', name: 'Slovenčina', flag: 'https://flagcdn.com/w20/sk.png' },
+        { code: 'hr', name: 'Hrvatski', flag: 'https://flagcdn.com/w20/hr.png' },
+        { code: 'sl', name: 'Slovenščina', flag: 'https://flagcdn.com/w20/si.png' },
+        { code: 'bg', name: 'Български', flag: 'https://flagcdn.com/w20/bg.png' },
+        { code: 'sr', name: 'Српски', flag: 'https://flagcdn.com/w20/rs.png' },
+        { code: 'cs', name: 'Čeština', flag: 'https://flagcdn.com/w20/cz.png' },
+        { code: 'ru', name: 'Русский', flag: 'https://flagcdn.com/w20/ru.png' },
+        { code: 'uk', name: 'Українська', flag: 'https://flagcdn.com/w20/ua.png' },
+        { code: 'zh', name: '中文', flag: 'https://flagcdn.com/w20/cn.png' },
+        { code: 'ja', name: '日本語', flag: 'https://flagcdn.com/w20/jp.png' },
+        { code: 'ko', name: '한국어', flag: 'https://flagcdn.com/w20/kr.png' },
+        { code: 'hi', name: 'हिन्दी', flag: 'https://flagcdn.com/w20/in.png' },
+        { code: 'th', name: 'ไทย', flag: 'https://flagcdn.com/w20/th.png' },
+        { code: 'vi', name: 'Tiếng Việt', flag: 'https://flagcdn.com/w20/vn.png' },
+        { code: 'fa', name: 'فارسی', flag: 'https://flagcdn.com/w20/ir.png' },
+        { code: 'ur', name: 'اردو', flag: 'https://flagcdn.com/w20/pk.png' },
+        { code: 'bn', name: 'বাংলা', flag: 'https://flagcdn.com/w20/bd.png' },
+        { code: 'id', name: 'Bahasa Indonesia', flag: 'https://flagcdn.com/w20/id.png' },
+        { code: 'ms', name: 'Bahasa Melayu', flag: 'https://flagcdn.com/w20/my.png' },
+        { code: 'tl', name: 'Tagalog', flag: 'https://flagcdn.com/w20/ph.png' },
+        { code: 'sw', name: 'Kiswahili', flag: 'https://flagcdn.com/w20/tz.png' },
+        { code: 'so', name: 'Soomaali', flag: 'https://flagcdn.com/w20/so.png' },
+        { code: 'am', name: 'አማርኛ', flag: 'https://flagcdn.com/w20/et.png' },
+        { code: 'yo', name: 'Yorùbá', flag: 'https://flagcdn.com/w20/ng.png' },
+        { code: 'ha', name: 'Hausa', flag: 'https://flagcdn.com/w20/ne.png' },
+        { code: 'zu', name: 'isiZulu', flag: 'https://flagcdn.com/w20/za.png' },
+        { code: 'xh', name: 'isiXhosa', flag: 'https://flagcdn.com/w20/za.png' },
+        { code: 'af', name: 'Afrikaans', flag: 'https://flagcdn.com/w20/za.png' },
+        { code: 'mg', name: 'Malagasy', flag: 'https://flagcdn.com/w20/mg.png' },
+        { code: 'ny', name: 'Chichewa', flag: 'https://flagcdn.com/w20/mw.png' },
+        { code: 'st', name: 'Sesotho', flag: 'https://flagcdn.com/w20/ls.png' },
+        { code: 'tn', name: 'Setswana', flag: 'https://flagcdn.com/w20/bw.png' },
+        { code: 'ts', name: 'Xitsonga', flag: 'https://flagcdn.com/w20/za.png' },
+        { code: 've', name: 'Tshivenda', flag: 'https://flagcdn.com/w20/za.png' },
+        { code: 'ss', name: 'siSwati', flag: 'https://flagcdn.com/w20/sz.png' },
+        { code: 'rw', name: 'Kinyarwanda', flag: 'https://flagcdn.com/w20/rw.png' },
+        { code: 'rn', name: 'Kirundi', flag: 'https://flagcdn.com/w20/bi.png' },
+        { code: 'lg', name: 'Luganda', flag: 'https://flagcdn.com/w20/ug.png' },
+        { code: 'ak', name: 'Akan', flag: 'https://flagcdn.com/w20/gh.png' },
+        { code: 'ff', name: 'Fula', flag: 'https://flagcdn.com/w20/cm.png' },
+        { code: 'wo', name: 'Wolof', flag: 'https://flagcdn.com/w20/sn.png' },
+        { code: 'bm', name: 'Bambara', flag: 'https://flagcdn.com/w20/ml.png' },
+        { code: 'dyu', name: 'Dyula', flag: 'https://flagcdn.com/w20/ci.png' },
+        { code: 'mos', name: 'Mossi', flag: 'https://flagcdn.com/w20/bf.png' },
+        { code: 'srr', name: 'Serer', flag: 'https://flagcdn.com/w20/sn.png' },
+        { code: 'sn', name: 'Shona', flag: 'https://flagcdn.com/w20/zw.png' },
+        { code: 'bem', name: 'Bemba', flag: 'https://flagcdn.com/w20/zm.png' },
+        { code: 'ln', name: 'Lingala', flag: 'https://flagcdn.com/w20/cd.png' },
+        { code: 'kg', name: 'Kongo', flag: 'https://flagcdn.com/w20/cd.png' },
+        { code: 'ku', name: 'Kurdî', flag: 'https://flagcdn.com/w20/iq.png' },
+        { code: 'az', name: 'Azərbaycan', flag: 'https://flagcdn.com/w20/az.png' },
+        { code: 'uz', name: 'Oʻzbek', flag: 'https://flagcdn.com/w20/uz.png' },
+        { code: 'kk', name: 'Қазақ', flag: 'https://flagcdn.com/w20/kz.png' },
+        { code: 'ky', name: 'Кыргыз', flag: 'https://flagcdn.com/w20/kg.png' },
+        { code: 'tk', name: 'Türkmen', flag: 'https://flagcdn.com/w20/tm.png' },
+        { code: 'ps', name: 'پښتو', flag: 'https://flagcdn.com/w20/af.png' },
+        { code: 'sd', name: 'سنڌي', flag: 'https://flagcdn.com/w20/pk.png' },
+        { code: 'bal', name: 'Balochi', flag: 'https://flagcdn.com/w20/pk.png' },
+        { code: 'si', name: 'සිංහල', flag: 'https://flagcdn.com/w20/lk.png' },
+        { code: 'dv', name: 'ދިވެހި', flag: 'https://flagcdn.com/w20/mv.png' },
+        { code: 'my', name: 'မြန်မာ', flag: 'https://flagcdn.com/w20/mm.png' },
+        { code: 'km', name: 'ភាសាខ្មែរ', flag: 'https://flagcdn.com/w20/kh.png' },
+        { code: 'lo', name: 'ລາວ', flag: 'https://flagcdn.com/w20/la.png' },
+        { code: 'mn', name: 'Монгол', flag: 'https://flagcdn.com/w20/mn.png' },
+        { code: 'bo', name: 'བོད་སྐད', flag: 'https://flagcdn.com/w20/cn.png' },
+        { code: 'dz', name: 'རྫོང་ཁ', flag: 'https://flagcdn.com/w20/bt.png' }
+    ],
+
+    // تحميل اللغة المحددة
+    async loadLanguage(lang) {
+        const selectedLang = this.languages.find(l => l.code === lang) || this.languages[0];
+        
+        try {
+            // تحميل ملف الترجمة
+            const response = await fetch(`./locales/${lang}/translation.json`);
+            const translations = response.ok ? await response.json() : this.getDefaultTranslations();
+            
+            // تطبيق الترجمات
+            this.applyTranslations(translations);
+            
+            // تحديث العلم المختار
+            const flagImg = document.getElementById('currentFlag');
+            if (flagImg) {
+                flagImg.src = selectedLang.flag;
+            }
+            
+            // ضبط اتجاه الصفحة (RTL للعربية والفارسية والأردية)
+            const rtlLanguages = ['ar', 'ur', 'fa', 'sd', 'ps', 'ku'];
+            document.documentElement.dir = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            
+            this.currentLanguage = lang;
+            
+        } catch (error) {
+            console.error("فشل تحميل ملف اللغة:", lang, error);
+        }
+    },
+
+    // الترجمات الافتراضية (للعربية)
+    getDefaultTranslations() {
+        return {
+            heroTitle: '<span style="color:#ff0000">1000</span> حالة طلاق سنويًا في مصر <br> بسبب <span style="color:#d4af37">تسونامي الوهم الرقمي</span>',
+            bookBtnText: "تصفح الكتاب كاملاً",
+            bookLink: "https://heyzine.com/flip-book/48ab3792ec.html",
+            videoUrl: "https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4",
+            nav: ["من نحن", "أهدافنا", "صرختنا", "رسالاتنا", "وعي وطني", "ميديا", "إحصائيات", "خسائر", "برامج توعوية", "رؤية إنسانية", "مرجعيتنا الإنسانية", "شركاؤنا"],
+            social: [
+                {icon: "fab fa-youtube", color: "#FF0000", link: "https://www.youtube.com/@CiviStories"},
+                {icon: "fab fa-facebook-f", color: "#1877F2", link: "https://www.facebook.com/profile.php?id=100093677167187"},
+                {icon: "fab fa-x-twitter", color: "#fff", link: "https://x.com/civistories"},
+                {icon: "fab fa-instagram", color: "#E4405F", link: "https://www.instagram.com/civi.stories"},
+                {icon: "fab fa-whatsapp", color: "#25D366", link: "https://wa.me/201009995015"}
+            ],
+            news: [
+                "الأزهر الشريف: حالة طلاق تقريباً كل دقيقتين ونصف بسبب الإدمان الرقمي",
+                "وزارة الأوقاف: الهواتف الذكية أحد أسباب الخرس والبرود الزوجي الرئيسية",
+                "إنذار أحمر: تفكك الأسر يُهدد الاستقرار الاجتماعي والمجتمعي في مصر",
+                "وزارة الصحة: ٣ ملايين زيارة سنوية للعيادات النفسية بسبب اضطرابات السوشيال ميديا",
+                "الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالانعزال والإفراط الرقمي",
+                "القصر العيني: محاولة انتحار كل ٦ ساعات تقريباً بسبب التنمر عبر الإنترنت",
+                "وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوية بسبب الإدمان الرقمي",
+                "اليونيسف: ٤٧% من أطفال مصر تعرضوا للتنمر الإلكتروني المؤذي",
+                "الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات سابقة",
+                "وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل الاجتماعي"
+            ]
+        };
+    },
+
+    // تطبيق الترجمات على الصفحة
+    applyTranslations(data) {
+        // العنوان الرئيسي
+        const mainTitle = document.getElementById('mainTitle');
+        if (mainTitle && data.heroTitle) {
+            mainTitle.innerHTML = data.heroTitle;
+        }
+
+        // زر الكتاب
+        const bookBtn = document.getElementById('bookBtn');
+        if (bookBtn) {
+            if (data.bookBtnText) bookBtn.textContent = data.bookBtnText;
+            if (data.bookLink) bookBtn.href = data.bookLink;
+        }
+
+        // الفيديو
+        const mainVideo = document.getElementById('mainVideo');
+        if (mainVideo && data.videoUrl) {
+            mainVideo.src = data.videoUrl;
+        }
+
+        // القائمة الرئيسية
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks && data.nav && Array.isArray(data.nav)) {
+            navLinks.innerHTML = data.nav.map(item => `<a href="#">${item}</a>`).join('');
+        }
+
+        // أيقونات السوشيال ميديا
+        const socialIcons = document.getElementById('socialIcons');
+        if (socialIcons && data.social && Array.isArray(data.social)) {
+            socialIcons.innerHTML = data.social.map(s => 
+                `<a href="${s.link}" target="_blank" style="color:${s.color}"><i class="${s.icon}"></i></a>`
+            ).join('');
+        }
+
+        // شريط الأخبار
+        const tickerTrack = document.getElementById('tickerTrack');
+        if (tickerTrack && data.news && Array.isArray(data.news)) {
+            const newsHTML = data.news.map(n => `<span>• ${n}</span>`).join('');
+            tickerTrack.innerHTML = newsHTML + newsHTML; // للتكرار
+        }
+    },
+
+    // إنشاء قائمة اللغات
+    renderDropdown() {
+        const langMenu = document.getElementById('langMenu');
+        if (!langMenu) return;
+
+        langMenu.innerHTML = '';
+        
+        this.languages.forEach(lang => {
+            const div = document.createElement('div');
+            div.className = 'lang-item';
+            div.innerHTML = `<img src="${lang.flag}" width="20"> ${lang.name}`;
+            div.onclick = () => {
+                this.loadLanguage(lang.code);
+                langMenu.style.display = 'none';
+            };
+            langMenu.appendChild(div);
+        });
+    },
+
+    // إخفاء القائمة عند الضغط خارجها
+    init() {
+        const langMenu = document.getElementById('langMenu');
+        const currentFlag = document.getElementById('currentFlag');
+        
+        if (currentFlag) {
+            currentFlag.onclick = (e) => {
+                e.stopPropagation();
+                if (langMenu) {
+                    langMenu.style.display = langMenu.style.display === 'block' ? 'none' : 'block';
+                }
+            };
+        }
+
+        // إخفاء القائمة عند الضغط في أي مكان آخر
+        document.addEventListener('click', () => {
+            if (langMenu) langMenu.style.display = 'none';
+        });
+    }
+};
+
+// تحميل اللغة عند بدء الصفحة
+document.addEventListener('DOMContentLoaded', () => {
+    i18n.renderDropdown();
+    i18n.loadLanguage('ar'); // تحميل العربية افتراضياً
+    i18n.init();
+});

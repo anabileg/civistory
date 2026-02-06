@@ -12,54 +12,57 @@
 </head>
 <body>
 
-    <div class="site-bg"></div>
-
     <header class="main-header">
         <div class="header-container">
-            <div class="logo-area">
-                <h1>CiviStory</h1>
+            <div class="national-logos">
+                <img src="assets/100.png" alt="الأزهـر الشريف">
+                <img src="assets/200.png" alt="وزارة الأوقاف">
+                <img src="assets/300.png" alt="الكنيسة المصرية">
             </div>
             
-            <div class="lang-wrapper">
-                <button id="lang-btn" class="lang-button">
-                    <img src="https://flagcdn.com/w20/eg.png" alt="Ar">
-                    <span>العربية</span>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
+            <div class="logo-area">
+                <h1 style="color: #d4af37; font-size: 1.5rem;">CIVISTORY</h1>
             </div>
         </div>
     </header>
 
     <div class="news-ticker">
-        <div class="ticker-track animate-news">
-            <span>🌍 مرحباً بكم في منصة قصص الحضارات.. صرخة عالمية للرحمة الرقمية</span>
-            <span>✨ قريباً: إضافة 86 لغة عالمية للمنصة</span>
-            <span>⚠️ إحصائية: ألف حالة طلاق سنويًّا بسبب سوء استخدام الشاشات</span>
+        <div class="ticker-track">
+            <span>🌍 تسونامي الوهم الرقمي: من مهد الحضارة مصر إلى العالم... صرخة لإنقاذ الإنسانية </span>
+            <span> ⚠️ نسبة المصريين الذين يبدأون يومهم بالسوشيال ميديا 71% </span>
+            <span> ⚠️ نسبة المشاكل الأسرية التي تبدأ عبر الواتساب في تزايد مستمر </span>
         </div>
     </div>
 
     <section class="hero-section">
-        <h2 class="gold-text">قصص الحضارات</h2>
-        <p style="font-size: 1.2rem; color: #eee; margin-bottom: 40px;">صرخة عالمية للرحمة الرقمية</p>
+        <div class="book-section">
+            <img src="assets/CIVISTORIES Book.png" class="book-cover" alt="تسونامي الوهم الرقمي">
+        </div>
         
+        <h2 class="main-title">تسونامي الوهم الرقمي</h2>
+        <p class="sub-title">صرخة عالمية للرحمة الرقمية من مهد الحضارات</p>
+
         <div class="grid-container">
-            <div class="story-card">
-                <i class="fas fa-envelope-open-text" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 15px;"></i>
-                <h3>رسالاتنا العالمية</h3>
-                <p>نداء إنساني مفتوح لحماية الكرامة الرقمية</p>
-            </div>
             
             <div class="story-card">
-                <i class="fas fa-landmark" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 15px;"></i>
+                <i class="fas fa-dove"></i>
+                <h3>أهدافنا ورسالتنا</h3>
+                <p>نداء إنساني مفتوح لحماية الكرامة والرحمة في العصر الرقمي</p>
+                <button style="margin-top: 15px; padding: 8px 20px; cursor: pointer; background: #000; color: #d4af37; border: 1px solid #000; font-weight: bold;">اقرأ المزيد</button>
+            </div>
+
+            <div class="story-card">
+                <img src="assets/101.jpg" class="media-img" alt="ميديا">
                 <h3>مرجعيتنا الإنسانية</h3>
                 <p>رؤية الحضارات (الجاينية، الإفريقية، الكونفوشيوسية)</p>
             </div>
 
             <div class="story-card">
-                <i class="fas fa-scroll" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 15px;"></i>
-                <h3>موسوعة الحضارات</h3>
-                <p>استكشف حكمة الأقدمين في التعامل مع الإنسان</p>
+                <img src="assets/102.jpg" class="media-img" alt="وعي وطني">
+                <h3>وعي وطني</h3>
+                <p>مبادراتنا لحماية الأسرة المصرية من مخاطر التكنولوجيا</p>
             </div>
+
         </div>
     </section>
 
@@ -68,9 +71,9 @@
         <span>تواصل معنا</span>
     </a>
 
-    <div id="btnUp" class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+    <button id="btnUp" class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
         <i class="fas fa-arrow-up"></i>
-    </div>
+    </button>
 
     <script src="js/main.js"></script>
 </body>

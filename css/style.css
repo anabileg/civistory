@@ -1,203 +1,143 @@
-/* 1. المتغيرات والألوان الملكية (مدمج من الكودين) */
+/* 1. المتغيرات والخطوط */
 :root {
     --gold: #d4af37;
     --white: #ffffff;
     --black: #000000;
     --red-news: #b30000;
-    --red-num: #ff0000;
     --wa-color: #25D366;
-    --cream-bg: #fdf9f3;
     --font-main: 'Tajawal', 'Cairo', sans-serif;
 }
 
-/* 2. التنسيق الأساسي وحماية المحتوى */
+/* 2. التنسيق الأساسي والخلفية العامة */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 }
 
-html { scroll-behavior: smooth; }
-
 body {
-    background-color: var(--black);
+    background: url('../assets/image_390e08.jpg') no-repeat center center fixed;
+    background-size: cover;
     color: var(--white);
     font-family: var(--font-main);
     direction: rtl;
     line-height: 1.6;
-    overflow-x: hidden;
-    width: 100%;
 }
 
-/* 3. الخلفية المتحركة الاحترافية (Ken Burns Effect) */
-.site-bg {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('../images/bg.jpg'); /* تأكد من وضع صورة خلفية في مجلد images */
-    background-position: center; background-size: cover; z-index: -1;
-    animation: kenBurns 35s ease-in-out infinite alternate;
-}
-@keyframes kenBurns { 
-    0% { transform: scale(1); filter: brightness(0.35);} 
-    100% { transform: scale(1.18); filter: brightness(0.55);} 
-}
-
-/* 4. الهيدر (Navbar) المطور */
+/* 3. الهيدر المطور (المرجعيات الوطنية) */
 .main-header {
-    min-height: 90px;
-    background: rgba(0,0,0,0.95);
-    backdrop-filter: blur(15px);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 10001;
+    background: rgba(0, 0, 0, 0.9);
     border-bottom: 2px solid var(--gold);
-    display: flex;
-    align-items: center;
+    padding: 15px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 2000;
 }
 
 .header-container {
-    width: 95%;
-    max-width: 1400px;
-    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.logo-area h1 {
-    color: var(--gold);
-    font-size: 1.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
+.national-logos {
+    display: flex;
+    gap: 15px;
+    align-items: center;
 }
 
-/* 5. شريط الأخبار المتحرك (News Ticker) */
+.national-logos img {
+    height: 50px; /* حجم أيقونات الأزهر والكنيسة والأوقاف */
+    filter: drop-shadow(0 0 5px rgba(212,175,55,0.5));
+}
+
+/* 4. شريط الأخبار (تسونامي الرقمي) */
 .news-ticker {
     background: var(--red-news);
     color: white;
-    height: 45px;
-    position: fixed;
-    top: 90px;
-    width: 100%;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
+    padding: 10px 0;
+    font-weight: bold;
     overflow: hidden;
 }
 
 .ticker-track {
-    display: flex;
+    display: inline-block;
     white-space: nowrap;
-    width: max-content;
+    animation: marquee 30s linear infinite;
 }
 
-.animate-news {
-    animation: marqueeNews 150s linear infinite;
+@keyframes marquee {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
 }
 
-@keyframes marqueeNews { 
-    0% { transform: translateX(0);} 
-    100% { transform: translateX(-50%);} 
-}
-
-/* 6. النوافذ المنبثقة الاحترافية (Modals) */
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 50000;
-}
-
-.modal-box {
-    background: var(--cream-bg);
-    border: 3px solid var(--black);
-    width: 90%;
-    max-width: 700px;
-    border-radius: 20px;
-    padding: 30px;
-    color: var(--black);
-    max-height: 85vh;
-    overflow-y: auto;
-    position: relative;
-}
-
-.close-modal {
-    position: absolute; top: 10px; left: 10px;
-    width: 40px; height: 40px;
-    background: #fff; border: 2px solid var(--red-num);
-    color: var(--red-num); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; font-weight: bold; font-size: 20px;
-}
-
-/* 7. الأقسام والبطاقات (Cards) */
-.hero-section {
-    padding: 160px 5% 60px;
-    text-align: center;
-}
-
-.gold-text {
-    color: var(--gold);
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 25px;
-}
-
+/* 5. بطاقات الميديا والمربعات (الخلفية الذهبية) */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
     padding: 40px 5%;
 }
 
 .story-card {
-    background: rgba(0,0,0,0.6);
+    /* استخدام الصورة الذهبية كخلفية للمربع */
+    background: url('../assets/image_3a7328.jpg') no-repeat center center;
+    background-size: cover;
     border: 1px solid var(--gold);
-    border-radius: 20px;
-    padding: 30px;
-    transition: 0.4s;
+    border-radius: 15px;
+    padding: 20px;
     text-align: center;
+    transition: 0.4s;
+    color: var(--black); /* تغيير الخط للاسود ليظهر فوق الذهبي أو حسب الرغبة */
+    font-weight: bold;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .story-card:hover {
-    background: rgba(212, 175, 55, 0.1);
-    transform: translateY(-10px);
+    transform: scale(1.03);
+    box-shadow: 0 0 20px var(--gold);
 }
 
-/* 8. الأزرار العائمة */
+.media-img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 2px solid var(--black);
+}
+
+/* 6. غلاف الكتاب */
+.book-section {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.book-cover {
+    width: 250px;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.book-cover:hover {
+    transform: rotateY(-10deg);
+}
+
+/* 7. الأزرار العائمة */
 .wa-float {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 20px;
+    right: 20px;
     background: var(--wa-color);
     color: white;
-    padding: 15px 25px;
+    padding: 12px 25px;
     border-radius: 50px;
     text-decoration: none;
+    z-index: 1000;
     display: flex;
     align-items: center;
     gap: 10px;
-    font-weight: bold;
-    z-index: 10000;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.back-to-top {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    width: 50px;
-    height: 50px;
-    background: var(--gold);
-    color: black;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
 }

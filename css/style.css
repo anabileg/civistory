@@ -1,41 +1,64 @@
-/* التعريف بالألوان والخطوط الملكية */
+/* 1. المتغيرات والألوان الملكية (مدمج من الكودين) */
 :root {
     --gold: #d4af37;
     --white: #ffffff;
     --black: #000000;
     --red-news: #b30000;
+    --red-num: #ff0000;
     --wa-color: #25D366;
-    --font-main: 'Cairo', 'Tajawal', sans-serif;
+    --cream-bg: #fdf9f3;
+    --font-main: 'Tajawal', 'Cairo', sans-serif;
 }
 
-/* التنسيق الأساسي */
+/* 2. التنسيق الأساسي وحماية المحتوى */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
+
+html { scroll-behavior: smooth; }
 
 body {
     background-color: var(--black);
     color: var(--white);
     font-family: var(--font-main);
-    direction: rtl; /* اتجاه عربي */
+    direction: rtl;
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
 }
 
-/* تنسيق الهيدر (رأس الصفحة) */
+/* 3. الخلفية المتحركة الاحترافية (Ken Burns Effect) */
+.site-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('../images/bg.jpg'); /* تأكد من وضع صورة خلفية في مجلد images */
+    background-position: center; background-size: cover; z-index: -1;
+    animation: kenBurns 35s ease-in-out infinite alternate;
+}
+@keyframes kenBurns { 
+    0% { transform: scale(1); filter: brightness(0.35);} 
+    100% { transform: scale(1.18); filter: brightness(0.55);} 
+}
+
+/* 4. الهيدر (Navbar) المطور */
 .main-header {
-    border-bottom: 2px solid var(--gold);
-    padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.95);
-    position: sticky;
+    min-height: 90px;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(15px);
+    position: fixed;
     top: 0;
-    z-index: 1000;
+    width: 100%;
+    z-index: 10001;
+    border-bottom: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
 }
 
 .header-container {
-    max-width: 1200px;
+    width: 95%;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -44,130 +67,137 @@ body {
 
 .logo-area h1 {
     color: var(--gold);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
+    text-transform: uppercase;
 }
 
-/* تنسيق زر اختيار اللغة (86 لغة) */
-.lang-wrapper {
+/* 5. شريط الأخبار المتحرك (News Ticker) */
+.news-ticker {
+    background: var(--red-news);
+    color: white;
+    height: 45px;
+    position: fixed;
+    top: 90px;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.ticker-track {
+    display: flex;
+    white-space: nowrap;
+    width: max-content;
+}
+
+.animate-news {
+    animation: marqueeNews 150s linear infinite;
+}
+
+@keyframes marqueeNews { 
+    0% { transform: translateX(0);} 
+    100% { transform: translateX(-50%);} 
+}
+
+/* 6. النوافذ المنبثقة الاحترافية (Modals) */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 50000;
+}
+
+.modal-box {
+    background: var(--cream-bg);
+    border: 3px solid var(--black);
+    width: 90%;
+    max-width: 700px;
+    border-radius: 20px;
+    padding: 30px;
+    color: var(--black);
+    max-height: 85vh;
+    overflow-y: auto;
     position: relative;
 }
 
-.lang-button {
-    background: var(--white);
-    color: var(--black);
-    border: 1px solid var(--gold);
-    padding: 6px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: bold;
-    font-size: 14px;
+.close-modal {
+    position: absolute; top: 10px; left: 10px;
+    width: 40px; height: 40px;
+    background: #fff; border: 2px solid var(--red-num);
+    color: var(--red-num); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-weight: bold; font-size: 20px;
 }
 
-.lang-dropdown {
-    display: none;
-    position: absolute;
-    top: 40px;
-    left: 0;
-    background: var(--white);
-    color: var(--black);
-    min-width: 200px;
-    max-height: 300px; /* للسماح بالتمرير بين 86 لغة */
-    overflow-y: auto;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    z-index: 1001;
-}
-
-.lang-dropdown.show {
-    display: block;
-}
-
-.lang-dropdown li {
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
-}
-
-.lang-dropdown li:hover {
-    background: #f5f5f5;
-}
-
-/* تنسيق الأقسام (Hero) */
+/* 7. الأقسام والبطاقات (Cards) */
 .hero-section {
-    padding: 50px 20px;
+    padding: 160px 5% 60px;
     text-align: center;
-    background: linear-gradient(to bottom, #000, #1a1a1a);
 }
 
 .gold-text {
     color: var(--gold);
-    font-size: 2.2rem;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 25px;
 }
 
-/* شبكة القصص والأقسام */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    max-width: 1100px;
-    margin: 30px auto;
-    padding: 0 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 40px 5%;
 }
 
 .story-card {
+    background: rgba(0,0,0,0.6);
     border: 1px solid var(--gold);
-    padding: 25px;
-    border-radius: 12px;
-    background: rgba(212, 175, 55, 0.05);
+    border-radius: 20px;
+    padding: 30px;
+    transition: 0.4s;
     text-align: center;
-    transition: 0.3s;
 }
 
 .story-card:hover {
-    background: rgba(212, 175, 55, 0.15);
-    transform: translateY(-5px);
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateY(-10px);
 }
 
-/* زر الواتساب العائم */
+/* 8. الأزرار العائمة */
 .wa-float {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: var(--wa-color);
+    bottom: 30px;
+    right: 30px;
+    background: var(--wa-color);
     color: white;
-    padding: 12px 25px;
+    padding: 15px 25px;
     border-radius: 50px;
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 10px;
     font-weight: bold;
-    z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 10000;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* زر الصعود للأعلى */
 .back-to-top {
     position: fixed;
-    bottom: 80px;
-    left: 20px; /* جهة اليسار لعدم التعارض مع واتساب */
+    bottom: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
     background: var(--gold);
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
+    color: black;
     border-radius: 50%;
     cursor: pointer;
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 10000;
 }

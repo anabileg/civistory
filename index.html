@@ -58,14 +58,14 @@
         .nav-logo-img { height: 65px; }
         .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
 
-        /* شريط الأخبار - السرعة بطيئة جداً لراحة العين */
+        /* شريط الأخبار */
         .news-ticker { 
             background: var(--red-news); color: white; height: 45px; position: fixed; 
             top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; 
         }
         .ticker-track { 
             display: flex; white-space: nowrap; width: max-content; 
-            animation: marqueeNews 2000s linear infinite; /* سرعة بطيئة جداً */
+            animation: marqueeNews 2000s linear infinite; 
         }
         .ticker-track span { 
             display: inline-block; padding-left: 100px; font-weight: bold; 
@@ -74,16 +74,12 @@
         @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
         .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 180px 5% 60px; }
-        .main-alert-title { text-align: center; margin-bottom: 20px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
-        .main-alert-title span.highlight { color: var(--red-num); font-weight: 900; }
-        .main-alert-title span.gold-text { color: var(--gold); font-weight: 900; }
 
-        /* تنسيق الجملة الجديدة المضافة فوق الكتاب والفيديو */
+        /* الجملة الرئيسية الجديدة بالألوان المطلوبة */
         .mission-statement {
-            text-align: center; margin-bottom: 40px; font-size: 1.8rem; font-weight: 900; line-height: 1.5; max-width: 1000px;
+            text-align: center; margin-bottom: 50px; font-size: 2.5rem; font-weight: 900; line-height: 1.5; max-width: 1100px; color: var(--gold);
         }
-        .mission-statement span.tsunami { color: var(--red-num); }
-        .mission-statement span.civil { color: var(--gold); }
+        .mission-statement span.red-text { color: var(--red-num); }
 
         .hero-container { display: flex; gap: 40px; width: 100%; align-items: stretch; justify-content: center; flex-wrap: wrap; }
         .book-static { flex: 0 0 320px; display: flex; flex-direction: column; justify-content: space-between; height: 450px; }
@@ -110,7 +106,7 @@
             .navbar { min-height: auto; padding: 10px 0; }
             .nav-container { flex-direction: column; gap: 10px; }
             .hero { padding-top: 280px; }
-            .mission-statement { font-size: 1.4rem; }
+            .mission-statement { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -157,76 +153,16 @@
         <span>• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل الاجتماعي</span>
         <span>• البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً</span>
         <span>• الأمن القومي: رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة والفتنة</span>
-        <span>• دراسة: ٨٥% من طلاب الثانوي يعانون آثار التنمر الرقمي النفسية</span>
-        <span>• كارثة: ٢.١ مليار جنيه خسائر سنوية بسبب عمليات النصب الإلكتروني</span>
-        <span>• تسجيل ٩٣ ألف و٣٠٠ حالة طلاق سنوياً مرتبطة بالسوشيال ميديا</span>
-        <span>• حدوث ٢٥٥ حالة طلاق يومياً بسبب وسائل التواصل الاجتماعي</span>
-        <span>• ذكر وسائل التواصل كسبب مباشر في ٣٠% من حالات الطلاق</span>
-        <span>• صدور ١٠٠ ألف فتوى سنوياً عن مشاكل أسرية ٢٣% منها بسبب التواصل الاجتماعي</span>
-        <span>• ٣٠% من فتاوى مجمع البحوث الإسلامية تتعلق بالقطيعة العائلية</span>
-        <span>• ٢٩% من فتاوى مجمع البحوث الإسلامية تتعلق بالعلاقات المحرمة</span>
-        <span>• ٦٠% من المشاكل الأسرية في المجتمع القبطي مرتبطة بالسوشيال ميديا</span>
-        <span>• معاناة ٥٠ ألف أسرة قبطية سنوياً من مشاكل التواصل الاجتماعي</span>
-        <span>• زيادة معدلات الطلاق في مصر بنسبة ٥٧% خلال ٥ سنوات (٢٠١٨-٢٠٢٣)</span>
-        <span>• ارتفاع حالات الطلاق من ١٩٨ ألف حالة عام ٢٠١٨ إلى ٣١١ ألف حالة عام ٢٠٢٣</span>
         <span>• تسجيل متوسط يومي ٨٥٢ حالة طلاق في مصر</span>
-        <span>• ٤٠% من بلاغات العنف الأسري بدأت بمشاجرات على وسائل التواصل</span>
-        <span>• تسجيل ١٤٥ ألف بلاغ عنف أسري عام ٢٠٢٣ منها ٤٣ ألف و٥٠٠ مرتبطة بمشاكل إلكترونية</span>
-        <span>• وجود ٢٢ ألف قضية خيانة زوجية بأدلة إلكترونية</span>
-        <span>• وقوع ١٢٢ جريمة قتل بين أزواج منها ٤٠ حالة بسبب الغيرة من منشورات</span>
-        <span>• ٦٥% من مراجعي العيادات النفسية يشكون من اضطرابات مرتبطة بالسوشيال ميديا</span>
-        <span>• تسجيل ٣ مليون زيارة للعيادات النفسية عام ٢٠٢٣ ٤٠% منها مرتبطة بالسوشيال ميديا</span>
-        <span>• الفئة العمرية من ١٥ إلى ٣٥ سنة تمثل ٦٨% من حالات الاضطرابات النفسية الرقمية</span>
-        <span>• ٥٠% من حالات الطلاق في السنة الأولى من الزواج سببها السوشيال ميديا</span>
-        <span>• خسارة إنتاجية تقدر بـ١٥ مليار جنيه سنوياً بسبب المشاكل النفسية الرقمية</span>
-        <span>• تعرض ٤٧% من الأطفال (٨-١٨ سنة) للتنمر الإلكتروني</span>
-        <span>• وصول متوسط الوقت اليومي للأطفال على الشاشات إلى ٥.٧ ساعات</span>
-        <span>• تعرض ٦٣% من الأطفال لمحتوى غير لائق عبر الإنترنت</span>
-        <span>• خسائر الإنتاجية بسبب الإدمان الرقمي تصل إلى ٢.٣% من الناتج المحلي</span>
-        <span>• تكلفة علاج الاضطرابات النفسية المرتبطة بالرقمنة تبلغ ٤ مليار و٥٠٠ ألف جنيه سنوياً</span>
-        <span>• فقدان ١٨ مليون يوم عمل سنوياً بسبب التداعيات الرقمية</span>
-        <span>• تسجيل متوسط ٣ صداقات مقطوعة لكل شاب بسبب الخلافات الرقمية</span>
-        <span>• ٨٥% من طلاب الثانوي يعانون من التنمر الرقمي</span>
-        <span>• ٣٥% من طلاب الثانوي حاولوا الانتحار مرة على الأقل</span>
-        <span>• ٦٤% من طلاب الجامعات يعانون من اضطرابات نوم بسبب السوشيال ميديا</span>
-        <span>• ٤٢% من طلاب الجامعات تأثرت درجاتهم الأكاديمية سلباً</span>
-        <span>• تعرض ١٧% من طلاب الجامعات للابتزاز الإلكتروني</span>
         <span>• وقوع محاولة انتحار كل ٦ ساعات بسبب التنمر الرقمي أو القطيعة</span>
-        <span>• تسجيل ١٤٦٠ محاولة انتحار عام ٢٠٢٣ ٦٠% منها لأسباب رقمية</span>
-        <span>• ٤٠% من المسنين يعانون من العزلة بسبب انشغال أبنائهم بالسوشيال ميديا</span>
-        <span>• ٢ مليون مسن مصري يعيشون في عزلة رقمية</span>
-        <span>• وصول نسبة حالات الطلاق في السنة الأولى من الزواج إلى ٣٤%</span>
-        <span>• متوسط عمر الزواج عند الطلاق يبلغ ٣.٧ سنة</span>
-        <span>• تسجيل ١٢ ألف و٥٠٠ حالة طلاق رقمي سنوياً</span>
-        <span>• متوسط عدد حسابات السوشيال ميديا للفرد المصري ٣.٨ حساب</span>
-        <span>• ٧١% من المصريين يبدأون يومهم بتصفح السوشيال ميديا</span>
-        <span>• ٥٢% من المشاكل الأسرية تبدأ عبر تطبيق الواتساب</span>
-        <span>• طلاق زوجين بعد ٣٢ سنة زواج بسبب تعليق كومنت</span>
-        <span>• مقتل شقيقين في المنصورة بعد مشاجرة بسبب منشور سياسي</span>
-        <span>• انتحار طالبة طب بجامعة عين شمس لمشاهدتها ١٠٠ فيديو يومياً عن فشل الحياة الطبية</span>
-        <span>• انقسام عائلة من ١٥ فرداً بالإسكندرية بسبب صورة حفلة عيد ميلاد</span>
-        <span>• زوج يطلق زوجته في الجيزة بعد اكتشاف فيديوهات رقص لها على تيك توك</span>
-        <span>• معدل انتشار الاكتئاب بين مستخدمي السوشيال ميديا يصل إلى ٣١%</span>
-        <span>• ٧٦% من المستخدمين يقومون بمقارنات اجتماعية سلبية</span>
-        <span>• خسائر أسرية بسبب النصب الإلكتروني تبلغ ٢.١ مليار جنيه سنوياً</span>
-        <span>• رصد أكثر من ١٥ ألف صفحة إلكترونية مجهولة تنشر الفتنة</span>
-        <span>• رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة</span>
         <span>• تعرض تماسك الأسرة المصرية لـ١٢٠ هجمة إلكترونية يومياً</span>
-        <span>• تآكل القيم الأسرية التقليدية بنسبة ٢٢% خلال ٥ سنوات</span>
-        <span>• المحتوى الأجنبي المؤثر سلباً يمثل ٦٨% من المحتوى المتداول</span>
         <span>• توقع وصول حالات الطلاق إلى ٤٥٠ ألف حالة سنوياً بحلول ٢٠٣٠ في حال عدم التدخل</span>
-        <span>• توقع تجاوز الخسائر الاقتصادية الرقمية ٣٥ مليار جنيه سنوياً بحلول ٢٠٣٠</span>
     </div>
 </div>
 
 <section class="hero">
-    <h1 class="main-alert-title">
-        <span class="highlight">1000</span> حالة طلاق سنويًا في مصر <br>
-        بسبب <span class="gold-text">تسونامي الوهم الرقمي</span>
-    </h1>
-
     <div class="mission-statement">
-        <span class="tsunami">تسونامي</span> الوهم الرقمي: من مهد الحضارة <span class="civil">مصر</span> إلى العالم... صرخة لإنقاذ الإنسانية
+        <span class="red-text">تسونامي</span> الوهم الرقمي: من مهد الحضارة مصر إلى العالم... صرخة لإنقاذ الإنسانية
     </div>
 
     <div class="hero-container">
@@ -235,7 +171,7 @@
             <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn-action">تصفح الكتاب كاملاً</a>
         </div>
         <div class="video-container-box">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </div>
 </section>

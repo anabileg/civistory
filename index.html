@@ -39,7 +39,6 @@ display: flex; align-items: center; justify-content: center;
     position: absolute; top: 50px; right: 0; background: rgba(0,0,0,0.95);
     border: 1px solid var(--gold); border-radius: 8px; width: 220px;
     max-height: 400px; overflow-y: auto; display: none; z-index: 10002;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 .lang-dropdown::-webkit-scrollbar { width: 5px; }
 .lang-dropdown::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
@@ -49,7 +48,7 @@ display: flex; align-items: center; justify-content: center;
     border-bottom: 1px solid rgba(212, 175, 55, 0.2); transition: 0.3s; cursor: pointer;
 }
 .lang-item:hover { background: rgba(212, 175, 55, 0.1); color: #fff; }
-.lang-item img { width: 25px; height: 15px; object-fit: cover; border: 1px solid #555; }
+.lang-item img { width: 25px; height: 15px; object-fit: cover; }
 
 .nav-right-side { display: flex; align-items: center; gap: 20px; }
 .nav-links { display: flex; gap: 12px; align-items: center; }
@@ -64,6 +63,22 @@ display: flex; align-items: center; justify-content: center;
 
 /* ألوان السوشيال */
 .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
+
+/* نافذة تواصل معنا (Email Modal) */
+.email-modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 20000;
+}
+.email-content {
+    background: #111; border: 2px solid var(--gold); padding: 30px; border-radius: 20px;
+    text-align: center; width: 90%; max-width: 400px;
+}
+.email-box {
+    background: rgba(212, 175, 55, 0.1); padding: 10px; border-radius: 8px;
+    margin: 15px 0; display: flex; justify-content: space-between; align-items: center;
+    border: 1px dashed var(--gold);
+}
+.copy-btn { background: var(--gold); color: #000; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; }
 
 /* شريط الأخبار */
 .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
@@ -85,12 +100,6 @@ display: flex; align-items: center; justify-content: center;
 
 .video-container-box { flex: 1; max-width: 800px; min-width: 300px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; }
 
-.awareness-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; width: 100%; max-width: 1200px; }
-.awareness-card { background: rgba(0,0,0,0.6); border: 1px solid var(--gold); border-radius: 20px; padding: 25px; cursor: pointer; transition: 0.3s; text-align: center; }
-.awareness-card:hover { background: rgba(212, 175, 55, 0.1); transform: translateY(-5px); }
-.awareness-card i { font-size: 2.2rem; margin-bottom: 12px; display: block; color: var(--gold); }
-
-.btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; }
 #btnUp { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; background: var(--gold); color: #000; border-radius: 50%; display: none; justify-content: center; align-items: center; z-index: 9999; cursor: pointer; }
 
 @media (max-width: 992px) {
@@ -108,9 +117,8 @@ display: flex; align-items: center; justify-content: center;
     <div class="nav-container">
         <div class="nav-right-side">
             <div class="lang-wrapper">
-                <img src="https://flagcdn.com/w80/eg.png" class="lang-flag-current" id="currentFlag" onclick="toggleLang()" alt="اللغة الحالية">
-                <div class="lang-dropdown" id="langBox">
-                    </div>
+                <img src="https://flagcdn.com/w80/eg.png" class="lang-flag-current" id="currentFlag" onclick="toggleLang()" alt="اللغة">
+                <div class="lang-dropdown" id="langBox"></div>
             </div>
 
             <div class="nav-links">
@@ -126,7 +134,7 @@ display: flex; align-items: center; justify-content: center;
                 <a href="#">رؤية إنسانية</a>
                 <a href="#">مرجعيتنا الإنسانية</a>
                 <a href="#">شركاؤنا</a>
-                <a href="mailto:civistories@gmail.com?bcc=anabileg@gmail.com">تواصل معنا</a>
+                <a href="javascript:void(0)" onclick="toggleEmailModal()">تواصل معنا</a>
             </div>
         </div>
 
@@ -144,6 +152,24 @@ display: flex; align-items: center; justify-content: center;
         </div>
     </div>
 </nav>
+
+<div class="email-modal" id="emailModal" onclick="toggleEmailModal()">
+    <div class="email-content" onclick="event.stopPropagation()">
+        <h3 style="color:var(--gold)">تواصل معنا عبر البريد</h3>
+        
+        <div class="email-box">
+            <span id="em1">civistories@gmail.com</span>
+            <button class="copy-btn" onclick="copyText('em1')">نسخ</button>
+        </div>
+
+        <div class="email-box">
+            <span id="em2">anabileg@gmail.com</span>
+            <button class="copy-btn" onclick="copyText('em2')">نسخ</button>
+        </div>
+
+        <button class="btn-action" onclick="toggleEmailModal()" style="width:100%; margin-top:10px;">إغلاق</button>
+    </div>
+</div>
 
 <div class="news-ticker">
     <div class="ticker-track animate-news">
@@ -171,27 +197,12 @@ display: flex; align-items: center; justify-content: center;
             <iframe src="https://www.youtube.com/embed/LIVE_ID_HERE" allowfullscreen></iframe>
         </div>
     </div>
-
-    <div class="awareness-grid">
-        <div class="awareness-card">
-            <i class="fas fa-dove"></i>
-            <span>رسالاتنا الإنسانية</span>
-        </div>
-        <div class="awareness-card">
-            <i class="fas fa-dharmachakra"></i>
-            <span>الرؤية الجاينية</span>
-        </div>
-        <div class="awareness-card">
-            <i class="fas fa-fist-raised"></i>
-            <span>الفلسفة الإفريقية</span>
-        </div>
-    </div>
 </section>
 
 <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
 <script>
-// بيانات اللغات الـ 86 مع أعلامها
+// قائمة اللغات الـ 86
 const languages = [
     { n: "عربي", c: "eg" }, { n: "English", c: "gb" }, { n: "Français", c: "fr" }, { n: "Español", c: "es" },
     { n: "Deutsch", c: "de" }, { n: "Italiano", c: "it" }, { n: "Português", c: "pt" }, { n: "Türkçe", c: "tr" },
@@ -200,7 +211,7 @@ const languages = [
     { n: "Magyar", c: "hu" }, { n: "Slovenčina", c: "sk" }, { n: "Hrvatski", c: "hr" }, { n: "Slovenščina", c: "si" },
     { n: "Български", c: "bg" }, { n: "Српски", c: "rs" }, { n: "Čeština", c: "cz" }, { n: "Русский", c: "ru" },
     { n: "Українська", c: "ua" }, { n: "中文", c: "cn" }, { n: "日本語", c: "jp" }, { n: "한국어", c: "kr" },
-    { n: "हिन्दी", c: "in" }, { n: "తెలుగు", c: "in" }, { n: "मराठी", c: "in" }, { n: "தமிழ்", c: "in" },
+    { n: "हिन्दी", c: "in" }, { n: "తెలుగు", c: "in" }, { n: "मراठी", c: "in" }, { n: "தமிழ்", c: "in" },
     { n: "اردو", c: "pk" }, { n: "ગુજરાતી", c: "in" }, { n: "ಕನ್ನಡ", c: "in" }, { n: "മലയാളം", c: "in" },
     { n: "ଓଡ଼ିଆ", c: "in" }, { n: "ਪੰਜਾਬੀ", c: "pk" }, { n: "سنڌي", c: "pk" }, { n: "پښتو", c: "pk" },
     { n: "بلوچی", c: "pk" }, { n: "සිංහල", c: "lk" }, { n: "বাংলা", c: "bd" }, { n: "Bahasa Melayu", c: "my" },
@@ -216,7 +227,6 @@ const languages = [
     { n: "Mossi", c: "bf" }, { n: "Kinyarwanda", c: "rw" }, { n: "Kirundi", c: "bi" }
 ];
 
-// توليد قائمة اللغات تلقائياً
 const langBox = document.getElementById('langBox');
 languages.forEach(lang => {
     const div = document.createElement('div');
@@ -225,7 +235,6 @@ languages.forEach(lang => {
     div.onclick = () => {
         document.getElementById('currentFlag').src = `https://flagcdn.com/w80/${lang.c}.png`;
         langBox.style.display = 'none';
-        // ملاحظة: هنا سنضع رابط الصفحة عند توفر الترجمة مستقبلاً
     };
     langBox.appendChild(div);
 });
@@ -234,11 +243,16 @@ function toggleLang() {
     langBox.style.display = langBox.style.display === 'block' ? 'none' : 'block';
 }
 
-// إغلاق القائمة عند الضغط خارجها
-window.onclick = function(event) {
-    if (!event.target.matches('.lang-flag-current')) {
-        langBox.style.display = 'none';
-    }
+// وظائف الإيميل
+function toggleEmailModal() {
+    const modal = document.getElementById('emailModal');
+    modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+}
+
+function copyText(id) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text);
+    alert("تم نسخ البريد: " + text);
 }
 
 window.onscroll = function() {

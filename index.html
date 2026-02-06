@@ -42,7 +42,7 @@
 <nav class="navbar">
     <div class="nav-container">
         <div style="position:relative">
-            <img src="https://flagcdn.com/w80/eg.png" id="currentFlag" class="lang-btn" onclick="toggleMenu()">
+            <img id="currentFlag" class="lang-btn" onclick="toggleMenu()">
             <div id="langMenu" class="lang-dropdown"></div>
         </div>
         <div class="nav-links" id="navLinks"></div>
@@ -67,10 +67,9 @@
 </section>
 
 <script>
-    // قائمة اللغات (يمكنك إضافة الـ 86 لغة هنا)
+    // قائمة اللغات (العربية حالياً)
     const languages = [
-        { id: 'ar', name: 'العربية', flag: 'eg' },
-        { id: 'en', name: 'English', flag: 'gb' }
+        { id: 'ar', name: 'العربية', flag: 'eg' }
     ];
 
     function loadLanguage(langId) {
@@ -82,19 +81,25 @@
 
     function renderPage(data) {
         document.getElementById('htmlTag').dir = data.dir;
+        document.getElementById('currentFlag').src = `https://flagcdn.com/w80/${data.flagCode}.png`;
+        
         // القائمة
         const nav = document.getElementById('navLinks');
         nav.innerHTML = data.nav.map(item => `<a href="#">${item}</a>`).join('');
+        
         // السوشيال ميديا
         const social = document.getElementById('socialIcons');
         social.innerHTML = data.social.map(s => `<a href="${s.link}" target="_blank" style="color:${s.color}"><i class="${s.icon}"></i></a>`).join('');
-        // الأخبار
+        
+        // شريط الأخبار
         const ticker = document.getElementById('tickerTrack');
         ticker.innerHTML = data.news.map(n => `<span>• ${n}</span>`).join('');
         ticker.innerHTML += ticker.innerHTML; 
+        
         // المحتوى
         document.getElementById('mainTitle').innerHTML = data.heroTitle;
         document.getElementById('bookBtn').innerText = data.bookBtnText;
+        document.getElementById('bookBtn').href = data.bookLink;
         document.getElementById('mainVideo').src = data.videoUrl;
     }
 
@@ -103,10 +108,12 @@
         const d = document.createElement('div');
         d.className = 'lang-item';
         d.innerHTML = `<img src="https://flagcdn.com/w40/${l.flag}.png" width="20"> ${l.name}`;
-        d.onclick = () => { document.getElementById('currentFlag').src=`https://flagcdn.com/w80/${l.flag}.png`; loadLanguage(l.id); menu.style.display='none'; };
+        d.onclick = () => { loadLanguage(l.id); menu.style.display='none'; };
         menu.appendChild(d);
     });
     function toggleMenu() { menu.style.display = (menu.style.display==='block'?'none':'block'); }
+    
+    // التحميل الافتراضي للعربية
     window.onload = () => loadLanguage('ar');
 </script>
 </body>

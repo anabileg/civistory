@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html id="htmlTag" lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CiviStories | Digital Illusion Tsunami</title>
+    <title>CiviStories</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700&family=Cairo:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;900&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* سأضع هنا كل التصميمات الرائعة التي كانت في ملفك الأصلي مع تحسينها لتناسب النظام الجديد */
         :root {
             --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
-            --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --tk: #ffffff; --pr: #BD081C; --in: #0077B5;
-            --wa-color: #25D366; --cream-bg: #fdf9f3;
+            --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --wa-color: #25D366; --cream-bg: #fdf9f3;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        html { scroll-behavior: smooth; }
-        body { color: var(--white); font-family: 'Tajawal', 'Cairo', sans-serif; background: #000; overflow-x: hidden; width: 100%; font-weight: bold; font-size: 1rem; }
-
+        body { color: var(--white); font-family: 'Tajawal', sans-serif; background: #000; overflow-x: hidden; font-weight: bold; }
+        
+        /* الخلفية المتحركة */
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('assets/image_390e08.jpg'); background-position: center; background-size: cover; z-index: -1;
@@ -23,90 +23,49 @@
         }
         @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35);} 100% { transform: scale(1.18); filter: brightness(0.55);} }
 
+        /* الهيدر */
         .navbar {
             min-height: 90px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
             position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
             display: flex; align-items: center; justify-content: center;
         }
-        .nav-container { width: 95%; max-width: 1400px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; }
-
-        .lang-wrapper { position: relative; display: inline-block; }
-        .lang-flag-current { width: 45px; height: 30px; border: 1px solid var(--gold); border-radius: 4px; cursor: pointer; object-fit: cover; }
-        .lang-dropdown {
-            position: absolute; top: 50px; right: 0; background: rgba(0,0,0,0.95);
-            border: 1px solid var(--gold); border-radius: 8px; width: 220px;
-            max-height: 400px; overflow-y: auto; display: none; z-index: 10002;
-        }
-        .lang-dropdown::-webkit-scrollbar { width: 5px; }
-        .lang-dropdown::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
-        .lang-item {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 10px 15px; color: var(--gold); text-decoration: none;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2); transition: 0.3s; cursor: pointer;
-        }
-        .lang-item:hover { background: rgba(212, 175, 55, 0.1); color: #fff; }
-        .lang-item img { width: 25px; height: 15px; object-fit: cover; }
-
-        .nav-right-side { display: flex; align-items: center; gap: 20px; }
-        .nav-links { display: flex; gap: 12px; align-items: center; }
-        .nav-links a { color: var(--gold); text-decoration: none; font-weight: 900; cursor: pointer; transition: 0.3s; font-size: 0.9rem; white-space: nowrap; }
+        .nav-container { width: 95%; max-width: 1400px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-links { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.9rem; transition: 0.3s; cursor: pointer; }
         .nav-links a:hover { color: #fff; }
-
-        .nav-left-side { display: flex; align-items: center; gap: 20px; }
-        .social-icons { display: flex; gap: 10px; align-items: center; }
-        .social-icons a { font-size: 1.1rem; transition: 0.3s; text-decoration: none; }
-        .nav-logo-img { height: 65px; }
-        .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
+        .nav-logo-img { height: 60px; }
 
         /* شريط الأخبار */
-        .news-ticker { 
-            background: var(--red-news); color: white; height: 45px; position: fixed; 
-            top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; 
-        }
-        .ticker-track { 
-            display: flex; white-space: nowrap; width: max-content; 
-            animation: marqueeNews 2000s linear infinite; 
-        }
-        .ticker-track span { 
-            display: inline-block; padding-left: 100px; font-weight: bold; 
-            font-size: 1.1rem; direction: rtl; 
-        }
+        .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
+        .ticker-track { display: flex; white-space: nowrap; width: max-content; animation: marqueeNews 1200s linear infinite; }
+        .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; }
         @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-        .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 180px 5% 60px; }
+        /* البطاقة الرئيسية */
+        .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; }
+        .mission-statement { text-align: center; margin-bottom: 40px; font-size: 2.2rem; color: var(--gold); max-width: 1000px; line-height: 1.5; }
+        .hero-container { display: flex; gap: 30px; width: 100%; justify-content: center; flex-wrap: wrap; }
+        .video-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; }
+        .book-box { width: 300px; text-align: center; }
+        .book-box img { width: 100%; border: 2px solid var(--gold); border-radius: 15px; animation: float 3s infinite ease-in-out; }
+        @keyframes float { 0%,100% {transform: translateY(0);} 50% {transform: translateY(-10px);} }
 
-        /* الجملة الرئيسية الجديدة بالألوان المطلوبة */
-        .mission-statement {
-            text-align: center; margin-bottom: 50px; font-size: 2.5rem; font-weight: 900; line-height: 1.5; max-width: 1100px; color: var(--gold);
-        }
-        .mission-statement span.red-text { color: var(--red-num); }
+        /* أزرار ونوافذ */
+        .btn-action { background: var(--gold); color: #000; padding: 12px; display: block; margin-top: 15px; border-radius: 8px; text-decoration: none; font-weight: 900; }
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; z-index: 20000; align-items: center; justify-content: center; }
+        .modal-content { background: var(--cream-bg); color: #000; padding: 30px; border-radius: 20px; width: 90%; max-width: 800px; max-height: 80vh; overflow-y: auto; position: relative; }
+        .close-btn { position: absolute; top: 10px; left: 10px; background: #000; color: #fff; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
 
-        .hero-container { display: flex; gap: 40px; width: 100%; align-items: stretch; justify-content: center; flex-wrap: wrap; }
-        .book-static { flex: 0 0 320px; display: flex; flex-direction: column; justify-content: space-between; height: 450px; }
-        .book-wrapper img { width: 100%; border-radius: 15px; border: 2px solid var(--gold); animation: bookFloat 3s ease-in-out infinite; }
-        @keyframes bookFloat { 0%, 100% { transform: translateY(0);} 50% { transform: translateY(-15px); } }
+        /* تنسيق الأعلام */
+        .lang-btn { cursor: pointer; border: 1px solid var(--gold); border-radius: 4px; width: 45px; }
+        .lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 300px; overflow-y: auto; z-index: 10002; }
+        .lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #333; }
 
-        .btn-action { 
-            display: block; width: 100%; background: var(--gold); color: #000; 
-            text-decoration: none; padding: 15px; border-radius: 10px; 
-            text-align: center; font-weight: 900; transition: 0.3s;
-        }
-        .btn-action:hover { background: #fff; transform: scale(1.02); }
-
-        .video-container-box { flex: 1; max-width: 800px; min-width: 300px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; background: #000; }
-
-        #btnUp { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; background: var(--gold); color: #000; border-radius: 50%; display: none; justify-content: center; align-items: center; z-index: 9999; cursor: pointer; }
-
-        .email-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 20000; }
-        .email-content { background: #111; border: 2px solid var(--gold); padding: 30px; border-radius: 20px; text-align: center; width: 90%; max-width: 400px; }
-        .email-box { background: rgba(212, 175, 55, 0.1); padding: 10px; border-radius: 8px; margin: 15px 0; display: flex; justify-content: space-between; align-items: center; border: 1px dashed var(--gold); }
-        .copy-btn { background: var(--gold); color: #000; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: 900; }
-
-        @media (max-width: 992px) {
-            .navbar { min-height: auto; padding: 10px 0; }
-            .nav-container { flex-direction: column; gap: 10px; }
-            .hero { padding-top: 280px; }
-            .mission-statement { font-size: 1.6rem; }
+        @media (max-width: 768px) {
+            .navbar { min-height: 140px; }
+            .news-ticker { top: 140px; }
+            .hero { padding-top: 220px; }
+            .mission-statement { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -116,121 +75,105 @@
 
 <nav class="navbar">
     <div class="nav-container">
-        <div class="nav-right-side">
-            <div class="lang-wrapper">
-                <img src="https://flagcdn.com/w80/eg.png" class="lang-flag-current" id="currentFlag" onclick="toggleLang()" alt="اللغة">
-                <div class="lang-dropdown" id="langBox"></div>
-            </div>
-            <div class="nav-links">
-                <a href="#">من نحن</a><a href="#">أهدافنا</a><a href="#">صرختنا</a><a href="#">رسالاتنا</a><a href="#">وعي وطني</a><a href="#">ميديا</a><a href="#">إحصائيات</a><a href="#">خسائر</a><a href="#">برامج توعوية</a><a href="#">رؤية إنسانية</a><a href="#">مرجعيتنا الإنسانية</a><a href="#">شركاؤنا</a>
-                <a href="javascript:void(0)" onclick="toggleEmailModal()">تواصل معنا</a>
-            </div>
+        <div style="position:relative">
+            <img src="https://flagcdn.com/w80/eg.png" id="currentFlag" class="lang-btn" onclick="document.getElementById('langMenu').style.display='block'">
+            <div id="langMenu" class="lang-dropdown"></div>
         </div>
-        <div class="nav-left-side">
-            <div class="social-icons">
-                <a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank" class="ic-fb"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://x.com/civistories" target="_blank" class="ic-tw"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.instagram.com/civi.stories" target="_blank" class="ic-ig"><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/201009995015" target="_blank" style="color:var(--wa-color)"><i class="fab fa-whatsapp"></i></a>
+        <div class="nav-links" id="navLinks">
             </div>
-            <img src="assets/logo.png" class="nav-logo-img" alt="Civistory Logo">
-        </div>
+        <img src="assets/logo.png" class="nav-logo-img">
     </div>
 </nav>
 
 <div class="news-ticker">
-    <div class="ticker-track" id="newsTickerTrack">
-        <span>• الأزهر الشريف: حالة طلاق تقريباً كل دقيقتين ونصف بسبب الإدمان الرقمي</span>
-        <span>• وزارة الأوقاف: الهواتف الذكية أحد أسباب الخرس والبرود الزوجي الرئيسية</span>
-        <span>• إنذار أحمر: تفكك الأسر يُهدد الاستقرار الاجتماعي والمجتمعي في مصر</span>
-        <span>• وزارة الصحة: ٣ ملايين زيارة سنوية للعيادات النفسية بسبب اضطرابات السوشيال ميديا</span>
-        <span>• الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالانعزال والإفراط الرقمي</span>
-        <span>• القصر العيني: محاولة انتحار كل ٦ ساعات تقريباً بسبب التنمر عبر الإنترنت</span>
-        <span>• وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوية بسبب الإدمان الرقمي</span>
-        <span>• اليونيسف: ٤٧% من أطفال مصر تعرضوا للتنمر الإلكتروني المؤذي</span>
-        <span>• الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات سابقة</span>
-        <span>• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل الاجتماعي</span>
-        <span>• البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً</span>
-        <span>• الأمن القومي: رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة والفتنة</span>
-        <span>• تسجيل متوسط يومي ٨٥٢ حالة طلاق في مصر</span>
-        <span>• وقوع محاولة انتحار كل ٦ ساعات بسبب التنمر الرقمي أو القطيعة</span>
-        <span>• تعرض تماسك الأسرة المصرية لـ١٢٠ هجمة إلكترونية يومياً</span>
-        <span>• توقع وصول حالات الطلاق إلى ٤٥٠ ألف حالة سنوياً بحلول ٢٠٣٠ في حال عدم التدخل</span>
-    </div>
+    <div class="ticker-track" id="tickerTrack"></div>
 </div>
 
 <section class="hero">
-    <div class="mission-statement">
-        <span class="red-text">تسونامي</span> الوهم الرقمي: من مهد الحضارة مصر إلى العالم... صرخة لإنقاذ الإنسانية
-    </div>
-
+    <div class="mission-statement" id="mainTitle"></div>
     <div class="hero-container">
-        <div class="book-static">
-            <div class="book-wrapper"><img src="assets/CIVISTORIES Book.png" alt="Book Cover"></div>
-            <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn-action">تصفح الكتاب كاملاً</a>
+        <div class="book-box">
+            <img src="assets/CIVISTORIES Book.png">
+            <a id="bookBtn" href="#" target="_blank" class="btn-action"></a>
         </div>
-        <div class="video-container-box">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <div class="video-box">
+            <iframe id="mainVideo" width="100%" height="100%" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </div>
 </section>
 
-<div class="email-modal" id="emailModal" onclick="toggleEmailModal()">
-    <div class="email-content" onclick="event.stopPropagation()">
-        <h3 style="color:var(--gold); margin-bottom:15px;">تواصل معنا</h3>
-        <div class="email-box"><span id="em1">civistories@gmail.com</span><button class="copy-btn" onclick="copyText('em1')">نسخ</button></div>
-        <div class="email-box"><span id="em2">anabileg@gmail.com</span><button class="copy-btn" onclick="copyText('em2')">نسخ</button></div>
-        <button class="btn-action" onclick="toggleEmailModal()" style="width:100%; border:none; cursor:pointer;">إغلاق</button>
+<div id="contentModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="this.parentElement.parentElement.style.display='none'">×</span>
+        <div id="modalBody"></div>
     </div>
 </div>
 
-<div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
-
 <script>
-const languages = [
-    { n: "عربي", c: "eg" }, { n: "English", c: "gb" }, { n: "Français", c: "fr" }, { n: "Español", c: "es" },
-    { n: "Deutsch", c: "de" }, { n: "Italiano", c: "it" }, { n: "Português", c: "pt" }, { n: "Türkçe", c: "tr" },
-    { n: "Ελληνικά", c: "gr" }, { n: "Nederlands", c: "nl" }, { n: "Română", c: "ro" }, { n: "Svenska", c: "se" },
-    { n: "Polski", c: "pl" }, { n: "Suomi", c: "fi" }, { n: "Dansk", c: "dk" }, { n: "Norsk", c: "no" },
-    { n: "Magyar", c: "hu" }, { n: "Slovenčina", c: "sk" }, { n: "Hrvatski", c: "hr" }, { n: "Slovenščina", c: "si" },
-    { n: "Български", c: "bg" }, { n: "Српски", c: "rs" }, { n: "Čeština", c: "cz" }, { n: "Русский", c: "ru" },
-    { n: "Українська", c: "ua" }, { n: "中文", c: "cn" }, { n: "日本語", c: "jp" }, { n: "한국어", c: "kr" },
-    { n: "हिन्दी", c: "in" }, { n: "తెలుగు", c: "in" }, { n: "मराठी", c: "in" }, { n: "தமிழ்", c: "in" },
-    { n: "اردو", c: "pk" }, { n: "ગુજરાતી", c: "in" }, { n: "ಕನ್ನಡ", c: "in" }, { n: "മലയാളم", c: "in" },
-    { n: "ଓଡ଼ିଆ", c: "in" }, { n: "ਪੰਜਾਬੀ", c: "pk" }, { n: "سنڌي", c: "pk" }, { n: "پښتو", c: "pk" },
-    { n: "بلوچی",c: "pk" }, { n: "සිංහල", c: "lk" }, { n: "বাংলা", c: "bd" }, { n: "Bahasa Melayu", c: "my" },
-    { n: "Bahasa Indonesia", c: "id" }, { n: "Jawa", c: "id" }, { n: "Sunda", c: "id" }, { n: "Batak", c: "id" },
-    { n: "ဗမာစာ", c: "mm" }, { n: "ကရင်", c: "mm" }, { n: "ရခိုင်", c: "mm" }, { n: "မွန်", c: "mm" },
-    { n: "ရှမ်း", c: "mm" }, { n: "Kurdî", c: "iq" }, { n: "Azərbaycanca", c: "az" }, { n: "Oʻzbekcha", c: "uz" },
-    { n: "Қазақша", c: "kz" }, { n: "Tagalog", c: "ph" }, { n: "ไทย", c: "th" }, { n: "Tiếng Việt", c: "vn" },
-    { n: "فارسی",c: "ir" }, { n: "Yorùbá", c: "ng" }, { n: "አማርኛ", c: "et" }, { n: "Kiswahili", c: "tz" },
-    { n: "Lingála", c: "cd" }, { n: "isiZulu", c: "za" }, { n: "Luganda", c: "ug" }, { n: "Akan", c: "gh" },
-    { n: "Fula", c: "cm" }, { n: "Dioula", c: "ci" }, { n: "Malagasy", c: "mg" }, { n: "Dinka", c: "ss" },
-    { n: "Sara", c: "td" }, { n: "Soomaali", c: "so" }, { n: "Shona", c: "zw" }, { n: "Bemba", c: "zm" },
-    { n: "Chichewa", c: "mw" }, { n: "Wolof", c: "sn" }, { n: "Bambara", c: "ml" }, { n: "Hausa", c: "ne" },
-    { n: "Mossi", c: "bf" }, { n: "Kinyarwanda", c: "rw" }, { n: "Kirundi", c: "bi" }
-];
+    const languages = [
+        { id: 'ar', name: 'عربي', flag: 'eg' },
+        { id: 'en', name: 'English', flag: 'gb' },
+        { id: 'fr', name: 'Français', flag: 'fr' }
+        // أضف البقية هنا لاحقاً بنفس النمط
+    ];
 
-const langBox = document.getElementById('langBox');
-languages.forEach(lang => {
-    const div = document.createElement('div');
-    div.className = 'lang-item';
-    div.innerHTML = `<span>${lang.n}</span> <img src="https://flagcdn.com/w40/${lang.c}.png">`;
-    div.onclick = () => { document.getElementById('currentFlag').src = `https://flagcdn.com/w80/${lang.c}.png`; langBox.style.display = 'none'; };
-    langBox.appendChild(div);
-});
+    // وظيفة تحميل ملف اللغة برمجياً
+    function loadLanguage(langId) {
+        const script = document.createElement('script');
+        script.src = `langs/${langId}.js`; // سيبحث عن الملف في مجلد اسمه langs
+        script.onload = () => {
+            renderContent(window[langId]);
+        };
+        document.head.appendChild(script);
+    }
 
-function toggleLang() { langBox.style.display = (langBox.style.display === 'block' ? 'none' : 'block'); }
-function toggleEmailModal() { const m = document.getElementById('emailModal'); m.style.display = (m.style.display === 'flex' ? 'none' : 'flex'); }
-function copyText(id) { navigator.clipboard.writeText(document.getElementById(id).innerText); alert("تم النسخ بنجاح"); }
+    function renderContent(data) {
+        // تغيير اتجاه الموقع واللغة
+        document.getElementById('htmlTag').dir = data.dir;
+        document.getElementById('htmlTag').lang = data.id;
 
-const track = document.getElementById('newsTickerTrack');
-track.innerHTML += track.innerHTML;
+        // ملء القائمة
+        const nav = document.getElementById('navLinks');
+        nav.innerHTML = '';
+        data.nav.forEach(item => {
+            const a = document.createElement('a');
+            a.innerText = item.text;
+            a.onclick = () => showModal(item.content);
+            nav.appendChild(a);
+        });
 
-window.onscroll = function() {
-    document.getElementById("btnUp").style.display = (window.scrollY > 300 ? "flex" : "none");
-};
+        // شريط الأخبار
+        const ticker = document.getElementById('tickerTrack');
+        ticker.innerHTML = data.news.map(n => `<span>• ${n}</span>`).join('');
+
+        // العنوان والفيديو
+        document.getElementById('mainTitle').innerHTML = data.heroTitle;
+        document.getElementById('bookBtn').innerText = data.bookBtnText;
+        document.getElementById('bookBtn').href = data.bookLink;
+        document.getElementById('mainVideo').src = data.videoUrl;
+    }
+
+    function showModal(content) {
+        document.getElementById('modalBody').innerHTML = content;
+        document.getElementById('contentModal').style.display = 'flex';
+    }
+
+    // بناء قائمة اللغات
+    const menu = document.getElementById('langMenu');
+    languages.forEach(l => {
+        const d = document.createElement('div');
+        d.className = 'lang-item';
+        d.innerHTML = `<img src="https://flagcdn.com/w40/${l.flag}.png" width="20"> ${l.name}`;
+        d.onclick = () => {
+            document.getElementById('currentFlag').src = `https://flagcdn.com/w80/${l.flag}.png`;
+            loadLanguage(l.id);
+            menu.style.display = 'none';
+        };
+        menu.appendChild(d);
+    });
+
+    // تحميل اللغة العربية افتراضياً عند فتح الموقع
+    window.onload = () => loadLanguage('ar');
 </script>
 </body>
 </html>

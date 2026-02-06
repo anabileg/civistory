@@ -6,7 +6,6 @@
 window.onscroll = function() {
     const btnUp = document.getElementById('btnUp');
     if (btnUp) {
-        // إذا نزل المستخدم أكثر من 300 بكسل يظهر الزر
         if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
             btnUp.style.display = "flex";
         } else {
@@ -20,12 +19,12 @@ if (document.getElementById('btnUp')) {
     document.getElementById('btnUp').onclick = function() {
         window.scrollTo({
             top: 0,
-            behavior: "smooth" // حركة صعود ناعمة
+            behavior: "smooth"
         });
     };
 }
 
-// 2. وظائف التحكم في النوافذ المنبثقة (Modals) كما وردت في ملفك
+// 2. وظائف التحكم في النوافذ المنبثقة (Modals)
 function openMessagesModal() {
     const modal = document.getElementById('messages-modal');
     if (modal) modal.style.display = 'flex';
@@ -52,12 +51,10 @@ function closePopup(id) {
     if (popup) popup.style.display = 'none';
 }
 
-// 3. إغلاق القوائم عند الضغط خارجها (لزيادة الاحترافية)
+// 3. إغلاق القوائم عند الضغط خارجها
 window.addEventListener('click', function(event) {
-    // إغلاق قائمة اللغات إذا ضغط المستخدم في أي مكان خارجها
     const langDropdown = document.getElementById('lang-dropdown-list');
     const langBtn = document.getElementById('lang-btn');
-    
     if (langDropdown && !langBtn.contains(event.target) && !langDropdown.contains(event.target)) {
         langDropdown.classList.remove('show');
     }

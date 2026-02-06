@@ -1,6 +1,6 @@
 const i18n = {
     currentLanguage: 'ar',
-    // القائمة الكاملة والنهائية (86 لغة) بناءً على طلبك وصورتك بدقة
+    // القائمة الكاملة والنهائية (86 لغة) بناءً على قائمتك بدقة متناهية
     languages: [
         { code: 'ar', name: 'عربي', flag: 'https://flagcdn.com/w20/eg.png' },
         { code: 'en', name: 'انجليزي', flag: 'https://flagcdn.com/w20/gb.png' },
@@ -48,7 +48,7 @@ const i18n = {
         { code: 'bn', name: 'بنجلاديش - بنغالية', flag: 'https://flagcdn.com/w20/bd.png' },
         { code: 'zh-sg', name: 'سنغافورة - صيني', flag: 'https://flagcdn.com/w20/sg.png' },
         { code: 'ms', name: 'سنغافورة - مالايو', flag: 'https://flagcdn.com/w20/sg.png' },
-        { code: 'id', name: 'إندونيسيا', flag: 'https://flagcdn.com/w20/id.png' },
+        { code: 'id', name: 'إندونيسيا - اللغة الرسمية', flag: 'https://flagcdn.com/w20/id.png' },
         { code: 'jv', name: 'إندونيسيا - جاوية', flag: 'https://flagcdn.com/w20/id.png' },
         { code: 'su', name: 'إندونيسيا - سوندا', flag: 'https://flagcdn.com/w20/id.png' },
         { code: 'bbc', name: 'إندونيسيا - باتاكية', flag: 'https://flagcdn.com/w20/id.png' },
@@ -97,18 +97,18 @@ const i18n = {
             const translations = response.ok ? await response.json() : { "title": selectedLang.name };
             this.applyTranslations(translations);
             
-            // تحديث العلم المختار في الزر العلوي
+            // تحديث العلم المختار في الواجهة
             const flagImg = document.getElementById('selected-flag');
             const langName = document.getElementById('selected-lang-name');
             if(flagImg) flagImg.src = selectedLang.flag;
             if(langName) langName.textContent = selectedLang.name;
             
-            // ضبط اتجاه الصفحة (RTL للعربي والفارسي والأوردو)
+            // ضبط اتجاه الصفحة (RTL للغات التي تكتب من اليمين)
             document.documentElement.dir = (['ar', 'ur', 'fa', 'sd', 'ps', 'ku'].includes(lang)) ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
             this.currentLanguage = lang;
             
-            // إخفاء القائمة المنسدلة فور الاختيار
+            // إخفاء القائمة المنسدلة فوراً بعد الاختيار
             const dropdown = document.getElementById('lang-dropdown-list');
             if(dropdown) dropdown.classList.remove('show');
             
@@ -143,7 +143,7 @@ const i18n = {
 
 document.addEventListener('DOMContentLoaded', () => {
     i18n.renderDropdown();
-    i18n.loadLanguage('ar'); // البدء بالعربية (علم مصر)
+    i18n.loadLanguage('ar'); // نبدأ بعربي - علم مصر
 
     const btn = document.getElementById('lang-btn');
     const dropdown = document.getElementById('lang-dropdown-list');

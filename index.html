@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CiviStories</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;900&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;900&family=Cairo:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* سأضع هنا كل التصميمات الرائعة التي كانت في ملفك الأصلي مع تحسينها لتناسب النظام الجديد */
         :root {
             --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
             --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --wa-color: #25D366; --cream-bg: #fdf9f3;
@@ -31,11 +30,11 @@
         }
         .nav-container { width: 95%; max-width: 1400px; display: flex; justify-content: space-between; align-items: center; }
         .nav-links { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
-        .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.9rem; transition: 0.3s; cursor: pointer; }
+        .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.9rem; transition: 0.3s; cursor: pointer; font-weight: 900; }
         .nav-links a:hover { color: #fff; }
         .nav-logo-img { height: 60px; }
 
-        /* شريط الأخبار */
+        /* شريط الأخبار بطيء جداً لراحة العين */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; width: max-content; animation: marqueeNews 1200s linear infinite; }
         .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; }
@@ -43,29 +42,28 @@
 
         /* البطاقة الرئيسية */
         .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; }
-        .mission-statement { text-align: center; margin-bottom: 40px; font-size: 2.2rem; color: var(--gold); max-width: 1000px; line-height: 1.5; }
+        .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; color: var(--white); max-width: 1000px; line-height: 1.5; }
         .hero-container { display: flex; gap: 30px; width: 100%; justify-content: center; flex-wrap: wrap; }
-        .video-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; }
+        .video-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; background: #000; }
         .book-box { width: 300px; text-align: center; }
         .book-box img { width: 100%; border: 2px solid var(--gold); border-radius: 15px; animation: float 3s infinite ease-in-out; }
         @keyframes float { 0%,100% {transform: translateY(0);} 50% {transform: translateY(-10px);} }
 
-        /* أزرار ونوافذ */
-        .btn-action { background: var(--gold); color: #000; padding: 12px; display: block; margin-top: 15px; border-radius: 8px; text-decoration: none; font-weight: 900; }
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; z-index: 20000; align-items: center; justify-content: center; }
-        .modal-content { background: var(--cream-bg); color: #000; padding: 30px; border-radius: 20px; width: 90%; max-width: 800px; max-height: 80vh; overflow-y: auto; position: relative; }
-        .close-btn { position: absolute; top: 10px; left: 10px; background: #000; color: #fff; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        /* الأزرار */
+        .btn-action { display: block; background: var(--gold); color: #000; padding: 15px; margin-top: 15px; border-radius: 10px; text-decoration: none; font-weight: 900; text-align: center; transition: 0.3s; }
+        .btn-action:hover { background: #fff; }
 
-        /* تنسيق الأعلام */
-        .lang-btn { cursor: pointer; border: 1px solid var(--gold); border-radius: 4px; width: 45px; }
-        .lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 300px; overflow-y: auto; z-index: 10002; }
-        .lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #333; }
+        /* الأعلام وقائمة اللغات */
+        .lang-btn { cursor: pointer; border: 1px solid var(--gold); border-radius: 4px; width: 45px; height: 30px; object-fit: cover; }
+        .lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 400px; overflow-y: auto; z-index: 10002; width: 200px; }
+        .lang-item { padding: 12px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #333; }
+        .lang-item:hover { background: #222; }
 
-        @media (max-width: 768px) {
-            .navbar { min-height: 140px; }
-            .news-ticker { top: 140px; }
-            .hero { padding-top: 220px; }
-            .mission-statement { font-size: 1.5rem; }
+        @media (max-width: 992px) {
+            .navbar { min-height: 120px; padding: 10px; }
+            .news-ticker { top: 120px; }
+            .hero { padding-top: 240px; }
+            .main-alert-title { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -76,11 +74,12 @@
 <nav class="navbar">
     <div class="nav-container">
         <div style="position:relative">
-            <img src="https://flagcdn.com/w80/eg.png" id="currentFlag" class="lang-btn" onclick="document.getElementById('langMenu').style.display='block'">
+            <img src="https://flagcdn.com/w80/eg.png" id="currentFlag" class="lang-btn" onclick="toggleLangMenu()">
             <div id="langMenu" class="lang-dropdown"></div>
         </div>
-        <div class="nav-links" id="navLinks">
-            </div>
+
+        <div class="nav-links" id="navLinks"></div>
+
         <img src="assets/logo.png" class="nav-logo-img">
     </div>
 </nav>
@@ -90,7 +89,7 @@
 </div>
 
 <section class="hero">
-    <div class="mission-statement" id="mainTitle"></div>
+    <h1 class="main-alert-title" id="mainTitle"></h1>
     <div class="hero-container">
         <div class="book-box">
             <img src="assets/CIVISTORIES Book.png">
@@ -102,63 +101,55 @@
     </div>
 </section>
 
-<div id="contentModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="this.parentElement.parentElement.style.display='none'">×</span>
-        <div id="modalBody"></div>
-    </div>
-</div>
-
 <script>
+    // قائمة اللغات (الأعلام)
     const languages = [
-        { id: 'ar', name: 'عربي', flag: 'eg' },
+        { id: 'ar', name: 'العربية', flag: 'eg' },
         { id: 'en', name: 'English', flag: 'gb' },
         { id: 'fr', name: 'Français', flag: 'fr' }
-        // أضف البقية هنا لاحقاً بنفس النمط
+        // أضف أي لغة هنا لاحقاً بنفس الطريقة
     ];
 
-    // وظيفة تحميل ملف اللغة برمجياً
+    // وظيفة تبديل اللغة
     function loadLanguage(langId) {
         const script = document.createElement('script');
-        script.src = `langs/${langId}.js`; // سيبحث عن الملف في مجلد اسمه langs
+        script.src = `langs/${langId}.js`; // سيقرأ من مجلد langs
         script.onload = () => {
-            renderContent(window[langId]);
+            const data = window[langId];
+            renderPage(data);
         };
         document.head.appendChild(script);
     }
 
-    function renderContent(data) {
-        // تغيير اتجاه الموقع واللغة
+    // وظيفة توزيع النصوص في الصفحة
+    function renderPage(data) {
         document.getElementById('htmlTag').dir = data.dir;
         document.getElementById('htmlTag').lang = data.id;
 
-        // ملء القائمة
+        // 1. ترجمة القائمة
         const nav = document.getElementById('navLinks');
         nav.innerHTML = '';
-        data.nav.forEach(item => {
+        // نحول كائن الـ nav إلى أزرار
+        Object.keys(data.nav).forEach(key => {
             const a = document.createElement('a');
-            a.innerText = item.text;
-            a.onclick = () => showModal(item.content);
+            a.innerText = data.nav[key];
+            a.href = "#";
             nav.appendChild(a);
         });
 
-        // شريط الأخبار
+        // 2. ترجمة شريط الأخبار (الـ 73 خبراً)
         const ticker = document.getElementById('tickerTrack');
-        ticker.innerHTML = data.news.map(n => `<span>• ${n}</span>`).join('');
+        ticker.innerHTML = data.newsTicker.map(msg => `<span>• ${msg}</span>`).join('');
+        ticker.innerHTML += ticker.innerHTML; // مضاعفة المحتوى لحركة مستمرة
 
-        // العنوان والفيديو
-        document.getElementById('mainTitle').innerHTML = data.heroTitle;
-        document.getElementById('bookBtn').innerText = data.bookBtnText;
-        document.getElementById('bookBtn').href = data.bookLink;
-        document.getElementById('mainVideo').src = data.videoUrl;
+        // 3. ترجمة العنوان والأزرار والفيديو
+        document.getElementById('mainTitle').innerHTML = data.hero.title;
+        document.getElementById('bookBtn').innerText = data.hero.bookBtn;
+        document.getElementById('bookBtn').href = data.hero.bookLink;
+        document.getElementById('mainVideo').src = data.hero.videoUrl;
     }
 
-    function showModal(content) {
-        document.getElementById('modalBody').innerHTML = content;
-        document.getElementById('contentModal').style.display = 'flex';
-    }
-
-    // بناء قائمة اللغات
+    // بناء قائمة اللغات (الأعلام) عند التشغيل
     const menu = document.getElementById('langMenu');
     languages.forEach(l => {
         const d = document.createElement('div');
@@ -172,7 +163,11 @@
         menu.appendChild(d);
     });
 
-    // تحميل اللغة العربية افتراضياً عند فتح الموقع
+    function toggleLangMenu() {
+        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // تحميل العربية تلقائياً عند البداية
     window.onload = () => loadLanguage('ar');
 </script>
 </body>

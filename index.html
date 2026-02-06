@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>CiviStories | Digital Illusion Tsunami</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700&family=Cairo:wght@700&display=swap" rel="stylesheet">
 <style>
 :root {
 --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
@@ -24,7 +24,7 @@ animation: kenBurns 35s ease-in-out infinite alternate;
 }
 @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35);} 100% { transform: scale(1.18); filter: brightness(0.55);} }
 
-/* شريط التنقل */
+/* شريط التنقل - تم تعديل الخط ليكون سميكاً جداً */
 .navbar {
 min-height: 90px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
 position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
@@ -32,7 +32,7 @@ display: flex; align-items: center; justify-content: center;
 }
 .nav-container { width: 95%; max-width: 1400px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; }
 
-/* قسم اللغة والقائمة المنسدلة */
+/* قسم اللغة */
 .lang-wrapper { position: relative; display: inline-block; }
 .lang-flag-current { width: 45px; height: 30px; border: 1px solid var(--gold); border-radius: 4px; cursor: pointer; object-fit: cover; }
 .lang-dropdown {
@@ -52,7 +52,11 @@ display: flex; align-items: center; justify-content: center;
 
 .nav-right-side { display: flex; align-items: center; gap: 20px; }
 .nav-links { display: flex; gap: 12px; align-items: center; }
-.nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 0.85rem; white-space: nowrap; }
+.nav-links a { 
+    color: var(--gold); text-decoration: none; 
+    font-weight: 900; /* خط سميك جداً للمطلوب */
+    cursor: pointer; transition: 0.3s; font-size: 0.9rem; white-space: nowrap; 
+}
 .nav-links a:hover { color: #fff; }
 
 /* اليسار: السوشيال واللوجو */
@@ -64,7 +68,7 @@ display: flex; align-items: center; justify-content: center;
 /* ألوان السوشيال */
 .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
 
-/* نافذة تواصل معنا (Email Modal) */
+/* نافذة تواصل معنا */
 .email-modal {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 20000;
@@ -78,13 +82,13 @@ display: flex; align-items: center; justify-content: center;
     margin: 15px 0; display: flex; justify-content: space-between; align-items: center;
     border: 1px dashed var(--gold);
 }
-.copy-btn { background: var(--gold); color: #000; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; }
+.copy-btn { background: var(--gold); color: #000; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: bold; }
 
-/* شريط الأخبار */
-.news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
+/* شريط الأخبار المعدل - بطيء جداً ومسافة كبيرة */
+.news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; direction: ltr; }
 .ticker-track { display: flex; white-space: nowrap; width: max-content; }
-.ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; }
-.animate-news { animation: marqueeNews 30s linear infinite; }
+.ticker-track span { padding: 0 100px; font-weight: bold; font-size: 1.1rem; direction: rtl; }
+.animate-news { animation: marqueeNews 400s linear infinite; } /* سرعة بطيئة جداً جداً */
 @keyframes marqueeNews { 0% { transform: translateX(0);} 100% { transform: translateX(100%);} }
 
 /* المحتوى الرئيسي */
@@ -164,9 +168,35 @@ display: flex; align-items: center; justify-content: center;
 
 <div class="news-ticker">
     <div class="ticker-track animate-news" id="newsTickerTrack">
-        <span>🌍 تسونامي الوهم الرقمي: صرخة عالمية للرحمة الرقمية من مهد الحضارات مصر</span>
-        <span>⚠️ ألف حالة طلاق سنويًّا في مصر بسبب سوء استخدام الشاشات</span>
-        <span>📞 تواصل معنا: 00201009995015</span>
+        <span>• الأزهر الشريف: حالة طلاق تقريباً كل دقيقتين ونصف بسبب الإدمان الرقمي</span>
+        <span>• وزارة الأوقاف: الهواتف الذكية أحد أسباب الخرس والبرود الزوجي الرئيسية</span>
+        <span>• إنذار أحمر: تفكك الأسر يُهدد الاستقرار الاجتماعي والمجتمعي في مصر</span>
+        <span>• وزارة الصحة: ٣ ملايين زيارة سنوية للعيادات النفسية بسبب اضطرابات السوشيال ميديا</span>
+        <span>• الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالانعزال والإفراط الرقمي</span>
+        <span>• القصر العيني: محاولة انتحار كل ٦ ساعات تقريباً بسبب التنمر عبر الإنترنت</span>
+        <span>• وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوية بسبب الإدمان الرقمي</span>
+        <span>• اليونيسف: ٤٧% من أطفال مصر تعرضوا للتنمر الإلكتروني المؤذي</span>
+        <span>• الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات سابقة</span>
+        <span>• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل الاجتماعي</span>
+        <span>• البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً</span>
+        <span>• نسبة حالات الطلاق في السنة الأولى من الزواج ٣٤%</span>
+        <span>• متوسط عمر الزواج عند الطلاق ٣.٧ سنة</span>
+        <span>• حالات الطلاق الرقمي ١٢ ألف و٥٠٠ حالة سنوياً</span>
+        <span>• متوسط عدد حسابات السوشيال ميديا للفرد ٣.٨ حساب</span>
+        <span>• نسبة المصريين الذين يبدأون يومهم بالسوشيال ميديا ٧١%</span>
+        <span>• نسبة المشاكل الأسرية التي تبدأ عبر الواتساب ٥٢%</span>
+        <span>• طلاق بعد ٣٢ سنة زواج بسبب كومنت</span>
+        <span>• شقيقان بالمنصورة تشاجرا حتى الموت بسبب منشور سياسي</span>
+        <span>• انتحار طالبة بكلية طب عين شمس لمشاهدتها ١٠٠ فيديو يومياً عن فشل الحياة الطبية</span>
+        <span>• انقسام عائلة من ١٥ فرداً بالإسكندرية بسبب صورة حفلة عيد ميلاد</span>
+        <span>• زوج يطلق زوجته في الجيزة بعد اكتشاف فيديوهات رقص لها على تيك توك</span>
+        <span>• معدل انتشار الاكتئاب بين مستخدمي السوشيال ميديا ٣١%</span>
+        <span>• نسبة المقارنات الاجتماعية السلبية ٧٦%</span>
+        <span>• حالات القلق الاجتماعي المتزايد ٤٤%</span>
+        <span>• خسائر اقتصادية أسرية بسبب النصب الإلكتروني ٢.١ مليار جنيه سنوياً</span>
+        <span>• رصد أكثر من ١٥ ألف صفحة إلكترونية مجهولة تنشر الفتنة</span>
+        <span>• رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة</span>
+        <span>• هجمات إلكترونية على تماسك الأسرة المصرية بمتوسط ١٢٠ هجمة يومياً</span>
     </div>
 </div>
 
@@ -192,7 +222,7 @@ display: flex; align-items: center; justify-content: center;
 <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
 <script>
-// مصفوفة اللغات (نفس القائمة السابقة)
+// مصفوفة الـ 86 لغة كاملة كما هي في الكود الأصلي
 const languages = [
     { n: "عربي", c: "eg" }, { n: "English", c: "gb" }, { n: "Français", c: "fr" }, { n: "Español", c: "es" },
     { n: "Deutsch", c: "de" }, { n: "Italiano", c: "it" }, { n: "Português", c: "pt" }, { n: "Türkçe", c: "tr" },
@@ -231,21 +261,8 @@ function toggleLang() {
 }
 
 function changeLanguage(lang) {
-    // 1. تغيير العلم الظاهر
     document.getElementById('currentFlag').src = `https://flagcdn.com/w80/${lang.c}.png`;
     langBox.style.display = 'none';
-
-    // 2. تغيير اتجاه الصفحة (تجريبي: لو إنجليزي اقلب الصفحة)
-    if (lang.n === "English") {
-        document.documentElement.dir = "ltr";
-        document.documentElement.lang = "en";
-    } else {
-        document.documentElement.dir = "rtl";
-        document.documentElement.lang = "ar";
-    }
-
-    // هنا مستقبلاً سنقوم باستدعاء ملف الترجمة فور أن نبدأ فيه
-    console.log("اللغة المختارة: " + lang.n);
 }
 
 function toggleEmailModal() {
@@ -256,8 +273,12 @@ function toggleEmailModal() {
 function copyText(id) {
     const text = document.getElementById(id).innerText;
     navigator.clipboard.writeText(text);
-    alert("Copied: " + text);
+    alert("تم النسخ: " + text);
 }
+
+// تكرار الشريط لضمان عدم توقفه
+const track = document.getElementById('newsTickerTrack');
+track.innerHTML += track.innerHTML;
 
 window.onscroll = function() {
     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {

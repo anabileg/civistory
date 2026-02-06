@@ -9,7 +9,6 @@
     <style>
         :root {
             --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
-            --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --wa-color: #25D366;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { color: var(--white); font-family: 'Tajawal', sans-serif; background: #000; overflow-x: hidden; font-weight: bold; }
@@ -17,33 +16,33 @@
         .navbar { min-height: 90px; background: rgba(0,0,0,0.95); border-bottom: 2px solid var(--gold); position: fixed; top: 0; width: 100%; z-index: 10001; display: flex; align-items: center; justify-content: center; }
         .nav-container { width: 95%; max-width: 1400px; display: flex; justify-content: space-between; align-items: center; }
         .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-        .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.85rem; font-weight: 900; }
+        .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.85rem; font-weight: 900; transition: 0.3s; }
+        .nav-links a:hover { color: #fff; }
         .nav-left { display: flex; align-items: center; gap: 15px; }
         .social-icons { display: flex; gap: 10px; }
         .nav-logo-img { height: 60px; }
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 1500s linear infinite; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 1000s linear infinite; width: max-content; }
         .ticker-track span { padding: 0 50px; font-size: 1.1rem; }
-        @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
-        .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; }
+        @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
+        .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
         .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
         .hero-container { display: flex; gap: 40px; width: 100%; max-width: 1200px; justify-content: center; flex-wrap: wrap; }
         .video-box { flex: 1; min-width: 320px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; }
-        .book-box { width: 320px; }
+        .book-box { width: 320px; display: flex; flex-direction: column; justify-content: space-between; }
         .book-box img { width: 100%; border: 2px solid var(--gold); border-radius: 15px; }
-        .btn-action { display: block; width: 100%; background: var(--gold); color: #000; text-decoration: none; padding: 15px; border-radius: 10px; text-align: center; font-weight: 900; margin-top: 10px; }
+        .btn-action { display: block; width: 100%; background: var(--gold); color: #000; text-decoration: none; padding: 15px; border-radius: 10px; text-align: center; font-weight: 900; margin-top: 10px; transition: 0.3s; }
+        .btn-action:hover { background: #fff; }
         .lang-btn { cursor: pointer; border: 1px solid var(--gold); border-radius: 4px; width: 45px; height: 30px; object-fit: cover; }
-        .lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 400px; overflow-y: auto; z-index: 10002; width: 200px; }
-        .lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #222; }
+        #btnUp { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; background: var(--gold); color: #000; border-radius: 50%; display: none; justify-content: center; align-items: center; z-index: 9999; cursor: pointer; }
     </style>
 </head>
 <body>
 <div class="site-bg"></div>
 <nav class="navbar">
     <div class="nav-container">
-        <div style="position:relative">
-            <img id="currentFlag" class="lang-btn" onclick="toggleMenu()">
-            <div id="langMenu" class="lang-dropdown"></div>
+        <div class="lang-wrapper">
+            <img id="currentFlag" class="lang-btn" src="">
         </div>
         <div class="nav-links" id="navLinks"></div>
         <div class="nav-left">
@@ -65,13 +64,9 @@
         </div>
     </div>
 </section>
+<div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
 <script>
-    // قائمة اللغات (العربية حالياً)
-    const languages = [
-        { id: 'ar', name: 'العربية', flag: 'eg' }
-    ];
-
     function loadLanguage(langId) {
         const script = document.createElement('script');
         script.src = `langs/${langId}.js`;
@@ -81,40 +76,22 @@
 
     function renderPage(data) {
         document.getElementById('htmlTag').dir = data.dir;
-        document.getElementById('currentFlag').src = `https://flagcdn.com/w80/${data.flagCode}.png`;
-        
-        // القائمة
+        document.getElementById('currentFlag').src = `https://flagcdn.com/w80/${data.flag}.png`;
         const nav = document.getElementById('navLinks');
         nav.innerHTML = data.nav.map(item => `<a href="#">${item}</a>`).join('');
-        
-        // السوشيال ميديا
         const social = document.getElementById('socialIcons');
         social.innerHTML = data.social.map(s => `<a href="${s.link}" target="_blank" style="color:${s.color}"><i class="${s.icon}"></i></a>`).join('');
-        
-        // شريط الأخبار
         const ticker = document.getElementById('tickerTrack');
         ticker.innerHTML = data.news.map(n => `<span>• ${n}</span>`).join('');
-        ticker.innerHTML += ticker.innerHTML; 
-        
-        // المحتوى
+        ticker.innerHTML += ticker.innerHTML; // مضاعفة المحتوى لمنع الفراغ
         document.getElementById('mainTitle').innerHTML = data.heroTitle;
         document.getElementById('bookBtn').innerText = data.bookBtnText;
         document.getElementById('bookBtn').href = data.bookLink;
         document.getElementById('mainVideo').src = data.videoUrl;
     }
 
-    const menu = document.getElementById('langMenu');
-    languages.forEach(l => {
-        const d = document.createElement('div');
-        d.className = 'lang-item';
-        d.innerHTML = `<img src="https://flagcdn.com/w40/${l.flag}.png" width="20"> ${l.name}`;
-        d.onclick = () => { loadLanguage(l.id); menu.style.display='none'; };
-        menu.appendChild(d);
-    });
-    function toggleMenu() { menu.style.display = (menu.style.display==='block'?'none':'block'); }
-    
-    // التحميل الافتراضي للعربية
-    window.onload = () => loadLanguage('ar');
+    window.onscroll = () => { document.getElementById("btnUp").style.display = (window.scrollY > 300 ? "flex" : "none"); };
+    window.onload = () => loadLanguage('ar'); // تحميل العربي تلقائياً
 </script>
 </body>
 </html>

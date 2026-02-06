@@ -16,7 +16,6 @@
 html { scroll-behavior: smooth; }
 body { color: var(--white); font-family: 'Tajawal', 'Cairo', sans-serif; background: #000; overflow-x: hidden; width: 100%; font-weight: bold; font-size: 1rem; }
 
-/* الخلفية */
 .site-bg {
 position: fixed; top: 0; left: 0; width: 100%; height: 100%;
 background-image: url('assets/image_390e08.jpg'); background-position: center; background-size: cover; z-index: -1;
@@ -24,7 +23,6 @@ animation: kenBurns 35s ease-in-out infinite alternate;
 }
 @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35);} 100% { transform: scale(1.18); filter: brightness(0.55);} }
 
-/* شريط التنقل */
 .navbar {
 min-height: 90px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
 position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
@@ -32,7 +30,6 @@ display: flex; align-items: center; justify-content: center;
 }
 .nav-container { width: 95%; max-width: 1400px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; }
 
-/* قسم اللغة والقائمة المنسدلة */
 .lang-wrapper { position: relative; display: inline-block; }
 .lang-flag-current { width: 45px; height: 30px; border: 1px solid var(--gold); border-radius: 4px; cursor: pointer; object-fit: cover; }
 .lang-dropdown {
@@ -52,11 +49,7 @@ display: flex; align-items: center; justify-content: center;
 
 .nav-right-side { display: flex; align-items: center; gap: 20px; }
 .nav-links { display: flex; gap: 12px; align-items: center; }
-.nav-links a { 
-    color: var(--gold); text-decoration: none; 
-    font-weight: 900;
-    cursor: pointer; transition: 0.3s; font-size: 0.9rem; white-space: nowrap; 
-}
+.nav-links a { color: var(--gold); text-decoration: none; font-weight: 900; cursor: pointer; transition: 0.3s; font-size: 0.9rem; white-space: nowrap; }
 .nav-links a:hover { color: #fff; }
 
 .nav-left-side { display: flex; align-items: center; gap: 20px; }
@@ -65,7 +58,6 @@ display: flex; align-items: center; justify-content: center;
 .nav-logo-img { height: 65px; }
 .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
 
-/* نافذة تواصل معنا */
 .email-modal {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 20000;
@@ -81,14 +73,13 @@ display: flex; align-items: center; justify-content: center;
 }
 .copy-btn { background: var(--gold); color: #000; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: 900; }
 
-/* شريط الأخبار - تم تعديل السرعة إلى 2000 والمسافة إلى 4 مسافات */
+/* شريط الأخبار - السرعة 2000 والمسافة 4 مسافات */
 .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; direction: ltr; }
 .ticker-track { display: flex; white-space: nowrap; width: max-content; }
-.ticker-track span { padding: 0 15px; font-weight: bold; font-size: 1.1rem; direction: rtl; }
+.ticker-track span { padding: 0 10px; font-weight: bold; font-size: 1.1rem; direction: rtl; }
 .animate-news { animation: marqueeNews 2000s linear infinite; }
 @keyframes marqueeNews { 0% { transform: translateX(0);} 100% { transform: translateX(100%);} }
 
-/* المحتوى الرئيسي */
 .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 180px 5% 60px; }
 .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
 .main-alert-title span.highlight { color: var(--red-num); font-weight: 900; }
@@ -210,8 +201,8 @@ const languages = [
     { n: "Български", c: "bg" }, { n: "Српски", c: "rs" }, { n: "Čeština", c: "cz" }, { n: "Русский", c: "ru" },
     { n: "Українська", c: "ua" }, { n: "中文", c: "cn" }, { n: "日本語", c: "jp" }, { n: "한국어", c: "kr" },
     { n: "हिन्दी", c: "in" }, { n: "తెలుగు", c: "in" }, { n: "मراठी", c: "in" }, { n: "தமிழ்", c: "in" },
-    { n: "اردو", c: "pk" }, { n: "ગુજરાતી", c: "in" }, { n: "ಕನ್ನಡ", c: "in" }, { n: "മലയാളം", c: "in" },
-    { n: "ଓଡ଼ିଆ", c: "in" }, { n: "ਪੰਜਾਬي", c: "pk" }, { n: "سنڌي", c: "pk" }, { n: "پښتو", c: "pk" },
+    { n: "اردو", c: "pk" }, { n: "ગુજરાતી", c: "in" }, { n: "ಕನ್ನಡ", c: "in" }, { n: "മലയാളم", c: "in" },
+    { n: "ଓଡ଼ିଆ", c: "in" }, { n: "ਪੰਜਾਬੀ", c: "pk" }, { n: "سنڌي", c: "pk" }, { n: "پښتو", c: "pk" },
     { n: "بلوچی",c: "pk" }, { n: "සිංහල", c: "lk" }, { n: "বাংলা", c: "bd" }, { n: "Bahasa Melayu", c: "my" },
     { n: "Bahasa Indonesia", c: "id" }, { n: "Jawa", c: "id" }, { n: "Sunda", c: "id" }, { n: "Batak", c: "id" },
     { n: "ဗမာစာ", c: "mm" }, { n: "ကရင်", c: "mm" }, { n: "ရခိုင်", c: "mm" }, { n: "မွန်", c: "mm" },
@@ -238,7 +229,6 @@ function toggleLang() { langBox.style.display = (langBox.style.display === 'bloc
 function toggleEmailModal() { const m = document.getElementById('emailModal'); m.style.display = (m.style.display === 'flex' ? 'none' : 'flex'); }
 function copyText(id) { navigator.clipboard.writeText(document.getElementById(id).innerText); alert("تم النسخ بنجاح"); }
 
-// تكرار الشريط ليعمل بسلاسة ولانهائية
 const track = document.getElementById('newsTickerTrack');
 track.innerHTML += track.innerHTML;
 

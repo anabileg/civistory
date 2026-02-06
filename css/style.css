@@ -1,0 +1,173 @@
+/* التعريف بالألوان والخطوط الملكية */
+:root {
+    --gold: #d4af37;
+    --white: #ffffff;
+    --black: #000000;
+    --red-news: #b30000;
+    --wa-color: #25D366;
+    --font-main: 'Cairo', 'Tajawal', sans-serif;
+}
+
+/* التنسيق الأساسي */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: var(--font-main);
+    direction: rtl; /* اتجاه عربي */
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* تنسيق الهيدر (رأس الصفحة) */
+.main-header {
+    border-bottom: 2px solid var(--gold);
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.95);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-area h1 {
+    color: var(--gold);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* تنسيق زر اختيار اللغة (86 لغة) */
+.lang-wrapper {
+    position: relative;
+}
+
+.lang-button {
+    background: var(--white);
+    color: var(--black);
+    border: 1px solid var(--gold);
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.lang-dropdown {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background: var(--white);
+    color: var(--black);
+    min-width: 200px;
+    max-height: 300px; /* للسماح بالتمرير بين 86 لغة */
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    z-index: 1001;
+}
+
+.lang-dropdown.show {
+    display: block;
+}
+
+.lang-dropdown li {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.lang-dropdown li:hover {
+    background: #f5f5f5;
+}
+
+/* تنسيق الأقسام (Hero) */
+.hero-section {
+    padding: 50px 20px;
+    text-align: center;
+    background: linear-gradient(to bottom, #000, #1a1a1a);
+}
+
+.gold-text {
+    color: var(--gold);
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+/* شبكة القصص والأقسام */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.story-card {
+    border: 1px solid var(--gold);
+    padding: 25px;
+    border-radius: 12px;
+    background: rgba(212, 175, 55, 0.05);
+    text-align: center;
+    transition: 0.3s;
+}
+
+.story-card:hover {
+    background: rgba(212, 175, 55, 0.15);
+    transform: translateY(-5px);
+}
+
+/* زر الواتساب العائم */
+.wa-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--wa-color);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* زر الصعود للأعلى */
+.back-to-top {
+    position: fixed;
+    bottom: 80px;
+    left: 20px; /* جهة اليسار لعدم التعارض مع واتساب */
+    background: var(--gold);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}

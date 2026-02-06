@@ -32,7 +32,7 @@ display: flex; align-items: center; justify-content: center;
 }
 .nav-container { width: 95%; max-width: 1400px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; }
 
-/* قسم اللغة */
+/* قسم اللغة والقائمة المنسدلة */
 .lang-wrapper { position: relative; display: inline-block; }
 .lang-flag-current { width: 45px; height: 30px; border: 1px solid var(--gold); border-radius: 4px; cursor: pointer; object-fit: cover; }
 .lang-dropdown {
@@ -54,18 +54,15 @@ display: flex; align-items: center; justify-content: center;
 .nav-links { display: flex; gap: 12px; align-items: center; }
 .nav-links a { 
     color: var(--gold); text-decoration: none; 
-    font-weight: 900; /* خط سميك جداً للمطلوب */
+    font-weight: 900; /* خط سميك جداً */
     cursor: pointer; transition: 0.3s; font-size: 0.9rem; white-space: nowrap; 
 }
 .nav-links a:hover { color: #fff; }
 
-/* اليسار: السوشيال واللوجو */
 .nav-left-side { display: flex; align-items: center; gap: 20px; }
 .social-icons { display: flex; gap: 10px; align-items: center; }
 .social-icons a { font-size: 1.1rem; transition: 0.3s; text-decoration: none; }
 .nav-logo-img { height: 65px; }
-
-/* ألوان السوشيال */
 .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
 
 /* نافذة تواصل معنا */
@@ -82,13 +79,13 @@ display: flex; align-items: center; justify-content: center;
     margin: 15px 0; display: flex; justify-content: space-between; align-items: center;
     border: 1px dashed var(--gold);
 }
-.copy-btn { background: var(--gold); color: #000; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: bold; }
+.copy-btn { background: var(--gold); color: #000; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: 900; }
 
-/* شريط الأخبار المعدل - بطيء جداً ومسافة كبيرة */
+/* شريط الأخبار المعدل - السرعة والاتجاه والمسافة */
 .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; direction: ltr; }
 .ticker-track { display: flex; white-space: nowrap; width: max-content; }
-.ticker-track span { padding: 0 100px; font-weight: bold; font-size: 1.1rem; direction: rtl; }
-.animate-news { animation: marqueeNews 400s linear infinite; } /* سرعة بطيئة جداً جداً */
+.ticker-track span { padding: 0 120px; font-weight: bold; font-size: 1.1rem; direction: rtl; }
+.animate-news { animation: marqueeNews 500s linear infinite; } /* سرعة بطيئة جداً جداً لراحة العين */
 @keyframes marqueeNews { 0% { transform: translateX(0);} 100% { transform: translateX(100%);} }
 
 /* المحتوى الرئيسي */
@@ -125,19 +122,8 @@ display: flex; align-items: center; justify-content: center;
                 <div class="lang-dropdown" id="langBox"></div>
             </div>
 
-            <div class="nav-links" id="mainNavLinks">
-                <a href="#">من نحن</a>
-                <a href="#">أهدافنا</a>
-                <a href="#">صرختنا</a>
-                <a href="#">رسالاتنا</a>
-                <a href="#">وعي وطني</a>
-                <a href="#">ميديا</a>
-                <a href="#">إحصائيات</a>
-                <a href="#">خسائر</a>
-                <a href="#">برامج توعوية</a>
-                <a href="#">رؤية إنسانية</a>
-                <a href="#">مرجعيتنا الإنسانية</a>
-                <a href="#">شركاؤنا</a>
+            <div class="nav-links">
+                <a href="#">من نحن</a><a href="#">أهدافنا</a><a href="#">صرختنا</a><a href="#">رسالاتنا</a><a href="#">وعي وطني</a><a href="#">ميديا</a><a href="#">إحصائيات</a><a href="#">خسائر</a><a href="#">برامج توعوية</a><a href="#">رؤية إنسانية</a><a href="#">مرجعيتنا الإنسانية</a><a href="#">شركاؤنا</a>
                 <a href="javascript:void(0)" onclick="toggleEmailModal()">تواصل معنا</a>
             </div>
         </div>
@@ -148,23 +134,12 @@ display: flex; align-items: center; justify-content: center;
                 <a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank" class="ic-fb"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://x.com/civistories" target="_blank" class="ic-tw"><i class="fab fa-x-twitter"></i></a>
                 <a href="https://www.instagram.com/civi.stories" target="_blank" class="ic-ig"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.pinterest.com/civistories/" target="_blank" class="ic-pr"><i class="fab fa-pinterest-p"></i></a>
-                <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank" class="ic-in"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://wa.me/201009995015" target="_blank" style="color:var(--wa-color)"><i class="fab fa-whatsapp"></i></a>
             </div>
             <img src="assets/logo.png" class="nav-logo-img" alt="Civistory Logo">
         </div>
     </div>
 </nav>
-
-<div class="email-modal" id="emailModal" onclick="toggleEmailModal()">
-    <div class="email-content" onclick="event.stopPropagation()">
-        <h3 id="contactTitle" style="color:var(--gold)">تواصل معنا عبر البريد</h3>
-        <div class="email-box"><span id="em1">civistories@gmail.com</span><button class="copy-btn" onclick="copyText('em1')">نسخ</button></div>
-        <div class="email-box"><span id="em2">anabileg@gmail.com</span><button class="copy-btn" onclick="copyText('em2')">نسخ</button></div>
-        <button class="btn-action" onclick="toggleEmailModal()" style="width:100%; margin-top:10px;">إغلاق</button>
-    </div>
-</div>
 
 <div class="news-ticker">
     <div class="ticker-track animate-news" id="newsTickerTrack">
@@ -201,17 +176,14 @@ display: flex; align-items: center; justify-content: center;
 </div>
 
 <section class="hero">
-    <h1 class="main-alert-title" id="mainHeroTitle">
+    <h1 class="main-alert-title">
         <span class="highlight">1000</span> حالة طلاق سنويًا في مصر <br>
         بسبب <span class="gold-text">تسونامي الوهم الرقمي</span>
     </h1>
-
     <div class="hero-container">
         <div class="book-static">
-            <div class="book-wrapper">
-                <img src="assets/CIVISTORIES Book.png" alt="Book Cover">
-            </div>
-            <a href="#" class="btn-action" id="browseBookBtn">تصفح الكتاب كاملاً</a>
+            <div class="book-wrapper"><img src="assets/CIVISTORIES Book.png" alt="Book Cover"></div>
+            <a href="#" class="btn-action">تصفح الكتاب كاملاً</a>
         </div>
         <div class="video-container-box">
             <iframe src="https://www.youtube.com/embed/LIVE_ID_HERE" allowfullscreen></iframe>
@@ -219,10 +191,18 @@ display: flex; align-items: center; justify-content: center;
     </div>
 </section>
 
+<div class="email-modal" id="emailModal" onclick="toggleEmailModal()">
+    <div class="email-content" onclick="event.stopPropagation()">
+        <h3 style="color:var(--gold); margin-bottom:15px;">تواصل معنا</h3>
+        <div class="email-box"><span id="em1">civistories@gmail.com</span><button class="copy-btn" onclick="copyText('em1')">نسخ</button></div>
+        <div class="email-box"><span id="em2">anabileg@gmail.com</span><button class="copy-btn" onclick="copyText('em2')">نسخ</button></div>
+        <button class="btn-action" onclick="toggleEmailModal()" style="width:100%;">إغلاق</button>
+    </div>
+</div>
+
 <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
 <script>
-// مصفوفة الـ 86 لغة كاملة كما هي في الكود الأصلي
 const languages = [
     { n: "عربي", c: "eg" }, { n: "English", c: "gb" }, { n: "Français", c: "fr" }, { n: "Español", c: "es" },
     { n: "Deutsch", c: "de" }, { n: "Italiano", c: "it" }, { n: "Português", c: "pt" }, { n: "Türkçe", c: "tr" },
@@ -233,7 +213,7 @@ const languages = [
     { n: "Українська", c: "ua" }, { n: "中文", c: "cn" }, { n: "日本語", c: "jp" }, { n: "한국어", c: "kr" },
     { n: "हिन्दी", c: "in" }, { n: "తెలుగు", c: "in" }, { n: "मراठी", c: "in" }, { n: "தமிழ்", c: "in" },
     { n: "اردو", c: "pk" }, { n: "ગુજરાતી", c: "in" }, { n: "ಕನ್ನಡ", c: "in" }, { n: "മലയാളം", c: "in" },
-    { n: "ଓଡ଼ିଆ", c: "in" }, { n: "ਪੰਜਾਬي", c: "pk" }, { n: "سنڌي", c: "pk" }, { n: "پښتو", c: "pk" },
+    { n: "ଓଡ଼ිଆ", c: "in" }, { n: "ਪੰਜਾਬي", c: "pk" }, { n: "سنڌي", c: "pk" }, { n: "پښتو", c: "pk" },
     { n: "بلوچی", c: "pk" }, { n: "සිංහල", c: "lk" }, { n: "বাংলা", c: "bd" }, { n: "Bahasa Melayu", c: "my" },
     { n: "Bahasa Indonesia", c: "id" }, { n: "Jawa", c: "id" }, { n: "Sunda", c: "id" }, { n: "Batak", c: "id" },
     { n: "ဗမာစာ", c: "mm" }, { n: "ကရင်", c: "mm" }, { n: "ရခိုင်", c: "mm" }, { n: "မွန်", c: "mm" },
@@ -252,42 +232,21 @@ languages.forEach(lang => {
     const div = document.createElement('div');
     div.className = 'lang-item';
     div.innerHTML = `<span>${lang.n}</span> <img src="https://flagcdn.com/w40/${lang.c}.png">`;
-    div.onclick = () => changeLanguage(lang);
+    div.onclick = () => { document.getElementById('currentFlag').src = `https://flagcdn.com/w80/${lang.c}.png`; langBox.style.display = 'none'; };
     langBox.appendChild(div);
 });
 
-function toggleLang() {
-    langBox.style.display = langBox.style.display === 'block' ? 'none' : 'block';
-}
+function toggleLang() { langBox.style.display = (langBox.style.display === 'block' ? 'none' : 'block'); }
+function toggleEmailModal() { const m = document.getElementById('emailModal'); m.style.display = (m.style.display === 'flex' ? 'none' : 'flex'); }
+function copyText(id) { navigator.clipboard.writeText(document.getElementById(id).innerText); alert("تم النسخ بنجاح"); }
 
-function changeLanguage(lang) {
-    document.getElementById('currentFlag').src = `https://flagcdn.com/w80/${lang.c}.png`;
-    langBox.style.display = 'none';
-}
-
-function toggleEmailModal() {
-    const modal = document.getElementById('emailModal');
-    modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
-}
-
-function copyText(id) {
-    const text = document.getElementById(id).innerText;
-    navigator.clipboard.writeText(text);
-    alert("تم النسخ: " + text);
-}
-
-// تكرار الشريط لضمان عدم توقفه
+// تكرار الشريط ليعمل بسلاسة
 const track = document.getElementById('newsTickerTrack');
 track.innerHTML += track.innerHTML;
 
 window.onscroll = function() {
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        document.getElementById("btnUp").style.display = "flex";
-    } else {
-        document.getElementById("btnUp").style.display = "none";
-    }
+    document.getElementById("btnUp").style.display = (window.scrollY > 300 ? "flex" : "none");
 };
 </script>
-
 </body>
 </html>

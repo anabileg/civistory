@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title data-i18n="title">CiviStory | قصص الحضارات</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <h1 data-i18n="hero_heading">CiviStory</h1>
+            </div>
+
+            <div class="lang-wrapper">
+                <button id="lang-btn" class="lang-button">
+                    <img id="selected-flag" src="https://flagcdn.com/w20/eg.png" alt="Egypt Flag">
+                    <span id="selected-lang-name">عربي</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div id="lang-dropdown-list" class="lang-dropdown">
+                    <ul id="lang-list">
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <h2 data-i18n="hero_subheading" class="gold-text">قصص الحضارات - صرخة عالمية للرحمة الرقمية</h2>
+            
+            <nav class="main-nav">
+                <a href="#home" data-i18n="nav_home">الرئيسية</a>
+                <a href="#stories" data-i18n="nav_stories">القصص</a>
+                <a href="#about" data-i18n="nav_about">عن المشروع</a>
+                <a href="#contact" data-i18n="nav_contact">اتصل بنا</a>
+            </nav>
+
+            <div class="news-ticker">
+                <h3 data-i18n="latest_news">آخر الأخبار والتحديثات</h3>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/yournumber" class="wa-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span data-i18n="wa_group_join">انضم لمجموعتنا على واتساب</span>
+    </a>
+
+    <footer class="footer">
+        <p data-i18n="footer_rights">جميع الحقوق محفوظة © 2026 قصص الحضارات</p>
+    </footer>
+
+    <button id="btnUp" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

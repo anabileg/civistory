@@ -2,92 +2,87 @@
 <html id="htmlTag" lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CiviStories</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;900&family=Cairo:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { color: var(--white); font-family: 'Tajawal', sans-serif; background: #000; overflow-x: hidden; font-weight: bold; }
+        :root { --gold: #d4af37; --white: #ffffff; }
+        body { background: #000; color: white; font-family: 'Tajawal', sans-serif; margin: 0; }
         
-        /* الخلفية الثابتة */
-        .site-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('assets/image_390e08.jpg'); background-size: cover; z-index: -1; filter: brightness(0.35); }
-        
-        /* الهيدر وقائمة العلم فقط */
-        .navbar { min-height: 90px; background: rgba(0,0,0,0.95); border-bottom: 2px solid var(--gold); position: fixed; top: 0; width: 100%; z-index: 10001; display: flex; align-items: center; }
-        .nav-container { width: 95%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        
+        .navbar { 
+            background: #000; 
+            border-bottom: 2px solid var(--gold); 
+            padding: 10px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 10001; 
+        }
+
+        /* تنسيق العلم والقائمة المنسدلة */
         .lang-dropdown { position: relative; cursor: pointer; }
-        .lang-btn-display { border: 1.5px solid var(--gold); padding: 4px; border-radius: 4px; background: #111; display: flex; align-items: center; }
-        .lang-btn-display img { width: 38px; height: auto; }
-        
-        .lang-dropdown-list { position: absolute; top: 120%; right: 0; background: #fff; color: #000; width: 220px; display: none; border-radius: 8px; list-style: none; padding: 0; box-shadow: 0 8px 25px rgba(0,0,0,0.7); max-height: 400px; overflow-y: auto; }
+        .lang-btn-display { 
+            border: 1.5px solid var(--gold); 
+            padding: 4px 8px; 
+            border-radius: 4px; 
+            background: #111; 
+            display: flex; 
+            align-items: center; 
+            gap: 5px;
+        }
+        .lang-btn-display img { width: 30px; height: auto; }
+        .lang-btn-display::after { content: '▼'; font-size: 10px; color: var(--gold); }
+
+        /* القائمة المنسدلة - تم إصلاح الظهور هنا */
+        .lang-dropdown-list { 
+            position: absolute; 
+            top: 100%; 
+            right: 0; 
+            background: #fff; 
+            color: #000; 
+            width: 250px; 
+            display: none; 
+            border-radius: 8px; 
+            list-style: none; 
+            padding: 0; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.7); 
+            max-height: 400px; /* طول القائمة */
+            overflow-y: auto;  /* إضافة التمرير لرؤية الـ 86 لغة */
+            z-index: 99999;
+        }
         .lang-dropdown-list.show { display: block; }
-        .lang-dropdown-list li { display: flex; align-items: center; justify-content: flex-end; gap: 12px; padding: 12px 15px; border-bottom: 1px solid #eee; }
+        .lang-dropdown-list li { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 12px 15px; 
+            border-bottom: 1px solid #eee; 
+            transition: 0.2s;
+        }
         .lang-dropdown-list li:hover { background: #f5f5f5; }
-        .lang-dropdown-list li span { font-weight: 900; }
-        .lang-dropdown-list li img { width: 25px; }
+        .lang-dropdown-list li span { font-weight: 900; font-size: 1rem; color: #333; }
+        .lang-dropdown-list li img { width: 25px; border: 1px solid #ddd; }
 
-        .nav-links { display: flex; gap: 18px; }
-        .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.95rem; font-weight: 900; }
-        .nav-logo-img { height: 65px; }
-
-        /* شريط الأخبار */
-        .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; border-bottom: 1px solid var(--gold); }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 60s linear infinite; }
-        .ticker-track span { padding: 0 40px; font-size: 1.1rem; }
-        @keyframes marquee { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
-
-        /* المحتوى الرئيسي */
-        .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        .main-alert-title { text-align: center; margin-bottom: 50px; font-size: 2.3rem; line-height: 1.4; max-width: 1000px; }
-        .hero-container { display: flex; gap: 40px; width: 100%; max-width: 1200px; justify-content: center; flex-wrap: wrap; }
-        
-        .book-box { width: 320px; text-align: center; }
-        .book-box img { width: 100%; border: 3px solid var(--gold); border-radius: 15px; margin-bottom: 15px; }
-        .btn-action { display: block; background: var(--gold); color: #000; text-decoration: none; padding: 18px; border-radius: 10px; font-weight: 900; font-size: 1.2rem; }
-        
-        .video-box { flex: 1; min-width: 320px; height: 450px; border: 3px solid var(--gold); border-radius: 20px; overflow: hidden; background: #000; }
-
-        @media (max-width: 768px) { .main-alert-title { font-size: 1.6rem; } .nav-links { display: none; } }
+        .nav-logo-img { height: 60px; }
     </style>
 </head>
 <body>
-<div class="site-bg"></div>
+
 <nav class="navbar">
-    <div class="nav-container">
-        <div class="lang-dropdown" id="lang-btn">
-            <div class="lang-btn-display">
-                <img id="selected-flag" src="https://flagcdn.com/w40/eg.png">
-            </div>
-            <ul id="lang-list" class="lang-dropdown-list"></ul>
+    <div class="lang-dropdown" id="lang-btn">
+        <div class="lang-btn-display">
+            <img id="selected-flag" src="https://flagcdn.com/w40/eg.png">
         </div>
-        <div class="nav-links">
-            <a data-i18n="nav_who">من نحن</a>
-            <a data-i18n="nav_goals">أهدافنا</a>
-            <a data-i18n="nav_cry">صرختنا</a>
-            <a data-i18n="nav_stats">إحصائيات</a>
-        </div>
-        <div class="nav-left"><img src="assets/logo.png" class="nav-logo-img"></div>
+        <ul id="lang-list" class="lang-dropdown-list"></ul>
     </div>
+    <img src="assets/logo.png" class="nav-logo-img">
 </nav>
 
-<div class="news-ticker"><div class="ticker-track" id="tickerTrack"></div></div>
-
-<section class="hero">
-    <h1 class="main-alert-title" id="mainTitle" data-i18n="hero_title"></h1>
-    <div class="hero-container">
-        <div class="book-box">
-            <img src="assets/CIVISTORIES Book.png">
-            <a id="bookBtn" href="#" target="_blank" class="btn-action" data-i18n="btn_book">تصفح الكتاب</a>
-        </div>
-        <div class="video-box">
-            <iframe id="mainVideo" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
-</section>
-
 <script src="i18n.js"></script>
+
 </body>
 </html>

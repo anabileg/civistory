@@ -73,7 +73,7 @@ display: flex; align-items: center; justify-content: center;
 }
 .copy-btn { background: var(--gold); color: #000; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: 900; }
 
-/* إصلاح شريط الأخبار */
+/* إصلاح شريط الأخبار - السرعة المطلوبة 1000 */
 .news-ticker { 
     background: var(--red-news); 
     color: white; 
@@ -90,18 +90,18 @@ display: flex; align-items: center; justify-content: center;
     display: flex; 
     white-space: nowrap; 
     width: max-content; 
-    animation: marqueeNews 2000s linear infinite; /* السرعة 2000 ثانية */
+    animation: marqueeNews 1000s linear infinite; /* السرعة 1000 ثانية */
 }
 .ticker-track span { 
     display: inline-block;
-    padding-left: 50px; /* مسافة بين الأخبار */
+    padding-left: 50px; 
     font-weight: bold; 
     font-size: 1.1rem; 
     direction: rtl; 
 }
 @keyframes marqueeNews { 
     0% { transform: translateX(0); } 
-    100% { transform: translateX(50%); } /* التحرك لنصف الطول لأننا سنضاعف المحتوى */
+    100% { transform: translateX(50%); } 
 }
 
 .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 180px 5% 60px; }
@@ -114,7 +114,15 @@ display: flex; align-items: center; justify-content: center;
 .book-wrapper img { width: 100%; border-radius: 15px; border: 2px solid var(--gold); animation: bookFloat 3s ease-in-out infinite; }
 @keyframes bookFloat { 0%, 100% { transform: translateY(0);} 50% { transform: translateY(-15px); } }
 
-.video-container-box { flex: 1; max-width: 800px; min-width: 300px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; }
+/* تعديل زر الكتاب ليفتح الرابط المطلوب */
+.btn-action { 
+    display: block; width: 100%; background: var(--gold); color: #000; 
+    text-decoration: none; padding: 15px; border-radius: 10px; 
+    text-align: center; font-weight: 900; transition: 0.3s;
+}
+.btn-action:hover { background: #fff; }
+
+.video-container-box { flex: 1; max-width: 800px; min-width: 300px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; background: #000; }
 
 #btnUp { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; background: var(--gold); color: #000; border-radius: 50%; display: none; justify-content: center; align-items: center; z-index: 9999; cursor: pointer; }
 
@@ -196,10 +204,10 @@ display: flex; align-items: center; justify-content: center;
     <div class="hero-container">
         <div class="book-static">
             <div class="book-wrapper"><img src="assets/CIVISTORIES Book.png" alt="Book Cover"></div>
-            <a href="#" class="btn-action">تصفح الكتاب كاملاً</a>
+            <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn-action">تصفح الكتاب كاملاً</a>
         </div>
         <div class="video-container-box">
-            <iframe src="https://www.youtube.com/embed/LIVE_ID_HERE" allowfullscreen></iframe>
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </div>
 </section>
@@ -209,7 +217,7 @@ display: flex; align-items: center; justify-content: center;
         <h3 style="color:var(--gold); margin-bottom:15px;">تواصل معنا</h3>
         <div class="email-box"><span id="em1">civistories@gmail.com</span><button class="copy-btn" onclick="copyText('em1')">نسخ</button></div>
         <div class="email-box"><span id="em2">anabileg@gmail.com</span><button class="copy-btn" onclick="copyText('em2')">نسخ</button></div>
-        <button class="btn-action" onclick="toggleEmailModal()" style="width:100%;">إغلاق</button>
+        <button class="btn-action" onclick="toggleEmailModal()" style="width:100%; border:none; cursor:pointer;">إغلاق</button>
     </div>
 </div>
 
@@ -224,9 +232,9 @@ const languages = [
     { n: "Magyar", c: "hu" }, { n: "Slovenčina", c: "sk" }, { n: "Hrvatski", c: "hr" }, { n: "Slovenščina", c: "si" },
     { n: "Български", c: "bg" }, { n: "Српски", c: "rs" }, { n: "Čeština", c: "cz" }, { n: "Русский", c: "ru" },
     { n: "Українська", c: "ua" }, { n: "中文", c: "cn" }, { n: "日本語", c: "jp" }, { n: "한국어", c: "kr" },
-    { n: "हिन्दी", c: "in" }, { n: "తెలుగు", c: "in" }, { n: "मराठी", c: "in" }, { n: "தமிழ்", c: "in" },
+    { n: "हिन्दी", c: "in" }, { n: "తెలుగు", c: "in" }, { n: "मراठी", c: "in" }, { n: "தமிழ்", c: "in" },
     { n: "اردو", c: "pk" }, { n: "ગુજરાતી", c: "in" }, { n: "ಕನ್ನಡ", c: "in" }, { n: "മലയാളم", c: "in" },
-    { n: "ଓଡ଼ିଆ", c: "in" }, { n: "ਪੰਜਾਬੀ", c: "pk" }, { n: "سنڌي", c: "pk" }, { n: "پښتو", c: "pk" },
+    { n: "ଓଡ଼ିଆ", c: "in" }, { n: "ਪੰਜਾਬي", c: "pk" }, { n: "سنڌي", c: "pk" }, { n: "پښتو", c: "pk" },
     { n: "بلوچی",c: "pk" }, { n: "සිංහල", c: "lk" }, { n: "বাংলা", c: "bd" }, { n: "Bahasa Melayu", c: "my" },
     { n: "Bahasa Indonesia", c: "id" }, { n: "Jawa", c: "id" }, { n: "Sunda", c: "id" }, { n: "Batak", c: "id" },
     { n: "ဗမာစာ", c: "mm" }, { n: "ကရင်", c: "mm" }, { n: "ရခိုင်", c: "mm" }, { n: "မွန်", c: "mm" },

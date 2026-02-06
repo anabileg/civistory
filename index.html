@@ -9,85 +9,50 @@
     <style>
         :root {
             --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
-            --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --wa-color: #25D366; --cream-bg: #fdf9f3;
+            --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --wa-color: #25D366;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { color: var(--white); font-family: 'Tajawal', sans-serif; background: #000; overflow-x: hidden; font-weight: bold; }
-        
-        /* الخلفية المتحركة */
-        .site-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('assets/image_390e08.jpg'); background-position: center; background-size: cover; z-index: -1;
-            animation: kenBurns 35s ease-in-out infinite alternate;
-        }
-        @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35);} 100% { transform: scale(1.18); filter: brightness(0.55);} }
-
-        /* الهيدر */
-        .navbar {
-            min-height: 90px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
-            position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
-            display: flex; align-items: center; justify-content: center;
-        }
+        .site-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('assets/image_390e08.jpg'); background-size: cover; z-index: -1; filter: brightness(0.4); }
+        .navbar { min-height: 90px; background: rgba(0,0,0,0.95); border-bottom: 2px solid var(--gold); position: fixed; top: 0; width: 100%; z-index: 10001; display: flex; align-items: center; justify-content: center; }
         .nav-container { width: 95%; max-width: 1400px; display: flex; justify-content: space-between; align-items: center; }
-        .nav-links { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
-        .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.9rem; transition: 0.3s; cursor: pointer; font-weight: 900; }
-        .nav-links a:hover { color: #fff; }
+        .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.85rem; font-weight: 900; }
+        .nav-left { display: flex; align-items: center; gap: 15px; }
+        .social-icons { display: flex; gap: 10px; }
         .nav-logo-img { height: 60px; }
-
-        /* شريط الأخبار بطيء جداً لراحة العين */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; width: max-content; animation: marqueeNews 1200s linear infinite; }
-        .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; }
-        @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
-
-        /* البطاقة الرئيسية */
+        .ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 1500s linear infinite; }
+        .ticker-track span { padding: 0 50px; font-size: 1.1rem; }
+        @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
         .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; }
-        .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; color: var(--white); max-width: 1000px; line-height: 1.5; }
-        .hero-container { display: flex; gap: 30px; width: 100%; justify-content: center; flex-wrap: wrap; }
-        .video-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; background: #000; }
-        .book-box { width: 300px; text-align: center; }
-        .book-box img { width: 100%; border: 2px solid var(--gold); border-radius: 15px; animation: float 3s infinite ease-in-out; }
-        @keyframes float { 0%,100% {transform: translateY(0);} 50% {transform: translateY(-10px);} }
-
-        /* الأزرار */
-        .btn-action { display: block; background: var(--gold); color: #000; padding: 15px; margin-top: 15px; border-radius: 10px; text-decoration: none; font-weight: 900; text-align: center; transition: 0.3s; }
-        .btn-action:hover { background: #fff; }
-
-        /* الأعلام وقائمة اللغات */
+        .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
+        .hero-container { display: flex; gap: 40px; width: 100%; max-width: 1200px; justify-content: center; flex-wrap: wrap; }
+        .video-box { flex: 1; min-width: 320px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; }
+        .book-box { width: 320px; }
+        .book-box img { width: 100%; border: 2px solid var(--gold); border-radius: 15px; }
+        .btn-action { display: block; width: 100%; background: var(--gold); color: #000; text-decoration: none; padding: 15px; border-radius: 10px; text-align: center; font-weight: 900; margin-top: 10px; }
         .lang-btn { cursor: pointer; border: 1px solid var(--gold); border-radius: 4px; width: 45px; height: 30px; object-fit: cover; }
         .lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 400px; overflow-y: auto; z-index: 10002; width: 200px; }
-        .lang-item { padding: 12px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #333; }
-        .lang-item:hover { background: #222; }
-
-        @media (max-width: 992px) {
-            .navbar { min-height: 120px; padding: 10px; }
-            .news-ticker { top: 120px; }
-            .hero { padding-top: 240px; }
-            .main-alert-title { font-size: 1.6rem; }
-        }
+        .lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #222; }
     </style>
 </head>
 <body>
-
 <div class="site-bg"></div>
-
 <nav class="navbar">
     <div class="nav-container">
         <div style="position:relative">
-            <img src="https://flagcdn.com/w80/eg.png" id="currentFlag" class="lang-btn" onclick="toggleLangMenu()">
+            <img src="https://flagcdn.com/w80/eg.png" id="currentFlag" class="lang-btn" onclick="toggleMenu()">
             <div id="langMenu" class="lang-dropdown"></div>
         </div>
-
         <div class="nav-links" id="navLinks"></div>
-
-        <img src="assets/logo.png" class="nav-logo-img">
+        <div class="nav-left">
+            <div class="social-icons" id="socialIcons"></div>
+            <img src="assets/logo.png" class="nav-logo-img">
+        </div>
     </div>
 </nav>
-
-<div class="news-ticker">
-    <div class="ticker-track" id="tickerTrack"></div>
-</div>
-
+<div class="news-ticker"><div class="ticker-track" id="tickerTrack"></div></div>
 <section class="hero">
     <h1 class="main-alert-title" id="mainTitle"></h1>
     <div class="hero-container">
@@ -102,72 +67,46 @@
 </section>
 
 <script>
-    // قائمة اللغات (الأعلام)
+    // قائمة اللغات (يمكنك إضافة الـ 86 لغة هنا)
     const languages = [
         { id: 'ar', name: 'العربية', flag: 'eg' },
-        { id: 'en', name: 'English', flag: 'gb' },
-        { id: 'fr', name: 'Français', flag: 'fr' }
-        // أضف أي لغة هنا لاحقاً بنفس الطريقة
+        { id: 'en', name: 'English', flag: 'gb' }
     ];
 
-    // وظيفة تبديل اللغة
     function loadLanguage(langId) {
         const script = document.createElement('script');
-        script.src = `langs/${langId}.js`; // سيقرأ من مجلد langs
-        script.onload = () => {
-            const data = window[langId];
-            renderPage(data);
-        };
+        script.src = `langs/${langId}.js`;
+        script.onload = () => { renderPage(window[langId]); };
         document.head.appendChild(script);
     }
 
-    // وظيفة توزيع النصوص في الصفحة
     function renderPage(data) {
         document.getElementById('htmlTag').dir = data.dir;
-        document.getElementById('htmlTag').lang = data.id;
-
-        // 1. ترجمة القائمة
+        // القائمة
         const nav = document.getElementById('navLinks');
-        nav.innerHTML = '';
-        // نحول كائن الـ nav إلى أزرار
-        Object.keys(data.nav).forEach(key => {
-            const a = document.createElement('a');
-            a.innerText = data.nav[key];
-            a.href = "#";
-            nav.appendChild(a);
-        });
-
-        // 2. ترجمة شريط الأخبار (الـ 73 خبراً)
+        nav.innerHTML = data.nav.map(item => `<a href="#">${item}</a>`).join('');
+        // السوشيال ميديا
+        const social = document.getElementById('socialIcons');
+        social.innerHTML = data.social.map(s => `<a href="${s.link}" target="_blank" style="color:${s.color}"><i class="${s.icon}"></i></a>`).join('');
+        // الأخبار
         const ticker = document.getElementById('tickerTrack');
-        ticker.innerHTML = data.newsTicker.map(msg => `<span>• ${msg}</span>`).join('');
-        ticker.innerHTML += ticker.innerHTML; // مضاعفة المحتوى لحركة مستمرة
-
-        // 3. ترجمة العنوان والأزرار والفيديو
-        document.getElementById('mainTitle').innerHTML = data.hero.title;
-        document.getElementById('bookBtn').innerText = data.hero.bookBtn;
-        document.getElementById('bookBtn').href = data.hero.bookLink;
-        document.getElementById('mainVideo').src = data.hero.videoUrl;
+        ticker.innerHTML = data.news.map(n => `<span>• ${n}</span>`).join('');
+        ticker.innerHTML += ticker.innerHTML; 
+        // المحتوى
+        document.getElementById('mainTitle').innerHTML = data.heroTitle;
+        document.getElementById('bookBtn').innerText = data.bookBtnText;
+        document.getElementById('mainVideo').src = data.videoUrl;
     }
 
-    // بناء قائمة اللغات (الأعلام) عند التشغيل
     const menu = document.getElementById('langMenu');
     languages.forEach(l => {
         const d = document.createElement('div');
         d.className = 'lang-item';
         d.innerHTML = `<img src="https://flagcdn.com/w40/${l.flag}.png" width="20"> ${l.name}`;
-        d.onclick = () => {
-            document.getElementById('currentFlag').src = `https://flagcdn.com/w80/${l.flag}.png`;
-            loadLanguage(l.id);
-            menu.style.display = 'none';
-        };
+        d.onclick = () => { document.getElementById('currentFlag').src=`https://flagcdn.com/w80/${l.flag}.png`; loadLanguage(l.id); menu.style.display='none'; };
         menu.appendChild(d);
     });
-
-    function toggleLangMenu() {
-        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
-    }
-
-    // تحميل العربية تلقائياً عند البداية
+    function toggleMenu() { menu.style.display = (menu.style.display==='block'?'none':'block'); }
     window.onload = () => loadLanguage('ar');
 </script>
 </body>

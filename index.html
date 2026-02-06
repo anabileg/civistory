@@ -1,137 +1,118 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>CiviStories | Digital Illusion Tsunami</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700&family=Cairo:wght@700&display=swap" rel="stylesheet">
-<style>
-:root {
---gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
---yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --tk: #ffffff; --pr: #BD081C; --in: #0077B5;
---wa-color: #25D366; --cream-bg: #fdf9f3;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html { scroll-behavior: smooth; }
-body { color: var(--white); font-family: 'Tajawal', 'Cairo', sans-serif; background: #000; overflow-x: hidden; width: 100%; font-weight: bold; font-size: 1rem; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CiviStories | Digital Illusion Tsunami</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700&family=Cairo:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
+            --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --tk: #ffffff; --pr: #BD081C; --in: #0077B5;
+            --wa-color: #25D366; --cream-bg: #fdf9f3;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { color: var(--white); font-family: 'Tajawal', 'Cairo', sans-serif; background: #000; overflow-x: hidden; width: 100%; font-weight: bold; font-size: 1rem; }
 
-.site-bg {
-position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-background-image: url('assets/image_390e08.jpg'); background-position: center; background-size: cover; z-index: -1;
-animation: kenBurns 35s ease-in-out infinite alternate;
-}
-@keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35);} 100% { transform: scale(1.18); filter: brightness(0.55);} }
+        .site-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('assets/image_390e08.jpg'); background-position: center; background-size: cover; z-index: -1;
+            animation: kenBurns 35s ease-in-out infinite alternate;
+        }
+        @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35);} 100% { transform: scale(1.18); filter: brightness(0.55);} }
 
-.navbar {
-min-height: 90px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
-position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
-display: flex; align-items: center; justify-content: center;
-}
-.nav-container { width: 95%; max-width: 1400px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; }
+        .navbar {
+            min-height: 90px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
+            position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .nav-container { width: 95%; max-width: 1400px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; }
 
-.lang-wrapper { position: relative; display: inline-block; }
-.lang-flag-current { width: 45px; height: 30px; border: 1px solid var(--gold); border-radius: 4px; cursor: pointer; object-fit: cover; }
-.lang-dropdown {
-    position: absolute; top: 50px; right: 0; background: rgba(0,0,0,0.95);
-    border: 1px solid var(--gold); border-radius: 8px; width: 220px;
-    max-height: 400px; overflow-y: auto; display: none; z-index: 10002;
-}
-.lang-dropdown::-webkit-scrollbar { width: 5px; }
-.lang-dropdown::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
-.lang-item {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 10px 15px; color: var(--gold); text-decoration: none;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2); transition: 0.3s; cursor: pointer;
-}
-.lang-item:hover { background: rgba(212, 175, 55, 0.1); color: #fff; }
-.lang-item img { width: 25px; height: 15px; object-fit: cover; }
+        .lang-wrapper { position: relative; display: inline-block; }
+        .lang-flag-current { width: 45px; height: 30px; border: 1px solid var(--gold); border-radius: 4px; cursor: pointer; object-fit: cover; }
+        .lang-dropdown {
+            position: absolute; top: 50px; right: 0; background: rgba(0,0,0,0.95);
+            border: 1px solid var(--gold); border-radius: 8px; width: 220px;
+            max-height: 400px; overflow-y: auto; display: none; z-index: 10002;
+        }
+        .lang-dropdown::-webkit-scrollbar { width: 5px; }
+        .lang-dropdown::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+        .lang-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 15px; color: var(--gold); text-decoration: none;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2); transition: 0.3s; cursor: pointer;
+        }
+        .lang-item:hover { background: rgba(212, 175, 55, 0.1); color: #fff; }
+        .lang-item img { width: 25px; height: 15px; object-fit: cover; }
 
-.nav-right-side { display: flex; align-items: center; gap: 20px; }
-.nav-links { display: flex; gap: 12px; align-items: center; }
-.nav-links a { color: var(--gold); text-decoration: none; font-weight: 900; cursor: pointer; transition: 0.3s; font-size: 0.9rem; white-space: nowrap; }
-.nav-links a:hover { color: #fff; }
+        .nav-right-side { display: flex; align-items: center; gap: 20px; }
+        .nav-links { display: flex; gap: 12px; align-items: center; }
+        .nav-links a { color: var(--gold); text-decoration: none; font-weight: 900; cursor: pointer; transition: 0.3s; font-size: 0.9rem; white-space: nowrap; }
+        .nav-links a:hover { color: #fff; }
 
-.nav-left-side { display: flex; align-items: center; gap: 20px; }
-.social-icons { display: flex; gap: 10px; align-items: center; }
-.social-icons a { font-size: 1.1rem; transition: 0.3s; text-decoration: none; }
-.nav-logo-img { height: 65px; }
-.ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
+        .nav-left-side { display: flex; align-items: center; gap: 20px; }
+        .social-icons { display: flex; gap: 10px; align-items: center; }
+        .social-icons a { font-size: 1.1rem; transition: 0.3s; text-decoration: none; }
+        .nav-logo-img { height: 65px; }
+        .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
 
-.email-modal {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 20000;
-}
-.email-content {
-    background: #111; border: 2px solid var(--gold); padding: 30px; border-radius: 20px;
-    text-align: center; width: 90%; max-width: 400px;
-}
-.email-box {
-    background: rgba(212, 175, 55, 0.1); padding: 10px; border-radius: 8px;
-    margin: 15px 0; display: flex; justify-content: space-between; align-items: center;
-    border: 1px dashed var(--gold);
-}
-.copy-btn { background: var(--gold); color: #000; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: 900; }
+        /* شريط الأخبار - السرعة بطيئة جداً لراحة العين */
+        .news-ticker { 
+            background: var(--red-news); color: white; height: 45px; position: fixed; 
+            top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; 
+        }
+        .ticker-track { 
+            display: flex; white-space: nowrap; width: max-content; 
+            animation: marqueeNews 2000s linear infinite; /* سرعة بطيئة جداً */
+        }
+        .ticker-track span { 
+            display: inline-block; padding-left: 100px; font-weight: bold; 
+            font-size: 1.1rem; direction: rtl; 
+        }
+        @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-/* إصلاح شريط الأخبار - السرعة المطلوبة 1000 */
-.news-ticker { 
-    background: var(--red-news); 
-    color: white; 
-    height: 45px; 
-    position: fixed; 
-    top: 90px; 
-    width: 100%; 
-    z-index: 1000; 
-    display: flex; 
-    align-items: center; 
-    overflow: hidden; 
-}
-.ticker-track { 
-    display: flex; 
-    white-space: nowrap; 
-    width: max-content; 
-    animation: marqueeNews 1000s linear infinite; /* السرعة 1000 ثانية */
-}
-.ticker-track span { 
-    display: inline-block;
-    padding-left: 50px; 
-    font-weight: bold; 
-    font-size: 1.1rem; 
-    direction: rtl; 
-}
-@keyframes marqueeNews { 
-    0% { transform: translateX(0); } 
-    100% { transform: translateX(50%); } 
-}
+        .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 180px 5% 60px; }
+        .main-alert-title { text-align: center; margin-bottom: 20px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
+        .main-alert-title span.highlight { color: var(--red-num); font-weight: 900; }
+        .main-alert-title span.gold-text { color: var(--gold); font-weight: 900; }
 
-.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 180px 5% 60px; }
-.main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
-.main-alert-title span.highlight { color: var(--red-num); font-weight: 900; }
-.main-alert-title span.gold-text { color: var(--gold); font-weight: 900; }
+        /* تنسيق الجملة الجديدة المضافة فوق الكتاب والفيديو */
+        .mission-statement {
+            text-align: center; margin-bottom: 40px; font-size: 1.8rem; font-weight: 900; line-height: 1.5; max-width: 1000px;
+        }
+        .mission-statement span.tsunami { color: var(--red-num); }
+        .mission-statement span.civil { color: var(--gold); }
 
-.hero-container { display: flex; gap: 40px; width: 100%; align-items: stretch; justify-content: center; flex-wrap: wrap; }
-.book-static { flex: 0 0 320px; display: flex; flex-direction: column; justify-content: space-between; height: 450px; }
-.book-wrapper img { width: 100%; border-radius: 15px; border: 2px solid var(--gold); animation: bookFloat 3s ease-in-out infinite; }
-@keyframes bookFloat { 0%, 100% { transform: translateY(0);} 50% { transform: translateY(-15px); } }
+        .hero-container { display: flex; gap: 40px; width: 100%; align-items: stretch; justify-content: center; flex-wrap: wrap; }
+        .book-static { flex: 0 0 320px; display: flex; flex-direction: column; justify-content: space-between; height: 450px; }
+        .book-wrapper img { width: 100%; border-radius: 15px; border: 2px solid var(--gold); animation: bookFloat 3s ease-in-out infinite; }
+        @keyframes bookFloat { 0%, 100% { transform: translateY(0);} 50% { transform: translateY(-15px); } }
 
-/* تعديل زر الكتاب ليفتح الرابط المطلوب */
-.btn-action { 
-    display: block; width: 100%; background: var(--gold); color: #000; 
-    text-decoration: none; padding: 15px; border-radius: 10px; 
-    text-align: center; font-weight: 900; transition: 0.3s;
-}
-.btn-action:hover { background: #fff; }
+        .btn-action { 
+            display: block; width: 100%; background: var(--gold); color: #000; 
+            text-decoration: none; padding: 15px; border-radius: 10px; 
+            text-align: center; font-weight: 900; transition: 0.3s;
+        }
+        .btn-action:hover { background: #fff; transform: scale(1.02); }
 
-.video-container-box { flex: 1; max-width: 800px; min-width: 300px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; background: #000; }
+        .video-container-box { flex: 1; max-width: 800px; min-width: 300px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; background: #000; }
 
-#btnUp { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; background: var(--gold); color: #000; border-radius: 50%; display: none; justify-content: center; align-items: center; z-index: 9999; cursor: pointer; }
+        #btnUp { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; background: var(--gold); color: #000; border-radius: 50%; display: none; justify-content: center; align-items: center; z-index: 9999; cursor: pointer; }
 
-@media (max-width: 992px) {
-    .navbar { min-height: auto; padding: 10px 0; }
-    .nav-container { flex-direction: column; gap: 10px; }
-    .hero { padding-top: 280px; }
-}
-</style>
+        .email-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 20000; }
+        .email-content { background: #111; border: 2px solid var(--gold); padding: 30px; border-radius: 20px; text-align: center; width: 90%; max-width: 400px; }
+        .email-box { background: rgba(212, 175, 55, 0.1); padding: 10px; border-radius: 8px; margin: 15px 0; display: flex; justify-content: space-between; align-items: center; border: 1px dashed var(--gold); }
+        .copy-btn { background: var(--gold); color: #000; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: 900; }
+
+        @media (max-width: 992px) {
+            .navbar { min-height: auto; padding: 10px 0; }
+            .nav-container { flex-direction: column; gap: 10px; }
+            .hero { padding-top: 280px; }
+            .mission-statement { font-size: 1.4rem; }
+        }
+    </style>
 </head>
 <body>
 
@@ -175,24 +156,66 @@ display: flex; align-items: center; justify-content: center;
         <span>• الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات سابقة</span>
         <span>• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل الاجتماعي</span>
         <span>• البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً</span>
-        <span>• نسبة حالات الطلاق في السنة الأولى من الزواج ٣٤%</span>
-        <span>• متوسط عمر الزواج عند الطلاق ٣.٧ سنة</span>
-        <span>• حالات الطلاق الرقمي ١٢ ألف و٥٠٠ حالة سنوياً</span>
-        <span>• متوسط عدد حسابات السوشيال ميديا للفرد ٣.٨ حساب</span>
-        <span>• نسبة المصريين الذين يبدأون يومهم بالسوشيال ميديا ٧١%</span>
-        <span>• نسبة المشاكل الأسرية التي تبدأ عبر الواتساب ٥٢%</span>
-        <span>• طلاق بعد ٣٢ سنة زواج بسبب كومنت</span>
-        <span>• شقيقان بالمنصورة تشاجرا حتى الموت بسبب منشور سياسي</span>
-        <span>• انتحار طالبة بكلية طب عين شمس لمشاهدتها ١٠٠ فيديو يومياً عن فشل الحياة الطبية</span>
+        <span>• الأمن القومي: رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة والفتنة</span>
+        <span>• دراسة: ٨٥% من طلاب الثانوي يعانون آثار التنمر الرقمي النفسية</span>
+        <span>• كارثة: ٢.١ مليار جنيه خسائر سنوية بسبب عمليات النصب الإلكتروني</span>
+        <span>• تسجيل ٩٣ ألف و٣٠٠ حالة طلاق سنوياً مرتبطة بالسوشيال ميديا</span>
+        <span>• حدوث ٢٥٥ حالة طلاق يومياً بسبب وسائل التواصل الاجتماعي</span>
+        <span>• ذكر وسائل التواصل كسبب مباشر في ٣٠% من حالات الطلاق</span>
+        <span>• صدور ١٠٠ ألف فتوى سنوياً عن مشاكل أسرية ٢٣% منها بسبب التواصل الاجتماعي</span>
+        <span>• ٣٠% من فتاوى مجمع البحوث الإسلامية تتعلق بالقطيعة العائلية</span>
+        <span>• ٢٩% من فتاوى مجمع البحوث الإسلامية تتعلق بالعلاقات المحرمة</span>
+        <span>• ٦٠% من المشاكل الأسرية في المجتمع القبطي مرتبطة بالسوشيال ميديا</span>
+        <span>• معاناة ٥٠ ألف أسرة قبطية سنوياً من مشاكل التواصل الاجتماعي</span>
+        <span>• زيادة معدلات الطلاق في مصر بنسبة ٥٧% خلال ٥ سنوات (٢٠١٨-٢٠٢٣)</span>
+        <span>• ارتفاع حالات الطلاق من ١٩٨ ألف حالة عام ٢٠١٨ إلى ٣١١ ألف حالة عام ٢٠٢٣</span>
+        <span>• تسجيل متوسط يومي ٨٥٢ حالة طلاق في مصر</span>
+        <span>• ٤٠% من بلاغات العنف الأسري بدأت بمشاجرات على وسائل التواصل</span>
+        <span>• تسجيل ١٤٥ ألف بلاغ عنف أسري عام ٢٠٢٣ منها ٤٣ ألف و٥٠٠ مرتبطة بمشاكل إلكترونية</span>
+        <span>• وجود ٢٢ ألف قضية خيانة زوجية بأدلة إلكترونية</span>
+        <span>• وقوع ١٢٢ جريمة قتل بين أزواج منها ٤٠ حالة بسبب الغيرة من منشورات</span>
+        <span>• ٦٥% من مراجعي العيادات النفسية يشكون من اضطرابات مرتبطة بالسوشيال ميديا</span>
+        <span>• تسجيل ٣ مليون زيارة للعيادات النفسية عام ٢٠٢٣ ٤٠% منها مرتبطة بالسوشيال ميديا</span>
+        <span>• الفئة العمرية من ١٥ إلى ٣٥ سنة تمثل ٦٨% من حالات الاضطرابات النفسية الرقمية</span>
+        <span>• ٥٠% من حالات الطلاق في السنة الأولى من الزواج سببها السوشيال ميديا</span>
+        <span>• خسارة إنتاجية تقدر بـ١٥ مليار جنيه سنوياً بسبب المشاكل النفسية الرقمية</span>
+        <span>• تعرض ٤٧% من الأطفال (٨-١٨ سنة) للتنمر الإلكتروني</span>
+        <span>• وصول متوسط الوقت اليومي للأطفال على الشاشات إلى ٥.٧ ساعات</span>
+        <span>• تعرض ٦٣% من الأطفال لمحتوى غير لائق عبر الإنترنت</span>
+        <span>• خسائر الإنتاجية بسبب الإدمان الرقمي تصل إلى ٢.٣% من الناتج المحلي</span>
+        <span>• تكلفة علاج الاضطرابات النفسية المرتبطة بالرقمنة تبلغ ٤ مليار و٥٠٠ ألف جنيه سنوياً</span>
+        <span>• فقدان ١٨ مليون يوم عمل سنوياً بسبب التداعيات الرقمية</span>
+        <span>• تسجيل متوسط ٣ صداقات مقطوعة لكل شاب بسبب الخلافات الرقمية</span>
+        <span>• ٨٥% من طلاب الثانوي يعانون من التنمر الرقمي</span>
+        <span>• ٣٥% من طلاب الثانوي حاولوا الانتحار مرة على الأقل</span>
+        <span>• ٦٤% من طلاب الجامعات يعانون من اضطرابات نوم بسبب السوشيال ميديا</span>
+        <span>• ٤٢% من طلاب الجامعات تأثرت درجاتهم الأكاديمية سلباً</span>
+        <span>• تعرض ١٧% من طلاب الجامعات للابتزاز الإلكتروني</span>
+        <span>• وقوع محاولة انتحار كل ٦ ساعات بسبب التنمر الرقمي أو القطيعة</span>
+        <span>• تسجيل ١٤٦٠ محاولة انتحار عام ٢٠٢٣ ٦٠% منها لأسباب رقمية</span>
+        <span>• ٤٠% من المسنين يعانون من العزلة بسبب انشغال أبنائهم بالسوشيال ميديا</span>
+        <span>• ٢ مليون مسن مصري يعيشون في عزلة رقمية</span>
+        <span>• وصول نسبة حالات الطلاق في السنة الأولى من الزواج إلى ٣٤%</span>
+        <span>• متوسط عمر الزواج عند الطلاق يبلغ ٣.٧ سنة</span>
+        <span>• تسجيل ١٢ ألف و٥٠٠ حالة طلاق رقمي سنوياً</span>
+        <span>• متوسط عدد حسابات السوشيال ميديا للفرد المصري ٣.٨ حساب</span>
+        <span>• ٧١% من المصريين يبدأون يومهم بتصفح السوشيال ميديا</span>
+        <span>• ٥٢% من المشاكل الأسرية تبدأ عبر تطبيق الواتساب</span>
+        <span>• طلاق زوجين بعد ٣٢ سنة زواج بسبب تعليق كومنت</span>
+        <span>• مقتل شقيقين في المنصورة بعد مشاجرة بسبب منشور سياسي</span>
+        <span>• انتحار طالبة طب بجامعة عين شمس لمشاهدتها ١٠٠ فيديو يومياً عن فشل الحياة الطبية</span>
         <span>• انقسام عائلة من ١٥ فرداً بالإسكندرية بسبب صورة حفلة عيد ميلاد</span>
         <span>• زوج يطلق زوجته في الجيزة بعد اكتشاف فيديوهات رقص لها على تيك توك</span>
-        <span>• معدل انتشار الاكتئاب بين مستخدمي السوشيال ميديا ٣١%</span>
-        <span>• نسبة المقارنات الاجتماعية السلبية ٧٦%</span>
-        <span>• حالات القلق الاجتماعي المتزايد ٤٤%</span>
-        <span>• خسائر اقتصادية أسرية بسبب النصب الإلكتروني ٢.١ مليار جنيه سنوياً</span>
+        <span>• معدل انتشار الاكتئاب بين مستخدمي السوشيال ميديا يصل إلى ٣١%</span>
+        <span>• ٧٦% من المستخدمين يقومون بمقارنات اجتماعية سلبية</span>
+        <span>• خسائر أسرية بسبب النصب الإلكتروني تبلغ ٢.١ مليار جنيه سنوياً</span>
         <span>• رصد أكثر من ١٥ ألف صفحة إلكترونية مجهولة تنشر الفتنة</span>
         <span>• رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة</span>
-        <span>• هجمات إلكترونية على تماسك الأسرة المصرية بمتوسط ١٢٠ هجمة يومياً</span>
+        <span>• تعرض تماسك الأسرة المصرية لـ١٢٠ هجمة إلكترونية يومياً</span>
+        <span>• تآكل القيم الأسرية التقليدية بنسبة ٢٢% خلال ٥ سنوات</span>
+        <span>• المحتوى الأجنبي المؤثر سلباً يمثل ٦٨% من المحتوى المتداول</span>
+        <span>• توقع وصول حالات الطلاق إلى ٤٥٠ ألف حالة سنوياً بحلول ٢٠٣٠ في حال عدم التدخل</span>
+        <span>• توقع تجاوز الخسائر الاقتصادية الرقمية ٣٥ مليار جنيه سنوياً بحلول ٢٠٣٠</span>
     </div>
 </div>
 
@@ -201,6 +224,11 @@ display: flex; align-items: center; justify-content: center;
         <span class="highlight">1000</span> حالة طلاق سنويًا في مصر <br>
         بسبب <span class="gold-text">تسونامي الوهم الرقمي</span>
     </h1>
+
+    <div class="mission-statement">
+        <span class="tsunami">تسونامي</span> الوهم الرقمي: من مهد الحضارة <span class="civil">مصر</span> إلى العالم... صرخة لإنقاذ الإنسانية
+    </div>
+
     <div class="hero-container">
         <div class="book-static">
             <div class="book-wrapper"><img src="assets/CIVISTORIES Book.png" alt="Book Cover"></div>
@@ -232,9 +260,9 @@ const languages = [
     { n: "Magyar", c: "hu" }, { n: "Slovenčina", c: "sk" }, { n: "Hrvatski", c: "hr" }, { n: "Slovenščina", c: "si" },
     { n: "Български", c: "bg" }, { n: "Српски", c: "rs" }, { n: "Čeština", c: "cz" }, { n: "Русский", c: "ru" },
     { n: "Українська", c: "ua" }, { n: "中文", c: "cn" }, { n: "日本語", c: "jp" }, { n: "한국어", c: "kr" },
-    { n: "हिन्दी", c: "in" }, { n: "తెలుగు", c: "in" }, { n: "मراठी", c: "in" }, { n: "தமிழ்", c: "in" },
+    { n: "हिन्दी", c: "in" }, { n: "తెలుగు", c: "in" }, { n: "मराठी", c: "in" }, { n: "தமிழ்", c: "in" },
     { n: "اردو", c: "pk" }, { n: "ગુજરાતી", c: "in" }, { n: "ಕನ್ನಡ", c: "in" }, { n: "മലയാളم", c: "in" },
-    { n: "ଓଡ଼ିଆ", c: "in" }, { n: "ਪੰਜਾਬي", c: "pk" }, { n: "سنڌي", c: "pk" }, { n: "پښتو", c: "pk" },
+    { n: "ଓଡ଼ିଆ", c: "in" }, { n: "ਪੰਜਾਬੀ", c: "pk" }, { n: "سنڌي", c: "pk" }, { n: "پښتو", c: "pk" },
     { n: "بلوچی",c: "pk" }, { n: "සිංහල", c: "lk" }, { n: "বাংলা", c: "bd" }, { n: "Bahasa Melayu", c: "my" },
     { n: "Bahasa Indonesia", c: "id" }, { n: "Jawa", c: "id" }, { n: "Sunda", c: "id" }, { n: "Batak", c: "id" },
     { n: "ဗမာစာ", c: "mm" }, { n: "ကရင်", c: "mm" }, { n: "ရခိုင်", c: "mm" }, { n: "မွန်", c: "mm" },
@@ -261,7 +289,6 @@ function toggleLang() { langBox.style.display = (langBox.style.display === 'bloc
 function toggleEmailModal() { const m = document.getElementById('emailModal'); m.style.display = (m.style.display === 'flex' ? 'none' : 'flex'); }
 function copyText(id) { navigator.clipboard.writeText(document.getElementById(id).innerText); alert("تم النسخ بنجاح"); }
 
-// مضاعفة الأخبار برمجياً لضمان عدم وجود فراغ
 const track = document.getElementById('newsTickerTrack');
 track.innerHTML += track.innerHTML;
 

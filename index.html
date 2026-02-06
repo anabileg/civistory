@@ -3,88 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CiviStories</title>
+    <title>CiviStories - قصص الحضارات</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;900&family=Cairo:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { color: var(--white); font-family: 'Tajawal', sans-serif; background: #000; overflow-x: hidden; font-weight: bold; }
-        .site-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('assets/image_390e08.jpg'); background-size: cover; z-index: -1; filter: brightness(0.4); }
-        
-        /* الهيدر */
-        .navbar { min-height: 90px; background: rgba(0,0,0,0.95); border-bottom: 2px solid var(--gold); position: fixed; top: 0; width: 100%; z-index: 10001; display: flex; align-items: center; justify-content: center; }
-        .nav-container { width: 95%; max-width: 1400px; display: flex; justify-content: space-between; align-items: center; }
-        .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-        .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.85rem; font-weight: 900; transition: 0.3s; }
-        .nav-left { display: flex; align-items: center; gap: 15px; }
-        .social-icons { display: flex; gap: 10px; }
-        .nav-logo-img { height: 60px; }
-
-        /* شريط الأخبار */
+        .site-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('assets/image_390e08.jpg'); background-size: cover; z-index: -1; filter: brightness(0.3); }
+        .navbar { min-height: 90px; background: rgba(0,0,0,0.95); border-bottom: 2px solid var(--gold); position: fixed; top: 0; width: 100%; z-index: 10001; display: flex; align-items: center; }
+        .nav-container { width: 95%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .lang-dropdown { position: relative; }
+        .lang-btn-display { cursor: pointer; display: flex; align-items: center; gap: 8px; background: #222; padding: 5px 10px; border: 1px solid var(--gold); border-radius: 5px; }
+        .lang-dropdown-list { position: absolute; top: 110%; left: 0; background: white; color: black; width: 200px; max-height: 400px; overflow-y: auto; display: none; border-radius: 8px; z-index: 9999; }
+        .lang-dropdown-list.show { display: block; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.8rem; cursor: pointer; }
+        .nav-left-group { display: flex; align-items: center; gap: 20px; }
+        .nav-logo-img { height: 65px; }
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 1200s linear infinite; width: max-content; }
-        .ticker-track span { padding: 0 50px; font-size: 1.1rem; }
-        @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
-
-        /* المحتوى */
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 60s linear infinite; }
+        .ticker-track span { padding: 0 40px; }
+        @keyframes marquee { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
         .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; }
+        .main-alert-title { text-align: center; margin-bottom: 50px; font-size: 2.2rem; line-height: 1.4; }
         .hero-container { display: flex; gap: 40px; width: 100%; max-width: 1200px; justify-content: center; flex-wrap: wrap; }
-        .video-box { flex: 1; min-width: 320px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; }
-        .book-box { width: 320px; }
-        .book-box img { width: 100%; border: 2px solid var(--gold); border-radius: 15px; }
-        .btn-action { display: block; width: 100%; background: var(--gold); color: #000; text-decoration: none; padding: 15px; border-radius: 10px; text-align: center; font-weight: 900; margin-top: 10px; }
-        .lang-btn { cursor: pointer; border: 1px solid var(--gold); border-radius: 4px; width: 45px; height: 30px; }
+        .book-box { width: 320px; text-align: center; }
+        .book-box img { width: 100%; border: 3px solid var(--gold); border-radius: 15px; }
+        .video-box { flex: 1; min-width: 320px; height: 450px; border: 3px solid var(--gold); border-radius: 20px; overflow: hidden; }
+        .btn-action { display: block; background: var(--gold); color: #000; text-decoration: none; padding: 15px; border-radius: 10px; font-weight: 900; margin-top: 15px; }
     </style>
 </head>
 <body>
 <div class="site-bg"></div>
 <nav class="navbar">
     <div class="nav-container">
-        <img id="currentFlag" class="lang-btn" src="">
-        <div class="nav-links" id="navLinks"></div>
-        <div class="nav-left">
-            <div class="social-icons" id="socialIcons"></div>
-            <img src="assets/logo.png" class="nav-logo-img">
+        <div class="lang-dropdown">
+            <div id="lang-btn" class="lang-btn-display">
+                <img id="selected-flag" src="https://flagcdn.com/w20/eg.png" width="25">
+                <span id="selected-lang-name" style="color:#fff">عربي</span>
+            </div>
+            <div id="lang-dropdown-list" class="lang-dropdown-list"><ul id="lang-list" style="list-style:none;"></ul></div>
         </div>
+        <div class="nav-links">
+            <a data-i18n="nav_who">من نحن</a>
+            <a data-i18n="nav_goals">أهدافنا</a>
+            <a data-i18n="nav_cry">صرختنا</a>
+        </div>
+        <div class="nav-left-group"><img src="assets/logo.png" class="nav-logo-img"></div>
     </div>
 </nav>
 <div class="news-ticker"><div class="ticker-track" id="tickerTrack"></div></div>
 <section class="hero">
-    <h1 class="main-alert-title" id="mainTitle"></h1>
+    <h1 class="main-alert-title" id="mainTitle" data-i18n="hero_title"></h1>
     <div class="hero-container">
         <div class="book-box">
             <img src="assets/CIVISTORIES Book.png">
-            <a id="bookBtn" href="#" target="_blank" class="btn-action"></a>
+            <a id="bookBtn" href="#" target="_blank" class="btn-action" data-i18n="btn_book"></a>
         </div>
         <div class="video-box">
-            <iframe id="mainVideo" width="100%" height="100%" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe id="mainVideo" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 </section>
-
-<script>
-    function loadLanguage(langId) {
-        const script = document.createElement('script');
-        script.src = `langs/${langId}.js`;
-        script.onload = () => { renderPage(window[langId]); };
-        document.head.appendChild(script);
-    }
-    function renderPage(data) {
-        document.getElementById('htmlTag').dir = data.dir;
-        document.getElementById('currentFlag').src = `https://flagcdn.com/w80/${data.flag}.png`;
-        document.getElementById('navLinks').innerHTML = data.nav.map(item => `<a href="#">${item}</a>`).join('');
-        document.getElementById('socialIcons').innerHTML = data.social.map(s => `<a href="${s.link}" target="_blank" style="color:${s.color}"><i class="${s.icon}"></i></a>`).join('');
-        const ticker = document.getElementById('tickerTrack');
-        ticker.innerHTML = data.news.map(n => `<span>• ${n}</span>`).join('');
-        ticker.innerHTML += ticker.innerHTML; 
-        document.getElementById('mainTitle').innerHTML = data.heroTitle;
-        document.getElementById('bookBtn').innerText = data.bookBtnText;
-        document.getElementById('bookBtn').href = data.bookLink;
-        document.getElementById('mainVideo').src = data.videoUrl;
-    }
-    window.onload = () => loadLanguage('ar');
-</script>
+<script src="i18n.js"></script>
 </body>
 </html>

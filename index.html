@@ -73,12 +73,36 @@ display: flex; align-items: center; justify-content: center;
 }
 .copy-btn { background: var(--gold); color: #000; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: 900; }
 
-/* شريط الأخبار - السرعة 2000 والمسافة 4 مسافات */
-.news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; direction: ltr; }
-.ticker-track { display: flex; white-space: nowrap; width: max-content; }
-.ticker-track span { padding: 0 10px; font-weight: bold; font-size: 1.1rem; direction: rtl; }
-.animate-news { animation: marqueeNews 2000s linear infinite; }
-@keyframes marqueeNews { 0% { transform: translateX(0);} 100% { transform: translateX(100%);} }
+/* إصلاح شريط الأخبار */
+.news-ticker { 
+    background: var(--red-news); 
+    color: white; 
+    height: 45px; 
+    position: fixed; 
+    top: 90px; 
+    width: 100%; 
+    z-index: 1000; 
+    display: flex; 
+    align-items: center; 
+    overflow: hidden; 
+}
+.ticker-track { 
+    display: flex; 
+    white-space: nowrap; 
+    width: max-content; 
+    animation: marqueeNews 2000s linear infinite; /* السرعة 2000 ثانية */
+}
+.ticker-track span { 
+    display: inline-block;
+    padding-left: 50px; /* مسافة بين الأخبار */
+    font-weight: bold; 
+    font-size: 1.1rem; 
+    direction: rtl; 
+}
+@keyframes marqueeNews { 
+    0% { transform: translateX(0); } 
+    100% { transform: translateX(50%); } /* التحرك لنصف الطول لأننا سنضاعف المحتوى */
+}
 
 .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 180px 5% 60px; }
 .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
@@ -131,36 +155,36 @@ display: flex; align-items: center; justify-content: center;
 </nav>
 
 <div class="news-ticker">
-    <div class="ticker-track animate-news" id="newsTickerTrack">
-        <span>• الأزهر الشريف: حالة طلاق تقريباً كل دقيقتين ونصف بسبب الإدمان الرقمي &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• وزارة الأوقاف: الهواتف الذكية أحد أسباب الخرس والبرود الزوجي الرئيسية &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• إنذار أحمر: تفكك الأسر يُهدد الاستقرار الاجتماعي والمجتمعي في مصر &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• وزارة الصحة: ٣ ملايين زيارة سنوية للعيادات النفسية بسبب اضطرابات السوشيال ميديا &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالانعزال والإفراط الرقمي &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• القصر العيني: محاولة انتحار كل ٦ ساعات تقريباً بسبب التنمر عبر الإنترنت &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوية بسبب الإدمان الرقمي &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• اليونيسف: ٤٧% من أطفال مصر تعرضوا للتنمر الإلكتروني المؤذي &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات سابقة &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل الاجتماعي &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• نسبة حالات الطلاق في السنة الأولى من الزواج ٣٤% &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• متوسط عمر الزواج عند الطلاق ٣.٧ سنة &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• حالات الطلاق الرقمي ١٢ ألف و٥٠٠ حالة سنوياً &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• متوسط عدد حسابات السوشيال ميديا للفرد ٣.٨ حساب &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• نسبة المصريين الذين يبدأون يومهم بالسوشيال ميديا ٧١% &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• نسبة المشاكل الأسرية التي تبدأ عبر الواتساب ٥٢% &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• طلاق بعد ٣٢ سنة زواج بسبب كومنت &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• شقيقان بالمنصورة تشاجرا حتى الموت بسبب منشور سياسي &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• انتحار طالبة بكلية طب عين شمس لمشاهدتها ١٠٠ فيديو يومياً عن فشل الحياة الطبية &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• انقسام عائلة من ١٥ فرداً بالإسكندرية بسبب صورة حفلة عيد ميلاد &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• زوج يطلق زوجته في الجيزة بعد اكتشاف فيديوهات رقص لها على تيك توك &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• معدل انتشار الاكتئاب بين مستخدمي السوشيال ميديا ٣١% &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• نسبة المقارنات الاجتماعية السلبية ٧٦% &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• حالات القلق الاجتماعي المتزايد ٤٤% &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• خسائر اقتصادية أسرية بسبب النصب الإلكتروني ٢.١ مليار جنيه سنوياً &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• رصد أكثر من ١٥ ألف صفحة إلكترونية مجهولة تنشر الفتنة &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>• هجمات إلكترونية على تماسك الأسرة المصرية بمتوسط ١٢٠ هجمة يومياً &nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <div class="ticker-track" id="newsTickerTrack">
+        <span>• الأزهر الشريف: حالة طلاق تقريباً كل دقيقتين ونصف بسبب الإدمان الرقمي</span>
+        <span>• وزارة الأوقاف: الهواتف الذكية أحد أسباب الخرس والبرود الزوجي الرئيسية</span>
+        <span>• إنذار أحمر: تفكك الأسر يُهدد الاستقرار الاجتماعي والمجتمعي في مصر</span>
+        <span>• وزارة الصحة: ٣ ملايين زيارة سنوية للعيادات النفسية بسبب اضطرابات السوشيال ميديا</span>
+        <span>• الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالانعزال والإفراط الرقمي</span>
+        <span>• القصر العيني: محاولة انتحار كل ٦ ساعات تقريباً بسبب التنمر عبر الإنترنت</span>
+        <span>• وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوية بسبب الإدمان الرقمي</span>
+        <span>• اليونيسف: ٤٧% من أطفال مصر تعرضوا للتنمر الإلكتروني المؤذي</span>
+        <span>• الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات سابقة</span>
+        <span>• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل الاجتماعي</span>
+        <span>• البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً</span>
+        <span>• نسبة حالات الطلاق في السنة الأولى من الزواج ٣٤%</span>
+        <span>• متوسط عمر الزواج عند الطلاق ٣.٧ سنة</span>
+        <span>• حالات الطلاق الرقمي ١٢ ألف و٥٠٠ حالة سنوياً</span>
+        <span>• متوسط عدد حسابات السوشيال ميديا للفرد ٣.٨ حساب</span>
+        <span>• نسبة المصريين الذين يبدأون يومهم بالسوشيال ميديا ٧١%</span>
+        <span>• نسبة المشاكل الأسرية التي تبدأ عبر الواتساب ٥٢%</span>
+        <span>• طلاق بعد ٣٢ سنة زواج بسبب كومنت</span>
+        <span>• شقيقان بالمنصورة تشاجرا حتى الموت بسبب منشور سياسي</span>
+        <span>• انتحار طالبة بكلية طب عين شمس لمشاهدتها ١٠٠ فيديو يومياً عن فشل الحياة الطبية</span>
+        <span>• انقسام عائلة من ١٥ فرداً بالإسكندرية بسبب صورة حفلة عيد ميلاد</span>
+        <span>• زوج يطلق زوجته في الجيزة بعد اكتشاف فيديوهات رقص لها على تيك توك</span>
+        <span>• معدل انتشار الاكتئاب بين مستخدمي السوشيال ميديا ٣١%</span>
+        <span>• نسبة المقارنات الاجتماعية السلبية ٧٦%</span>
+        <span>• حالات القلق الاجتماعي المتزايد ٤٤%</span>
+        <span>• خسائر اقتصادية أسرية بسبب النصب الإلكتروني ٢.١ مليار جنيه سنوياً</span>
+        <span>• رصد أكثر من ١٥ ألف صفحة إلكترونية مجهولة تنشر الفتنة</span>
+        <span>• رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة</span>
+        <span>• هجمات إلكترونية على تماسك الأسرة المصرية بمتوسط ١٢٠ هجمة يومياً</span>
     </div>
 </div>
 
@@ -200,7 +224,7 @@ const languages = [
     { n: "Magyar", c: "hu" }, { n: "Slovenčina", c: "sk" }, { n: "Hrvatski", c: "hr" }, { n: "Slovenščina", c: "si" },
     { n: "Български", c: "bg" }, { n: "Српски", c: "rs" }, { n: "Čeština", c: "cz" }, { n: "Русский", c: "ru" },
     { n: "Українська", c: "ua" }, { n: "中文", c: "cn" }, { n: "日本語", c: "jp" }, { n: "한국어", c: "kr" },
-    { n: "हिन्दी", c: "in" }, { n: "తెలుగు", c: "in" }, { n: "मراठी", c: "in" }, { n: "தமிழ்", c: "in" },
+    { n: "हिन्दी", c: "in" }, { n: "తెలుగు", c: "in" }, { n: "मराठी", c: "in" }, { n: "தமிழ்", c: "in" },
     { n: "اردو", c: "pk" }, { n: "ગુજરાતી", c: "in" }, { n: "ಕನ್ನಡ", c: "in" }, { n: "മലയാളم", c: "in" },
     { n: "ଓଡ଼ିଆ", c: "in" }, { n: "ਪੰਜਾਬੀ", c: "pk" }, { n: "سنڌي", c: "pk" }, { n: "پښتو", c: "pk" },
     { n: "بلوچی",c: "pk" }, { n: "සිංහල", c: "lk" }, { n: "বাংলা", c: "bd" }, { n: "Bahasa Melayu", c: "my" },
@@ -229,6 +253,7 @@ function toggleLang() { langBox.style.display = (langBox.style.display === 'bloc
 function toggleEmailModal() { const m = document.getElementById('emailModal'); m.style.display = (m.style.display === 'flex' ? 'none' : 'flex'); }
 function copyText(id) { navigator.clipboard.writeText(document.getElementById(id).innerText); alert("تم النسخ بنجاح"); }
 
+// مضاعفة الأخبار برمجياً لضمان عدم وجود فراغ
 const track = document.getElementById('newsTickerTrack');
 track.innerHTML += track.innerHTML;
 

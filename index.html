@@ -37,11 +37,94 @@
         .lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 400px; overflow-y: auto; z-index: 10002; width: 200px; }
         .lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #222; }
 
-        /* --- التعديلات المطلوبة فقط --- */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 10000; align-items: center; justify-content: center; }
-        .modal.show { display: flex; }
-        .modal-content { background-color: #fff9e6; width: 85%; max-width: 900px; max-height: 85vh; border-radius: 15px; padding: 30px; overflow-y: auto; color: #333; border: 1px solid #d4af37; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .close-btn { position: fixed; top: 20px; left: 20px; width: 45px; height: 45px; background-color: #e74c3c; color: white; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 22px; z-index: 10001; }
+        /* --- تعديلات لـ نافذة الرسالة --- */
+        .message-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        .message-modal.show {
+            display: flex;
+        }
+        .message-content {
+            background-color: #fff9e6;
+            width: 85%;
+            max-width: 900px;
+            max-height: 85vh;
+            border-radius: 15px;
+            padding: 30px;
+            overflow-y: auto;
+            color: #333;
+            border: 1px solid #d4af37;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .message-content::-webkit-scrollbar {
+            width: 12px;
+        }
+        .message-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 6px;
+        }
+        .message-content::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 6px;
+        }
+        .message-content::-webkit-scrollbar-thumb:hover {
+            background: #c09f2a;
+        }
+        .message-header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #e0d0a8;
+            padding-bottom: 15px;
+        }
+        .message-title {
+            font-size: 24px;
+            color: #2c3e50;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .close-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 45px;
+            height: 45px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            z-index: 10001;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        .close-btn:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
+        .message-text {
+            text-align: justify;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #2c3e50;
+        }
+        .message-text p {
+            margin-bottom: 20px;
+            text-indent: 2em;
+        }
     </style>
 </head>
 <body>
@@ -73,26 +156,35 @@
         </div>
     </section>
 
-    <!-- زر الإغلاق الأحمر (في الزاوية الشمالية العليا خارج المربع) -->
-    <button id="closeBtn" class="close-btn"><i class="fas fa-times"></i></button>
+    <!-- زر الإغلاق الأحمر خارج النافذة في الزاوية الشمالية العليا -->
+    <button id="closeMessageBtn" class="close-btn">
+        <i class="fas fa-times"></i>
+    </button>
 
-    <!-- نافذة الرسالة (فارغة) -->
-    <div id="messageModal" class="modal">
-        <div class="modal-content"></div>
+    <!-- نافذة الرسالة الفارغة -->
+    <div id="messageModal" class="message-modal">
+        <div class="message-content">
+            <div class="message-header">
+                <h2 class="message-title" id="messageTitle"></h2>
+            </div>
+            <div class="message-text" id="messageBody"></div>
+        </div>
     </div>
 
     <script src="js/main.js"></script>
     <script src="js/i18n.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // إعداد نافذة الرسالة
             const messageModal = document.getElementById('messageModal');
-            const closeBtn = document.getElementById('closeBtn');
+            const closeMessageBtn = document.getElementById('closeMessageBtn');
             
-            // فتح النافذة عند الضغط على "رسالتنا"
+            // فتح النافذة عند الضغط على "رسالتنا" أو "من نحن"
             document.querySelectorAll('.nav-links a').forEach(link => {
-                if (link.textContent.trim() === "رسالتنا") {
+                if (link.textContent.trim() === "رسالتنا" || link.textContent.trim() === "من نحن") {
                     link.addEventListener('click', function(e) {
                         e.preventDefault();
+                        loadMessageContent();
                         messageModal.classList.add('show');
                         document.body.style.overflow = 'hidden';
                     });
@@ -100,18 +192,39 @@
             });
             
             // إغلاق النافذة عند الضغط على زر الإغلاق
-            closeBtn.addEventListener('click', function() {
-                messageModal.classList.remove('show');
-                document.body.style.overflow = 'auto';
-            });
+            if (closeMessageBtn) {
+                closeMessageBtn.addEventListener('click', function() {
+                    messageModal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                });
+            }
             
             // إغلاق النافذة عند النقر خارج المحتوى
-            messageModal.addEventListener('click', function(e) {
-                if (e.target === messageModal) {
+            if (messageModal) {
+                messageModal.addEventListener('click', function(e) {
+                    if (e.target === messageModal) {
+                        messageModal.classList.remove('show');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+            
+            // إغلاق النافذة عند الضغط على زر ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && messageModal.classList.contains(' {
                     messageModal.classList.remove('show');
                     document.body.style.overflow = 'auto';
                 }
             });
+            
+            function loadMessageContent() {
+                const messageTitle = i18n.t('messageTitle');
+                const messageContent = i18n.t('messageContent');
+                
+                // تعيين النصوص في العناصر
+                document.getElementById('messageTitle').innerHTML = messageTitle;
+                document.getElementById('messageBody').innerHTML = messageContent;
+            }
         });
     </script>
 </body>

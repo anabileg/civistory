@@ -39,58 +39,63 @@ overflow: hidden; }
 margin-top: 10px; }
 .custom-section { padding: 40px 0; display: flex; justify-content: center; width: 100%; }
 .section-container { width: 95%; max-width: 1400px; min-height: 600px; background-color: #000; background-image: url('assets/image_3a7328.jpg'); background-size: cover; background-position: center; border: 3px solid var(--gold);
-position: relative; padding: 0; overflow: hidden; box-shadow: inset 0 0 100px #000; }
+position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 .custom-section h2 { color: var(--gold); font-size: 3.5rem; margin-bottom: 40px; text-align: center; }
-.custom-section div[id^="content_"] { color: var(--white); line-height: 2.2; font-size: 1.6rem; text-align: justify; padding: 80px 50px; }
+.custom-section div[id^="content_"] { color: var(--white); line-height: 2.2; font-size: 1.6rem; text-align: justify; }
 
-/* --- تعديلات قسم ميديا المعدلة حسب طلبك --- */
-.media-marquee-container {
-    width: 100%;
-    height: 600px; /* لملء الحاوية بالكامل */
+/* --- تعديلات قسم ميديا الجديد --- */
+#sec_media .section-container {
+    min-height: 400px; /* تقليل الارتفاع ليكون ثلثي الحجم السابق */
+    padding: 20px 0; /* إزالة البادينج الجانبي لالتصاق الصور بالإطار */
     overflow: hidden;
-    background: #000;
-    white-space: nowrap;
-    position: relative;
     display: flex;
     align-items: center;
 }
+#sec_media h2 { display: none; } /* إخفاء العنوان كما طلبت (عرض صور فقط) */
+
+.media-marquee-container {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+}
+
 .media-track {
-    display: inline-flex;
-    animation: scrollMedia 80s linear infinite; /* سرعة بطيئة جداً */
+    display: flex;
+    animation: scrollMedia 60s linear infinite; /* حركة بطيئة جداً ومستمرة */
 }
+
 .media-track img {
-    width: 28vw; /* عرض يضمن ظهور 3 صور وبداية الرابعة */
-    height: 600px; /* ارتفاع ثابت ليملأ الفريم */
-    object-fit: cover; /* يملأ المساحة بدون تشويه */
+    width: 28vw; /* عرض الصورة 28% من عرض الحاوية */
+    height: 350px; /* ارتفاع ثابت يملأ القسم المقلص */
+    object-fit: cover;
     filter: grayscale(100%); /* أبيض وأسود */
-    transition: 0.3s;
+    transition: transform 0.3s;
     cursor: pointer;
-    display: block;
-    margin: 0; /* تلاصق تام */
+    margin: 0;
     padding: 0;
+    display: block;
 }
+
 @keyframes scrollMedia {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* حركة مستمرة لليسار */
+    100% { transform: translateX(100%); }
 }
-/* نافذة الصورة الكبيرة */
-#imageModal {
+
+/* مودال عرض الصورة الملونة */
+.image-viewer {
     display: none;
     position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
     z-index: 20000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.95);
     justify-content: center;
     align-items: center;
 }
-#imageModal img {
+.image-viewer img {
     max-width: 90%;
     max-height: 90%;
     border: 3px solid var(--gold);
-    filter: grayscale(0%); /* ألوان طبيعية */
+    filter: grayscale(0%); /* تظهر بالألوان */
 }
 </style>
 </head>
@@ -128,8 +133,9 @@ position: relative; padding: 0; overflow: hidden; box-shadow: inset 0 0 100px #0
 
 <section class="custom-section" id="sec_media">
     <div class="section-container">
-        <div id="content_media" class="media-marquee-container">
-            <div class="media-track" id="mediaTrack"></div>
+        <div class="media-marquee-container">
+            <div class="media-track" id="mediaTrack">
+                </div>
         </div>
     </div>
 </section>
@@ -141,7 +147,7 @@ position: relative; padding: 0; overflow: hidden; box-shadow: inset 0 0 100px #0
 <section class="custom-section" id="sec_reference"><div class="section-container"><h2 id="title_reference"></h2><div id="content_reference"></div></div></section>
 <section class="custom-section" id="sec_partners"><div class="section-container"><h2 id="title_partners"></h2><div id="content_partners"></div></div></section>
 
-<div id="imageModal" onclick="this.style.display='none'">
+<div id="imageViewer" class="image-viewer" onclick="this.style.display='none'">
     <img id="fullImage" src="">
 </div>
 
@@ -160,21 +166,25 @@ position: relative; padding: 0; overflow: hidden; box-shadow: inset 0 0 100px #0
 <script src="js/main.js"></script>
 <script src="js/i18n.js"></script>
 <script>
-// توليد الصور تلقائياً من 101 إلى 124
+// توليد صور الميديا من 101 إلى 124
 const track = document.getElementById('mediaTrack');
-let imagesHtml = '';
+const imagesList = [];
 for(let i=101; i<=124; i++) {
-    imagesHtml += `<img src="assets/${i}.jpg" onclick="showFullImage(this.src)" alt="">`;
+    imagesList.push(`assets/${i}.jpg`);
 }
-// تكرار الصور مرتين لضمان استمرارية الحركة بدون فراغ وبشكل دائري
-track.innerHTML = imagesHtml + imagesHtml;
 
-function showFullImage(src) {
-    const modal = document.getElementById('imageModal');
-    const fullImg = document.getElementById('fullImage');
-    fullImg.src = src;
-    modal.style.display = 'flex';
-}
+// تكرار الصور لضمان سلاسة الحركة اللانهائية
+const fullList = [...imagesList, ...imagesList]; 
+
+fullList.forEach(src => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.onclick = function() {
+        document.getElementById('fullImage').src = this.src;
+        document.getElementById('imageViewer').style.display = 'flex';
+    };
+    track.appendChild(img);
+});
 
 function openModal(type) { document.getElementById('infoModal').style.display = 'flex'; }
 function closeModal() { document.getElementById('infoModal').style.display = 'none'; }

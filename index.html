@@ -8,35 +8,102 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;900&family=Cairo:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* التنسيقات الداخلية كما هي في ملفك الأصلي */
+        /* الجزء الذي كان محذوفاً وتمت إعادته وتعديله حسب طلبك */
         :root {
             --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
             --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --wa-color: #25D366;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { color: var(--white); font-family: 'Tajawal', sans-serif; background: #000; overflow-x: hidden; font-weight: bold; }
-        .site-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('../assets/image_390e08.jpg'); background-size: cover; z-index: -1; filter: brightness(0.4); }
-        .navbar { min-height: 90px; background: rgba(0, 0, 0, 0.95); border-bottom: 2px solid var(--gold); position: fixed; top: 0; width: 100%; z-index: 10001; display: flex; align-items: center; justify-content: center; }
+        
+        .site-bg { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background-image: url('assets/image_390e08.jpg'); 
+            background-size: cover; z-index: -1; filter: brightness(0.4); 
+        }
+
+        .navbar { 
+            min-height: 90px; background: rgba(0, 0, 0, 0.95); border-bottom: 2px solid var(--gold); 
+            position: fixed; top: 0; width: 100%; z-index: 10001; 
+            display: flex; align-items: center; justify-content: center; 
+        }
+
         .nav-container { width: 95%; max-width: 1400px; display: flex; justify-content: space-between; align-items: center; }
+        
         .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
         .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.85rem; font-weight: 900; cursor: pointer; }
+
         .nav-left { display: flex; align-items: center; gap: 15px; }
         .social-icons { display: flex; gap: 10px; }
         .nav-logo-img { height: 60px; }
-        .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
+
+        .news-ticker { 
+            background: var(--red-news); color: white; height: 45px; 
+            position: fixed; top: 90px; width: 100%; z-index: 1000; 
+            display: flex; align-items: center; overflow: hidden; 
+        }
         .ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 1500s linear infinite; }
         .ticker-track span { padding: 0 15px; font-size: 1.1rem; }
+
         @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
+
         .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; animation: fadeIn 1s ease-out; }
         .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
+        
         .hero-container { display: flex; gap: 40px; width: 100%; max-width: 1200px; justify-content: center; flex-wrap: wrap; }
         .video-box { flex: 1; min-width: 320px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; }
+        
         .book-box { width: 320px; }
         .book-box img { width: 100%; border: 2px solid var(--gold); border-radius: 15px; }
-        .btn-action { display: block; width: 100%; background: var(--gold); color: #000; text-decoration: none; padding: 15px; border-radius: 10px; text-align: center; font-weight: 900; margin-top: 10px; }
+        
+        .btn-action { 
+            display: block; width: 100%; background: var(--gold); color: #000; 
+            text-decoration: none; padding: 15px; border-radius: 10px; 
+            text-align: center; font-weight: 900; margin-top: 10px; 
+        }
+
+        /* سهم العودة للأعلى - أصفر وفي اليسار */
+        #btnUp {
+            position: fixed; bottom: 30px; left: 30px; 
+            width: 50px; height: 50px; background: var(--gold);
+            color: #000; border-radius: 50%; display: none;
+            align-items: center; justify-content: center; cursor: pointer;
+            z-index: 9999; font-size: 24px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        /* التنسيق الجديد للمربعات المنبثقة */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 20000;
+            display: none; align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background: #fdfaf0; width: 90%; max-width: 900px; max-height: 85vh;
+            border-radius: 20px; position: relative; overflow: hidden;
+            border: 2px solid var(--gold); display: flex; flex-direction: column;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+        .modal-body {
+            padding: 40px; overflow-y: auto; direction: ltr; /* شريط التمرير يسار */
+        }
+        .modal-body-inner {
+            direction: rtl; text-align: right; color: #333;
+        }
+        .modal-body::-webkit-scrollbar { width: 10px; }
+        .modal-body::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+        /* زر الإغلاق الأحمر أعلى اليسار */
+        .close-modal-btn {
+            position: absolute; top: 15px; left: 15px;
+            background: #ff0000; color: white; border: 2px solid #fff;
+            width: 40px; height: 40px; border-radius: 50%;
+            font-size: 20px; cursor: pointer; z-index: 100;
+            display: flex; align-items: center; justify-content: center;
+        }
+
         .lang-btn { cursor: pointer; border: 1px solid var(--gold); border-radius: 4px; width: 45px; height: 30px; object-fit: cover; }
         .lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 400px; overflow-y: auto; z-index: 10002; width: 200px; }
-        .lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #222; }
     </style>
 </head>
 <body>
@@ -84,17 +151,6 @@
     </div>
 </section>
 
-<div id="infoModal" class="modal-overlay">
-    <div class="modal-content">
-        <button class="close-modal-btn" onclick="closeModal('infoModal')">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="modal-body">
-            <div class="modal-body-inner" id="modalInnerContent"></div>
-        </div>
-    </div>
-</div>
-
 <div id="m1" class="modal-overlay"><div class="modal-content"><button class="close-modal-btn" onclick="closeModal('m1')"><i class="fas fa-times"></i></button><div class="modal-body"><div class="modal-body-inner"></div></div></div></div>
 <div id="m2" class="modal-overlay"><div class="modal-content"><button class="close-modal-btn" onclick="closeModal('m2')"><i class="fas fa-times"></i></button><div class="modal-body"><div class="modal-body-inner"></div></div></div></div>
 <div id="m3" class="modal-overlay"><div class="modal-content"><button class="close-modal-btn" onclick="closeModal('m3')"><i class="fas fa-times"></i></button><div class="modal-body"><div class="modal-body-inner"></div></div></div></div>
@@ -106,34 +162,31 @@
 <div id="m9" class="modal-overlay"><div class="modal-content"><button class="close-modal-btn" onclick="closeModal('m9')"><i class="fas fa-times"></i></button><div class="modal-body"><div class="modal-body-inner"></div></div></div></div>
 <div id="m10" class="modal-overlay"><div class="modal-content"><button class="close-modal-btn" onclick="closeModal('m10')"><i class="fas fa-times"></i></button><div class="modal-body"><div class="modal-body-inner"></div></div></div></div>
 
+<div id="infoModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="close-modal-btn" onclick="closeModal('infoModal')"><i class="fas fa-times"></i></button>
+        <div class="modal-body"><div class="modal-body-inner" id="modalInnerContent"></div></div>
+    </div>
+</div>
+
 <script src="js/main.js"></script>
 <script src="js/i18n.js"></script>
 <script>
-function openModal(id) {
-    document.getElementById(id).style.display = 'flex';
-}
-function closeModal(id) {
-    document.getElementById(id).style.display = 'none';
-}
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
 window.onscroll = function() {
-    var btn = document.getElementById("btnUp");
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        btn.style.display = "flex";
-    } else {
-        btn.style.display = "none";
-    }
+    let btn = document.getElementById("btnUp");
+    if (document.documentElement.scrollTop > 300) { btn.style.display = "flex"; } 
+    else { btn.style.display = "none"; }
 };
 
 document.addEventListener('click', function(e) {
     if(e.target.tagName === 'A') {
         const text = e.target.innerText;
         if(text.includes('من نحن') || text.includes('About')) {
-            e.preventDefault();
-            openModal('infoModal');
+            e.preventDefault(); openModal('infoModal');
         }
     }
 });

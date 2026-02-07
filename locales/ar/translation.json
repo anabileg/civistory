@@ -5,14 +5,14 @@
   "videoUrl": "https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&rel=0",
   "nav": ["من نحن", "أهدافنا", "صرختنا", "رسالاتنا", "وعي وطني", "ميديا", "إحصائيات", "خسائر", "برامج توعوية", "رؤية إنسانية", "مرجعيتنا الإنسانية", "شركاؤنا"],
   "social": [
-    {"icon": "fab fa-youtube", "color": "#FF0000", "link": "https://www.youtube.com/@CiviStories"},
-    {"icon": "fab fa-facebook-f", "color": "#1877F2", "link": "https://www.facebook.com/profile.php?id=100093677167187"},
-    {"icon": "fab fa-tiktok", "color": "#000000", "link": "https://www.tiktok.com/@civistoriesarabic"},
-    {"icon": "fab fa-x-twitter", "color": "#1DA1F2", "link": "https://x.com/civistories"},
-    {"icon": "fab fa-instagram", "color": "#E4405F", "link": "https://www.instagram.com/civi.stories"},
-    {"icon": "fab fa-pinterest", "color": "#E60023", "link": "https://www.pinterest.com/civistories/"},
-    {"icon": "fab fa-linkedin-in", "color": "#0077B5", "link": "https://www.linkedin.com/in/قصص-الحدارات-0a8917277"},
-    {"icon": "fab fa-whatsapp", "color": "#25D366", "link": "https://wa.me/201009995015"}
+   <a href="https://wa.me/201009995015" target="_blank" style="color: var(--wa-color);"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank" class="ic-in"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.pinterest.com/civistories/" target="_blank" class="ic-pr"><i class="fab fa-pinterest"></i></a>
+        <a href="https://www.instagram.com/civi.stories" target="_blank" class="ic-ig"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/civistories" target="_blank" class="ic-tw"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.tiktok.com/@civistoriesarabic" target="_blank" class="ic-tk"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
   ],
   "news": [
     "الأزهر الشريف: حالة طلاق تقريباً كل دقيقتين ونصف بسبب الإدمان الرقمي",

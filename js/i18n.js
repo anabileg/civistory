@@ -102,15 +102,15 @@ const i18n = {
             const translations = response.ok ? await response.json() : this.getDefaultTranslations();
             
             // تطبيق الترجمات
-            this.applyTranslations(translations);
+            this.applyTranslations(translations, lang);
             
-            // ✅ إصلاح: تحديث العلم المختار
+            // تحديث العلم المختار
             const flagImg = document.getElementById('currentFlag');
             if (flagImg) {
                 flagImg.src = selectedLang.flag;
             }
             
-            // ✅ إصلاح: ضبط اتجاه الصفحة
+            // ضبط اتجاه الصفحة
             const rtlLanguages = ['ar', 'ur', 'fa', 'sd', 'ps', 'ku', 'he', 'yi', 'ug', 'syr', 'dv', 'ckb'];
             document.documentElement.dir = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
@@ -156,7 +156,7 @@ const i18n = {
     },
 
     // تطبيق الترجمات على الصفحة
-    applyTranslations(data) {
+    applyTranslations(data, currentLang) {
         // العنوان الرئيسي
         const mainTitle = document.getElementById('mainTitle');
         if (mainTitle && data.heroTitle) {
@@ -182,14 +182,27 @@ const i18n = {
             navLinks.innerHTML = data.nav.map(item => `<a href="#">${item}</a>`).join('');
         }
 
-        // أيقونات السوشيال ميديا
+        // ✅ إصلاح: أيقونات التواصل الاجتماعي - فقط الواتساب للغات غير العربية
         const socialIcons = document.getElementById('socialIcons');
         if (socialIcons && data.social && Array.isArray(data.social)) {
-            socialIcons.innerHTML = data.social.map(s => 
-                `<a href="${s.link}" target="_blank" style="color:${s.color} !important">
-                    <i class="${s.icon}"></i>
-                </a>`
-            ).join('');
+            if (currentLang === 'ar') {
+                // للعربية: إظهار جميع الأيقونات
+                socialIcons.innerHTML = data.social.map(s => 
+                    `<a href="${s.link}" target="_blank" style="color:${s.color} !important">
+                        <i class="${s.icon}"></i>
+                    </a>`
+                ).join('');
+            } else {
+                // للغات الأخرى: إظهار الواتساب فقط
+                const whatsapp = data.social.find(s => s.icon.includes('whatsapp'));
+                if (whatsapp) {
+                    socialIcons.innerHTML = `<a href="${whatsapp.link}" target="_blank" style="color:${whatsapp.color} !important">
+                        <i class="${whatsapp.icon}"></i>
+                    </a>`;
+                } else {
+                    socialIcons.innerHTML = '';
+                }
+            }
         }
 
         // شريط الأخبار

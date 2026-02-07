@@ -1,10 +1,8 @@
 /* =========================================
-   نظام الترجمة الدولي - i18n.js
+   نظام الترجمة الدولي -  i18n.js
    ========================================= */
-
 const i18n = {
     currentLanguage: 'ar',
-    
     // قائمة اللغات (86 لغة)
     languages: [
         { code: 'ar', name: 'عربي', flag: 'https://flagcdn.com/w20/eg.png' },
@@ -91,11 +89,10 @@ const i18n = {
         { code: 'bo', name: 'བོད་སྐད', flag: 'https://flagcdn.com/w20/cn.png' },
         { code: 'dz', name: 'རྫོང་ཁ', flag: 'https://flagcdn.com/w20/bt.png' }
     ],
-
+    
     // تحميل اللغة المحددة
     async loadLanguage(lang) {
         const selectedLang = this.languages.find(l => l.code === lang) || this.languages[0];
-        
         try {
             // تحميل ملف الترجمة
             const response = await fetch(`./locales/${lang}/translation.json`);
@@ -114,11 +111,10 @@ const i18n = {
             const rtlLanguages = ['ar', 'ur', 'fa', 'sd', 'ps', 'ku', 'he', 'yi', 'ug', 'syr', 'dv', 'ckb'];
             document.documentElement.dir = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
-            
             this.currentLanguage = lang;
-            
         } catch (error) {
             console.error("فشل تحميل ملف اللغة:", lang, error);
+            
             // في حالة الفشل، استخدم الترجمات الافتراضية
             const translations = this.getDefaultTranslations(lang);
             this.applyTranslations(translations, lang);
@@ -131,11 +127,10 @@ const i18n = {
             const rtlLanguages = ['ar', 'ur', 'fa', 'sd', 'ps', 'ku', 'he', 'yi', 'ug', 'syr', 'dv', 'ckb'];
             document.documentElement.dir = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
-            
             this.currentLanguage = lang;
         }
     },
-
+    
     // الترجمات الافتراضية (للعربية والإنجليزية)
     getDefaultTranslations(lang) {
         if (lang === 'en') {
@@ -164,7 +159,7 @@ const i18n = {
             bookBtnText: "تصفح الكتاب كاملاً",
             bookLink: "https://heyzine.com/flip-book/48ab3792ec.html",
             videoUrl: "https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&rel=0",
-            nav: ["من نحن", "أهدافنا", "صرختنا", "رسالاتنا", "وعي وطني", "ميديا", "إحصائيات", "خسائر", "برامج توعوية", "رؤية إنسانية", "مرجعيتنا الإنسانية", "شركاؤنا"],
+            nav: ["من نحن", "أهدافنا", "صرختنا", "رسالتنا", "وعي وطني", "ميديا", "إحصائيات", "خسائر", "برامج توعوية", "رؤية إنسانية", "مرجعيتنا الإنسانية", "شركاؤنا"],
             social: [
                 {"icon": "fab fa-youtube", "color": "#FF0000", "link": "https://www.youtube.com/@CiviStories"},
                 {"icon": "fab fa-facebook-f", "color": "#1877F2", "link": "https://www.facebook.com/profile.php?id=100093677167187"},
@@ -189,7 +184,7 @@ const i18n = {
             ]
         };
     },
-
+    
     // تطبيق الترجمات على الصفحة
     applyTranslations(data, currentLang) {
         // العنوان الرئيسي
@@ -197,26 +192,26 @@ const i18n = {
         if (mainTitle && data.heroTitle) {
             mainTitle.innerHTML = data.heroTitle;
         }
-
+        
         // زر الكتاب
         const bookBtn = document.getElementById('bookBtn');
         if (bookBtn) {
             if (data.bookBtnText) bookBtn.textContent = data.bookBtnText;
             if (data.bookLink) bookBtn.href = data.bookLink;
         }
-
+        
         // الفيديو
         const mainVideo = document.getElementById('mainVideo');
         if (mainVideo && data.videoUrl) {
             mainVideo.src = data.videoUrl;
         }
-
+        
         // القائمة الرئيسية
         const navLinks = document.getElementById('navLinks');
         if (navLinks && data.nav && Array.isArray(data.nav)) {
             navLinks.innerHTML = data.nav.map(item => `<a href="#">${item}</a>`).join('');
         }
-
+        
         // أيقونات التواصل الاجتماعي - فقط الواتساب للغات غير العربية
         const socialIcons = document.getElementById('socialIcons');
         if (socialIcons && data.social && Array.isArray(data.social)) {
@@ -239,7 +234,7 @@ const i18n = {
                 }
             }
         }
-
+        
         // شريط الأخبار
         const tickerTrack = document.getElementById('tickerTrack');
         if (tickerTrack && data.news && Array.isArray(data.news)) {
@@ -247,14 +242,12 @@ const i18n = {
             tickerTrack.innerHTML = newsHTML + newsHTML; // للتكرار
         }
     },
-
+    
     // إنشاء قائمة اللغات
     renderDropdown() {
         const langMenu = document.getElementById('langMenu');
         if (!langMenu) return;
-
         langMenu.innerHTML = '';
-        
         this.languages.forEach(lang => {
             const div = document.createElement('div');
             div.className = 'lang-item';
@@ -267,12 +260,11 @@ const i18n = {
             langMenu.appendChild(div);
         });
     },
-
+    
     // إخفاء القائمة عند الضغط خارجها
     init() {
         const langMenu = document.getElementById('langMenu');
         const currentFlag = document.getElementById('currentFlag');
-        
         if (currentFlag) {
             currentFlag.onclick = (e) => {
                 e.stopPropagation();
@@ -281,7 +273,6 @@ const i18n = {
                 }
             };
         }
-
         // إخفاء القائمة عند الضغط في أي مكان آخر
         document.addEventListener('click', (e) => {
             if (langMenu && !currentFlag.contains(e.target)) {

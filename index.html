@@ -43,16 +43,16 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 .custom-section h2 { color: var(--gold); font-size: 3.5rem; margin-bottom: 40px; text-align: center; }
 .custom-section div[id^="content_"] { color: var(--white); line-height: 2.2; font-size: 1.6rem; text-align: justify; }
 
-/* --- تعديلات قسم ميديا المحسن --- */
-#sec_media .section-container {
-    min-height: auto; /* يجعل الفريم يتكيف مع الصور */
-    height: 350px;    /* نفس ارتفاع الصور ليكون ملتصقاً */
-    padding: 0;       /* إلغاء أي فراغات داخلية */
+/* --- إعدادات الماركي (الميديا والشركاء) --- */
+#sec_media .section-container, #sec_partners .section-container {
+    min-height: auto;
+    height: 350px;    /* ارتفاع ثابت للفريم ليحتوي الصور بدقة */
+    padding: 0;
     overflow: hidden;
     display: flex;
     align-items: center;
 }
-#sec_media h2 { display: none; }
+#sec_media h2, #sec_partners h2 { display: none; }
 
 .media-marquee-container {
     width: 100%;
@@ -61,13 +61,13 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 
 .media-track {
     display: flex;
-    width: max-content; /* هام جداً لجعل الصور بجانب بعضها */
-    animation: scrollMedia 180s linear infinite; /* سرعة بطيئة جداً (3 دقائق للدورة) */
+    width: max-content;
+    animation: scrollMedia 180s linear infinite; /* سرعة بطيئة جداً */
 }
 
 .media-track img {
-    width: 28vw;      /* عرض 28% من الشاشة لضمان ظهور 3 صور وجزء من الرابعة */
-    height: 350px;    /* ارتفاع ثابت يملأ الفريم تماماً */
+    width: 28vw;
+    height: 350px;
     object-fit: cover;
     filter: grayscale(100%);
     margin: 0;
@@ -76,10 +76,9 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
     cursor: pointer;
 }
 
-/* إصلاح اتجاه الحركة لضمان ظهور الصور بشكل صحيح */
 @keyframes scrollMedia {
     0% { transform: translateX(0); }
-    100% { transform: translateX(50%); } /* التحريك لليمين في وضع RTL */
+    100% { transform: translateX(50%); }
 }
 
 .image-viewer {
@@ -131,11 +130,11 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 <section class="custom-section" id="sec_awareness"><div class="section-container"><h2 id="title_awareness"></h2><div id="content_awareness"></div></div></section>
 
 <section class="custom-section" id="sec_media">
-    <div class="section-container">
-        <div class="media-marquee-container">
-            <div class="media-track" id="mediaTrack"></div>
-        </div>
-    </div>
+<div class="section-container">
+<div class="media-marquee-container">
+<div class="media-track" id="mediaTrack"></div>
+</div>
+</div>
 </section>
 
 <section class="custom-section" id="sec_stats"><div class="section-container"><h2 id="title_stats"></h2><div id="content_stats"></div></div></section>
@@ -143,10 +142,17 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 <section class="custom-section" id="sec_programs"><div class="section-container"><h2 id="title_programs"></h2><div id="content_programs"></div></div></section>
 <section class="custom-section" id="sec_vision"><div class="section-container"><h2 id="title_vision"></h2><div id="content_vision"></div></div></section>
 <section class="custom-section" id="sec_reference"><div class="section-container"><h2 id="title_reference"></h2><div id="content_reference"></div></div></section>
-<section class="custom-section" id="sec_partners"><div class="section-container"><h2 id="title_partners"></h2><div id="content_partners"></div></div></section>
+
+<section class="custom-section" id="sec_partners">
+<div class="section-container">
+<div class="media-marquee-container">
+<div class="media-track" id="partnersTrack"></div>
+</div>
+</div>
+</section>
 
 <div id="imageViewer" class="image-viewer" onclick="this.style.display='none'">
-    <img id="fullImage" src="">
+<img id="fullImage" src="">
 </div>
 
 <div id="infoModal" class="modal-overlay">
@@ -164,17 +170,21 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 <script src="js/main.js"></script>
 <script src="js/i18n.js"></script>
 <script>
-// توليد الصور وتكرارها لضمان حركة مستمرة بدون فجوات
-const track = document.getElementById('mediaTrack');
-let imagesContent = '';
-
-// إنشاء السلسلة الأولى من الصور
+// --- برمجة قسم الميديا ---
+const mediaTrack = document.getElementById('mediaTrack');
+let mediaContent = '';
 for(let i=101; i<=124; i++) {
-    imagesContent += `<img src="assets/${i}.jpg" onclick="viewImage(this.src)">`;
+    mediaContent += `<img src="assets/${i}.jpg" onclick="viewImage(this.src)">`;
 }
+mediaTrack.innerHTML = mediaContent + mediaContent;
 
-// تكرار السلسلة فوراً لضمان عدم وجود فراغ عند نهاية الشريط
-track.innerHTML = imagesContent + imagesContent;
+// --- برمجة قسم الشركاء (جديد) ---
+const partnersTrack = document.getElementById('partnersTrack');
+let partnersContent = '';
+for(let i=201; i<=209; i++) {
+    partnersContent += `<img src="assets/${i}.png" onclick="viewImage(this.src)">`;
+}
+partnersTrack.innerHTML = partnersContent + partnersContent;
 
 function viewImage(src) {
     document.getElementById('fullImage').src = src;

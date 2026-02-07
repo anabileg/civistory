@@ -39,38 +39,39 @@ overflow: hidden; }
 margin-top: 10px; }
 .custom-section { padding: 40px 0; display: flex; justify-content: center; width: 100%; }
 .section-container { width: 95%; max-width: 1400px; min-height: 600px; background-color: #000; background-image: url('assets/image_3a7328.jpg'); background-size: cover; background-position: center; border: 3px solid var(--gold);
-position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
+position: relative; padding: 0; overflow: hidden; box-shadow: inset 0 0 100px #000; }
 .custom-section h2 { color: var(--gold); font-size: 3.5rem; margin-bottom: 40px; text-align: center; }
-.custom-section div[id^="content_"] { color: var(--white); line-height: 2.2; font-size: 1.6rem; text-align: justify; }
+.custom-section div[id^="content_"] { color: var(--white); line-height: 2.2; font-size: 1.6rem; text-align: justify; padding: 80px 50px; }
 
-/* --- تعديلات قسم ميديا الجديدة --- */
+/* --- تعديلات قسم ميديا المعدلة حسب طلبك --- */
 .media-marquee-container {
     width: 100%;
+    height: 600px; /* لملء الحاوية بالكامل */
     overflow: hidden;
     background: #000;
     white-space: nowrap;
     position: relative;
-    border-top: 1px solid var(--gold);
-    border-bottom: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
 }
 .media-track {
     display: inline-flex;
-    animation: scrollMedia 60s linear infinite;
+    animation: scrollMedia 80s linear infinite; /* سرعة بطيئة جداً */
 }
 .media-track img {
-    height: 200px; /* يمكنك تعديل الطول حسب الرغبة */
-    width: auto;
+    width: 28vw; /* عرض يضمن ظهور 3 صور وبداية الرابعة */
+    height: 600px; /* ارتفاع ثابت ليملأ الفريم */
+    object-fit: cover; /* يملأ المساحة بدون تشويه */
     filter: grayscale(100%); /* أبيض وأسود */
     transition: 0.3s;
     cursor: pointer;
     display: block;
-}
-.media-track img:hover {
-    filter: grayscale(0%); /* تظهر الألوان عند مرور الماوس (اختياري) */
+    margin: 0; /* تلاصق تام */
+    padding: 0;
 }
 @keyframes scrollMedia {
     0% { transform: translateX(0); }
-    100% { transform: translateX(50%); } /* التحريك لليسار بشكل مستمر */
+    100% { transform: translateX(-50%); } /* حركة مستمرة لليسار */
 }
 /* نافذة الصورة الكبيرة */
 #imageModal {
@@ -81,7 +82,7 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.95);
     justify-content: center;
     align-items: center;
 }
@@ -91,8 +92,6 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
     border: 3px solid var(--gold);
     filter: grayscale(0%); /* ألوان طبيعية */
 }
-/* --- نهاية تعديلات ميديا --- */
-
 </style>
 </head>
 <body>
@@ -129,10 +128,8 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 
 <section class="custom-section" id="sec_media">
     <div class="section-container">
-        <h2 id="title_media">ميديا</h2>
         <div id="content_media" class="media-marquee-container">
-            <div class="media-track" id="mediaTrack">
-                </div>
+            <div class="media-track" id="mediaTrack"></div>
         </div>
     </div>
 </section>
@@ -167,9 +164,9 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 const track = document.getElementById('mediaTrack');
 let imagesHtml = '';
 for(let i=101; i<=124; i++) {
-    imagesHtml += `<img src="assets/${i}.jpg" onclick="showFullImage(this.src)" alt="media">`;
+    imagesHtml += `<img src="assets/${i}.jpg" onclick="showFullImage(this.src)" alt="">`;
 }
-// تكرار الصور مرتين لضمان استمرارية الحركة بدون فراغ
+// تكرار الصور مرتين لضمان استمرارية الحركة بدون فراغ وبشكل دائري
 track.innerHTML = imagesHtml + imagesHtml;
 
 function showFullImage(src) {

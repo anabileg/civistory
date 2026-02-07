@@ -43,10 +43,10 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 .custom-section h2 { color: var(--gold); font-size: 3.5rem; margin-bottom: 40px; text-align: center; }
 .custom-section div[id^="content_"] { color: var(--white); line-height: 2.2; font-size: 1.6rem; text-align: justify; }
 
-/* --- إعدادات الماركي الملونة والمحسنة --- */
+/* --- إعدادات الماركي (الميديا والشركاء) --- */
 #sec_media .section-container, #sec_partners .section-container {
     min-height: auto;
-    height: 350px; /* الارتفاع المطلوب */
+    height: 350px;    /* ارتفاع ثابت للفريم ليحتوي الصور بدقة */
     padding: 0;
     overflow: hidden;
     display: flex;
@@ -61,25 +61,25 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 
 .media-track {
     display: flex;
-    width: max-content;
-    animation: scrollMedia 150s linear infinite; /* سرعة بطيئة مريحة */
+    width: max-content; /* هام جداً لجعل الصور بجانب بعضها */
+    animation: scrollMedia 120s linear infinite; /* سرعة بطيئة مريحة */
 }
 
 .media-track img {
-    width: 28vw;
+    width: 28vw; /* عرض الصورة لضمان ظهور 3 ونصف تقريباً */
     height: 350px;
-    object-fit: cover;
-    filter: grayscale(0%); /* جعل الصور ملونة مباشرة */
+    object-fit: cover; /* لضمان ملء الصورة للمساحة دون تشويه */
+    filter: grayscale(0%); /* صور ملونة */
     margin: 0;
     padding: 0;
     display: block;
     cursor: pointer;
 }
 
-/* تعديل الحركة لضمان ظهور كافة الصور دون اختفاء */
+/* تعديل الحركة لتكون دقيقة 100% لضمان تلاحم الصور عند الإعادة */
 @keyframes scrollMedia {
     0% { transform: translateX(0); }
-    100% { transform: translateX(50%); } 
+    100% { transform: translateX(50%); } /* التحريك لنصف العرض الكلي (لأننا كررنا الصور مرتين) */
 }
 
 .image-viewer {
@@ -131,11 +131,11 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 <section class="custom-section" id="sec_awareness"><div class="section-container"><h2 id="title_awareness"></h2><div id="content_awareness"></div></div></section>
 
 <section class="custom-section" id="sec_media">
-    <div class="section-container">
-        <div class="media-marquee-container">
-            <div class="media-track" id="mediaTrack"></div>
-        </div>
-    </div>
+<div class="section-container">
+<div class="media-marquee-container">
+<div class="media-track" id="mediaTrack"></div>
+</div>
+</div>
 </section>
 
 <section class="custom-section" id="sec_stats"><div class="section-container"><h2 id="title_stats"></h2><div id="content_stats"></div></div></section>
@@ -145,15 +145,15 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 <section class="custom-section" id="sec_reference"><div class="section-container"><h2 id="title_reference"></h2><div id="content_reference"></div></div></section>
 
 <section class="custom-section" id="sec_partners">
-    <div class="section-container">
-        <div class="media-marquee-container">
-            <div class="media-track" id="partnersTrack"></div>
-        </div>
-    </div>
+<div class="section-container">
+<div class="media-marquee-container">
+<div class="media-track" id="partnersTrack"></div>
+</div>
+</div>
 </section>
 
 <div id="imageViewer" class="image-viewer" onclick="this.style.display='none'">
-    <img id="fullImage" src="">
+<img id="fullImage" src="">
 </div>
 
 <div id="infoModal" class="modal-overlay">
@@ -177,15 +177,15 @@ function viewImage(src) {
     document.getElementById('imageViewer').style.display = 'flex';
 }
 
-// توليد صور الميديا (101-124)
+// توليد صور الميديا (101-124) مع تكرارها لضمان التلاحم
 const mediaTrack = document.getElementById('mediaTrack');
 let mediaHtml = '';
 for(let i=101; i<=124; i++) {
     mediaHtml += `<img src="assets/${i}.jpg" onclick="viewImage(this.src)">`;
 }
-mediaTrack.innerHTML = mediaHtml + mediaHtml; // تكرار لمسار حركة مستمر
+mediaTrack.innerHTML = mediaHtml + mediaHtml; 
 
-// توليد لوجوهات الشركاء (201-209)
+// توليد لوجوهات الشركاء (201-209) مع تكرارها لضمان التلاحم
 const partnersTrack = document.getElementById('partnersTrack');
 let partnersHtml = '';
 for(let i=201; i<=209; i++) {
@@ -196,18 +196,18 @@ partnersTrack.innerHTML = partnersHtml + partnersHtml;
 function openModal(type) { document.getElementById('infoModal').style.display = 'flex'; }
 function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
 window.onscroll = function() {
-    let btn = document.getElementById("btnUp");
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        btn.style.display = "flex";
-    } else {
-        btn.style.display = "none";
-    }
+let btn = document.getElementById("btnUp");
+if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+btn.style.display = "flex";
+} else {
+btn.style.display = "none";
+}
 };
 document.addEventListener('click', function(e) {
-    if(e.target.tagName === 'A') {
-        const text = e.target.innerText;
-        if(text.includes('من نحن') || text.includes('About Us')) openModal();
-    }
+if(e.target.tagName === 'A') {
+const text = e.target.innerText;
+if(text.includes('من نحن') || text.includes('About Us')) openModal();
+}
 });
 </script>
 </body>

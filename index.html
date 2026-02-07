@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html id="htmlTag" lang="ar" dir="rtl">
 <head>
@@ -24,7 +25,7 @@
         .nav-logo-img { height: 60px; }
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 2500s linear infinite; }
-        .ticker-track span { padding: 0 15px; font-size: 1.1rem; } /* ✅ تم تغيير 50px إلى 15px */
+        .ticker-track span { padding: 0 15px; font-size: 1.1rem; }  /* ✅ تم تغيير 50px إلى 15px */
         @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
         .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; }
         .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
@@ -39,35 +40,91 @@
     </style>
 </head>
 <body>
-<div class="site-bg"></div>
-<nav class="navbar">
-    <div class="nav-container">
-        <div style="position:relative">
-            <img id="currentFlag" class="lang-btn" onclick="toggleMenu()">
-            <div id="langMenu" class="lang-dropdown"></div>
+    <div class="site-bg"></div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div style="position:relative">
+                <img id="currentFlag" class="lang-btn" onclick="toggleMenu()">
+                <div id="langMenu" class="lang-dropdown"></div>
+            </div>
+            <div class="nav-links" id="navLinks"></div>
+            <div class="nav-left">
+                <div class="social-icons" id="socialIcons"></div>
+                <img src="assets/logo.png" class="nav-logo-img">
+            </div>
         </div>
-        <div class="nav-links" id="navLinks"></div>
-        <div class="nav-left">
-            <div class="social-icons" id="socialIcons"></div>
-            <img src="assets/logo.png" class="nav-logo-img">
+    </nav>
+    <div class="news-ticker"><div class="ticker-track" id="tickerTrack"></div></div>
+    <section class="hero">
+        <h1 class="main-alert-title" id="mainTitle"></h1>
+        <div class="hero-container">
+            <div class="book-box">
+                <img src="assets/CIVISTORIES Book.png">
+                <a id="bookBtn" href="#" target="_blank" class="btn-action"></a>
+            </div>
+            <div class="video-box">
+                <iframe id="mainVideo" width="100%" height="100%" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
         </div>
-    </div>
-</nav>
-<div class="news-ticker"><div class="ticker-track" id="tickerTrack"></div></div>
-<section class="hero">
-    <h1 class="main-alert-title" id="mainTitle"></h1>
-    <div class="hero-container">
-        <div class="book-box">
-            <img src="assets/CIVISTORIES Book.png">
-            <a id="bookBtn" href="#" target="_blank" class="btn-action"></a>
-        </div>
-        <div class="video-box">
-            <iframe id="mainVideo" width="100%" height="100%" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-    </div>
-</section>
+    </section>
 
-<script src="js/main.js"></script>
-<script src="js/i18n.js"></script>
+    <!-- زر الإغلاق الأحمر -->
+    <button id="closeBtn" class="close-btn">
+        <i class="fas fa-times"></i>
+    </button>
+
+    <!-- زر عرض الرسالة -->
+    <button id="messageBtn" class="message-btn">رسالتنا</button>
+
+    <!-- نافذة الرسالة -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/i18n.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const messageBtn = document.getElementById('messageBtn');
+            const messageModal = document.getElementById('messageModal');
+            const closeBtn = document.getElementById('closeBtn');
+            
+            if (messageBtn && messageModal && closeBtn) {
+                // فتح النافذة
+                messageBtn.addEventListener('click', function() {
+                    messageModal.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                });
+                
+                // إغلاق النافذة
+                closeBtn.addEventListener('click', function() {
+                    messageModal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                });
+                
+                // إغلاق النافذة عند النقر خارج المحتوى
+                messageModal.addEventListener('click', function(e) {
+                    if (e.target === messageModal) {
+                        messageModal.classList.remove('show');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+                
+                // إغلاق النافذة عند الضغط على زر ESC
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && messageModal.classList.contains('show')) {
+                        messageModal.classList.remove('show');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
+```

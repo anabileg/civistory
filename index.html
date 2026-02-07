@@ -37,17 +37,17 @@
         . lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 400px; overflow-y: auto; z-index: 10002; width: 200px; }
         . lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #222; }
         
-        /* Modal styles - Added as requested */
+        /* كود المربع الذي يظهر عند الضغط على رسالتنا أو من نحن */
         .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 10003; /* Sit on top */
+            display: none;
+            position: fixed;
+            z-index: 10003;
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
         }
 
         .modal-content {
@@ -100,7 +100,7 @@
             font-size: 1.1rem;
         }
 
-        /* Scrollbar styling for Webkit browsers */
+        /* شريط التمرير */
         .modal-body::-webkit-scrollbar {
             width: 10px;
         }
@@ -148,13 +148,13 @@
     </ div >
 </ section >
 
-<!-- Modal for About Us and Our Message -->
+<!-- مربع يظهر عند الضغط على رسالتنا أو من نحن -->
 <div id="modal" class="modal">
     <div class="modal-content">
         <span class="close-btn">&times;</span>
         <h2 class="modal-title">قصص الحضارات: صرخة عالمية للراحة الرقمية</h2>
         <div class="modal-body">
-            <!-- This box is empty for now - will be filled later -->
+            <!-- هذا المكان فارغ، وسوف نملؤه لاحقًا -->
         </div>
     </div>
 </div>
@@ -163,40 +163,37 @@
 < script  src =" js /i18n.js"></script >
 
 <script>
-    // Modal functionality
+    // وظائف المربع
     document.addEventListener('DOMContentLoaded', function() {
-        // Get the modal
+        // الحصول على العنصر
         var modal = document.getElementById("modal");
-        
-        // Get the close button
         var closeBtn = document.querySelector(".close-btn");
         
-        // Function to open the modal
+        // فتح المربع
         function openModal() {
             modal.style.display = "block";
         }
         
-        // Function to close the modal
+        // إغلاق المربع
         function closeModal() {
             modal.style.display = "none";
         }
         
-        // Add click event to close button
+        // إغلاق المربع عند الضغط على الزر الأحمر
         closeBtn.onclick = closeModal;
         
-        // Add click event to close modal when clicking outside the modal content
+        // إغلاق المربع عند الضغط خارج المحتوى
         window.onclick = function(event) {
             if (event.target == modal) {
                 closeModal();
             }
         }
         
-        // Add click event to navigation links
-        // This should be done after the navigation links are created
+        // إضافة الروابط إلى شريط التنقل
         setTimeout(function() {
             var navLinks = document.getElementById("navLinks");
             if (navLinks) {
-                // Create "من نحن" link
+                // إنشاء رابط "من نحن"
                 var aboutLink = document.createElement("a");
                 aboutLink.href = "#";
                 aboutLink.textContent = "من نحن";
@@ -206,7 +203,7 @@
                 };
                 navLinks.appendChild(aboutLink);
                 
-                // Create "رسالتنا" link
+                // إنشاء رابط "رسالتنا"
                 var messageLink = document.createElement("a");
                 messageLink.href = "#";
                 messageLink.textContent = "رسالتنا";
@@ -216,7 +213,7 @@
                 };
                 navLinks.appendChild(messageLink);
             }
-        }, 100); // Small delay to ensure navLinks is populated
+        }, 100);
     });
 </script>
 

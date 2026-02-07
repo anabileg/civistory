@@ -104,14 +104,14 @@ const i18n = {
             // تطبيق الترجمات
             this.applyTranslations(translations);
             
-            // تحديث العلم المختار
+            // ✅ إصلاح: تحديث العلم المختار
             const flagImg = document.getElementById('currentFlag');
             if (flagImg) {
                 flagImg.src = selectedLang.flag;
             }
             
-            // ضبط اتجاه الصفحة (RTL للعربية والفارسية والأردية)
-            const rtlLanguages = ['ar', 'ur', 'fa', 'sd', 'ps', 'ku'];
+            // ✅ إصلاح: ضبط اتجاه الصفحة
+            const rtlLanguages = ['ar', 'ur', 'fa', 'sd', 'ps', 'ku', 'he', 'yi', 'ug', 'syr', 'dv', 'ckb'];
             document.documentElement.dir = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
             
@@ -125,17 +125,20 @@ const i18n = {
     // الترجمات الافتراضية (للعربية)
     getDefaultTranslations() {
         return {
-            heroTitle: '<span style="color:#ff0000">1000</span> حالة طلاق سنويًا في مصر <br> بسبب <span style="color:#d4af37">تسونامي الوهم الرقمي</span>',
+            heroTitle: '<span style="color:#ff0000">تسونامي</span> <span style="color:#d4af37">الوهم الرقمي: من مهد الحضارة مصر إلى العالم... صرخة لإنقاذ الإنسانية</span>',
             bookBtnText: "تصفح الكتاب كاملاً",
             bookLink: "https://heyzine.com/flip-book/48ab3792ec.html",
-            videoUrl: "https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4",
+            videoUrl: "https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&rel=0",
             nav: ["من نحن", "أهدافنا", "صرختنا", "رسالاتنا", "وعي وطني", "ميديا", "إحصائيات", "خسائر", "برامج توعوية", "رؤية إنسانية", "مرجعيتنا الإنسانية", "شركاؤنا"],
             social: [
-                {icon: "fab fa-youtube", color: "#FF0000", link: "https://www.youtube.com/@CiviStories"},
-                {icon: "fab fa-facebook-f", color: "#1877F2", link: "https://www.facebook.com/profile.php?id=100093677167187"},
-                {icon: "fab fa-x-twitter", color: "#fff", link: "https://x.com/civistories"},
-                {icon: "fab fa-instagram", color: "#E4405F", link: "https://www.instagram.com/civi.stories"},
-                {icon: "fab fa-whatsapp", color: "#25D366", link: "https://wa.me/201009995015"}
+                {"icon": "fab fa-youtube", "color": "#FF0000", "link": "https://www.youtube.com/@CiviStories"},
+                {"icon": "fab fa-facebook-f", "color": "#1877F2", "link": "https://www.facebook.com/profile.php?id=100093677167187"},
+                {"icon": "fab fa-tiktok", "color": "#ffffff", "link": "https://www.tiktok.com/@civistoriesarabic"},
+                {"icon": "fab fa-x-twitter", "color": "#ffffff", "link": "https://x.com/civistories"},
+                {"icon": "fab fa-instagram", "color": "#E4405F", "link": "https://www.instagram.com/civi.stories"},
+                {"icon": "fab fa-pinterest", "color": "#E60023", "link": "https://www.pinterest.com/civistories/"},
+                {"icon": "fab fa-linkedin-in", "color": "#0077B5", "link": "https://www.linkedin.com/in/قصص-الحدارات-0a8917277"},
+                {"icon": "fab fa-whatsapp", "color": "#25D366", "link": "https://wa.me/201009995015"}
             ],
             news: [
                 "الأزهر الشريف: حالة طلاق تقريباً كل دقيقتين ونصف بسبب الإدمان الرقمي",
@@ -183,7 +186,9 @@ const i18n = {
         const socialIcons = document.getElementById('socialIcons');
         if (socialIcons && data.social && Array.isArray(data.social)) {
             socialIcons.innerHTML = data.social.map(s => 
-                `<a href="${s.link}" target="_blank" style="color:${s.color}"><i class="${s.icon}"></i></a>`
+                `<a href="${s.link}" target="_blank" style="color:${s.color} !important">
+                    <i class="${s.icon}"></i>
+                </a>`
             ).join('');
         }
 

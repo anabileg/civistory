@@ -99,7 +99,7 @@ const i18n = {
         try {
             // تحميل ملف الترجمة
             const response = await fetch(`./locales/${lang}/translation.json`);
-            const translations = response.ok ? await response.json() : this.getDefaultTranslations();
+            const translations = response.ok ? await response.json() : this.getDefaultTranslations(lang);
             
             // تطبيق الترجمات
             this.applyTranslations(translations, lang);
@@ -119,11 +119,46 @@ const i18n = {
             
         } catch (error) {
             console.error("فشل تحميل ملف اللغة:", lang, error);
+            // في حالة الفشل، استخدم الترجمات الافتراضية
+            const translations = this.getDefaultTranslations(lang);
+            this.applyTranslations(translations, lang);
+            
+            const flagImg = document.getElementById('currentFlag');
+            if (flagImg) {
+                flagImg.src = selectedLang.flag;
+            }
+            
+            const rtlLanguages = ['ar', 'ur', 'fa', 'sd', 'ps', 'ku', 'he', 'yi', 'ug', 'syr', 'dv', 'ckb'];
+            document.documentElement.dir = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            
+            this.currentLanguage = lang;
         }
     },
 
-    // الترجمات الافتراضية (للعربية)
-    getDefaultTranslations() {
+    // الترجمات الافتراضية (للعربية والإنجليزية)
+    getDefaultTranslations(lang) {
+        if (lang === 'en') {
+            return {
+                heroTitle: '<span style="color:#ff0000">Tsunami</span> <span style="color:#d4af37">of Digital Illusion: From the Cradle of Civilization Egypt to the World... A Cry to Save Humanity</span>',
+                bookBtnText: "Browse the Full Book",
+                bookLink: "https://heyzine.com/flip-book/48ab3792ec.html",
+                videoUrl: "https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&rel=0",
+                nav: ["About Us", "Our Goals", "Our Cry", "Our Messages", "National Awareness", "Media", "Statistics", "Losses", "Awareness Programs", "Human Vision", "Our Human Reference", "Our Partners"],
+                social: [
+                    {"icon": "fab fa-whatsapp", "color": "#25D366", "link": "https://wa.me/201009995015"}
+                ],
+                news: [
+                    "Al-Azhar: Nearly one divorce case every two and a half minutes due to digital addiction",
+                    "Ministry of Awqaf: Smartphones are one of the main causes of marital silence and coldness",
+                    "Red Alert: Family breakdown threatens social and community stability in Egypt",
+                    "Ministry of Health: 3 million annual visits to psychiatric clinics due to social media disorders",
+                    "Egyptian Church: 60% of family problems are linked to isolation and digital excess"
+                ]
+            };
+        }
+        
+        // الترجمات العربية الافتراضية
         return {
             heroTitle: '<span style="color:#ff0000">تسونامي</span> <span style="color:#d4af37">الوهم الرقمي: من مهد الحضارة مصر إلى العالم... صرخة لإنقاذ الإنسانية</span>',
             bookBtnText: "تصفح الكتاب كاملاً",
@@ -182,7 +217,7 @@ const i18n = {
             navLinks.innerHTML = data.nav.map(item => `<a href="#">${item}</a>`).join('');
         }
 
-        // ✅ إصلاح: أيقونات التواصل الاجتماعي - فقط الواتساب للغات غير العربية
+        // أيقونات التواصل الاجتماعي - فقط الواتساب للغات غير العربية
         const socialIcons = document.getElementById('socialIcons');
         if (socialIcons && data.social && Array.isArray(data.social)) {
             if (currentLang === 'ar') {
@@ -224,7 +259,8 @@ const i18n = {
             const div = document.createElement('div');
             div.className = 'lang-item';
             div.innerHTML = `<img src="${lang.flag}" width="20"> ${lang.name}`;
-            div.onclick = () => {
+            div.onclick = (e) => {
+                e.stopPropagation();
                 this.loadLanguage(lang.code);
                 langMenu.style.display = 'none';
             };
@@ -247,14 +283,16 @@ const i18n = {
         }
 
         // إخفاء القائمة عند الضغط في أي مكان آخر
-        document.addEventListener('click', () => {
-            if (langMenu) langMenu.style.display = 'none';
+        document.addEventListener('click', (e) => {
+            if (langMenu && !currentFlag.contains(e.target)) {
+                langMenu.style.display = 'none';
+            }
         });
     }
 };
 
 // تحميل اللغة عند بدء الصفحة
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', () => {
     i18n.renderDropdown();
     i18n.loadLanguage('ar'); // تحميل العربية افتراضياً
     i18n.init();

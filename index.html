@@ -74,28 +74,26 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
     cursor: pointer;
 }
 
-/* --- التحكم في السرعة والألوان لكل شريط على حدة --- */
+/* --- التحكم في السرعة والألوان --- */
 
-/* 1. شريط الميديا (أبيض وأسود) */
 #mediaTrack {
-    animation: scrollMedia 240s linear infinite; /* جعلتها أبطأ 240 ثانية */
+    animation: scrollMedia 240s linear infinite;
 }
 #mediaTrack img {
     filter: grayscale(100%);
 }
 
-/* 2. شريط الشركاء (ملون) */
 #partnersTrack {
-    animation: scrollMedia 120s linear infinite; /* سرعة 120 ثانية للشركاء */
+    animation: scrollMedia 120s linear infinite;
 }
 #partnersTrack img {
     filter: grayscale(0%);
 }
 
-/* تعديل الاتجاه والنسبة لضمان عمل الـ Loop بشكل صحيح */
+/* تعديل الاتجاه للعمل مع التكرار الثلاثي بنسبة دقيقة */
 @keyframes scrollMedia {
     0% { transform: translateX(0); }
-    100% { transform: translateX(33.33%); } 
+    100% { transform: translateX(-33.333%); } 
 }
 
 .image-viewer {
@@ -196,18 +194,17 @@ function viewImage(src) {
 const mediaTrack = document.getElementById('mediaTrack');
 let mediaHtml = '';
 for(let i=101; i<=124; i++) {
-    mediaHtml += `<img src="assets/${i}.jpg" onclick="viewImage(this.src)">`;
+    // محاولة تحميل الصورة بصيغة jpg وإذا فشلت يتم التحويل لـ png تلقائياً
+    mediaHtml += `<img src="assets/${i}.jpg" onerror="this.src='assets/${i}.png'" onclick="viewImage(this.src)">`;
 }
-// تكرار الصور لضمان عدم وجود فجوات
 mediaTrack.innerHTML = mediaHtml + mediaHtml + mediaHtml; 
 
 // الشركاء (201-209)
 const partnersTrack = document.getElementById('partnersTrack');
 let partnersHtml = '';
 for(let i=201; i<=209; i++) {
-    partnersHtml += `<img src="assets/${i}.png" onclick="viewImage(this.src)">`;
+    partnersHtml += `<img src="assets/${i}.png" onerror="this.src='assets/${i}.jpg'" onclick="viewImage(this.src)">`;
 }
-// تكرار الصور لضمان عدم وجود فجوات
 partnersTrack.innerHTML = partnersHtml + partnersHtml + partnersHtml;
 
 function openModal(type) { document.getElementById('infoModal').style.display = 'flex'; }

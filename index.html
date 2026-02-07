@@ -43,7 +43,7 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 .custom-section h2 { color: var(--gold); font-size: 3.5rem; margin-bottom: 40px; text-align: center; }
 .custom-section div[id^="content_"] { color: var(--white); line-height: 2.2; font-size: 1.6rem; text-align: justify; }
 
-/* --- إعدادات الماركي المشتركة --- */
+/* --- إعدادات الماركي الموحدة (الميديا والشركاء) --- */
 #sec_media .section-container, #sec_partners .section-container {
     min-height: auto;
     height: 350px;
@@ -62,7 +62,8 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 .media-track {
     display: flex;
     width: max-content;
-    animation: scrollMedia 150s linear infinite;
+    /* توحيد السرعة: 120 ثانية للقسمين */
+    animation: scrollMedia 120s linear infinite;
 }
 
 .media-track img {
@@ -75,12 +76,12 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
     cursor: pointer;
 }
 
-/* الميديا: أبيض وأسود كما طلبت سابقاً */
+/* الميديا: أبيض وأسود */
 #mediaTrack img {
     filter: grayscale(100%);
 }
 
-/* الشركاء: ملون كما طلبت الآن */
+/* الشركاء: ملون */
 #partnersTrack img {
     filter: grayscale(0%);
 }

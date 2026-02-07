@@ -1,5 +1,5 @@
 /* =========================================
-   ملف الوظائف الأساسية - main.js
+   ملف الوظائف الأساسية -  main.js
    ========================================= */
 
 // 1. وظيفة زر الصعود للأعلى (Back to Top)
@@ -25,39 +25,56 @@ if (document.getElementById('btnUp')) {
 }
 
 // 2. وظائف التحكم في النوافذ المنبثقة (Modals)
-function openMessagesModal() {
-    const modal = document.getElementById('messages-modal');
-    if (modal) modal.style.display = 'flex';
+
+// فتح المربع
+function openModal(title) {
+    const modal = document.getElementById('modal');
+    const modalTitle = modal.querySelector('.modal-title');
+    modalTitle.textContent = title;
+    modal.style.display = 'block';
 }
 
-function closeMessagesModal() {
-    const modal = document.getElementById('messages-modal');
-    if (modal) modal.style.display = 'none';
-}
-
-function openReferenceModal(id) {
-    const modal = document.getElementById(id);
-    if (modal) modal.style.display = 'block';
-}
-
-function closeReferenceModal(id) {
-    const modal = document.getElementById(id);
-    if (modal) modal.style.display = 'none';
-}
-
-// وظيفة عامة لإغلاق أي نافذة منبثقة بالـ ID
-function closePopup(id) {
-    const popup = document.getElementById(id);
-    if (popup) popup.style.display = 'none';
-}
-
-// 3. إغلاق القوائم عند الضغط خارجها
-window.addEventListener('click', function(event) {
-    const langDropdown = document.getElementById('lang-dropdown-list');
-    const langBtn = document.getElementById('lang-btn');
-    if (langDropdown && !langBtn.contains(event.target) && !langDropdown.contains(event.target)) {
-        langDropdown.classList.remove('show');
+// إغلاق المربع
+function closeModal() {
+    const modal = document.getElementById('modal');
+    if (modal) {
+        modal.style.display = 'none';
     }
+}
+
+// 3. إضافة أحداث النقر على روابط "من نحن" و"رسالتنا"
+document.addEventListener('DOMContentLoaded', function() {
+    // إغلاق المربع عند الضغط على الزر الأحمر
+    const closeBtn = document.querySelector('.close-btn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+    
+    // إغلاق المربع عند الضغط خارجه
+    const modal = document.getElementById('modal');
+    if (modal) {
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    }
+    
+    // إضافة أحداث النقر على الروابط بعد تحميل المحتوى
+    setTimeout(function() {
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks) {
+            const links = navLinks.querySelectorAll('a');
+            links.forEach(link => {
+                if (link.textContent === 'من نحن' || link.textContent === 'رسالتنا') {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        openModal(this.textContent);
+                    });
+                }
+            });
+        }
+    }, 1000); // انتظر حتى يتم تحميل الروابط من ملف الترجمة
 });
 
 console.log("تم تحميل ملف الوظائف الأساسية بنجاح.");

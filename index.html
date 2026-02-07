@@ -1,42 +1,42 @@
-<! DOCTYPE html >
-< html id=" htmlTag " lang=" ar "  dir =" rtl ">
-< head >
-    < meta charset="UTF-8 ">
-    < meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no ">
-    < title> CiviStories </title >
-    < link  rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css ">
-    < link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;900&family=Cairo:wght@700&display=swap"  rel ="stylesheet ">
-    < link  rel ="stylesheet"  href =" css /style.css ">
-    < style >
-        : root  {
-            --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000 ;
-            --yt : #FF0000; --fb: #1877F2; --tw : #ffffff; --ig : #E4405F; --wa -color: #25D366 ;
+<!DOCTYPE html>
+<html id="htmlTag" lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CiviStories</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;900&family=Cairo:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
+            --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --wa-color: #25D366;
         }
-        * {  margin: 0; padding: 0; box-sizing: border-box ; }
-  body { color: var(--white); font-family: ' Tajawal ', sans-serif; background: #000; overflow-x: hidden; font-weight: bold; }
-        . site-bg  { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image:  url ('assets/image_390e08.jpg'); background-size: cover; z-index: -1; filter: brightness (0.4);  }
-        . navbar { min-height: 90px; background:  rgba (0,0,0,0.95); border-bottom: 2px solid var(--gold); position: fixed; top: 0; width: 100%; z-index: 10001; display: flex; align-items: center; justify-content: center; }
-        . nav-container { width: 95%; max-width: 1400px; display: flex; justify-content: space-between; align-items: center; }
-        . nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-        . nav-links a { color: var(--gold); text-decoration: none; font-size: 0.85rem; font-weight: 900; }
-        . nav-left { display: flex; align-items: center; gap: 15px; }
-        . social-icons { display: flex; gap: 10px; }
-        . nav-logo-img  { height: 60px; }
-        . news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        . ticker-track { display: flex; white-space:  nowrap ; animation:  marqueeNews  2500s linear infinite; }
-        . ticker-track span { padding: 0 15px; font-size: 1.1rem; }  /*  ✅   تم   تغيير  50 px  إلى 15 px  */
-        @ keyframes  marqueeNews  { 0% { transform:  translateX (0);  } 100% { transform:  translateX (100%);  } }
-        . hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; }
-        . main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
-        . hero-container { display: flex; gap: 40px; width: 100%; max-width: 1200px; justify-content: center; flex-wrap: wrap; }
-        . video-box { flex: 1; min-width: 320px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; }
-        . book-box { width: 320px; }
-        . book-box  img  { width: 100%; border: 2px solid var(--gold); border-radius: 15px; }
-        . btn -action { display: block; width: 100%; background: var(--gold); color: #000; text-decoration: none; padding: 15px; border-radius: 10px; text-align: center; font-weight: 900; margin-top: 10px; }
-        . lang-btn  { cursor: pointer; border: 1px solid var(--gold); border-radius: 4px; width: 45px; height: 30px; object-fit: cover; }
-        . lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 400px; overflow-y: auto; z-index: 10002; width: 200px; }
-        . lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #222; }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { color: var(--white); font-family: 'Tajawal', sans-serif; background: #000; overflow-x: hidden; font-weight: bold; }
+        .site-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('assets/image_390e08.jpg'); background-size: cover; z-index: -1; filter: brightness(0.4); }
+        .navbar { min-height: 90px; background: rgba(0,0,0,0.95); border-bottom: 2px solid var(--gold); position: fixed; top: 0; width: 100%; z-index: 10001; display: flex; align-items: center; justify-content: center; }
+        .nav-container { width: 95%; max-width: 1400px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.85rem; font-weight: 900; }
+        .nav-left { display: flex; align-items: center; gap: 15px; }
+        .social-icons { display: flex; gap: 10px; }
+        .nav-logo-img { height: 60px; }
+        .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 2500s linear infinite; }
+        .ticker-track span { padding: 0 15px; font-size: 1.1rem; }
+        @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
+        .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; }
+        .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
+        .hero-container { display: flex; gap: 40px; width: 100%; max-width: 1200px; justify-content: center; flex-wrap: wrap; }
+        .video-box { flex: 1; min-width: 320px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; }
+        .book-box { width: 320px; }
+        .book-box img { width: 100%; border: 2px solid var(--gold); border-radius: 15px; }
+        .btn-action { display: block; width: 100%; background: var(--gold); color: #000; text-decoration: none; padding: 15px; border-radius: 10px; text-align: center; font-weight: 900; margin-top: 10px; }
+        .lang-btn { cursor: pointer; border: 1px solid var(--gold); border-radius: 4px; width: 45px; height: 30px; object-fit: cover; }
+        .lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 400px; overflow-y: auto; z-index: 10002; width: 200px; }
+        .lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #222; }
+        
         /* --- تعديلات لنافذة الرسالة --- */
         .message-modal {
             display: none;
@@ -115,86 +115,149 @@
             background-color: #c0392b;
             transform: scale(1.05);
         }
-    </ style >
-</ head >
-< body >
-< div class="site-bg "></div >
-< nav class="navbar ">
-    < div class="nav-container ">
-        < div style=" position:relative ">
-            < img  id=" currentFlag " class="lang-btn " onclick=" toggleMenu ()">
-            < div id=" langMenu " class="lang-dropdown"></div >
-        </ div >
-        < div class="nav-links" id=" navLinks "></div >
-        < div class="nav-left ">
-            < div class="social-icons" id=" socialIcons "></div >
-            < img   src ="assets/logo.png" class="nav-logo-img ">
-        </ div >
-    </ div >
-</ nav >
-< div class="news-ticker"><div class="ticker-track" id=" tickerTrack "></div></div >
-< section class="hero ">
-    < h1 class="main-alert-title" id=" mainTitle "></h1 >
-    < div class="hero-container ">
-        < div class="book-box ">
-            < img   src ="assets/CIVISTORIES Book.png ">
-            < a id=" bookBtn "  href ="#" target="_blank" class=" btn -action"></a >
-        </ div >
-        < div class="video-box ">
-            < iframe  id=" mainVideo " width="100%" height="100%" frameborder="0" allow="autoplay; encrypted-media"  allowfullscreen ></ iframe >
-        </ div >
-    </ div >
-</ section >
-
-<!-- نافذة الرسالة الفارغة -->
-<div id="messageModal" class="message-modal">
-    <div class="message-content">
-        <div class="message-header">
-            <h2 class="message-title" id="messageTitle"></h2>
-        </div>
-        <div class="modal-body" id="messageBody"></div>
-    </div>
-</div>
-
-<!-- زر الإغلاق الأحمر خارج النافذة في الزاوية الشمالية العليا -->
-<button id="closeMessageBtn" class="close-btn">
-    <i class="fas fa-times"></i>
-</button>
-
-< script  src =" js /main.js"></script >
-< script  src =" js /i18n.js"></script >
-< script >
-    document.addEventListener('DOMContentLoaded', function() {
-        // إعداد نافذة الرسالة
-        const messageModal = document.getElementById('messageModal');
-        const closeMessageBtn = document.getElementById('closeMessageBtn');
-        
-        // إغلاق النافذة عند الضغط على زر الإغلاق
-        if (closeMessageBtn) {
-            closeMessageBtn.addEventListener('click', function() {
-                messageModal.classList.remove('show');
-                document.body.style.overflow = 'auto';
-            });
+        .message-text {
+            text-align: justify;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #2c3e50;
         }
-        
-        // إغلاق النافذة عند النقر خارج المحتوى
-        if (messageModal) {
-            messageModal.addEventListener('click', function(e) {
-                if (e.target === messageModal) {
+        .message-text p {
+            margin-bottom: 20px;
+            text-indent: 2em;
+        }
+        .message-text h3 {
+            text-align: center;
+            margin: 25px 0 15px;
+            color: #d4af37;
+            font-size: 22px;
+        }
+        .message-text ul {
+            padding-right: 25px;
+            margin: 20px 0;
+        }
+        .message-text li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-right: 15px;
+        }
+        .message-text li:before {
+            content: "•";
+            color: #d4af37;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 22px;
+        }
+        .message-text blockquote {
+            background-color: #fff5dd;
+            border-right: 3px solid #d4af37;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-bg"></div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div style="position:relative">
+                <img id="currentFlag" class="lang-btn" onclick="toggleMenu()">
+                <div id="langMenu" class="lang-dropdown"></div>
+            </div>
+            <div class="nav-links" id="navLinks"></div>
+            <div class="nav-left">
+                <div class="social-icons" id="socialIcons"></div>
+                <img src="assets/logo.png" class="nav-logo-img">
+            </div>
+        </div>
+    </nav>
+    <div class="news-ticker"><div class="ticker-track" id="tickerTrack"></div></div>
+    <section class="hero">
+        <h1 class="main-alert-title" id="mainTitle"></h1>
+        <div class="hero-container">
+            <div class="book-box">
+                <img src="assets/CIVISTORIES Book.png">
+                <a id="bookBtn" href="#" target="_blank" class="btn-action"></a>
+            </div>
+            <div class="video-box">
+                <iframe id="mainVideo" width="100%" height="100%" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- نافذة الرسالة الفارغة -->
+    <div id="messageModal" class="message-modal">
+        <div class="message-content">
+            <div class="message-header">
+                <h2 class="message-title" id="messageTitle"></h2>
+            </div>
+            <div class="message-text" id="messageBody"></div>
+        </div>
+    </div>
+
+    <!-- زر الإغلاق الأحمر خارج النافذة في الزاوية الشمالية العليا -->
+    <button id="closeMessageBtn" class="close-btn">
+        <i class="fas fa-times"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+    <script src="js/i18n.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // إعداد نافذة الرسالة
+            const messageModal = document.getElementById('messageModal');
+            const closeMessageBtn = document.getElementById('closeMessageBtn');
+            
+            // إغلاق النافذة عند الضغط على زر الإغلاق
+            if (closeMessageBtn) {
+                closeMessageBtn.addEventListener('click', function() {
+                    messageModal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+            
+            // إغلاق النافذة عند النقر خارج المحتوى
+            if (messageModal) {
+                messageModal.addEventListener('click', function(e) {
+                    if (e.target === messageModal) {
+                        messageModal.classList.remove('show');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+            
+            // إغلاق النافذة عند الضغط على زر ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && messageModal.classList.contains('show')) {
                     messageModal.classList.remove('show');
                     document.body.style.overflow = 'auto';
                 }
             });
-        }
-        
-        // إغلاق النافذة عند الضغط على زر ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && messageModal.classList.contains('show')) {
-                messageModal.classList.remove('show');
-                document.body.style.overflow = 'auto';
+            
+            // تحميل محتوى الرسالة عند فتح النافذة
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                if (link.textContent.trim() === "رسالتنا") {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        loadMessageContent();
+                        messageModal.classList.add('show');
+                        document.body.style.overflow = 'hidden';
+                    });
+                }
+            });
+            
+            function loadMessageContent() {
+                const messageTitle = i18n.t('messageTitle');
+                const messageContent = i18n.t('messageContent');
+                
+                // تعيين النصوص في العناصر
+                document.getElementById('messageTitle').innerHTML = messageTitle;
+                document.getElementById('messageBody').innerHTML = messageContent;
             }
         });
-    });
-</ script >
-</ body >
-</ html >
+    </script>
+</body>
+</html>

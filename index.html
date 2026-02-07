@@ -78,7 +78,7 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 
 /* 1. شريط الميديا (أبيض وأسود) */
 #mediaTrack {
-    animation: scrollMedia 240s linear infinite; /* تم تعديل السرعة لتكون أبطأ (240 ثانية) */
+    animation: scrollMedia 120s linear infinite; /* سرعة الميديا 120 ثانية */
 }
 #mediaTrack img {
     filter: grayscale(100%);
@@ -86,7 +86,7 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 
 /* 2. شريط الشركاء (ملون) */
 #partnersTrack {
-    animation: scrollMedia 120s linear infinite; /* سرعة الشركاء (120 ثانية) */
+    animation: scrollMedia 120s linear infinite; /* سرعة الشركاء 120 ثانية */
 }
 #partnersTrack img {
     filter: grayscale(0%);
@@ -94,7 +94,7 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 
 @keyframes scrollMedia {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-33.333%); } /* تعديل النسبة لتتناسب مع التكرار الثلاثي للصور */
+    100% { transform: translateX(-33.33%); } /* التحريك لليسار بنسبة الثلث لضمان الاستمرارية */
 }
 
 .image-viewer {
@@ -197,7 +197,7 @@ let mediaHtml = '';
 for(let i=101; i<=124; i++) {
     mediaHtml += `<img src="assets/${i}.jpg" onclick="viewImage(this.src)">`;
 }
-// تم تكرار الصور 3 مرات لضمان ظهور كل الصور ومنع الفراغ الأسود
+// تكرار الصور 3 مرات لضمان حركة مستمرة دون أي اختفاء أو فجوات
 mediaTrack.innerHTML = mediaHtml + mediaHtml + mediaHtml; 
 
 // الشركاء (201-209)
@@ -206,7 +206,7 @@ let partnersHtml = '';
 for(let i=201; i<=209; i++) {
     partnersHtml += `<img src="assets/${i}.png" onclick="viewImage(this.src)">`;
 }
-// تم تكرار الصور 3 مرات لضمان ظهور كل الصور ومنع الفراغ الأسود
+// تكرار الصور 3 مرات لضمان حركة مستمرة دون أي اختفاء أو فجوات
 partnersTrack.innerHTML = partnersHtml + partnersHtml + partnersHtml;
 
 function openModal(type) { document.getElementById('infoModal').style.display = 'flex'; }

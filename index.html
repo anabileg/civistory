@@ -6,6 +6,7 @@
     <title>CiviStories</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;900&family=Cairo:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <style>
         :root {
             --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
@@ -23,7 +24,7 @@
         .nav-logo-img { height: 60px; }
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 1500s linear infinite; }
-        .ticker-track span { padding: 0 30px; font-size: 1.1rem; }
+        .ticker-track span { padding: 0 30px; font-size: 1.1rem; } /* ✅ تم تغيير 50px إلى 30px */
         @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
         .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; }
         .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
@@ -66,47 +67,7 @@
     </div>
 </section>
 
-<script>
-    // قائمة اللغات (العربية حالياً)
-    const languages = [
-        { id: 'ar', name: 'العربية', flag: 'eg' }
-    ];
-    function loadLanguage(langId) {
-        const script = document.createElement('script');
-        script.src = `langs/${langId}.js`;
-        script.onload = () => { renderPage(window[langId]); };
-        document.head.appendChild(script);
-    }
-    function renderPage(data) {
-        document.getElementById('htmlTag').dir = data.dir;
-        document.getElementById('currentFlag').src = `https://flagcdn.com/w80/${data.flagCode}.png`;
-        // القائمة
-        const nav = document.getElementById('navLinks');
-        nav.innerHTML = data.nav.map(item => `<a href="#">${item}</a>`).join('');
-        // السوشيال ميديا
-        const social = document.getElementById('socialIcons');
-        social.innerHTML = data.social.map(s => `<a href="${s.link}" target="_blank" style="color:${s.color}"><i class="${s.icon}"></i></a>`).join('');
-        // شريط الأخبار
-        const ticker = document.getElementById('tickerTrack');
-        ticker.innerHTML = data.news.map(n => `<span>• ${n}</span>`).join('');
-        ticker.innerHTML += ticker.innerHTML; 
-        // المحتوى
-        document.getElementById('mainTitle').innerHTML = data.heroTitle;
-        document.getElementById('bookBtn').innerText = data.bookBtnText;
-        document.getElementById('bookBtn').href = data.bookLink;
-        document.getElementById('mainVideo').src = data.videoUrl;
-    }
-    const menu = document.getElementById('langMenu');
-    languages.forEach(l => {
-        const d = document.createElement('div');
-        d.className = 'lang-item';
-        d.innerHTML = `<img src="https://flagcdn.com/w40/${l.flag}.png" width="20"> ${l.name}`;
-        d.onclick = () => { loadLanguage(l.id); menu.style.display = 'none'; };
-        menu.appendChild(d);
-    });
-    function toggleMenu() { menu.style.display = (menu.style.display === 'block' ? 'none' : 'block'); }
-    // التحميل الافتراضي للعربية
-    window.onload = () => loadLanguage('ar');
-</script>
+<script src="js/main.js"></script>
+<script src="js/i18n.js"></script>
 </body>
 </html>

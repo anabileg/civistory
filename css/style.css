@@ -1,185 +1,185 @@
 /* =========================================
-ملف التنسيق الأساسي الكامل - style.css
-========================================= */
+   ملف التنسيق الأساسي الكامل - style.css
+   ========================================= */
 :root {
-    [cite_start]--gold: #d4af37; [cite: 82]
-    [cite_start]--white: #ffffff; [cite: 83]
-    [cite_start]--red-news: #b30000; [cite: 84]
-    [cite_start]--red-num: #ff0000; [cite: 85]
-    [cite_start]--yt: #FF0000; [cite: 86]
-    [cite_start]--fb: #1877F2; [cite: 87]
-    [cite_start]--tw: #ffffff; [cite: 88]
-    [cite_start]--ig: #E4405F; [cite: 89]
-    [cite_start]--wa-color: #25D366; [cite: 90]
+    --gold: #d4af37;
+    --white: #ffffff;
+    --red-news: #b30000;
+    --red-num: #ff0000;
+    --yt: #FF0000;
+    --fb: #1877F2;
+    --tw: #ffffff;
+    --ig: #E4405F;
+    --wa-color: #25D366;
 }
 
 * {
-    [cite_start]margin: 0; [cite: 93]
-    [cite_start]padding: 0; [cite: 94]
-    [cite_start]box-sizing: border-box; [cite: 95]
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    [cite_start]color: var(--white); [cite: 98]
-    [cite_start]font-family: 'Tajawal', sans-serif; [cite: 99]
-    [cite_start]background: #000; [cite: 100]
-    [cite_start]overflow-x: hidden; [cite: 101]
-    [cite_start]font-weight: bold; [cite: 102]
+    color: var(--white);
+    font-family: 'Tajawal', sans-serif;
+    background: #000;
+    overflow-x: hidden;
+    font-weight: bold;
 }
 
 .site-bg {
-    [cite_start]position: fixed; [cite: 105]
-    [cite_start]top: 0; [cite: 106]
-    [cite_start]left: 0; [cite: 107]
-    [cite_start]width: 100%; [cite: 108]
-    [cite_start]height: 100%; [cite: 109]
-    [cite_start]background-image: url('../assets/image_390e08.jpg'); [cite: 110]
-    [cite_start]background-size: cover; [cite: 111]
-    [cite_start]z-index: -1; [cite: 112]
-    [cite_start]filter: brightness(0.4); [cite: 113]
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/image_390e08.jpg');
+    background-size: cover;
+    z-index: -1;
+    filter: brightness(0.4);
 }
 
 /* --- الهيدر والقائمة --- */
 .navbar {
-    [cite_start]min-height: 90px; [cite: 116]
-    [cite_start]background: rgba(0, 0, 0, 0.95); [cite: 117]
-    [cite_start]border-bottom: 2px solid var(--gold); [cite: 118]
-    [cite_start]position: fixed; [cite: 119]
-    [cite_start]top: 0; [cite: 120]
-    [cite_start]width: 100%; [cite: 121]
-    [cite_start]z-index: 10001; [cite: 122]
-    [cite_start]display: flex; [cite: 123]
-    [cite_start]align-items: center; [cite: 124]
-    [cite_start]justify-content: center; [cite: 125]
+    min-height: 90px;
+    background: rgba(0, 0, 0, 0.95);
+    border-bottom: 2px solid var(--gold);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav-container {
-    [cite_start]width: 95%; [cite: 128]
-    [cite_start]max-width: 1400px; [cite: 129]
-    [cite_start]display: flex; [cite: 130]
-    [cite_start]justify-content: space-between; [cite: 131]
-    [cite_start]align-items: center; [cite: 132]
+    width: 95%;
+    max-width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .nav-links {
-    [cite_start]display: flex; [cite: 135]
-    [cite_start]gap: 12px; [cite: 136]
-    [cite_start]align-items: center; [cite: 137]
-    [cite_start]flex-wrap: wrap; [cite: 138]
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .nav-links a {
-    [cite_start]color: var(--gold); [cite: 141]
-    [cite_start]text-decoration: none; [cite: 142]
-    [cite_start]font-size: 0.85rem; [cite: 143]
-    [cite_start]font-weight: 900; [cite: 144]
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 900;
     cursor: pointer;
 }
 
 .nav-left {
-    [cite_start]display: flex; [cite: 147]
-    [cite_start]align-items: center; [cite: 148]
-    [cite_start]gap: 15px; [cite: 149]
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 .social-icons {
-    [cite_start]display: flex; [cite: 152]
-    [cite_start]gap: 10px; [cite: 153]
+    display: flex;
+    gap: 10px;
 }
 
 .nav-logo-img {
-    [cite_start]height: 60px; [cite: 156]
+    height: 60px;
 }
 
 /* --- شريط الأخبار --- */
 .news-ticker {
-    [cite_start]background: var(--red-news); [cite: 159]
-    [cite_start]color: white; [cite: 160]
-    [cite_start]height: 45px; [cite: 161]
-    [cite_start]position: fixed; [cite: 162]
-    [cite_start]top: 90px; [cite: 163]
-    [cite_start]width: 100%; [cite: 164]
-    [cite_start]z-index: 1000; [cite: 165]
-    [cite_start]display: flex; [cite: 166]
-    [cite_start]align-items: center; [cite: 167]
-    [cite_start]overflow: hidden; [cite: 168]
+    background: var(--red-news);
+    color: white;
+    height: 45px;
+    position: fixed;
+    top: 90px;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 }
 
 .ticker-track {
-    [cite_start]display: flex; [cite: 171]
-    [cite_start]white-space: nowrap; [cite: 172]
-    [cite_start]animation: marqueeNews 1500s linear infinite; [cite: 173]
+    display: flex;
+    white-space: nowrap;
+    animation: marqueeNews 1500s linear infinite;
 }
 
 .ticker-track span {
-    [cite_start]padding: 0 15px; [cite: 176]
-    [cite_start]font-size: 1.1rem; [cite: 177]
+    padding: 0 15px;
+    font-size: 1.1rem;
 }
 
 @keyframes marqueeNews {
-    0% { transform: translateX(0); [cite_start]} [cite: 180]
-    100% { transform: translateX(100%); [cite_start]} [cite: 181]
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
 }
 
 /* --- المحتوى الرئيسي --- */
 .hero {
-    [cite_start]padding: 180px 5% 60px; [cite: 184]
-    [cite_start]display: flex; [cite: 185]
-    [cite_start]flex-direction: column; [cite: 186]
-    [cite_start]align-items: center; [cite: 187]
-    [cite_start]animation: fadeIn 1s ease-out; [cite: 293]
+    padding: 180px 5% 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1s ease-out;
 }
 
 .main-alert-title {
-    [cite_start]text-align: center; [cite: 190]
-    [cite_start]margin-bottom: 40px; [cite: 191]
-    [cite_start]font-size: 2.2rem; [cite: 192]
-    [cite_start]line-height: 1.4; [cite: 193]
-    [cite_start]color: var(--white); [cite: 194]
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    line-height: 1.4;
+    color: var(--white);
 }
 
 .hero-container {
-    [cite_start]display: flex; [cite: 197]
-    [cite_start]gap: 40px; [cite: 198]
-    [cite_start]width: 100%; [cite: 199]
-    [cite_start]max-width: 1200px; [cite: 200]
-    [cite_start]justify-content: center; [cite: 201]
-    [cite_start]flex-wrap: wrap; [cite: 202]
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .video-box {
-    [cite_start]flex: 1; [cite: 205]
-    [cite_start]min-width: 320px; [cite: 206]
-    [cite_start]height: 450px; [cite: 207]
-    [cite_start]border: 2px solid var(--gold); [cite: 208]
-    [cite_start]border-radius: 20px; [cite: 209]
-    [cite_start]overflow: hidden; [cite: 210]
+    flex: 1;
+    min-width: 320px;
+    height: 450px;
+    border: 2px solid var(--gold);
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 .book-box {
-    [cite_start]width: 320px; [cite: 213]
+    width: 320px;
 }
 
 .book-box img {
-    [cite_start]width: 100%; [cite: 216]
-    [cite_start]border: 2px solid var(--gold); [cite: 217]
-    [cite_start]border-radius: 15px; [cite: 218]
+    width: 100%;
+    border: 2px solid var(--gold);
+    border-radius: 15px;
 }
 
 .btn-action {
-    [cite_start]display: block; [cite: 221]
-    [cite_start]width: 100%; [cite: 222]
-    [cite_start]background: var(--gold); [cite: 223]
-    [cite_start]color: #000; [cite: 224]
-    [cite_start]text-decoration: none; [cite: 225]
-    [cite_start]padding: 15px; [cite: 226]
-    [cite_start]border-radius: 10px; [cite: 227]
-    [cite_start]text-align: center; [cite: 228]
-    [cite_start]font-weight: 900; [cite: 229]
-    [cite_start]margin-top: 10px; [cite: 230]
+    display: block;
+    width: 100%;
+    background: var(--gold);
+    color: #000;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 900;
+    margin-top: 10px;
 }
 
-/* --- المربع المنبثق الكريمي (المعدل بناءً على الصورة) --- */
+/* --- المربع المنبثق الكريمي المعدل (فارغ وشريط التمرير باليسار) --- */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0;
@@ -192,13 +192,13 @@ body {
 }
 
 .modal-content {
-    background: #fdfaf0; /* لون كريمي مطابق للصورة */
+    background: #fdfaf0; /* لون كريمي */
     width: 90%;
     max-width: 900px;
-    max-height: 85vh; /* طول مناسب للشاشة */
+    max-height: 85vh;
     border-radius: 20px;
     position: relative;
-    overflow: hidden; /* لمنع خروج المحتوى عن الانحناءات */
+    overflow: hidden;
     color: #333;
     border: 2px solid var(--gold);
     display: flex;
@@ -208,20 +208,23 @@ body {
 
 .modal-body {
     padding: 40px;
-    overflow-y: auto; /* شريط تحريك لأسفل */
-    text-align: center;
-    direction: rtl;
-    line-height: 1.8;
+    overflow-y: auto; 
+    direction: ltr; /* لجعل شريط التمرير يظهر جهة اليسار */
+}
+
+.modal-body-content {
+    direction: rtl; /* لإبقاء النص (عند كتابته مستقبلاً) يقرأ من اليمين */
+    text-align: right;
 }
 
 /* تخصيص شكل شريط التمرير */
-.modal-body::-webkit-scrollbar { width: 8px; }
+.modal-body::-webkit-scrollbar { width: 10px; }
 .modal-body::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
 
 .close-modal {
     position: absolute;
     top: 15px;
-    left: 15px; /* أعلى اليسار كما طلبت */
+    left: 15px; /* زر الإغلاق أعلى اليسار */
     background: #ff0000;
     color: white;
     border: 2px solid #fff;
@@ -238,21 +241,21 @@ body {
 }
 
 /* --- باقي التنسيقات --- */
-.lang-btn { cursor: pointer; border: 1px solid var(--gold); border-radius: 4px; width: 45px; height: 30px; object-fit: cover; [cite_start]} [cite: 232, 233, 234, 235, 236, 237, 238]
-.lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 400px; overflow-y: auto; z-index: 10002; width: 200px; [cite_start]} [cite: 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250]
-.lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #222; [cite_start]} [cite: 252, 253, 254, 255, 256, 257, 258, 259]
-.lang-item:hover { background: rgba(212, 175, 55, 0.1); [cite_start]} [cite: 261, 262]
+.lang-btn { cursor: pointer; border: 1px solid var(--gold); border-radius: 4px; width: 45px; height: 30px; object-fit: cover; }
+.lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 400px; overflow-y: auto; z-index: 10002; width: 200px; }
+.lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #222; }
+.lang-item:hover { background: rgba(212, 175, 55, 0.1); }
 
-#btnUp { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--gold); color: #000; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; z-index: 9999; font-size: 24px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); transition: all 0.3s; [cite_start]} [cite: 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281]
-#btnUp:hover { transform: scale(1.1); background: #c49f27; [cite_start]} [cite: 283, 284, 285]
+#btnUp { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--gold); color: #000; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; z-index: 9999; font-size: 24px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); transition: all 0.3s; }
+#btnUp:hover { transform: scale(1.1); background: #c49f27; }
 
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); [cite_start]} } [cite: 288, 289, 290]
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 768px) {
-    .hero-container { flex-direction: column; align-items: center; [cite_start]} [cite: 297, 298, 299]
-    .video-box { width: 100%; height: 300px; [cite_start]} [cite: 301, 302, 303]
-    .book-box { width: 100%; max-width: 320px; [cite_start]} [cite: 305, 306, 307]
-    .main-alert-title { font-size: 1.8rem; [cite_start]} [cite: 309, 310]
-    .nav-links { gap: 8px; [cite_start]} [cite: 312, 313]
-    .nav-links a { font-size: 0.75rem; [cite_start]} [cite: 315, 316]
+    .hero-container { flex-direction: column; align-items: center; }
+    .video-box { width: 100%; height: 300px; }
+    .book-box { width: 100%; max-width: 320px; }
+    .main-alert-title { font-size: 1.8rem; }
+    .nav-links { gap: 8px; }
+    .nav-links a { font-size: 0.75rem; }
 }

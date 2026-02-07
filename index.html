@@ -43,10 +43,10 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 .custom-section h2 { color: var(--gold); font-size: 3.5rem; margin-bottom: 40px; text-align: center; }
 .custom-section div[id^="content_"] { color: var(--white); line-height: 2.2; font-size: 1.6rem; text-align: justify; }
 
-/* --- إعدادات الماركي (الميديا والشركاء) --- */
+/* --- إعدادات الماركي الملونة والمحسنة --- */
 #sec_media .section-container, #sec_partners .section-container {
     min-height: auto;
-    height: 350px;    /* ارتفاع ثابت للفريم ليحتوي الصور بدقة */
+    height: 350px; /* الارتفاع المطلوب */
     padding: 0;
     overflow: hidden;
     display: flex;
@@ -62,23 +62,24 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 .media-track {
     display: flex;
     width: max-content;
-    animation: scrollMedia 180s linear infinite; /* سرعة بطيئة جداً */
+    animation: scrollMedia 150s linear infinite; /* سرعة بطيئة مريحة */
 }
 
 .media-track img {
     width: 28vw;
     height: 350px;
     object-fit: cover;
-    filter: grayscale(100%);
+    filter: grayscale(0%); /* جعل الصور ملونة مباشرة */
     margin: 0;
     padding: 0;
     display: block;
     cursor: pointer;
 }
 
+/* تعديل الحركة لضمان ظهور كافة الصور دون اختفاء */
 @keyframes scrollMedia {
     0% { transform: translateX(0); }
-    100% { transform: translateX(50%); }
+    100% { transform: translateX(50%); } 
 }
 
 .image-viewer {
@@ -130,11 +131,11 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 <section class="custom-section" id="sec_awareness"><div class="section-container"><h2 id="title_awareness"></h2><div id="content_awareness"></div></div></section>
 
 <section class="custom-section" id="sec_media">
-<div class="section-container">
-<div class="media-marquee-container">
-<div class="media-track" id="mediaTrack"></div>
-</div>
-</div>
+    <div class="section-container">
+        <div class="media-marquee-container">
+            <div class="media-track" id="mediaTrack"></div>
+        </div>
+    </div>
 </section>
 
 <section class="custom-section" id="sec_stats"><div class="section-container"><h2 id="title_stats"></h2><div id="content_stats"></div></div></section>
@@ -144,15 +145,15 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 <section class="custom-section" id="sec_reference"><div class="section-container"><h2 id="title_reference"></h2><div id="content_reference"></div></div></section>
 
 <section class="custom-section" id="sec_partners">
-<div class="section-container">
-<div class="media-marquee-container">
-<div class="media-track" id="partnersTrack"></div>
-</div>
-</div>
+    <div class="section-container">
+        <div class="media-marquee-container">
+            <div class="media-track" id="partnersTrack"></div>
+        </div>
+    </div>
 </section>
 
 <div id="imageViewer" class="image-viewer" onclick="this.style.display='none'">
-<img id="fullImage" src="">
+    <img id="fullImage" src="">
 </div>
 
 <div id="infoModal" class="modal-overlay">
@@ -170,42 +171,43 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 <script src="js/main.js"></script>
 <script src="js/i18n.js"></script>
 <script>
-// --- برمجة قسم الميديا ---
-const mediaTrack = document.getElementById('mediaTrack');
-let mediaContent = '';
-for(let i=101; i<=124; i++) {
-    mediaContent += `<img src="assets/${i}.jpg" onclick="viewImage(this.src)">`;
-}
-mediaTrack.innerHTML = mediaContent + mediaContent;
-
-// --- برمجة قسم الشركاء (جديد) ---
-const partnersTrack = document.getElementById('partnersTrack');
-let partnersContent = '';
-for(let i=201; i<=209; i++) {
-    partnersContent += `<img src="assets/${i}.png" onclick="viewImage(this.src)">`;
-}
-partnersTrack.innerHTML = partnersContent + partnersContent;
-
+// دالة عرض الصور
 function viewImage(src) {
     document.getElementById('fullImage').src = src;
     document.getElementById('imageViewer').style.display = 'flex';
 }
 
+// توليد صور الميديا (101-124)
+const mediaTrack = document.getElementById('mediaTrack');
+let mediaHtml = '';
+for(let i=101; i<=124; i++) {
+    mediaHtml += `<img src="assets/${i}.jpg" onclick="viewImage(this.src)">`;
+}
+mediaTrack.innerHTML = mediaHtml + mediaHtml; // تكرار لمسار حركة مستمر
+
+// توليد لوجوهات الشركاء (201-209)
+const partnersTrack = document.getElementById('partnersTrack');
+let partnersHtml = '';
+for(let i=201; i<=209; i++) {
+    partnersHtml += `<img src="assets/${i}.png" onclick="viewImage(this.src)">`;
+}
+partnersTrack.innerHTML = partnersHtml + partnersHtml;
+
 function openModal(type) { document.getElementById('infoModal').style.display = 'flex'; }
 function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
 window.onscroll = function() {
-let btn = document.getElementById("btnUp");
-if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-btn.style.display = "flex";
-} else {
-btn.style.display = "none";
-}
+    let btn = document.getElementById("btnUp");
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        btn.style.display = "flex";
+    } else {
+        btn.style.display = "none";
+    }
 };
 document.addEventListener('click', function(e) {
-if(e.target.tagName === 'A') {
-const text = e.target.innerText;
-if(text.includes('من نحن') || text.includes('About Us')) openModal();
-}
+    if(e.target.tagName === 'A') {
+        const text = e.target.innerText;
+        if(text.includes('من نحن') || text.includes('About Us')) openModal();
+    }
 });
 </script>
 </body>

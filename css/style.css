@@ -1,345 +1,311 @@
 /* =========================================
-   ملف التنسيق الأساسي الكامل -  style.css
+   ملف التنسيق الأساسي الكامل - style.css
    ========================================= */
-: root  {
-    --gold: #d4af37 ;
-    --white: #ffffff ;
-    --red-news: #b30000 ;
-    --red-num: #ff0000 ;
-    --yt: #FF0000 ;
-    --fb: #1877F2 ;
-    --tw: #ffffff ;
-    --ig: #E4405F ;
-    --wa-color: #25D366 ;
+:root {
+    --gold: #d4af37;
+    --white: #ffffff;
+    --red-news: #b30000;
+    --red-num: #ff0000;
+    --yt: #FF0000;
+    --fb: #1877F2;
+    --tw: #ffffff;
+    --ig: #E4405F;
+    --wa-color: #25D366;
 }
 * {
-  margin: 0 ;
-  padding: 0 ;
-  box-sizing: border-box ;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-body  {
-  color: var(--white) ;
-  font-family: 'Tajawal', sans-serif ;
-  background: #000 ;
-  overflow-x: hidden ;
-  font-weight: bold ;
+body {
+    color: var(--white);
+    font-family: 'Tajawal', sans-serif;
+    background: #000;
+    overflow-x: hidden;
+    font-weight: bold;
 }
-. site-bg  {
-  position: fixed ;
-  top: 0 ;
-  left: 0 ;
-  width: 100% ;
-  height: 100% ;
-  background-image: url('../assets/image_390e08.jpg') ;
-  background-size: cover ;
-  z-index: -1 ;
-  filter: brightness (0.4);
+.site-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/image_390e08.jpg');
+    background-size: cover;
+    z-index: -1;
+    filter: brightness(0.4);
 }
 /* --- الهيدر والقائمة --- */
-. navbar  {
-  min-height: 90px ;
-  background: rgba (0, 0, 0, 0.95);
-  border-bottom: 2px solid var(--gold) ;
-  position: fixed ;
-  top: 0 ;
-  width: 100% ;
-  z-index: 10001 ;
-  display: flex ;
-  align-items: center ;
-  justify-content: center ;
+.navbar {
+    min-height: 90px;
+    background: rgba(0, 0, 0, 0.95);
+    border-bottom: 2px solid var(--gold);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-. nav-container  {
-  width: 95% ;
-  max-width: 1400px ;
-  display: flex ;
-  justify-content: space-between ;
-  align-items: center ;
+.nav-container {
+    width: 95%;
+    max-width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-. nav-links  {
-  display: flex ;
-  gap: 12px ;
-  align-items: center ;
-  flex-wrap: wrap ;
+.nav-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
 }
-. nav-links a  {
-  color: var(--gold) ;
-  text-decoration: none ;
-  font-size: 0.85rem ;
-  font-weight: 900 ;
-  cursor: pointer ;
+.nav-links a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 900;
+    cursor: pointer;
 }
-. nav-left  {
-  display: flex ;
-  align-items: center ;
-  gap: 15px ;
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
-. social-icons  {
-  display: flex ;
-  gap: 10px ;
+.social-icons {
+    display: flex;
+    gap: 10px;
 }
-. nav-logo-img  {
-  height: 60px ;
+.nav-logo-img {
+    height: 60px;
 }
 /* --- شريط الأخبار --- */
-. news-ticker  {
-  background: var(--red-news) ;
-  color: white ;
-  height: 45px ;
-  position: fixed ;
-  top: 90px ;
-  width: 100% ;
-  z-index: 1000 ;
-  display: flex ;
-  align-items: center ;
-  overflow: hidden ;
+.news-ticker {
+    background: var(--red-news);
+    color: white;
+    height: 45px;
+    position: fixed;
+    top: 90px;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 }
-. ticker-track  {
-  display: flex ;
-  white-space: nowrap ;
-  animation: marqueeNews 1500s linear infinite ;
+.ticker-track {
+    display: flex;
+    white-space: nowrap;
+    animation: marqueeNews 1500s linear infinite;
 }
-. ticker-track span  {
-  padding: 0 15px ;
-  font-size: 1.1rem ;
+.ticker-track span {
+    padding: 0 15px;
+    font-size: 1.1rem;
 }
-@ keyframes marqueeNews  {
-    0% {  transform: translateX (0); }
-    100% {  transform: translateX (100%); }
+@keyframes marqueeNews {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
 }
 /* --- المحتوى الرئيسي --- */
-. hero  {
-  padding: 180px 5% 60px ;
-  display: flex ;
-  flex-direction: column ;
-  align-items: center ;
-  animation: fadeIn 1s ease-out ;
+.hero {
+    padding: 180px 5% 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1s ease-out;
 }
-. main-alert-title  {
-  text-align: center ;
-  margin-bottom: 40px ;
-  font-size: 2.2rem ;
-  line-height: 1.4 ;
-  color: var(--white) ;
+.main-alert-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    line-height: 1.4;
+    color: var(--white);
 }
-. hero-container  {
-  display: flex ;
-  gap: 40px ;
-  width: 100% ;
-  max-width: 1200px ;
-  justify-content: center ;
-  flex-wrap: wrap ;
+.hero-container {
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
-. video-box  {
-  flex: 1 ;
-  min-width: 320px ;
-  height: 450px ;
-  border: 2px solid var(--gold) ;
-  border-radius: 20px ;
-  overflow: hidden ;
+.video-box {
+    flex: 1;
+    min-width: 320px;
+    height: 450px;
+    border: 2px solid var(--gold);
+    border-radius: 20px;
+    overflow: hidden;
 }
-. book-box  {
-  width: 320px ;
+.book-box {
+    width: 320px;
 }
-. book-box img  {
-  width: 100% ;
-  border: 2px solid var(--gold) ;
-  border-radius: 15px ;
+.book-box img {
+    width: 100%;
+    border: 2px solid var(--gold);
+    border-radius: 15px;
 }
-. btn-action  {
-  display: block ;
-  width: 100% ;
-  background: var(--gold) ;
-  color: #000 ;
-  text-decoration: none ;
-  padding: 15px ;
-  border-radius: 10px ;
-  text-align: center ;
-  font-weight: 900 ;
-  margin-top: 10px ;
+.btn-action {
+    display: block;
+    width: 100%;
+    background: var(--gold);
+    color: #000;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 900;
+    margin-top: 10px;
 }
 /* --- المربع المنبثق الكريمي المعدل (فارغ وشريط التمرير باليسار) --- */
-. modal-overlay  {
-  position: fixed ;
-  top: 0; left: 0 ;
-  width: 100%; height: 100% ;
-  background: rgba (0,0,0,0.85);
-  z-index: 20000 ;
-  display: none ;
-  align-items: center ;
-  justify-content: center ;
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 20000;
+    display: none;
+    align-items: center;
+    justify-content: center;
 }
-. modal-content  {
-  background: #fdfaf0 ; /* لون كريمي */
-  width: 90% ;
-  max-width: 900px ;
-  max-height: 85vh ;
-  border-radius: 20px ;
-  position: relative ;
-  overflow: hidden ;
-  color: #333 ;
-  border: 2px solid var(--gold) ;
-  display: flex ;
-  flex-direction: column ;
-  box-shadow: 0 10px 40px rgba (0,0,0,0.8);
+.modal-content {
+    background: #fdfaf0; /* لون كريمي */
+    width: 90%;
+    max-width: 900px;
+    max-height: 85vh;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    color: #333;
+    border: 2px solid var(--gold);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
 }
-. modal-body  {
-  padding: 40px ;
-  overflow-y: auto ; 
-  direction: ltr ; /* لجعل شريط التمرير يظهر جهة اليسار */
+.modal-body {
+    padding: 40px;
+    overflow-y: auto;
+    direction: ltr; /* لجعل شريط التمرير يظهر جهة اليسار */
 }
-. modal-body-content  {
-  direction: rtl ; /* لإبقاء النص (عند كتابته مستقبلاً) يقرأ من اليمين */
-  text-align: right ;
+.modal-body-content {
+    direction: rtl; /* لإبقاء النص (عند كتابته مستقبلاً) يقرأ من اليمين */
+    text-align: right;
 }
 /* تخصيص شكل شريط التمرير */
-. modal-body::-webkit-scrollbar { width: 10px; }
-. modal-body::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
-. close-modal  {
-  position: absolute ;
-  top: 15px ;
-  left: 15px ; /* زر الإغلاق أعلى اليسار */
-  background: #ff0000 ;
-  color: white ;
-  border: 2px solid #fff ;
-  width: 40px ;
-  height: 40px ;
-  border-radius: 50% ;
-  font-size: 20px ;
-  cursor: pointer ;
-  z-index: 100 ;
-  display: flex ;
-  align-items: center ;
-  justify-content: center ;
-  box-shadow: 0 4px 10px rgba (0,0,0,0.3);
+.modal-body::-webkit-scrollbar { width: 10px; }
+.modal-body::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+.close-modal {
+    position: absolute;
+    top: 15px;
+    left: 15px; /* زر الإغلاق أعلى اليسار */
+    background: #ff0000;
+    color: white;
+    border: 2px solid #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 /* --- باقي التنسيقات --- */
-. lang-btn { cursor: pointer; border: 1px solid var(--gold); border-radius: 4px; width: 45px; height: 30px; object-fit: cover; }
-. lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 400px; overflow-y: auto; z-index: 10002; width: 200px; }
-. lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #222; }
-. lang-item:hover { background: rgba (212, 175, 55, 0.1);  }
-# btnUp { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--gold); color: #000; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; z-index: 9999; font-size: 24px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); transition: all 0.3s; }
-# btnUp:hover { transform: scale(1.1); background: #c49f27; }
-@ keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY (0);  } }
-@ media (max-width: 768px)  {
-    . hero-container { flex-direction: column; align-items: center; }
-    . video-box { width: 100%; height: 300px; }
-    . book-box { width: 100%; max-width: 320px; }
-    . main-alert-title { font-size: 1.8rem; }
-    . nav-links { gap: 8px; }
-    . nav-links a { font-size: 0.75rem; }
-}
+.lang-btn { cursor: pointer; border: 1px solid var(--gold); border-radius: 4px; width: 45px; height: 30px; object-fit: cover; }
+.lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 400px; overflow-y: auto; z-index: 10002; width: 200px; }
+.lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #222; }
+.lang-item:hover { background: rgba(212, 175, 55, 0.1); }
 
-/* === New Sections Styling (Added per requirements) === */
-/* Smooth scroll for all anchor links */
-html {
-  scroll-behavior: smooth;
+/* تعديل سهم الصعود: جهة اليسار وباللون الذهبي */
+#btnUp { 
+    position: fixed; 
+    bottom: 30px; 
+    left: 30px; /* تم التعديل لليسار */
+    width: 50px; 
+    height: 50px; 
+    background: var(--gold); /* لون ذهبي */
+    color: #000; 
+    border-radius: 50%; 
+    display: none; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer; 
+    z-index: 9999; 
+    font-size: 24px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s; 
 }
-
-/* Base styling for all 10 sections */
-.section {
-  position: relative;
-  padding: 80px 5%;
-  margin: 40px 0;
-  min-height: 85vh;
-  background: #000;
-  overflow: hidden;
-}
-
-/* Honeycomb background pattern */
-.section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50,0 L100,25 L100,75 L50,100 L0,75 L0,25 Z" fill="none" stroke="%23333" stroke-width="0.2"/></svg>');
-  background-size: 30px 30px;
-  z-index: -2;
-  opacity: 0.3;
-}
-
-/* Golden frame with pointed corners */
-.section::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border: 2px solid var(--gold);
-  border-radius: 10px;
-  pointer-events: none;
-  z-index: -1;
-}
-
-/* Diagonal lines effect */
-.section .diagonal-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-.section .diagonal-lines::before,
-.section .diagonal-lines::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, transparent 45%, rgba(212, 175, 55, 0.15) 45%, rgba(212, 175, 55, 0.15) 55%, transparent 55%);
-  z-index: -1;
-}
-
-.section .diagonal-lines::after {
-  transform: rotate(90deg);
-}
-
-/* Section title styling */
-.section h2 {
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 2.2rem;
-  line-height: 1.4;
-  color: var(--white);
-  position: relative;
-  z-index: 1;
-}
-
-/* Section content styling */
-.section div {
-  max-width: 1200px;
-  margin: 0 auto;
-  color: var(--white);
-  font-size: 1.2rem;
-  line-height: 1.8;
-  position: relative;
-  z-index: 1;
-}
-
-/* Move the scroll to top button to the left side */
-#btnUp {
-  right: auto;
-  left: 30px;
-  background: var(--gold);
-}
-
-/* Responsive adjustments for sections */
+#btnUp:hover { transform: scale(1.1); background: #c49f27; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 768px) {
-  .section {
-    padding: 60px 5%;
-    min-height: 75vh;
-  }
-  
-  .section h2 {
-    font-size: 1.8rem;
-  }
-  
-  .section div {
+.hero-container { flex-direction: column; align-items: center; }
+.video-box { width: 100%; height: 300px; }
+.book-box { width: 100%; max-width: 320px; }
+.main-alert-title { font-size: 1.8rem; }
+.nav-links { gap: 8px; }
+.nav-links a { font-size: 0.75rem; }
+}
+
+/* =========================================
+   إضافات الأقسام الجديدة - التزاماً بالهوية البصرية
+   ========================================= */
+
+/* تفعيل السكرول السلس */
+html {
+    scroll-behavior: smooth;
+}
+
+.custom-section {
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.section-container {
+    width: 90%;
+    max-width: 1200px;
+    background-color: #000;
+    /* نمط خلايا النحل (Hexagon Pattern) */
+    background-image: 
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cpath fill='%23d4af37' fill-opacity='0.08' d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.32v12.86l11 6.35 11-6.35V17.32L14 10.97 3 17.32z'/%3E%3C/svg%3E");
+    border: 2px solid var(--gold);
+    border-radius: 0; /* زوايا مدببة حادة */
+    position: relative;
+    padding: 50px 30px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+}
+
+/* الخطوط المائلة الجانبية (محاكاة للصورة المرفقة) */
+.section-container::before, 
+.section-container::after {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent);
+    transform: rotate(-45deg);
+    pointer-events: none;
+}
+.section-container::before { top: 10%; left: -20%; }
+.section-container::after { bottom: 10%; right: -20%; }
+
+.custom-section h2 {
+    color: var(--gold);
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.custom-section div[id^="content_"] {
+    color: var(--white);
+    line-height: 1.8;
     font-size: 1.1rem;
-  }
+    position: relative;
+    z-index: 1;
 }

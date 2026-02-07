@@ -43,10 +43,10 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 .custom-section h2 { color: var(--gold); font-size: 3.5rem; margin-bottom: 40px; text-align: center; }
 .custom-section div[id^="content_"] { color: var(--white); line-height: 2.2; font-size: 1.6rem; text-align: justify; }
 
-/* --- إعدادات الماركي (الميديا والشركاء) --- */
+/* --- إعدادات الماركي المشتركة --- */
 #sec_media .section-container, #sec_partners .section-container {
     min-height: auto;
-    height: 350px;    /* ارتفاع ثابت للفريم ليحتوي الصور بدقة */
+    height: 350px;
     padding: 0;
     overflow: hidden;
     display: flex;
@@ -61,25 +61,33 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 
 .media-track {
     display: flex;
-    width: max-content; /* هام جداً لجعل الصور بجانب بعضها */
-    animation: scrollMedia 120s linear infinite; /* سرعة بطيئة مريحة */
+    width: max-content;
+    animation: scrollMedia 150s linear infinite;
 }
 
 .media-track img {
-    width: 28vw; /* عرض الصورة لضمان ظهور 3 ونصف تقريباً */
+    width: 28vw;
     height: 350px;
-    object-fit: cover; /* لضمان ملء الصورة للمساحة دون تشويه */
-    filter: grayscale(0%); /* صور ملونة */
+    object-fit: cover;
     margin: 0;
     padding: 0;
     display: block;
     cursor: pointer;
 }
 
-/* تعديل الحركة لتكون دقيقة 100% لضمان تلاحم الصور عند الإعادة */
+/* الميديا: أبيض وأسود كما طلبت سابقاً */
+#mediaTrack img {
+    filter: grayscale(100%);
+}
+
+/* الشركاء: ملون كما طلبت الآن */
+#partnersTrack img {
+    filter: grayscale(0%);
+}
+
 @keyframes scrollMedia {
     0% { transform: translateX(0); }
-    100% { transform: translateX(50%); } /* التحريك لنصف العرض الكلي (لأننا كررنا الصور مرتين) */
+    100% { transform: translateX(50%); }
 }
 
 .image-viewer {
@@ -131,11 +139,11 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 <section class="custom-section" id="sec_awareness"><div class="section-container"><h2 id="title_awareness"></h2><div id="content_awareness"></div></div></section>
 
 <section class="custom-section" id="sec_media">
-<div class="section-container">
-<div class="media-marquee-container">
-<div class="media-track" id="mediaTrack"></div>
-</div>
-</div>
+    <div class="section-container">
+        <div class="media-marquee-container">
+            <div class="media-track" id="mediaTrack"></div>
+        </div>
+    </div>
 </section>
 
 <section class="custom-section" id="sec_stats"><div class="section-container"><h2 id="title_stats"></h2><div id="content_stats"></div></div></section>
@@ -145,15 +153,15 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 <section class="custom-section" id="sec_reference"><div class="section-container"><h2 id="title_reference"></h2><div id="content_reference"></div></div></section>
 
 <section class="custom-section" id="sec_partners">
-<div class="section-container">
-<div class="media-marquee-container">
-<div class="media-track" id="partnersTrack"></div>
-</div>
-</div>
+    <div class="section-container">
+        <div class="media-marquee-container">
+            <div class="media-track" id="partnersTrack"></div>
+        </div>
+    </div>
 </section>
 
 <div id="imageViewer" class="image-viewer" onclick="this.style.display='none'">
-<img id="fullImage" src="">
+    <img id="fullImage" src="">
 </div>
 
 <div id="infoModal" class="modal-overlay">
@@ -171,13 +179,12 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 <script src="js/main.js"></script>
 <script src="js/i18n.js"></script>
 <script>
-// دالة عرض الصور
 function viewImage(src) {
     document.getElementById('fullImage').src = src;
     document.getElementById('imageViewer').style.display = 'flex';
 }
 
-// توليد صور الميديا (101-124) مع تكرارها لضمان التلاحم
+// الميديا (101-124)
 const mediaTrack = document.getElementById('mediaTrack');
 let mediaHtml = '';
 for(let i=101; i<=124; i++) {
@@ -185,7 +192,7 @@ for(let i=101; i<=124; i++) {
 }
 mediaTrack.innerHTML = mediaHtml + mediaHtml; 
 
-// توليد لوجوهات الشركاء (201-209) مع تكرارها لضمان التلاحم
+// الشركاء (201-209)
 const partnersTrack = document.getElementById('partnersTrack');
 let partnersHtml = '';
 for(let i=201; i<=209; i++) {
@@ -196,18 +203,18 @@ partnersTrack.innerHTML = partnersHtml + partnersHtml;
 function openModal(type) { document.getElementById('infoModal').style.display = 'flex'; }
 function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
 window.onscroll = function() {
-let btn = document.getElementById("btnUp");
-if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-btn.style.display = "flex";
-} else {
-btn.style.display = "none";
-}
+    let btn = document.getElementById("btnUp");
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        btn.style.display = "flex";
+    } else {
+        btn.style.display = "none";
+    }
 };
 document.addEventListener('click', function(e) {
-if(e.target.tagName === 'A') {
-const text = e.target.innerText;
-if(text.includes('من نحن') || text.includes('About Us')) openModal();
-}
+    if(e.target.tagName === 'A') {
+        const text = e.target.innerText;
+        if(text.includes('من نحن') || text.includes('About Us')) openModal();
+    }
 });
 </script>
 </body>

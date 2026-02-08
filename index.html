@@ -25,13 +25,14 @@
             font-weight: bold; 
         }
 
+        /* الخلفية الثابتة */
         .site-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background-image: url('assets/image_390e08.jpg'); 
             background-size: cover; z-index: -1; filter: brightness(0.4);
         }
 
-        /* --- الهيدر والناف بار --- */
+        /* شريط التنقل */
         .navbar { 
             min-height: 90px; background: rgba(0,0,0,0.95); 
             border-bottom: 2px solid var(--gold); position: fixed; 
@@ -45,7 +46,7 @@
         .social-icons { display: flex; gap: 10px; }
         .nav-logo-img { height: 60px; }
 
-        /* --- شريط الأخبار --- */
+        /* شريط الأخبار */
         .news-ticker { 
             background: var(--red-news); color: white; height: 45px; 
             position: fixed; top: 90px; width: 100%; z-index: 1000; 
@@ -55,7 +56,7 @@
         .ticker-track span { padding: 0 15px; font-size: 1.1rem; }
         @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
-        /* --- القسم الرئيسي (Hero) --- */
+        /* منطقة الهيرو (الكتاب والفيديو) */
         .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; }
         .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
         .hero-container { display: flex; gap: 40px; width: 100%; max-width: 1200px; justify-content: center; flex-wrap: wrap; }
@@ -68,7 +69,7 @@
             text-align: center; font-weight: 900; margin-top: 10px; 
         }
 
-        /* --- تنسيق الأقسام المخصصة --- */
+        /* تنسيق الصناديق الكبيرة */
         .custom-section { padding: 40px 0; display: flex; justify-content: center; width: 100%; }
         .section-container { 
             width: 95%; max-width: 1400px; min-height: 600px; 
@@ -80,7 +81,7 @@
         .custom-section h2 { color: var(--gold); font-size: 3.5rem; margin-bottom: 40px; text-align: center; }
         .custom-section div[id^="content_"] { color: var(--white); line-height: 2.2; font-size: 1.6rem; text-align: justify; }
 
-        /* --- أقسام الماركي (الميديا والشركاء) --- */
+        /* الماركي (الميديا والشركاء) */
         #sec_media .section-container { min-height: auto; height: 350px; padding: 0; overflow: hidden; display: flex; align-items: center; }
         #sec_partners .section-container { min-height: auto; height: 150px; padding: 0; overflow: hidden; display: flex; align-items: center; background: #fff; }
         #sec_media h2, #sec_partners h2 { display: none; }
@@ -88,38 +89,44 @@
         .media-marquee-container { width: 100%; overflow: hidden; direction: ltr; }
         .media-track { display: flex; width: max-content; align-items: center; }
         
-        #mediaTrack img { width: 28vw; height: 350px; object-fit: cover; filter: grayscale(100%); cursor: pointer; }
+        #mediaTrack img { width: 28vw; height: 350px; object-fit: cover; filter: grayscale(100%); cursor: pointer; transition: 0.3s; }
+        #mediaTrack img:hover { filter: grayscale(0%); }
         #mediaTrack { animation: scrollRight 350s linear infinite; }
         
-        #partnersTrack img { height: 150px; width: auto; object-fit: contain; padding: 10px; cursor: pointer; }
+        #partnersTrack img { height: 120px; width: auto; padding: 10px; cursor: pointer; }
         #partnersTrack { animation: scrollRight 80s linear infinite; }
 
         @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
 
-        /* --- عارض الصور والمودال --- */
-        .image-viewer { 
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.95); z-index: 20000; justify-content: center; align-items: center; 
-        }
-        .image-viewer img { max-width: 90%; max-height: 90%; border: 3px solid var(--gold); }
-
+        /* النوافذ المنبثقة (المودال) */
         .modal-overlay { 
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.8); z-index: 20001; justify-content: center; align-items: center; 
+            background: rgba(0,0,0,0.9); z-index: 20001; justify-content: center; align-items: center; 
         }
         .modal-content { 
             background: #fffcf0; color: #000; padding: 40px; border-radius: 15px; 
-            max-width: 800px; width: 90%; position: relative; border: 3px solid var(--gold); 
+            max-width: 800px; width: 90%; position: relative; border: 4px solid var(--gold); 
+            max-height: 80vh; overflow-y: auto;
         }
-        .close-modal-btn { position: absolute; top: 10px; left: 10px; background: #ff0000; color: #fff; border: none; padding: 5px 15px; cursor: pointer; font-weight: bold; }
+        .close-modal-btn { 
+            position: absolute; top: 15px; left: 15px; background: var(--red-news); 
+            color: #fff; border: none; padding: 8px 15px; cursor: pointer; 
+            font-weight: bold; border-radius: 5px; font-size: 1.2rem;
+        }
 
-        /* --- زر الصعود للأعلى --- */
+        /* سهم الصعود */
         #btnUp { 
             position: fixed; bottom: 30px; left: 30px; width: 55px; height: 55px; 
             background: var(--gold); color: #000; border-radius: 50%; display: none; 
             align-items: center; justify-content: center; cursor: pointer; z-index: 9999; 
-            box-shadow: 0 0 15px rgba(212,175,55,0.5); 
+            box-shadow: 0 0 15px rgba(212,175,55,0.5); font-size: 24px;
         }
+
+        .image-viewer { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.95); z-index: 30000; justify-content: center; align-items: center; 
+        }
+        .image-viewer img { max-width: 90%; max-height: 90%; border: 3px solid var(--gold); }
     </style>
 </head>
 <body>
@@ -129,8 +136,8 @@
 <nav class="navbar">
     <div class="nav-container">
         <div style="position:relative">
-            <img id="currentFlag" class="lang-btn" style="width:35px; cursor:pointer;" onclick="toggleMenu()">
-            <div id="langMenu" class="lang-dropdown" style="display:none; position:absolute; background:#000; border:1px solid var(--gold); top:45px; right:0;"></div>
+            <img id="currentFlag" class="lang-btn" style="width:35px; cursor:pointer; border:1px solid var(--gold)">
+            <div id="langMenu" class="lang-dropdown" style="display:none; position:absolute; background:#000; border:1px solid var(--gold); top:45px; right:0; max-height:400px; overflow-y:auto; z-index:10002;"></div>
         </div>
         <div class="nav-links" id="navLinks"></div>
         <div class="nav-left">
@@ -183,10 +190,10 @@
 
 <div id="imageViewer" class="image-viewer" onclick="this.style.display='none'"><img id="fullImage" src=""></div>
 
-<div id="infoModal" class="modal-overlay">
+<div id="infoModal" class="modal-overlay" onclick="if(event.target===this) closeModal()">
     <div class="modal-content">
         <button class="close-modal-btn" onclick="closeModal()">X</button>
-        <div id="modalInnerContent"></div>
+        <div id="modalInnerContent" style="font-size:1.4rem; line-height:1.8; font-weight:bold;"></div>
     </div>
 </div>
 
@@ -196,7 +203,7 @@
 <script src="js/i18n.js"></script>
 
 <script>
-    // عند تحميل الصفحة
+    // تصفير الصفحة عند التحميل
     window.onload = function() {
         setTimeout(function() { window.scrollTo(0, 0); }, 10);
     };
@@ -207,39 +214,53 @@
         document.getElementById('imageViewer').style.display = 'flex';
     }
 
-    // توليد الميديا (101-124)
+    // توليد الميديا (101-124) بصيغة WebP
     const mediaTrack = document.getElementById('mediaTrack');
-    let mediaHtml = '';
-    for(let i=101; i<=124; i++) {
-        mediaHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)">`;
+    if(mediaTrack) {
+        let mediaHtml = '';
+        for(let i=101; i<=124; i++) {
+            mediaHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Media ${i}">`;
+        }
+        mediaTrack.innerHTML = mediaHtml + mediaHtml; 
     }
-    if(mediaTrack) mediaTrack.innerHTML = mediaHtml + mediaHtml; 
 
-    // توليد الشركاء (201-209)
+    // توليد الشركاء (201-209) بصيغة WebP
     const partnersTrack = document.getElementById('partnersTrack');
-    let partnersHtml = '';
-    for(let i=201; i<=209; i++) {
-        partnersHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)">`;
+    if(partnersTrack) {
+        let partnersHtml = '';
+        for(let i=201; i<=209; i++) {
+            partnersHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Partner ${i}">`;
+        }
+        partnersTrack.innerHTML = partnersHtml + partnersHtml;
     }
-    if(partnersTrack) partnersTrack.innerHTML = partnersHtml + partnersHtml;
 
-    // التحكم باللينكد إن والروابط
-    document.addEventListener('DOMContentLoaded', function() {
-        const linkedinIcon = document.querySelector('.fa-linkedin-in');
-        if(linkedinIcon && linkedinIcon.parentElement) {
-            linkedinIcon.parentElement.setAttribute('href', 'https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/');
-            linkedinIcon.parentElement.setAttribute('target', '_blank');
+    // وظيفة المودال
+    function openModal(content) {
+        const modal = document.getElementById('infoModal');
+        const inner = document.getElementById('modalInnerContent');
+        if(modal && inner) {
+            inner.innerHTML = content || "المحتوى سيتم ترجمته قريباً...";
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    function closeModal() {
+        document.getElementById('infoModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // إدارة روابط "من نحن" و "رسالتنا" لفتح المودال
+    document.addEventListener('click', function(e) {
+        if(e.target.tagName === 'A' && e.target.closest('#navLinks')) {
+            const text = e.target.innerText;
+            if(text.includes('من نحن') || text.includes('About Us') || text.includes('رسالتنا') || text.includes('Messages')) {
+                e.preventDefault();
+                openModal(text + ": سيتم عرض التفاصيل المترجمة هنا");
+            }
         }
     });
 
-    // وظائف المودال
-    function openModal(content) { 
-        document.getElementById('modalInnerContent').innerHTML = content;
-        document.getElementById('infoModal').style.display = 'flex'; 
-    }
-    function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
-
-    // زر الصعود
+    // التحكم في زر الصعود
     window.onscroll = function() {
         let btn = document.getElementById("btnUp");
         if (btn) {

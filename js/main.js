@@ -28,66 +28,111 @@ if (document.getElementById('btnUp')) {
 
 // وظيفة فتح النافذة الكبيرة (المودال)
 function openModal(title) {
-    const modal = document.querySelector('.modal-overlay');
-    const modalContent = document.getElementById('modal-body-content'); // المكان الذي يظهر فيه النص
+    const modal = document.getElementById('infoModal'); // التأكد من استخدام ID الموحد
+    const modalOverlay = document.querySelector('.modal-overlay');
     
     if (modal) {
-        modal.style.display = 'flex'; // إظهار النافذة بنظام flex للتوسط
-        document.body.style.overflow = 'hidden'; // منع تحريك الصفحة الخلفية
-        
-        // هنا يتم التأكد من تحديث النص أو العنوان إذا لزم الأمر
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; 
         console.log("تم فتح نافذة: " + title);
+    } else if (modalOverlay) {
+        modalOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
     }
 }
 
 // وظيفة إغلاق النافذة
 function closeModal() {
-    const modal = document.querySelector('.modal-overlay');
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // إعادة تفعيل الحركة في الموقع
+    const modal = document.getElementById('infoModal');
+    const modalOverlay = document.querySelector('.modal-overlay');
+    
+    if (modal) modal.style.display = 'none';
+    if (modalOverlay) modalOverlay.style.display = 'none';
+    
+    document.body.style.overflow = 'auto'; 
+}
+
+// 3. وظائف عرض الصور (Lightbox)
+function viewImage(src) {
+    const modal = document.getElementById('imageModal');
+    const fullImg = document.getElementById('fullImg');
+    if (modal && fullImg) {
+        modal.style.display = 'flex';
+        fullImg.src = src;
     }
 }
 
-// 3. إدارة الأحداث والروابط عند تحميل الصفحة
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    if (modal) modal.style.display = 'none';
+}
+
+// 4. إدارة الأحداث والروابط عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ربط زر الغلق الأحمر (X) الموجود في أقصى اليسار فوق
+    // --- تشغيل شريط الميديا (Media Track) ---
+    const mediaTrack = document.getElementById('mediaTrack');
+    if (mediaTrack) {
+        let mediaHtml = '';
+        for(let i=1; i<=13; i++) {
+            mediaHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Media ${i}">`;
+        }
+        mediaTrack.innerHTML = mediaHtml + mediaHtml; // تكرار للتحريك اللانهائي
+    }
+
+    // --- تشغيل شريط الشركاء (Partners Track) ---
+    const partnersTrack = document.getElementById('partnersTrack');
+    if (partnersTrack) {
+        let partnersHtml = '';
+        for(let i=201; i<=209; i++) {
+            partnersHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Partner ${i}">`;
+        }
+        partnersTrack.innerHTML = partnersHtml + partnersHtml;
+    }
+
+    // ربط زر الغلق الأحمر (X)
     const closeBtn = document.querySelector('.close-modal');
     if (closeBtn) {
         closeBtn.addEventListener('click', closeModal);
     }
     
-    // إغلاق النافذة عند الضغط في أي مكان خارج المربع الكريمي (على المنطقة المظلمة)
+    // إغلاق النافذة عند الضغط في المنطقة المظلمة
     const modalOverlay = document.querySelector('.modal-overlay');
-    if (modalOverlay) {
-        modalOverlay.addEventListener('click', function(event) {
-            // إذا كان الضغط على الغطاء وليس على المحتوى الداخلي
-            if (event.target === modalOverlay) {
-                closeModal();
-            }
-        });
-    }
+    const infoModal = document.getElementById('infoModal');
     
+    [modalOverlay, infoModal].forEach(el => {
+        if (el) {
+            el.addEventListener('click', function(event) {
+                if (event.target === el) {
+                    closeModal();
+                }
+            });
+        }
+    });
+
     // تفعيل روابط (من نحن - رسالتنا) لفتح النافذة الكبيرة
-    // نستخدم setTimeout لضمان تحميل نصوص الروابط من ملفات الترجمة أولاً
     setTimeout(function() {
-        const links = document.querySelectorAll('.nav-links a');
-        
+        const links = document.querySelectorAll('#navLinks a');
         links.forEach(link => {
             const linkText = link.textContent.trim();
-            
-            // التحقق من مسمى الرابط بالعربي أو الإنجليزي
             if (linkText === 'من نحن' || linkText === 'رسالتنا' || 
-                linkText === 'About Us' || linkText === 'Our Messages') {
+                linkText === 'About Us' || linkText === 'Our Messages' ||
+                linkText === 'رسالاتنا') {
                 
                 link.addEventListener('click', function(e) {
-                    e.preventDefault(); // منع الانتقال لصفحة أخرى
+                    e.preventDefault();
                     openModal(linkText);
                 });
             }
         });
     }, 1200); 
+
+    // ضبط رابط LinkedIn بشكل صحيح
+    const linkedinIcon = document.querySelector('.fa-linkedin-in');
+    if(linkedinIcon && linkedinIcon.parentElement) {
+        linkedinIcon.parentElement.setAttribute('href', 'https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/');
+        linkedinIcon.parentElement.setAttribute('target', '_blank');
+    }
 });
 
 console.log("تم تحميل ملف الوظائف الأساسية بنجاح بنسبة 100%.");

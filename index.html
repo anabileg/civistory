@@ -204,9 +204,11 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 <script src="js/main.js"></script>
 <script src="js/i18n.js"></script>
 <script>
-// كود لضمان فتح الصفحة من الأعلى دائماً
-window.onbeforeunload = function () {
-  window.scrollTo(0, 0);
+// كود لضمان فتح الصفحة من الأعلى دائماً عند التحميل أو التحديث
+window.onload = function() {
+    setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 10);
 };
 
 function viewImage(src) {
@@ -230,11 +232,11 @@ for(let i=201; i<=209; i++) {
 }
 partnersTrack.innerHTML = partnersHtml + partnersHtml;
 
-// تصليح رابط LinkedIn برمجياً (سيتم تطبيقه على أيقونة لينكد إن)
+// تصليح رابط LinkedIn وتحديثه
 document.addEventListener('DOMContentLoaded', function() {
     const linkedinIcon = document.querySelector('.fa-linkedin-in');
     if(linkedinIcon && linkedinIcon.parentElement) {
-        linkedinIcon.parentElement.href = "https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%82%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/";
+        linkedinIcon.parentElement.href = "https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/";
     }
 });
 

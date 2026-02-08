@@ -53,6 +53,7 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
     align-items: center;
 }
 
+/* فريم الشركاء بارتفاع ثابت تماماً */
 #sec_partners .section-container {
     min-height: auto;
     height: 150px; 
@@ -77,7 +78,7 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
     align-items: center;
 }
 
-/* صور الميديا كما هي تماماً دون تغيير */
+/* صور الميديا كما هي تماماً */
 #mediaTrack img {
     width: 28vw;
     height: 350px;
@@ -93,17 +94,18 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
     animation: scrollRight 350s linear infinite; 
 }
 
-/* شريط الشركاء - تحسين المسافات والتنسيق الاحترافي */
+/* شريط الشركاء - اللوجو يملأ الارتفاع بالكامل */
 #partnersTrack {
-    animation: scrollRight 60s linear infinite; /* تسريع بسيط ليكون مريحاً للحركة */
+    animation: scrollRight 80s linear infinite;
 }
 #partnersTrack img {
     filter: grayscale(0%);
     width: auto; 
-    height: 110px; /* تصغير الارتفاع قليلاً داخل الفريم لترك مساحة جمالية (Padding) */
-    object-fit: contain;
-    background-color: transparent; /* إزالة الخلفية من الصور لدمجها مع الفريم */
-    margin: 0 35px; /* توزيع مسافات جانبية متساوية واحترافية بين اللوجوهات */
+    height: 150px; /* نفس ارتفاع الفريم تماماً لملء الفراغ العمودي */
+    object-fit: stretch; /* يتمطط ليملأ الارتفاع، وأنت ستعالج الشكل بالبرامج */
+    background-color: transparent;
+    margin: 0; /* إلغاء المسافات الجانبية تماماً لتتحكم بها داخل الصورة نفسها */
+    padding: 0;
     display: block;
     cursor: pointer;
 }
@@ -202,6 +204,11 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 <script src="js/main.js"></script>
 <script src="js/i18n.js"></script>
 <script>
+// كود لضمان فتح الصفحة من الأعلى دائماً
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
+
 function viewImage(src) {
     document.getElementById('fullImage').src = src;
     document.getElementById('imageViewer').style.display = 'flex';
@@ -222,6 +229,14 @@ for(let i=201; i<=209; i++) {
     partnersHtml += `<img src="assets/${i}.png" onclick="viewImage(this.src)">`;
 }
 partnersTrack.innerHTML = partnersHtml + partnersHtml;
+
+// تصليح رابط LinkedIn برمجياً (سيتم تطبيقه على أيقونة لينكد إن)
+document.addEventListener('DOMContentLoaded', function() {
+    const linkedinIcon = document.querySelector('.fa-linkedin-in');
+    if(linkedinIcon && linkedinIcon.parentElement) {
+        linkedinIcon.parentElement.href = "https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%82%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/";
+    }
+});
 
 function openModal(type) { document.getElementById('infoModal').style.display = 'flex'; }
 function closeModal() { document.getElementById('infoModal').style.display = 'none'; }

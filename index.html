@@ -23,14 +23,14 @@
         .social-icons { display: flex; gap: 10px; }
         .nav-logo-img { height: 60px; }
         
-        /* تعديل شريط الأخبار: السرعة والمسافات */
-        .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 40s linear infinite; } /* تم ضبط السرعة هنا */
-        .ticker-track span { padding: 0 10px; font-size: 1.1rem; } /* مسافتين فقط بين الخبر والآخر */
+        /* إصلاح شريط الأخبار: سرعة هادئة واتجاه صحيح */
+        .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; direction: ltr; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 80s linear infinite; width: max-content; }
+        .ticker-track span { padding: 0 30px; font-size: 1.1rem; display: inline-block; direction: rtl; }
         
-        @keyframes marqueeNews { 
-            0% { transform: translateX(100%); } 
-            100% { transform: translateX(-100%); } 
+        @keyframes marqueeNews {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; }
@@ -46,7 +46,6 @@
         .custom-section h2 { color: var(--gold); font-size: 3.5rem; margin-bottom: 40px; text-align: center; }
         .custom-section div[id^="content_"] { color: var(--white); line-height: 2.2; font-size: 1.6rem; text-align: justify; }
 
-        /* إعدادات الماركي للميديا والشركاء */
         #sec_media .section-container { min-height: auto; height: 350px; padding: 0; overflow: hidden; display: flex; align-items: center; }
         #sec_partners .section-container { min-height: auto; height: 150px; padding: 0; overflow: hidden; display: flex; align-items: center; background: #fff; }
         #sec_media h2, #sec_partners h2 { display: none; }
@@ -68,7 +67,6 @@
         .modal-content { background: #000; border: 2px solid var(--gold); padding: 30px; position: relative; max-width: 800px; width: 90%; color: #fff; }
         .close-modal-btn { position: absolute; top: 10px; left: 10px; background: none; border: none; color: var(--gold); font-size: 24px; cursor: pointer; }
         
-        /* تنسيق قائمة العلم واللغات */
         .lang-btn { width: 30px; cursor: pointer; height: auto; border: 1px solid var(--gold); border-radius: 4px; }
         .lang-dropdown { display: none; position: absolute; top: 100%; right: 0; background: #000; border: 1px solid var(--gold); min-width: 150px; z-index: 10002; max-height: 400px; overflow-y: auto; }
         .lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #333; }
@@ -165,7 +163,6 @@
             document.getElementById('imageViewer').style.display = 'flex';
         }
 
-        // تشغيل صور الميديا (من 101 إلى 124)
         const mediaTrack = document.getElementById('mediaTrack');
         let mediaHtml = '';
         if (mediaTrack) {
@@ -175,7 +172,6 @@
             mediaTrack.innerHTML = mediaHtml + mediaHtml; 
         }
 
-        // تشغيل صور الشركاء (من 201 إلى 209)
         const partnersTrack = document.getElementById('partnersTrack');
         let partnersHtml = '';
         if (partnersTrack) {

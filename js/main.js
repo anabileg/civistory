@@ -26,17 +26,17 @@ if (document.getElementById('btnUp')) {
 
 // 2. وظائف التحكم في النوافذ المنبثقة (Modals)
 
-// وظيفة فتح النافذة الكبيرة
+// وظيفة فتح النافذة الكبيرة (المودال)
 function openModal(title) {
     const modal = document.querySelector('.modal-overlay');
-    const modalContent = document.getElementById('modal-body-content'); // المكان الذي سيوضع فيه النص
+    const modalContent = document.getElementById('modal-body-content'); // المكان الذي يظهر فيه النص
     
     if (modal) {
-        modal.style.display = 'flex'; // استخدام flex ليظهر التنسيق الذي صممناه في CSS
-        document.body.style.overflow = 'hidden'; // منع تحريك خلفية الموقع أثناء فتح النافذة
+        modal.style.display = 'flex'; // إظهار النافذة بنظام flex للتوسط
+        document.body.style.overflow = 'hidden'; // منع تحريك الصفحة الخلفية
         
-        // هنا سيقوم نظام i18n بوضع النص المناسب بناءً على العنوان (من نحن أو رسالتنا)
-        console.log("فتح نافذة: " + title);
+        // هنا يتم التأكد من تحديث النص أو العنوان إذا لزم الأمر
+        console.log("تم فتح نافذة: " + title);
     }
 }
 
@@ -45,48 +45,49 @@ function closeModal() {
     const modal = document.querySelector('.modal-overlay');
     if (modal) {
         modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // إعادة تفعيل حركة الموقع
+        document.body.style.overflow = 'auto'; // إعادة تفعيل الحركة في الموقع
     }
 }
 
 // 3. إدارة الأحداث والروابط عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ربط زر الغلق الأحمر (X) بوظيفة الإغلاق
+    // ربط زر الغلق الأحمر (X) الموجود في أقصى اليسار فوق
     const closeBtn = document.querySelector('.close-modal');
     if (closeBtn) {
         closeBtn.addEventListener('click', closeModal);
     }
     
-    // إغلاق النافذة عند الضغط في أي مكان خارج المربع (على التعتيم الأسود)
+    // إغلاق النافذة عند الضغط في أي مكان خارج المربع الكريمي (على المنطقة المظلمة)
     const modalOverlay = document.querySelector('.modal-overlay');
     if (modalOverlay) {
-        window.addEventListener('click', function(event) {
+        modalOverlay.addEventListener('click', function(event) {
+            // إذا كان الضغط على الغطاء وليس على المحتوى الداخلي
             if (event.target === modalOverlay) {
                 closeModal();
             }
         });
     }
     
-    // تفعيل الروابط (من نحن - رسالتنا) بعد تحميل اللغات
+    // تفعيل روابط (من نحن - رسالتنا) لفتح النافذة الكبيرة
+    // نستخدم setTimeout لضمان تحميل نصوص الروابط من ملفات الترجمة أولاً
     setTimeout(function() {
-        // نبحث في جميع الروابط الموجودة في القائمة
         const links = document.querySelectorAll('.nav-links a');
         
         links.forEach(link => {
-            // التحقق من النص المكتوب داخل الرابط
             const linkText = link.textContent.trim();
             
+            // التحقق من مسمى الرابط بالعربي أو الإنجليزي
             if (linkText === 'من نحن' || linkText === 'رسالتنا' || 
                 linkText === 'About Us' || linkText === 'Our Messages') {
                 
                 link.addEventListener('click', function(e) {
-                    e.preventDefault(); // منع الرابط من فتح صفحة جديدة
+                    e.preventDefault(); // منع الانتقال لصفحة أخرى
                     openModal(linkText);
                 });
             }
         });
-    }, 1200); // مهلة زمنية بسيطة للتأكد من تحميل نصوص اللغات
+    }, 1200); 
 });
 
 console.log("تم تحميل ملف الوظائف الأساسية بنجاح بنسبة 100%.");

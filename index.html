@@ -22,10 +22,17 @@
         .nav-left { display: flex; align-items: center; gap: 15px; }
         .social-icons { display: flex; gap: 10px; }
         .nav-logo-img { height: 60px; }
+        
+        /* تعديل شريط الأخبار: السرعة والمسافات */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 2500s linear infinite; }
-        .ticker-track span { padding: 0 15px; font-size: 1.1rem; }
-        @keyframes marqueeNews { 0% { transform: translateX(0);} 100% { transform: translateX(100%);} }
+        .ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 40s linear infinite; } /* تم ضبط السرعة هنا */
+        .ticker-track span { padding: 0 10px; font-size: 1.1rem; } /* مسافتين فقط بين الخبر والآخر */
+        
+        @keyframes marqueeNews { 
+            0% { transform: translateX(100%); } 
+            100% { transform: translateX(-100%); } 
+        }
+
         .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; }
         .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
         .hero-container { display: flex; gap: 40px; width: 100%; max-width: 1200px; justify-content: center; flex-wrap: wrap; }
@@ -33,34 +40,39 @@
         .book-box { width: 320px; }
         .book-box img { width: 100%; border: 2px solid var(--gold); border-radius: 15px; }
         .btn-action { display: block; width: 100%; background: var(--gold); color: #000; text-decoration: none; padding: 15px; border-radius: 10px; text-align: center; font-weight: 900; margin-top: 10px; }
+        
         .custom-section { padding: 40px 0; display: flex; justify-content: center; width: 100%; }
         .section-container { width: 95%; max-width: 1400px; min-height: 600px; background-color: #000; background-image: url('assets/image_3a7328.jpg'); background-size: cover; background-position: center; border: 3px solid var(--gold); position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
         .custom-section h2 { color: var(--gold); font-size: 3.5rem; margin-bottom: 40px; text-align: center; }
         .custom-section div[id^="content_"] { color: var(--white); line-height: 2.2; font-size: 1.6rem; text-align: justify; }
 
-        /* إعدادات الماركي */
+        /* إعدادات الماركي للميديا والشركاء */
         #sec_media .section-container { min-height: auto; height: 350px; padding: 0; overflow: hidden; display: flex; align-items: center; }
         #sec_partners .section-container { min-height: auto; height: 150px; padding: 0; overflow: hidden; display: flex; align-items: center; background: #fff; }
         #sec_media h2, #sec_partners h2 { display: none; }
         .media-marquee-container { width: 100%; overflow: hidden; direction: ltr; }
         .media-track { display: flex; width: max-content; align-items: center; }
-        #mediaTrack img { width: 28vw; height: 350px; object-fit: cover; margin: 0; padding: 0; display: block; cursor: pointer; filter: grayscale(100%); }
-        #mediaTrack { animation: scrollRight 350s linear infinite; }
-        #partnersTrack { animation: scrollRight 80s linear infinite; }
-        #partnersTrack img { filter: grayscale(0%); width: auto; height: 150px; object-fit: stretch; background-color: transparent; margin: 0; padding: 0; display: block; cursor: pointer; }
-        @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+        
+        #mediaTrack img { width: 28vw; height: 350px; object-fit: cover; cursor: pointer; filter: grayscale(100%); }
+        #mediaTrack { animation: scrollRight 60s linear infinite; }
+        #partnersTrack { animation: scrollRight 40s linear infinite; }
+        
+        #partnersTrack img { filter: grayscale(0%); width: auto; height: 120px; margin: 0 20px; cursor: pointer; }
+        
+        @keyframes scrollRight { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         .image-viewer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 20000; justify-content: center; align-items: center; }
         .image-viewer img { max-width: 90%; max-height: 90%; border: 3px solid var(--gold); }
 
-        /* تنسيق المودال */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 15000; justify-content: center; align-items: center; }
         .modal-content { background: #000; border: 2px solid var(--gold); padding: 30px; position: relative; max-width: 800px; width: 90%; color: #fff; }
         .close-modal-btn { position: absolute; top: 10px; left: 10px; background: none; border: none; color: var(--gold); font-size: 24px; cursor: pointer; }
         
-        /* العلم */
-        .lang-btn { width: 30px; cursor: pointer; height: auto; }
-        .lang-dropdown { display: none; position: absolute; top: 100%; right: 0; background: #000; border: 1px solid var(--gold); min-width: 120px; z-index: 10002; }
+        /* تنسيق قائمة العلم واللغات */
+        .lang-btn { width: 30px; cursor: pointer; height: auto; border: 1px solid var(--gold); border-radius: 4px; }
+        .lang-dropdown { display: none; position: absolute; top: 100%; right: 0; background: #000; border: 1px solid var(--gold); min-width: 150px; z-index: 10002; max-height: 400px; overflow-y: auto; }
+        .lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #333; }
+        .lang-item:hover { background: #222; }
     </style>
 </head>
 <body>
@@ -145,9 +157,7 @@
     <script src="js/i18n.js"></script>
     <script>
         window.onload = function() {
-            setTimeout(function() {
-                window.scrollTo(0, 0);
-            }, 10);
+            setTimeout(function() { window.scrollTo(0, 0); }, 10);
         };
 
         function viewImage(src) {
@@ -155,31 +165,37 @@
             document.getElementById('imageViewer').style.display = 'flex';
         }
 
-        // قراءة الصور للميديا
+        // تشغيل صور الميديا (من 101 إلى 124)
         const mediaTrack = document.getElementById('mediaTrack');
         let mediaHtml = '';
-        for(let i=101; i<=124; i++) {
-            mediaHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)">`;
+        if (mediaTrack) {
+            for(let i=101; i<=124; i++) {
+                mediaHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" onerror="this.style.display='none'">`;
+            }
+            mediaTrack.innerHTML = mediaHtml + mediaHtml; 
         }
-        mediaTrack.innerHTML = mediaHtml + mediaHtml; 
 
-        // قراءة الصور للشركاء
+        // تشغيل صور الشركاء (من 201 إلى 209)
         const partnersTrack = document.getElementById('partnersTrack');
         let partnersHtml = '';
-        for(let i=201; i<=209; i++) {
-            partnersHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)">`;
+        if (partnersTrack) {
+            for(let i=201; i<=209; i++) {
+                partnersHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" onerror="this.style.display='none'">`;
+            }
+            partnersTrack.innerHTML = partnersHtml + partnersHtml;
         }
-        partnersTrack.innerHTML = partnersHtml + partnersHtml;
 
         function openModal() { document.getElementById('infoModal').style.display = 'flex'; }
         function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
 
         window.onscroll = function() {
             let btn = document.getElementById("btnUp");
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                btn.style.display = "flex";
-            } else {
-                btn.style.display = "none";
+            if (btn) {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    btn.style.display = "flex";
+                } else {
+                    btn.style.display = "none";
+                }
             }
         };
 

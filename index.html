@@ -76,7 +76,7 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 
 /* 1. شريط الميديا (أبيض وأسود) */
 #mediaTrack {
-    animation: scrollMedia 240s linear infinite; /* سرعة بطيئة جداً */
+    animation: scrollMedia 60s linear infinite; /* سرعة متوازنة */
 }
 #mediaTrack img {
     filter: grayscale(100%);
@@ -84,16 +84,16 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 
 /* 2. شريط الشركاء (ملون) */
 #partnersTrack {
-    animation: scrollMedia 120s linear infinite; /* سرعة متوسطة */
+    animation: scrollMedia 40s linear infinite; 
 }
 #partnersTrack img {
     filter: grayscale(0%);
 }
 
-/* حل مشكلة اختفاء الصور: التحريك لليسار بنسبة الثلث في RTL */
+/* التعديل لضمان حركة سلسة لليسار في RTL */
 @keyframes scrollMedia {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-33.333%); } 
+    100% { transform: translateX(calc(-100% / 2)); } 
 }
 
 .image-viewer {
@@ -196,8 +196,8 @@ let mediaHtml = '';
 for(let i=101; i<=124; i++) {
     mediaHtml += `<img src="assets/${i}.jpg" onclick="viewImage(this.src)">`;
 }
-// تكرار الصور 3 مرات لضمان عدم وجود فجوات في الحركة
-mediaTrack.innerHTML = mediaHtml + mediaHtml + mediaHtml; 
+// تكرار الصور مرتين يكفي مع تعديل CSS لضمان عدم وجود فجوة
+mediaTrack.innerHTML = mediaHtml + mediaHtml; 
 
 // الشركاء (201-209)
 const partnersTrack = document.getElementById('partnersTrack');
@@ -205,8 +205,7 @@ let partnersHtml = '';
 for(let i=201; i<=209; i++) {
     partnersHtml += `<img src="assets/${i}.png" onclick="viewImage(this.src)">`;
 }
-// تكرار الصور 3 مرات لضمان حركة مستمرة
-partnersTrack.innerHTML = partnersHtml + partnersHtml + partnersHtml;
+partnersTrack.innerHTML = partnersHtml + partnersHtml;
 
 function openModal(type) { document.getElementById('infoModal').style.display = 'flex'; }
 function closeModal() { document.getElementById('infoModal').style.display = 'none'; }

@@ -4,7 +4,7 @@
 const i18n = {
     currentLanguage: 'ar',
 
-    // قائمة اللغات (86 لغة)
+    // قائمة اللغات (86 لغة) كاملة
     languages: [
         { code: 'ar', name: 'عربي', flag: 'https://flagcdn.com/w20/eg.png' },
         { code: 'en', name: 'English', flag: 'https://flagcdn.com/w20/gb.png' },
@@ -34,7 +34,7 @@ const i18n = {
         { code: 'zh', name: ' 中文 ', flag: 'https://flagcdn.com/w20/cn.png' },
         { code: 'ja', name: ' 日本語 ', flag: 'https://flagcdn.com/w20/jp.png' },
         { code: 'ko', name: ' 한국어 ', flag: 'https://flagcdn.com/w20/kr.png' },
-        { code: 'hi', name: 'हिन्दी', flag: 'https://flagcdn.com/w20/in.png' },
+        { code: 'hi', name: 'हिندي', flag: 'https://flagcdn.com/w20/in.png' },
         { code: 'th', name: 'ไทย', flag: 'https://flagcdn.com/w20/th.png' },
         { code: 'vi', name: 'Tiếng Việt', flag: 'https://flagcdn.com/w20/vn.png' },
         { code: 'fa', name: 'فارسی', flag: 'https://flagcdn.com/w20/ir.png' },
@@ -82,9 +82,9 @@ const i18n = {
         { code: 'sd', name: 'سنڌي', flag: 'https://flagcdn.com/w20/pk.png' },
         { code: 'bal', name: 'Balochi', flag: 'https://flagcdn.com/w20/pk.png' },
         { code: 'si', name: 'සිංහල', flag: 'https://flagcdn.com/w20/lk.png' },
-        { code: 'dv', name: 'ދිވެහි', flag: 'https://flagcdn.com/w20/mv.png' },
+        { code: 'dv', name: 'ދިވެහි', flag: 'https://flagcdn.com/w20/mv.png' },
         { code: 'my', name: 'မြန်မာ', flag: 'https://flagcdn.com/w20/mm.png' },
-        { code: 'km', name: ' ភាសាខ្មែر ', flag: 'https://flagcdn.com/w20/kh.png' },
+        { code: 'km', name: ' ភាសាខ្មែร ', flag: 'https://flagcdn.com/w20/kh.png' },
         { code: 'lo', name: ' ລาว ', flag: 'https://flagcdn.com/w20/la.png' },
         { code: 'mn', name: 'Монгол', flag: 'https://flagcdn.com/w20/mn.png' },
         { code: 'bo', name: 'བོད་སྐད', flag: 'https://flagcdn.com/w20/cn.png' },
@@ -166,7 +166,6 @@ const i18n = {
     },
 
     applyTranslations(data, currentLang) {
-        // --- تعديل اللوجو وغلاف الكتاب لضمان المسارات الصحيحة ---
         const siteLogo = document.querySelector('.logo img');
         if (siteLogo) { siteLogo.src = 'assets/logo.webp'; }
 
@@ -185,7 +184,6 @@ const i18n = {
         const mainVideo = document.getElementById('mainVideo');
         if (mainVideo && data.videoUrl) { mainVideo.src = data.videoUrl; }
 
-        // --- الربط التلقائي للقائمة العلوية مع الأقسام ---
         const navLinks = document.getElementById('navLinks');
         if (navLinks && data.nav && Array.isArray(data.nav)) {
             const sectionIDs = [

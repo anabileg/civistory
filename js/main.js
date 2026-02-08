@@ -28,7 +28,7 @@ if (document.getElementById('btnUp')) {
 
 // وظيفة فتح النافذة الكبيرة (المودال)
 function openModal(title) {
-    const modal = document.getElementById('infoModal'); // التأكد من استخدام ID الموحد
+    const modal = document.getElementById('infoModal'); 
     const modalOverlay = document.querySelector('.modal-overlay');
     
     if (modal) {
@@ -111,13 +111,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // تفعيل روابط (من نحن - رسالتنا) لفتح النافذة الكبيرة
+    // تمت إضافة فحص للـ data-i18n لضمان العمل مع نظام الترجمة
     setTimeout(function() {
         const links = document.querySelectorAll('#navLinks a');
         links.forEach(link => {
+            const i18nKey = link.getAttribute('data-i18n');
             const linkText = link.textContent.trim();
-            if (linkText === 'من نحن' || linkText === 'رسالتنا' || 
-                linkText === 'About Us' || linkText === 'Our Messages' ||
-                linkText === 'رسالاتنا') {
+            
+            if (i18nKey === 'about' || i18nKey === 'messages' || 
+                linkText === 'من نحن' || linkText === 'رسالتنا') {
                 
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -125,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
-    }, 1200); 
+    }, 1500); 
 
     // ضبط رابط LinkedIn بشكل صحيح
     const linkedinIcon = document.querySelector('.fa-linkedin-in');
@@ -135,4 +137,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-console.log("تم تحميل ملف الوظائف الأساسية بنجاح بنسبة 100%.");
+console.log("تم تحميل ملف الوظائف الأساسية بنجاح.");

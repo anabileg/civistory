@@ -1,5 +1,5 @@
 /* =========================================
-   ملف الوظائف الأساسية -  main.js
+   ملف الوظائف الأساسية الكامل - main.js
    ========================================= */
 
 // 1. وظيفة زر الصعود للأعلى (Back to Top)
@@ -26,55 +26,67 @@ if (document.getElementById('btnUp')) {
 
 // 2. وظائف التحكم في النوافذ المنبثقة (Modals)
 
-// فتح المربع
+// وظيفة فتح النافذة الكبيرة
 function openModal(title) {
-    const modal = document.getElementById('modal');
-    const modalTitle = modal.querySelector('.modal-title');
-    modalTitle.textContent = title;
-    modal.style.display = 'block';
-}
-
-// إغلاق المربع
-function closeModal() {
-    const modal = document.getElementById('modal');
+    const modal = document.querySelector('.modal-overlay');
+    const modalContent = document.getElementById('modal-body-content'); // المكان الذي سيوضع فيه النص
+    
     if (modal) {
-        modal.style.display = 'none';
+        modal.style.display = 'flex'; // استخدام flex ليظهر التنسيق الذي صممناه في CSS
+        document.body.style.overflow = 'hidden'; // منع تحريك خلفية الموقع أثناء فتح النافذة
+        
+        // هنا سيقوم نظام i18n بوضع النص المناسب بناءً على العنوان (من نحن أو رسالتنا)
+        console.log("فتح نافذة: " + title);
     }
 }
 
-// 3. إضافة أحداث النقر على روابط "من نحن" و"رسالتنا"
+// وظيفة إغلاق النافذة
+function closeModal() {
+    const modal = document.querySelector('.modal-overlay');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // إعادة تفعيل حركة الموقع
+    }
+}
+
+// 3. إدارة الأحداث والروابط عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
-    // إغلاق المربع عند الضغط على الزر الأحمر
-    const closeBtn = document.querySelector('.close-btn');
+    
+    // ربط زر الغلق الأحمر (X) بوظيفة الإغلاق
+    const closeBtn = document.querySelector('.close-modal');
     if (closeBtn) {
         closeBtn.addEventListener('click', closeModal);
     }
     
-    // إغلاق المربع عند الضغط خارجه
-    const modal = document.getElementById('modal');
-    if (modal) {
+    // إغلاق النافذة عند الضغط في أي مكان خارج المربع (على التعتيم الأسود)
+    const modalOverlay = document.querySelector('.modal-overlay');
+    if (modalOverlay) {
         window.addEventListener('click', function(event) {
-            if (event.target === modal) {
+            if (event.target === modalOverlay) {
                 closeModal();
             }
         });
     }
     
-    // إضافة أحداث النقر على الروابط بعد تحميل المحتوى
+    // تفعيل الروابط (من نحن - رسالتنا) بعد تحميل اللغات
     setTimeout(function() {
-        const navLinks = document.getElementById('navLinks');
-        if (navLinks) {
-            const links = navLinks.querySelectorAll('a');
-            links.forEach(link => {
-                if (link.textContent === 'من نحن' || link.textContent === 'رسالتنا') {
-                    link.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        openModal(this.textContent);
-                    });
-                }
-            });
-        }
-    }, 1000); // انتظر حتى يتم تحميل الروابط من ملف الترجمة
+        // نبحث في جميع الروابط الموجودة في القائمة
+        const links = document.querySelectorAll('.nav-links a');
+        
+        links.forEach(link => {
+            // التحقق من النص المكتوب داخل الرابط
+            const linkText = link.textContent.trim();
+            
+            if (linkText === 'من نحن' || linkText === 'رسالتنا' || 
+                linkText === 'About Us' || linkText === 'Our Messages') {
+                
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); // منع الرابط من فتح صفحة جديدة
+                    openModal(linkText);
+                });
+            }
+        });
+    }, 1200); // مهلة زمنية بسيطة للتأكد من تحميل نصوص اللغات
 });
 
-console.log("تم تحميل ملف الوظائف الأساسية بنجاح.");
+console.log("تم تحميل ملف الوظائف الأساسية بنجاح بنسبة 100%.");

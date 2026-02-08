@@ -191,49 +191,32 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.85); /* تعتيم الخلفية */
+    background: rgba(0,0,0,0.85);
     z-index: 20000;
     display: none;
     align-items: center;
     justify-content: center;
 }
 .modal-content {
-    background: #fdfaf0; /* اللون الكريمي الفاتح كما في صورتك */
+    background: #fdfaf0; /* اللون الكريمي المطلوب */
     width: 90%;
     max-width: 1100px;
     height: 85vh;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
-    color: #333; /* لون نص داكن للوضوح على الخلفية الفاتحة */
+    color: #333; /* نص داكن للوضوح */
     border: 3px solid var(--gold);
     display: flex;
     flex-direction: column;
     box-shadow: 0 10px 50px rgba(0,0,0,0.8);
 }
-.modal-body {
-    padding: 50px;
-    overflow-y: auto;
-    direction: ltr; /* السكرول لليسار */
-}
-.modal-body-content {
-    direction: rtl; /* النص يمين */
-    text-align: right;
-    line-height: 2.2;
-    font-size: 1.6rem;
-    font-weight: bold;
-}
-.modal-body::-webkit-scrollbar {
-    width: 10px;
-}
-.modal-body::-webkit-scrollbar-thumb {
-    background: var(--gold);
-    border-radius: 10px;
-}
+
+/* زر الغلق: أحمر - أقصى اليسار فوق */
 .close-modal {
     position: absolute;
     top: 15px;
-    left: 15px;
+    left: 15px; /* أقصى اليسار */
     background: #ff0000; /* أحمر */
     color: white;
     border: 2px solid #fff;
@@ -242,11 +225,38 @@ body {
     border-radius: 50%;
     font-size: 24px;
     cursor: pointer;
-    z-index: 100;
+    z-index: 110;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* شريط التمرير الجانبي وتنسيق المحتوى */
+.modal-body {
+    padding: 70px 40px 40px; /* مسافة للزر العلوي */
+    overflow-y: scroll; /* إظهار شريط التمرير */
+    flex: 1;
+}
+
+.modal-body-content {
+    direction: rtl; 
+    text-align: right;
+    line-height: 2.2;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+/* تصميم شريط التمرير الذهبي */
+.modal-body::-webkit-scrollbar {
+    width: 12px;
+}
+.modal-body::-webkit-scrollbar-track {
+    background: #eee;
+}
+.modal-body::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 10px;
 }
 
 /* --- باقي التنسيقات --- */

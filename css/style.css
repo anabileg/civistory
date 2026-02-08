@@ -184,13 +184,10 @@ body {
     background: #b8952d;
 }
 
-/* --- المودال (النافذة الكبيرة المطلوبة) --- */
+/* --- التعديل المطلوب: تنسيق النافذة (المودال) --- */
 .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.85);
     z-index: 20000;
     display: none;
@@ -198,68 +195,47 @@ body {
     justify-content: center;
 }
 .modal-content {
-    background: #fdfaf0; /* اللون الكريمي المطلوب */
+    background: #fdfaf0; /* اللون الكريمي */
     width: 90%;
     max-width: 1100px;
     height: 85vh;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
-    color: #333; /* نص داكن للوضوح */
+    color: #333;
     border: 3px solid var(--gold);
     display: flex;
     flex-direction: column;
-    box-shadow: 0 10px 50px rgba(0,0,0,0.8);
 }
-
-/* زر الغلق: أحمر - أقصى اليسار فوق */
-.close-modal {
+.modal-body {
+    padding: 60px 40px 40px;
+    overflow-y: auto; /* شريط التمرير */
+}
+.modal-body-inner {
+    direction: rtl;
+    text-align: right;
+    line-height: 2.2;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+.close-modal-btn {
     position: absolute;
     top: 15px;
     left: 15px; /* أقصى اليسار */
     background: #ff0000; /* أحمر */
     color: white;
     border: 2px solid #fff;
-    width: 45px;
-    height: 45px;
+    width: 40px; height: 40px;
     border-radius: 50%;
-    font-size: 24px;
     cursor: pointer;
-    z-index: 110;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 100;
+    display: flex; align-items: center; justify-content: center;
 }
+/* شريط التمرير الذهبي */
+.modal-body::-webkit-scrollbar { width: 10px; }
+.modal-body::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
 
-/* شريط التمرير الجانبي وتنسيق المحتوى */
-.modal-body {
-    padding: 70px 40px 40px; /* مسافة للزر العلوي */
-    overflow-y: scroll; /* إظهار شريط التمرير */
-    flex: 1;
-}
-
-.modal-body-content {
-    direction: rtl; 
-    text-align: right;
-    line-height: 2.2;
-    font-size: 1.6rem;
-    font-weight: bold;
-}
-
-/* تصميم شريط التمرير الذهبي */
-.modal-body::-webkit-scrollbar {
-    width: 12px;
-}
-.modal-body::-webkit-scrollbar-track {
-    background: #eee;
-}
-.modal-body::-webkit-scrollbar-thumb {
-    background: var(--gold);
-    border-radius: 10px;
-}
-
-/* --- باقي التنسيقات --- */
+/* --- باقي الملف الأصلي --- */
 .lang-btn { cursor: pointer; border: 1px solid var(--gold); border-radius: 4px; width: 45px; height: 30px; object-fit: cover; }
 .lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 400px; overflow-y: auto; z-index: 10002; width: 200px; }
 .lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #222; }
@@ -283,16 +259,13 @@ body {
     box-shadow: 0 0 15px rgba(212,175,55,0.5); 
     border: 2px solid #fff;
 }
-
 html { scroll-behavior: smooth; }
-
 .custom-section { 
     padding: 60px 0; 
     display: flex; 
     justify-content: center; 
     width: 100%; 
 }
-
 .section-container {
     width: 95%; 
     max-width: 1400px; 
@@ -308,7 +281,6 @@ html { scroll-behavior: smooth; }
     overflow: hidden;
     box-shadow: inset 0 0 100px #000, 0 0 30px rgba(212,175,55,0.3);
 }
-
 .custom-section h2 {
     color: var(--gold); 
     font-size: 3.5rem; 
@@ -316,7 +288,6 @@ html { scroll-behavior: smooth; }
     text-align: center;
     text-shadow: 3px 3px 15px #000;
 }
-
 .custom-section div[id^="content_"] {
     color: var(--white); 
     line-height: 2.2; 

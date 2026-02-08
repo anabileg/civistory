@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="htmlTag" lang="ar" dir="rtl">
+<html id="htmlTag">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -53,7 +53,6 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
     align-items: center;
 }
 
-/* فريم الشركاء بارتفاع ثابت تماماً */
 #sec_partners .section-container {
     min-height: auto;
     height: 150px; 
@@ -78,7 +77,6 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
     align-items: center;
 }
 
-/* صور الميديا كما هي تماماً */
 #mediaTrack img {
     width: 28vw;
     height: 350px;
@@ -94,17 +92,16 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
     animation: scrollRight 350s linear infinite; 
 }
 
-/* شريط الشركاء - اللوجو يملأ الارتفاع بالكامل */
 #partnersTrack {
     animation: scrollRight 80s linear infinite;
 }
 #partnersTrack img {
     filter: grayscale(0%);
     width: auto; 
-    height: 150px; /* نفس ارتفاع الفريم تماماً لملء الفراغ العمودي */
-    object-fit: stretch; /* يتمطط ليملأ الارتفاع، وأنت ستعالج الشكل بالبرامج */
+    height: 150px; 
+    object-fit: stretch; 
     background-color: transparent;
-    margin: 0; /* إلغاء المسافات الجانبية تماماً لتتحكم بها داخل الصورة نفسها */
+    margin: 0; 
     padding: 0;
     display: block;
     cursor: pointer;
@@ -129,6 +126,12 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
     max-height: 90%;
     border: 3px solid var(--gold);
 }
+
+/* زر الصعود و Modal إضافية لضمان عملها */
+#btnUp { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background: var(--gold); color: #000; border-radius: 50%; display: none; justify-content: center; align-items: center; cursor: pointer; z-index: 10000; }
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 20000; justify-content: center; align-items: center; }
+.modal-content { background: #111; padding: 20px; border: 2px solid var(--gold); width: 80%; max-width: 800px; position: relative; }
+.close-modal-btn { position: absolute; top: 10px; right: 10px; color: var(--gold); cursor: pointer; background: none; border: none; font-size: 1.5rem; }
 </style>
 </head>
 <body>
@@ -136,7 +139,7 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 <nav class="navbar">
 <div class="nav-container">
 <div style="position:relative">
-<img id="currentFlag" class="lang-btn" onclick="toggleMenu()">
+<img id="currentFlag" class="lang-btn" onclick="toggleMenu()" style="width: 40px; cursor: pointer;">
 <div id="langMenu" class="lang-dropdown"></div>
 </div>
 <div class="nav-links" id="navLinks"></div>
@@ -159,6 +162,7 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; }
 </div>
 </div>
 </section>
+
 <section class="custom-section" id="sec_goals"><div class="section-container"><h2 id="title_goals"></h2><div id="content_goals"></div></div></section>
 <section class="custom-section" id="sec_shout"><div class="section-container"><h2 id="title_shout"></h2><div id="content_shout"></div></div></section>
 <section class="custom-section" id="sec_awareness"><div class="section-container"><h2 id="title_awareness"></h2><div id="content_awareness"></div></div></section>
@@ -229,17 +233,9 @@ for(let i=201; i<=209; i++) {
 }
 partnersTrack.innerHTML = partnersHtml + partnersHtml;
 
-// تحديث الرابط لضمان عمله في جميع المتصفحات
-document.addEventListener('DOMContentLoaded', function() {
-    const linkedinIcon = document.querySelector('.fa-linkedin-in');
-    if(linkedinIcon && linkedinIcon.parentElement) {
-        linkedinIcon.parentElement.setAttribute('href', 'https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/');
-        linkedinIcon.parentElement.setAttribute('target', '_blank');
-    }
-});
-
-function openModal(type) { document.getElementById('infoModal').style.display = 'flex'; }
+function openModal() { document.getElementById('infoModal').style.display = 'flex'; }
 function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
+
 window.onscroll = function() {
     let btn = document.getElementById("btnUp");
     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
@@ -248,10 +244,12 @@ window.onscroll = function() {
         btn.style.display = "none";
     }
 };
+
+// وظيفة عامة تفتح المودال عند النقر على أي رابط "من نحن" بأي لغة
 document.addEventListener('click', function(e) {
     if(e.target.tagName === 'A') {
-        const text = e.target.innerText;
-        if(text.includes('من نحن') || text.includes('About Us')) openModal();
+        // نعتمد هنا على الـ ID أو كلاس معين بدلاً من النص للترجمة
+        if(e.target.id === 'nav_about') openModal();
     }
 });
 </script>

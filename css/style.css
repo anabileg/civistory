@@ -183,41 +183,45 @@ body {
 .btn-action:hover {
     background: #b8952d;
 }
-/* --- المودال --- */
+
+/* --- المودال (النافذة الكبيرة المطلوبة) --- */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0,0,0,0.85); /* تعتيم الخلفية */
     z-index: 20000;
     display: none;
     align-items: center;
     justify-content: center;
 }
 .modal-content {
-    background: #fdfaf0;
+    background: #fdfaf0; /* اللون الكريمي الفاتح كما في صورتك */
     width: 90%;
-    max-width: 900px;
-    max-height: 85vh;
+    max-width: 1100px;
+    height: 85vh;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
-    color: #333;
-    border: 2px solid var(--gold);
+    color: #333; /* لون نص داكن للوضوح على الخلفية الفاتحة */
+    border: 3px solid var(--gold);
     display: flex;
     flex-direction: column;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    box-shadow: 0 10px 50px rgba(0,0,0,0.8);
 }
 .modal-body {
-    padding: 40px;
+    padding: 50px;
     overflow-y: auto;
-    direction: ltr;
+    direction: ltr; /* السكرول لليسار */
 }
 .modal-body-content {
-    direction: rtl;
+    direction: rtl; /* النص يمين */
     text-align: right;
+    line-height: 2.2;
+    font-size: 1.6rem;
+    font-weight: bold;
 }
 .modal-body::-webkit-scrollbar {
     width: 10px;
@@ -230,13 +234,13 @@ body {
     position: absolute;
     top: 15px;
     left: 15px;
-    background: #ff0000;
+    background: #ff0000; /* أحمر */
     color: white;
     border: 2px solid #fff;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    font-size: 20px;
+    font-size: 24px;
     cursor: pointer;
     z-index: 100;
     display: flex;
@@ -244,13 +248,13 @@ body {
     justify-content: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
+
 /* --- باقي التنسيقات --- */
 .lang-btn { cursor: pointer; border: 1px solid var(--gold); border-radius: 4px; width: 45px; height: 30px; object-fit: cover; }
 .lang-dropdown { position: absolute; top: 60px; right: 0; background: #000; border: 1px solid var(--gold); display: none; max-height: 400px; overflow-y: auto; z-index: 10002; width: 200px; }
 .lang-item { padding: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--gold); border-bottom: 1px solid #222; }
 .lang-item:hover { background: rgba(212, 175, 55, 0.1); }
 
-/* تعديل سهم الصعود: يسار الصفحة وباللون الذهبي */
 #btnUp { 
     position: fixed; 
     bottom: 30px; 
@@ -270,8 +274,7 @@ body {
     border: 2px solid #fff;
 }
 
-/* --- تنسيقات الأقسام الجديدة المطلوبة --- */
-html { scroll-behavior: smooth; } /* تفعيل الانزلاق الناعم للربط */
+html { scroll-behavior: smooth; }
 
 .custom-section { 
     padding: 60px 0; 
@@ -283,9 +286,9 @@ html { scroll-behavior: smooth; } /* تفعيل الانزلاق الناعم ل
 .section-container {
     width: 95%; 
     max-width: 1400px; 
-    min-height: 600px; /* المربعات كبيرة كما طلبت */
+    min-height: 600px;
     background-color: #000;
-    background-image: url('../assets/image_3a7328.jpg'); /* الصورة الخلفية المطلوبة */
+    background-image: url('../assets/image_3a7328.jpg');
     background-size: cover; 
     background-position: center;
     border: 3px solid var(--gold); 

@@ -34,7 +34,7 @@ const i18n = {
         { code: 'zh', name: ' 中文 ', flag: 'https://flagcdn.com/w20/cn.png' },
         { code: 'ja', name: ' 日本語 ', flag: 'https://flagcdn.com/w20/jp.png' },
         { code: 'ko', name: ' 한국어 ', flag: 'https://flagcdn.com/w20/kr.png' },
-        { code: 'hi', name: 'हिन्दी', flag: 'https://flagcdn.com/w20/in.png' },
+        { code: 'hi', name: 'हिندي', flag: 'https://flagcdn.com/w20/in.png' },
         { code: 'th', name: 'ไทย', flag: 'https://flagcdn.com/w20/th.png' },
         { code: 'vi', name: 'Tiếng Việt', flag: 'https://flagcdn.com/w20/vn.png' },
         { code: 'fa', name: 'فارسی', flag: 'https://flagcdn.com/w20/ir.png' },
@@ -82,9 +82,9 @@ const i18n = {
         { code: 'sd', name: 'سنڌي', flag: 'https://flagcdn.com/w20/pk.png' },
         { code: 'bal', name: 'Balochi', flag: 'https://flagcdn.com/w20/pk.png' },
         { code: 'si', name: 'සිංහල', flag: 'https://flagcdn.com/w20/lk.png' },
-        { code: 'dv', name: 'ދිވެහි', flag: 'https://flagcdn.com/w20/mv.png' },
+        { code: 'dv', name: 'ދިވެහි', flag: 'https://flagcdn.com/w20/mv.png' },
         { code: 'my', name: 'မြန်မာ', flag: 'https://flagcdn.com/w20/mm.png' },
-        { code: 'km', name: ' ភាសាខ្មែر ', flag: 'https://flagcdn.com/w20/kh.png' },
+        { code: 'km', name: ' ភាសាខ្មែរ ', flag: 'https://flagcdn.com/w20/kh.png' },
         { code: 'lo', name: ' ລາວ ', flag: 'https://flagcdn.com/w20/la.png' },
         { code: 'mn', name: 'Монгол', flag: 'https://flagcdn.com/w20/mn.png' },
         { code: 'bo', name: 'བོད་སྐད', flag: 'https://flagcdn.com/w20/cn.png' },
@@ -176,10 +176,15 @@ const i18n = {
         const mainVideo = document.getElementById('mainVideo');
         if (mainVideo && data.videoUrl) { mainVideo.src = data.videoUrl; }
 
+        // --- التعديل المطلوب لغلاف الكتاب ---
+        const bookImg = document.querySelector('.book-box img');
+        if (bookImg) {
+            bookImg.src = 'assets/CIVISTORIES Book.webp';
+        }
+
         // --- تعديل الربط التلقائي للقائمة العلوية مع الأقسام ---
         const navLinks = document.getElementById('navLinks');
         if (navLinks && data.nav && Array.isArray(data.nav)) {
-            // ترتيب الأقسام الثابتة (IDs الإنجليزية)
             const sectionIDs = [
                 "sec_goals", "sec_shout", "sec_awareness", "sec_media", 
                 "sec_stats", "sec_losses", "sec_programs", "sec_vision", 
@@ -189,21 +194,14 @@ const i18n = {
             let navHTML = "";
             data.nav.forEach((item, index) => {
                 let href = "#";
-                
-                // الاستثناءات: العنصر 1 (من نحن) والعنصر 4 (رسالاتنا)
                 if (index === 0 || index === 3) {
-                    href = "#"; // تظل بدون ربط مباشر للأقسام
+                    href = "#"; 
                 } 
-                // الربط لبقية العناصر بناءً على التسلسل المطلوب
-                else if (index === 1) { href = "#" + sectionIDs[0]; } // أهدافنا -> sec_goals
-                else if (index === 2) { href = "#" + sectionIDs[1]; } // صرختنا -> sec_shout
+                else if (index === 1) { href = "#" + sectionIDs[0]; } 
+                else if (index === 2) { href = "#" + sectionIDs[1]; } 
                 else if (index >= 4) {
-                    // العناصر من 5 إلى 12 تربط بالـ IDs من 3 إلى 10
-                    // index 4 (وعي وطني) -> sectionIDs[2] (sec_awareness)
-                    // وهكذا...
                     href = "#" + sectionIDs[index - 2];
                 }
-                
                 navHTML += `<a href="${href}">${item}</a>`;
             });
             navLinks.innerHTML = navHTML;

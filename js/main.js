@@ -71,21 +71,23 @@ function closeImageModal() {
 document.addEventListener('DOMContentLoaded', function() {
     
     // --- تشغيل شريط الميديا (Media Track) ---
+    // تأكد من وجود مجلد باسم assets وبداخله الصور من 1 إلى 13 بصيغة webp
     const mediaTrack = document.getElementById('mediaTrack');
     if (mediaTrack) {
         let mediaHtml = '';
         for(let i=1; i<=13; i++) {
-            mediaHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Media ${i}">`;
+            mediaHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Media ${i}" onerror="this.src='https://via.placeholder.com/150?text=Image+Missing'">`;
         }
-        mediaTrack.innerHTML = mediaHtml + mediaHtml; // تكرار للتحريك اللانهائي
+        mediaTrack.innerHTML = mediaHtml + mediaHtml; 
     }
 
     // --- تشغيل شريط الشركاء (Partners Track) ---
+    // تأكد من وجود الصور من 201 إلى 209 بصيغة webp في مجلد assets
     const partnersTrack = document.getElementById('partnersTrack');
     if (partnersTrack) {
         let partnersHtml = '';
         for(let i=201; i<=209; i++) {
-            partnersHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Partner ${i}">`;
+            partnersHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Partner ${i}" onerror="this.src='https://via.placeholder.com/150?text=Logo+Missing'">`;
         }
         partnersTrack.innerHTML = partnersHtml + partnersHtml;
     }
@@ -111,20 +113,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // تفعيل روابط (من نحن - رسالتنا) لفتح النافذة الكبيرة
-    // تمت إضافة فحص للـ data-i18n وللنص المباشر لضمان العمل مع نظام الترجمة
     setTimeout(function() {
         const links = document.querySelectorAll('#navLinks a');
         links.forEach(link => {
             const i18nKey = link.getAttribute('data-i18n');
             const linkText = link.textContent.trim();
             
-            // التحقق من الرابط سواء كان "من نحن" (الأول) أو "رسالاتنا" (الرابع)
             if (i18nKey === 'about' || i18nKey === 'messages' || 
-                linkText === 'من نحن' || linkText === 'رسالاتنا' || 
-                linkText === 'About Us' || linkText === 'Our Messages') {
+                linkText === 'من نحن' || linkText === 'رسالتنا' || 
+                linkText === 'رسالاتنا' || linkText === 'About Us' || linkText === 'Our Messages') {
                 
                 link.addEventListener('click', function(e) {
-                    // منع الانتقال للهاش إذا كان الرابط مخصصاً للمودال فقط
                     if (link.getAttribute('href') === '#' || !link.getAttribute('href').startsWith('#sec_')) {
                         e.preventDefault();
                         openModal(linkText);

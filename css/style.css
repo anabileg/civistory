@@ -174,7 +174,7 @@ body {
     display: flex;
     white-space: nowrap;
     will-change: transform;
-    /* السرعة المطلوبة للأخبار فقط */
+    /* السرعة المطلوبة للأخبار فقط 2500 ثانية كما طلبت */
     animation: marqueeNews 2500s linear infinite;
 }
 
@@ -184,7 +184,7 @@ body {
 }
 
 .ticker-track span {
-    padding: 0 25px; /* المسافة التي طلبتها بين الأخبار */
+    padding: 0 25px; /* المسافة 25 بكسل بين الأخبار */
     font-size: 1.2rem;
     font-weight: bold;
     display: inline-block;
@@ -244,7 +244,7 @@ html { scroll-behavior: smooth; }
     display: flex;
     width: max-content;
     gap: 0;
-    /* سرعة الميديا منفصلة عن الأخبار لضمان التحميل (350 ثانية) */
+    /* سرعة الميديا 350 ثانية لضمان انسيابية الصور وعدم اختفائها */
     animation: scrollRight 350s linear infinite;
 }
 

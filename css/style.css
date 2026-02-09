@@ -12,11 +12,13 @@
     --ig: #E4405F;
     --wa-color: #25D366;
 }
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     color: var(--white);
     font-family: 'Tajawal', sans-serif;
@@ -24,6 +26,7 @@ body {
     overflow-x: hidden;
     font-weight: bold;
 }
+
 .site-bg {
     position: fixed;
     top: 0;
@@ -35,6 +38,7 @@ body {
     z-index: -1;
     filter: brightness(0.4);
 }
+
 /* --- الهيدر والقائمة --- */
 .navbar {
     min-height: 90px;
@@ -49,21 +53,25 @@ body {
     justify-content: space-between;
     padding: 0 50px;
 }
+
 .nav-right, .nav-left {
     display: flex;
     align-items: center;
     gap: 25px;
 }
+
 .logo-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .logo-container img {
     height: 65px;
     width: auto;
     object-fit: contain;
 }
+
 .site-title {
     color: var(--gold);
     font-size: 1.2rem;
@@ -72,6 +80,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
 .nav-link {
     color: var(--white);
     text-decoration: none;
@@ -79,13 +88,16 @@ body {
     transition: 0.3s;
     cursor: pointer;
 }
+
 .nav-link:hover {
     color: var(--gold);
 }
+
 /* --- اللغات --- */
 .lang-selector {
     position: relative;
 }
+
 .lang-btn {
     background: none;
     border: 1px solid var(--gold);
@@ -99,6 +111,7 @@ body {
     font-size: 1.1rem;
     font-family: 'Tajawal', sans-serif;
 }
+
 .lang-dropdown {
     position: absolute;
     top: 100%;
@@ -113,6 +126,7 @@ body {
     overflow-y: auto;
     z-index: 2000;
 }
+
 .lang-item {
     padding: 10px;
     cursor: pointer;
@@ -121,6 +135,7 @@ body {
     align-items: center;
     gap: 10px;
 }
+
 .lang-item:hover {
     background: var(--gold);
     color: #000;
@@ -139,6 +154,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 .modal-content {
     background-color: #fcf9f2; /* لون كريمي فاتح جداً */
     color: #222;
@@ -153,9 +169,11 @@ body {
     border: 2px solid var(--gold);
     box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
+
 .modal-content > * {
     direction: rtl; /* إعادة النص لليمين داخل المربع */
 }
+
 .close-modal {
     position: sticky;
     top: 0;
@@ -179,10 +197,12 @@ body {
     border-bottom: 2px solid var(--gold);
     padding-bottom: 10px;
 }
+
 .modal-body p {
     font-size: 1.3rem;
     line-height: 1.8;
 }
+
 /* --- شريط الأخبار --- */
 .news-ticker {
     background: var(--red-news);
@@ -195,20 +215,24 @@ body {
     overflow: hidden;
     border-top: 1px solid var(--gold);
 }
+
 .ticker-track {
     display: flex;
     white-space: nowrap;
     animation: marquee 35s linear infinite;
 }
+
 @keyframes marquee {
     0% { transform: translateX(100%); }
     100% { transform: translateX(-100%); }
 }
+
 .ticker-track span {
     margin: 0 40px;
     font-size: 1.3rem;
     font-weight: bold;
 }
+
 /* --- سهم الصعود --- */
 #btnUp { 
     position: fixed; 
@@ -228,14 +252,17 @@ body {
     box-shadow: 0 0 15px rgba(212,175,55,0.5); 
     border: 2px solid #fff;
 }
+
 /* --- تنسيقات الأقسام الجديدة --- */
 html { scroll-behavior: smooth; }
+
 .custom-section { 
     padding: 60px 0; 
     display: flex; 
     justify-content: center; 
     width: 100%; 
 }
+
 .section-container {
     width: 95%; 
     max-width: 1400px; 

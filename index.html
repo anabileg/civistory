@@ -26,8 +26,10 @@ align-items: center; justify-content: center; }
 .nav-logo-img { height: 60px; }
 .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center;
 overflow: hidden; }
-.ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 2500s linear infinite; }
-.ticker-track span { padding: 0 15px; font-size: 1.1rem; }
+/* تعديل سرعة شريط الأخبار ليكون بطيئاً جداً */
+.ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 4000s linear infinite; }
+/* تقليل المسافة بين الأخبار لتصبح متقاربة */
+.ticker-track span { padding: 0 5px; font-size: 1.1rem; }
 @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; }
 .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
@@ -215,7 +217,7 @@ function viewImage(src) {
     document.getElementById('imageViewer').style.display = 'flex';
 }
 
-// تعديل قراءة الصور بصيغة .webp للميديا
+// تعديل قراءة الصور بصيغة .webp للميديا لتبدأ من 101 وتنتهي عند 124
 const mediaTrack = document.getElementById('mediaTrack');
 let mediaHtml = '';
 for(let i=101; i<=124; i++) {

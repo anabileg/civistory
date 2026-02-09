@@ -48,7 +48,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 10001; /* رفع طبقة الهيدر */
+    z-index: 10001;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -155,7 +155,7 @@ body {
     border: 2px solid var(--gold);
 }
 
-/* --- شريط الأخبار (إصلاح السرعة والمسافة والموقع) --- */
+/* --- شريط الأخبار (إصلاح السرعة والمسافة) --- */
 .news-ticker {
     background: var(--red-news);
     color: white;
@@ -174,7 +174,7 @@ body {
     display: flex;
     white-space: nowrap;
     will-change: transform;
-    /* زيادة الرقم جداً لضمان البطء الشديد المريح للعين */
+    /* السرعة المطلوبة للأخبار فقط */
     animation: marqueeNews 2500s linear infinite;
 }
 
@@ -184,8 +184,7 @@ body {
 }
 
 .ticker-track span {
-    /* تعديل المسافة إلى 20 بكسل كما طلبت */
-    padding: 0 20px;
+    padding: 0 25px; /* المسافة التي طلبتها بين الأخبار */
     font-size: 1.2rem;
     font-weight: bold;
     display: inline-block;
@@ -218,23 +217,23 @@ html { scroll-behavior: smooth; }
     display: flex; 
     justify-content: center; 
     width: 100%;
-    overflow: hidden; /* لمنع أي محتوى من الخروج وعمل مربع زائد */
+    overflow: hidden;
 }
 
 .section-container {
     width: 95%; 
     max-width: 1400px; 
-    min-height: 100px; /* تقليص الحد الأدنى */
+    min-height: auto; 
     height: auto; 
     background-color: #000;
     border: 3px solid var(--gold);
     padding: 40px;
     text-align: center;
     position: relative;
-    margin-bottom: 0; /* إلغاء أي هوامش تسبب المربع الأبيض */
+    margin-bottom: 0;
 }
 
-/* --- تنسيق شريط الميديا لضمان ظهور الصور --- */
+/* --- تنسيق شريط الميديا (الصور) لضمان السرعة الصحيحة وظهور الصور --- */
 .media-marquee-container {
     width: 100%;
     overflow: hidden;
@@ -244,7 +243,9 @@ html { scroll-behavior: smooth; }
 .media-track {
     display: flex;
     width: max-content;
-    gap: 0; /* تلاصق الصور */
+    gap: 0;
+    /* سرعة الميديا منفصلة عن الأخبار لضمان التحميل (350 ثانية) */
+    animation: scrollRight 350s linear infinite;
 }
 
 .media-track img {
@@ -253,6 +254,11 @@ html { scroll-behavior: smooth; }
     object-fit: cover;
     display: block;
     filter: grayscale(100%);
+}
+
+@keyframes scrollRight {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
 }
 
 /* إخفاء المربع المزعج الذي قد يظهر في نهاية الصفحة */

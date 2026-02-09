@@ -111,19 +111,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // تفعيل روابط (من نحن - رسالتنا) لفتح النافذة الكبيرة
-    // تمت إضافة فحص للـ data-i18n لضمان العمل مع نظام الترجمة
+    // تمت إضافة فحص للـ data-i18n وللنص المباشر لضمان العمل مع نظام الترجمة
     setTimeout(function() {
         const links = document.querySelectorAll('#navLinks a');
         links.forEach(link => {
             const i18nKey = link.getAttribute('data-i18n');
             const linkText = link.textContent.trim();
             
+            // التحقق من الرابط سواء كان "من نحن" (الأول) أو "رسالاتنا" (الرابع)
             if (i18nKey === 'about' || i18nKey === 'messages' || 
-                linkText === 'من نحن' || linkText === 'رسالتنا') {
+                linkText === 'من نحن' || linkText === 'رسالاتنا' || 
+                linkText === 'About Us' || linkText === 'Our Messages') {
                 
                 link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    openModal(linkText);
+                    // منع الانتقال للهاش إذا كان الرابط مخصصاً للمودال فقط
+                    if (link.getAttribute('href') === '#' || !link.getAttribute('href').startsWith('#sec_')) {
+                        e.preventDefault();
+                        openModal(linkText);
+                    }
                 });
             }
         });

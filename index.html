@@ -27,11 +27,10 @@ align-items: center; justify-content: center; }
 .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center;
 overflow: hidden; }
 
-/* 1. تعديل شريط الأخبار: سرعة 2500s واتجاه صحيح */
-.ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 2500s linear infinite; }
+/* 1. تم إبطاء شريط الأخبار شويتين (من 2500s إلى 3500s) */
+.ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 3500s linear infinite; }
 .ticker-track span { padding: 0 25px; font-size: 1.1rem; }
 
-/* إصلاح حركة الأخبار لتبدأ من اليسار لليمين لتناسب اللغة العربية */
 @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
 .hero { padding: 180px 5% 60px; display: flex; flex-direction: column; align-items: center; }
@@ -95,12 +94,12 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; overfl
     filter: grayscale(100%);
 }
 
-/* 2. تعديل سرعة الميديا لتكون معقولة (250 ثانية) لكي لا تختفي الصور */
+/* 2. تم تسريع الميديا قليلاً (من 250s إلى 150s) لسرعة التحميل */
 #mediaTrack {
-    animation: scrollRight 250s linear infinite; 
+    animation: scrollRight 150s linear infinite; 
 }
 
-/* 3. تعديل سرعة الشركاء (40 ثانية) */
+/* 3. سرعة الشركاء كما هي */
 #partnersTrack {
     animation: scrollRight 150s linear infinite;
 }

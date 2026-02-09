@@ -141,7 +141,7 @@ body {
     color: #000;
 }
 
-/* --- التعديل المطلوب للنافذة (Modal) --- */
+/* --- النافذة (Modal) --- */
 .modal {
     display: none;
     position: fixed;
@@ -156,29 +156,29 @@ body {
 }
 
 .modal-content {
-    background-color: #fcf9f2; /* لون كريمي فاتح جداً */
+    background-color: #fcf9f2; 
     color: #222;
-    width: 95%; /* حجم أكبر بكثير */
+    width: 95%; 
     max-width: 1300px;
-    height: 90vh; /* يشغل معظم الشاشة */
+    height: 90vh; 
     padding: 40px;
     border-radius: 10px;
     position: relative;
     overflow-y: auto;
-    direction: ltr; /* شريط التمرير جهة اليسار */
+    direction: ltr; 
     border: 2px solid var(--gold);
     box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
 .modal-content > * {
-    direction: rtl; /* إعادة النص لليمين داخل المربع */
+    direction: rtl; 
 }
 
 .close-modal {
     position: sticky;
     top: 0;
-    left: 0; /* جهة اليسار فوق شريط التمرير */
-    color: #ff0000; /* لون أحمر */
+    left: 0; 
+    color: #ff0000; 
     font-size: 45px;
     font-weight: bold;
     cursor: pointer;
@@ -188,10 +188,9 @@ body {
     width: fit-content;
     margin-bottom: 10px;
 }
-/* --- نهاية تعديل النافذة --- */
 
 .modal-body h2 {
-    color: #8b4513; /* بني داكن للعنوان يتناسب مع الكريمي */
+    color: #8b4513; 
     margin-bottom: 20px;
     font-size: 2rem;
     border-bottom: 2px solid var(--gold);
@@ -203,7 +202,7 @@ body {
     line-height: 1.8;
 }
 
-/* --- شريط الأخبار --- */
+/* --- شريط الأخبار (تعديل السرعة والمسافات) --- */
 .news-ticker {
     background: var(--red-news);
     color: white;
@@ -219,7 +218,8 @@ body {
 .ticker-track {
     display: flex;
     white-space: nowrap;
-    animation: marquee 35s linear infinite;
+    /* تم إبطاء السرعة من 35 إلى 80 ثانية */
+    animation: marquee 80s linear infinite;
 }
 
 @keyframes marquee {
@@ -228,7 +228,8 @@ body {
 }
 
 .ticker-track span {
-    margin: 0 40px;
+    /* تم تقليل المسافة بين الأخبار من 40 بكسل إلى 15 بكسل */
+    margin: 0 15px;
     font-size: 1.3rem;
     font-weight: bold;
 }

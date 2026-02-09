@@ -4,7 +4,7 @@
 const i18n = {
     currentLanguage: 'ar',
 
-    // قائمة اللغات (86 لغة) كاملة
+    // قائمة اللغات (86 لغة) كاملة كما هي
     languages: [
         { code: 'ar', name: 'عربي', flag: 'https://flagcdn.com/w20/eg.png' },
         { code: 'en', name: 'English', flag: 'https://flagcdn.com/w20/gb.png' },
@@ -34,7 +34,7 @@ const i18n = {
         { code: 'zh', name: ' 中文 ', flag: 'https://flagcdn.com/w20/cn.png' },
         { code: 'ja', name: ' 日本語 ', flag: 'https://flagcdn.com/w20/jp.png' },
         { code: 'ko', name: ' 한국어 ', flag: 'https://flagcdn.com/w20/kr.png' },
-        { code: 'hi', name: 'हिندي', flag: 'https://flagcdn.com/w20/in.png' },
+        { code: 'hi', name: 'हिन्दी', flag: 'https://flagcdn.com/w20/in.png' },
         { code: 'th', name: 'ไทย', flag: 'https://flagcdn.com/w20/th.png' },
         { code: 'vi', name: 'Tiếng Việt', flag: 'https://flagcdn.com/w20/vn.png' },
         { code: 'fa', name: 'فارسی', flag: 'https://flagcdn.com/w20/ir.png' },
@@ -166,12 +166,6 @@ const i18n = {
     },
 
     applyTranslations(data, currentLang) {
-        const siteLogo = document.querySelector('.logo img');
-        if (siteLogo) { siteLogo.src = 'assets/logo.webp'; }
-
-        const bookImg = document.querySelector('.book-box img');
-        if (bookImg) { bookImg.src = 'assets/CIVISTORIES Book.webp'; }
-
         const mainTitle = document.getElementById('mainTitle');
         if (mainTitle && data.heroTitle) { mainTitle.innerHTML = data.heroTitle; }
         
@@ -186,8 +180,9 @@ const i18n = {
 
         const navLinks = document.getElementById('navLinks');
         if (navLinks && data.nav && Array.isArray(data.nav)) {
+            // IDs للأقسام بالترتيب الصحيح
             const sectionIDs = [
-                "sec_goals", "sec_shout", "sec_awareness", "sec_media", 
+                "sec_about", "sec_goals", "sec_shout", "sec_awareness", "sec_media", 
                 "sec_stats", "sec_losses", "sec_programs", "sec_vision", 
                 "sec_reference", "sec_partners"
             ];
@@ -195,13 +190,13 @@ const i18n = {
             let navHTML = "";
             data.nav.forEach((item, index) => {
                 let href = "#";
-                if (index === 0 || index === 3) {
-                    href = "#"; 
-                } 
-                else if (index === 1) { href = "#" + sectionIDs[0]; } 
-                else if (index === 2) { href = "#" + sectionIDs[1]; } 
+                // التعديل: ربط كل عنصر بقسمه الصحيح
+                if (index === 0) href = "#sec_about"; // من نحن
+                else if (index === 1) href = "#sec_goals"; // أهدافنا
+                else if (index === 2) href = "#sec_shout"; // صرختنا
+                else if (index === 3) href = "#sec_awareness"; // رسالاتنا (وعي وطني)
                 else if (index >= 4) {
-                    href = "#" + sectionIDs[index - 2];
+                    href = "#" + sectionIDs[index];
                 }
                 navHTML += `<a href="${href}">${item}</a>`;
             });

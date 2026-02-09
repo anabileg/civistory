@@ -52,8 +52,13 @@ function viewImage(src) {
 // 4. إدارة الأحداث والروابط عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
     
+    // --- تعديل سرعة شريط الأخبار (tickerTrack) لتصبح 2500 ثانية كما طلبت ---
+    const tickerTrack = document.getElementById('tickerTrack');
+    if (tickerTrack) {
+        tickerTrack.style.animationDuration = '2500s';
+    }
+
     // --- تشغيل شريط الميديا (Media Track) ---
-    // تم التعديل لتبدأ من 101 وتنتهي عند 124 كما طلبت
     const mediaTrack = document.getElementById('mediaTrack');
     if (mediaTrack) {
         let mediaHtml = '';
@@ -115,4 +120,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-console.log("تم تحديث ملف الوظائف بنجاح وتصحيح نطاق الصور.");
+console.log("تم تحديث سرعة شريط الأخبار إلى 2500 ثانية.");

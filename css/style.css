@@ -1,5 +1,5 @@
 /* =========================================
-   ملف التنسيق الأساسي الكامل - style.css
+   ملف التنسيق الأساسي الكامل المعدل - style.css
    ========================================= */
 :root {
     --gold: #d4af37;
@@ -202,42 +202,43 @@ body {
     line-height: 1.8;
 }
 
-/* --- شريط الأخبار (تعديل السرعة والمسافات) --- */
+/* --- شريط الأخبار (تعديل جذري للتضارب) --- */
 .news-ticker {
     background: var(--red-news);
     color: white;
-    padding: 12px 0;
+    height: 45px;
     position: fixed;
-    bottom: 0;
+    top: 90px; /* نقلناه للأعلى ليطابق ملف HTML */
     width: 100%;
     z-index: 1000;
     overflow: hidden;
-    border-top: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
 }
 
 .ticker-track {
     display: flex;
     white-space: nowrap;
-    /* تم إبطاء السرعة من 35 إلى 80 ثانية */
-    animation: marquee 80s linear infinite;
+    /* السرعة هنا 500 ثانية لتكون بطيئة جداً ومريحة */
+    animation: marqueeNews 500s linear infinite;
 }
 
-@keyframes marquee {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
+@keyframes marqueeNews {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
 }
 
 .ticker-track span {
-    /* تم تقليل المسافة بين الأخبار من 40 بكسل إلى 15 بكسل */
-    margin: 0 15px;
-    font-size: 1.3rem;
+    /* المسافة أصبحت 5 بكسل لتكون الأخبار متقاربة جداً */
+    padding: 0 5px;
+    font-size: 1.1rem;
     font-weight: bold;
 }
 
 /* --- سهم الصعود --- */
 #btnUp { 
     position: fixed; 
-    bottom: 80px; 
+    bottom: 30px; 
     left: 30px; 
     width: 55px; 
     height: 55px; 
@@ -258,7 +259,7 @@ body {
 html { scroll-behavior: smooth; }
 
 .custom-section { 
-    padding: 60px 0; 
+    padding: 40px 0; 
     display: flex; 
     justify-content: center; 
     width: 100%; 
@@ -267,9 +268,18 @@ html { scroll-behavior: smooth; }
 .section-container {
     width: 95%; 
     max-width: 1400px; 
-    min-height: 600px;
+    min-height: auto; /* جعلناه تلقائياً لحل مشكلة المربع الفارغ */
     background-color: #000;
     border: 3px solid var(--gold);
     padding: 40px;
     text-align: center;
+    position: relative;
+}
+
+/* إضافات لضمان ظهور صور الميديا */
+.media-track img {
+    width: 28vw;
+    height: 350px;
+    object-fit: cover;
+    filter: grayscale(100%);
 }

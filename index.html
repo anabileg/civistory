@@ -84,7 +84,7 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; overfl
 }
 
 #mediaTrack img {
-    width: 24vw !important; 
+    width: 25vw !important; /* تعديل طفيف لثبات العرض وتحسين الأداء */
     height: 350px;
     object-fit: cover;
     margin: 0;
@@ -94,9 +94,9 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; overfl
     filter: grayscale(100%);
 }
 
-/* 2. تم تهدئة السرعة إلى 120s لتكون الحركة هادئة وواضحة جداً */
+/* 2. جعل السرعة بطيئة جداً جداً (300 ثانية) لهدوء الحركة وتقليل حمل المعالجة */
 #mediaTrack {
-    animation: scrollRight 120s linear infinite !important; 
+    animation: scrollRight 300s linear infinite !important; 
 }
 
 /* 3. سرعة الشركاء */

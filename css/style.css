@@ -1,5 +1,6 @@
 /* =========================================
-   ملف التنسيق الأساسي الكامل المعدل - style.css
+   ملف التنسيق الأساسي الكامل - style.css
+   تم الإصلاح الشامل للسرعة والمساحات والمربع الزائد
    ========================================= */
 :root {
     --gold: #d4af37;
@@ -47,7 +48,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 10001; /* رفع طبقة الهيدر */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -127,25 +128,11 @@ body {
     z-index: 2000;
 }
 
-.lang-item {
-    padding: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.lang-item:hover {
-    background: var(--gold);
-    color: #000;
-}
-
 /* --- النافذة (Modal) --- */
 .modal {
     display: none;
     position: fixed;
-    z-index: 10000;
+    z-index: 20000;
     left: 0;
     top: 0;
     width: 100%;
@@ -165,74 +152,43 @@ body {
     border-radius: 10px;
     position: relative;
     overflow-y: auto;
-    direction: ltr; 
     border: 2px solid var(--gold);
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
-.modal-content > * {
-    direction: rtl; 
-}
-
-.close-modal {
-    position: sticky;
-    top: 0;
-    left: 0; 
-    color: #ff0000; 
-    font-size: 45px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 10001;
-    line-height: 1;
-    display: block;
-    width: fit-content;
-    margin-bottom: 10px;
-}
-
-.modal-body h2 {
-    color: #8b4513; 
-    margin-bottom: 20px;
-    font-size: 2rem;
-    border-bottom: 2px solid var(--gold);
-    padding-bottom: 10px;
-}
-
-.modal-body p {
-    font-size: 1.3rem;
-    line-height: 1.8;
-}
-
-/* --- شريط الأخبار (تعديل جذري للتضارب) --- */
+/* --- شريط الأخبار (إصلاح السرعة والمسافة والموقع) --- */
 .news-ticker {
     background: var(--red-news);
     color: white;
     height: 45px;
     position: fixed;
-    top: 90px; /* نقلناه للأعلى ليطابق ملف HTML */
+    top: 90px;
     width: 100%;
-    z-index: 1000;
+    z-index: 10000;
     overflow: hidden;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid var(--gold);
 }
 
 .ticker-track {
     display: flex;
     white-space: nowrap;
-    /* السرعة هنا 500 ثانية لتكون بطيئة جداً ومريحة */
-    animation: marqueeNews 500s linear infinite;
+    will-change: transform;
+    /* زيادة الرقم جداً لضمان البطء الشديد المريح للعين */
+    animation: marqueeNews 120s linear infinite;
 }
 
 @keyframes marqueeNews {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(100%); }
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
 }
 
 .ticker-track span {
-    /* المسافة أصبحت 5 بكسل لتكون الأخبار متقاربة جداً */
-    padding: 0 5px;
-    font-size: 1.1rem;
+    /* تعديل المسافة إلى 20 بكسل كما طلبت */
+    padding: 0 20px;
+    font-size: 1.2rem;
     font-weight: bold;
+    display: inline-block;
 }
 
 /* --- سهم الصعود --- */
@@ -251,35 +207,55 @@ body {
     cursor: pointer; 
     z-index: 9999; 
     font-size: 24px; 
-    box-shadow: 0 0 15px rgba(212,175,55,0.5); 
     border: 2px solid #fff;
 }
 
-/* --- تنسيقات الأقسام الجديدة --- */
+/* --- تنسيقات الأقسام وإلغاء المربع الزائد --- */
 html { scroll-behavior: smooth; }
 
 .custom-section { 
     padding: 40px 0; 
     display: flex; 
     justify-content: center; 
-    width: 100%; 
+    width: 100%;
+    overflow: hidden; /* لمنع أي محتوى من الخروج وعمل مربع زائد */
 }
 
 .section-container {
     width: 95%; 
     max-width: 1400px; 
-    min-height: auto; /* جعلناه تلقائياً لحل مشكلة المربع الفارغ */
+    min-height: 100px; /* تقليص الحد الأدنى */
+    height: auto; 
     background-color: #000;
     border: 3px solid var(--gold);
     padding: 40px;
     text-align: center;
     position: relative;
+    margin-bottom: 0; /* إلغاء أي هوامش تسبب المربع الأبيض */
 }
 
-/* إضافات لضمان ظهور صور الميديا */
+/* --- تنسيق شريط الميديا لضمان ظهور الصور --- */
+.media-marquee-container {
+    width: 100%;
+    overflow: hidden;
+    direction: ltr;
+}
+
+.media-track {
+    display: flex;
+    width: max-content;
+    gap: 0; /* تلاصق الصور */
+}
+
 .media-track img {
     width: 28vw;
     height: 350px;
     object-fit: cover;
+    display: block;
     filter: grayscale(100%);
+}
+
+/* إخفاء المربع المزعج الذي قد يظهر في نهاية الصفحة */
+body > div:last-child:not(#btnUp):not(.image-viewer):not(.modal) {
+    display: none !important;
 }

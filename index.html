@@ -84,8 +84,7 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; overfl
 }
 
 #mediaTrack img {
-    /* تم الحفاظ على العرض لظهور 4 صور */
-    width: 24vw;
+    width: 24vw !important; /* إجبار الحجم الجديد */
     height: 350px;
     object-fit: cover;
     margin: 0;
@@ -95,9 +94,9 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; overfl
     filter: grayscale(100%);
 }
 
-/* 2. تم زيادة سرعة الميديا من (25s) إلى (15s) لتصبح أسرع كما طلبت */
+/* 2. إضافة important لضمان عدم تدخل ملف style.css الخارجي */
 #mediaTrack {
-    animation: scrollRight 15s linear infinite; 
+    animation: scrollRight 10s linear infinite !important; 
 }
 
 /* 3. سرعة الشركاء */

@@ -52,13 +52,8 @@ function viewImage(src) {
 // 4. إدارة الأحداث والروابط عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
     
-    // --- تعديل سرعة شريط الأخبار (tickerTrack) لتصبح 2500 ثانية كما طلبت ---
-    const tickerTrack = document.getElementById('tickerTrack');
-    if (tickerTrack) {
-        tickerTrack.style.animationDuration = '2500s';
-    }
-
     // --- تشغيل شريط الميديا (Media Track) ---
+    // تم التعديل لتبدأ من 101 وتنتهي عند 124 كما طلبت
     const mediaTrack = document.getElementById('mediaTrack');
     if (mediaTrack) {
         let mediaHtml = '';
@@ -66,6 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
             mediaHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Media ${i}" onerror="this.style.display='none'">`;
         }
         mediaTrack.innerHTML = mediaHtml + mediaHtml; 
+        // ضبط السرعة هنا مباشرة لضمان عدم اختفاء الصور
+        mediaTrack.style.animationDuration = '2500s';
     }
 
     // --- تشغيل شريط الشركاء (Partners Track) ---
@@ -119,5 +116,3 @@ document.addEventListener('DOMContentLoaded', function() {
         linkedinIcon.parentElement.setAttribute('target', '_blank');
     }
 });
-
-console.log("تم تحديث سرعة شريط الأخبار إلى 2500 ثانية.");

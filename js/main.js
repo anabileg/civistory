@@ -1,5 +1,5 @@
 /* =========================================
-   ملف الوظائف الأساسية الكامل - main.js
+   ملف الوظائف الأساسية الكامل المحدث - main.js
    ========================================= */
 
 // 1. وظيفة زر الصعود للأعلى (Back to Top)
@@ -14,7 +14,6 @@ window.onscroll = function() {
     }
 };
 
-// عند الضغط على زر الصعود للأعلى
 if (document.getElementById('btnUp')) {
     document.getElementById('btnUp').onclick = function() {
         window.scrollTo({
@@ -25,94 +24,72 @@ if (document.getElementById('btnUp')) {
 }
 
 // 2. وظائف التحكم في النوافذ المنبثقة (Modals)
-
-// وظيفة فتح النافذة الكبيرة (المودال)
 function openModal(title) {
     const modal = document.getElementById('infoModal'); 
-    const modalOverlay = document.querySelector('.modal-overlay');
-    
     if (modal) {
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden'; 
         console.log("تم فتح نافذة: " + title);
-    } else if (modalOverlay) {
-        modalOverlay.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
     }
 }
 
-// وظيفة إغلاق النافذة
 function closeModal() {
     const modal = document.getElementById('infoModal');
-    const modalOverlay = document.querySelector('.modal-overlay');
-    
     if (modal) modal.style.display = 'none';
-    if (modalOverlay) modalOverlay.style.display = 'none';
-    
     document.body.style.overflow = 'auto'; 
 }
 
-// 3. وظائف عرض الصور (Lightbox)
+// 3. وظائف عرض الصور (Lightbox) المحدثة لتطابق الـ HTML
 function viewImage(src) {
-    const modal = document.getElementById('imageModal');
-    const fullImg = document.getElementById('fullImg');
-    if (modal && fullImg) {
-        modal.style.display = 'flex';
+    const viewer = document.getElementById('imageViewer');
+    const fullImg = document.getElementById('fullImage');
+    if (viewer && fullImg) {
+        viewer.style.display = 'flex';
         fullImg.src = src;
     }
-}
-
-function closeImageModal() {
-    const modal = document.getElementById('imageModal');
-    if (modal) modal.style.display = 'none';
 }
 
 // 4. إدارة الأحداث والروابط عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
     
     // --- تشغيل شريط الميديا (Media Track) ---
-    // تأكد من وجود مجلد باسم assets وبداخله الصور من 1 إلى 13 بصيغة webp
+    // تم التعديل لتبدأ من 101 وتنتهي عند 124 كما طلبت
     const mediaTrack = document.getElementById('mediaTrack');
     if (mediaTrack) {
         let mediaHtml = '';
-        for(let i=1; i<=13; i++) {
-            mediaHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Media ${i}" onerror="this.src='https://via.placeholder.com/150?text=Image+Missing'">`;
+        for(let i=101; i<=124; i++) {
+            mediaHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Media ${i}" onerror="this.style.display='none'">`;
         }
         mediaTrack.innerHTML = mediaHtml + mediaHtml; 
     }
 
     // --- تشغيل شريط الشركاء (Partners Track) ---
-    // تأكد من وجود الصور من 201 إلى 209 بصيغة webp في مجلد assets
     const partnersTrack = document.getElementById('partnersTrack');
     if (partnersTrack) {
         let partnersHtml = '';
         for(let i=201; i<=209; i++) {
-            partnersHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Partner ${i}" onerror="this.src='https://via.placeholder.com/150?text=Logo+Missing'">`;
+            partnersHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Partner ${i}" onerror="this.style.display='none'">`;
         }
         partnersTrack.innerHTML = partnersHtml + partnersHtml;
     }
 
-    // ربط زر الغلق الأحمر (X)
-    const closeBtn = document.querySelector('.close-modal');
+    // ربط أزرار الإغلاق
+    const closeBtn = document.querySelector('.close-modal-btn');
     if (closeBtn) {
         closeBtn.addEventListener('click', closeModal);
     }
     
-    // إغلاق النافذة عند الضغط في المنطقة المظلمة
-    const modalOverlay = document.querySelector('.modal-overlay');
+    // إغلاق عند الضغط في المنطقة المظلمة
     const infoModal = document.getElementById('infoModal');
-    
-    [modalOverlay, infoModal].forEach(el => {
-        if (el) {
-            el.addEventListener('click', function(event) {
-                if (event.target === el) {
-                    closeModal();
-                }
-            });
-        }
-    });
+    if (infoModal) {
+        infoModal.addEventListener('click', function(event) {
+            if (event.target === infoModal) {
+                closeModal();
+            }
+        });
+    }
 
-    // تفعيل روابط (من نحن - رسالتنا) لفتح النافذة الكبيرة
+    // تفعيل الروابط لفتح المودال
     setTimeout(function() {
         const links = document.querySelectorAll('#navLinks a');
         links.forEach(link => {
@@ -120,20 +97,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const linkText = link.textContent.trim();
             
             if (i18nKey === 'about' || i18nKey === 'messages' || 
-                linkText === 'من نحن' || linkText === 'رسالتنا' || 
-                linkText === 'رسالاتنا' || linkText === 'About Us' || linkText === 'Our Messages') {
+                linkText === 'من نحن' || linkText === 'About Us') {
                 
                 link.addEventListener('click', function(e) {
-                    if (link.getAttribute('href') === '#' || !link.getAttribute('href').startsWith('#sec_')) {
-                        e.preventDefault();
-                        openModal(linkText);
-                    }
+                    e.preventDefault();
+                    openModal(linkText);
                 });
             }
         });
-    }, 1500); 
+    }, 1000); 
 
-    // ضبط رابط LinkedIn بشكل صحيح
+    // ضبط رابط LinkedIn
     const linkedinIcon = document.querySelector('.fa-linkedin-in');
     if(linkedinIcon && linkedinIcon.parentElement) {
         linkedinIcon.parentElement.setAttribute('href', 'https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/');
@@ -141,4 +115,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-console.log("تم تحميل ملف الوظائف الأساسية بنجاح.");
+console.log("تم تحديث ملف الوظائف بنجاح وتصحيح نطاق الصور.");

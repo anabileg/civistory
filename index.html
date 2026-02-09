@@ -27,7 +27,7 @@ align-items: center; justify-content: center; }
 .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center;
 overflow: hidden; }
 
-/* 1. إعادة شريط الأخبار للسرعة المطلوبة (2500s) */
+/* 1. سرعة شريط الأخبار كما هي (2500s) */
 .ticker-track { display: flex; white-space: nowrap; animation: marqueeNews 2500s linear infinite; }
 .ticker-track span { padding: 0 25px; font-size: 1.1rem; }
 
@@ -84,7 +84,8 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; overfl
 }
 
 #mediaTrack img {
-    width: 28vw;
+    /* تم تصغير العرض لظهور 4 صور */
+    width: 24vw;
     height: 350px;
     object-fit: cover;
     margin: 0;
@@ -94,12 +95,12 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; overfl
     filter: grayscale(100%);
 }
 
-/* 2. تعديل سرعة الميديا لتكون (80s) لضمان خفة الموقع وسرعة الفتح */
+/* 2. تم تسريع الميديا إلى (50s) لتصبح أسرع وتتحمل الصور */
 #mediaTrack {
-    animation: scrollRight 80s linear infinite; 
+    animation: scrollRight 50s linear infinite; 
 }
 
-/* 3. سرعة الشركاء مريحة (100s) */
+/* 3. سرعة الشركاء */
 #partnersTrack {
     animation: scrollRight 100s linear infinite;
 }

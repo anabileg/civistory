@@ -1,7 +1,6 @@
 /* =========================================
 نظام الترجمة الدولي - i18n.js
 ========================================= */
-
 const i18n = {
     currentLanguage: 'ar',
     
@@ -224,8 +223,10 @@ const i18n = {
                 }
             }
             
-            // إضافة رابط البريد الإلكتروني بشكل صحيح (هنا الإصلاح!)
-            socialHtml += `<a href="mailto:civistories@gmail.com" target="_blank" style="color:#ffffff !important"><i class="fas fa-envelope"></i></a>`;
+            // إضافة رابط البريد الإلكتروني بشكل صحيح مع حل المشكلة
+            socialHtml += `<a href="mailto:civistories@gmail.com" onclick="handleEmailClick(event)" style="color:#ffffff !important">
+                <i class="fas fa-envelope"></i>
+            </a>`;
             
             socialIcons.innerHTML = socialHtml;
         }
@@ -275,6 +276,25 @@ const i18n = {
         });
     }
 };
+
+// دالة خاصة لفتح البريد الإلكتروني بشكل صحيح
+function handleEmailClick(event) {
+    event.preventDefault();
+    
+    // فتح نافذة منبثقة للتأكد من البريد
+    const email = 'civistories@gmail.com';
+    const subject = 'رسالة من موقع قصص الحضارات';
+    const body = 'السلام عليكم ورحمة الله وبركاته،\n\n';
+    
+    // بناء الرابط الكامل
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // فتح الرابط في نافذة جديدة
+    window.location.href = mailtoLink;
+    
+    // رسالة تأكيد للمستخدم
+    alert('تم فتح نافذة البريد الإلكتروني. إذا لم تفتح، يرجى التأكد من إعدادات المتصفح أو نسخ البريد يدويًا:\n\ncivistories@gmail.com');
+}
 
 window.addEventListener('DOMContentLoaded', () => {
     i18n.renderDropdown();

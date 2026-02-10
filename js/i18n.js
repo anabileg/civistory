@@ -82,7 +82,7 @@ const i18n = {
         { code: 'sd', name: 'سنڌي', flag: 'https://flagcdn.com/w20/pk.png' },
         { code: 'bal', name: 'Balochi', flag: 'https://flagcdn.com/w20/pk.png' },
         { code: 'si', name: 'සිංහල', flag: 'https://flagcdn.com/w20/lk.png' },
-        { code: 'dv', name: 'ދිވެහි', flag: 'https://flagcdn.com/w20/mv.png' },
+        { code: 'dv', name: 'ދިވެහි', flag: 'https://flagcdn.com/w20/mv.png' },
         { code: 'my', name: 'မြန်မာ', flag: 'https://flagcdn.com/w20/mm.png' },
         { code: 'km', name: ' ភាសាខ្មែร ', flag: 'https://flagcdn.com/w20/kh.png' },
         { code: 'lo', name: ' ລาว ', flag: 'https://flagcdn.com/w20/la.png' },
@@ -94,11 +94,14 @@ const i18n = {
     async loadLanguage(lang) {
         const selectedLang = this.languages.find(l => l.code === lang) || this.languages[0];
         try {
+            // محاولة جلب ملف الترجمة الخارجي إذا وجد
             const response = await fetch(`./locales/${lang}/translation.json`);
             const translations = response.ok ? await response.json() : this.getDefaultTranslations(lang);
             this.applyTranslations(translations, lang);
+            
             const flagImg = document.getElementById('currentFlag');
             if (flagImg) { flagImg.src = selectedLang.flag; }
+            
             const rtlLanguages = ['ar', 'ur', 'fa', 'sd', 'ps', 'ku', 'he', 'yi', 'ug', 'syr', 'dv', 'ckb'];
             document.documentElement.dir = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
@@ -107,8 +110,10 @@ const i18n = {
             console.error("فشل تحميل ملف اللغة:", lang, error);
             const translations = this.getDefaultTranslations(lang);
             this.applyTranslations(translations, lang);
+            
             const flagImg = document.getElementById('currentFlag');
             if (flagImg) { flagImg.src = selectedLang.flag; }
+            
             const rtlLanguages = ['ar', 'ur', 'fa', 'sd', 'ps', 'ku', 'he', 'yi', 'ug', 'syr', 'dv', 'ckb'];
             document.documentElement.dir = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
@@ -180,23 +185,19 @@ const i18n = {
 
         const navLinks = document.getElementById('navLinks');
         if (navLinks && data.nav && Array.isArray(data.nav)) {
+            // أسماء الـ IDs للأقسام بالترتيب
             const sectionIDs = [
-                "sec_about", "sec_goals", "sec_shout", "sec_awareness", "sec_media", 
-                "sec_stats", "sec_losses", "sec_programs", "sec_vision", 
+                "sec_about", "sec_goals", "sec_shout", "sec_messages", "sec_awareness", 
+                "sec_media", "sec_stats", "sec_losses", "sec_programs", "sec_vision", 
                 "sec_reference", "sec_partners"
             ];
             
             let navHTML = "";
             data.nav.forEach((item, index) => {
-                let href = "#";
-                if (index === 0) href = "#sec_about"; 
-                else if (index === 1) href = "#sec_goals"; 
-                else if (index === 2) href = "#sec_shout"; 
-                else if (index === 3) href = "#sec_awareness"; 
-                else if (index >= 4) {
-                    href = "#" + sectionIDs[index];
-                }
-                navHTML += `<a href="${href}">${item}</a>`;
+                const targetID = sectionIDs[index] || "sec_about";
+                
+                // إضافة الروابط مع التأكد من بقاء وظيفة الـ Modal لـ "من نحن" و "رسالاتنا"
+                navHTML += `<a href="#${targetID}" onclick="if('${targetID}'==='sec_about' || '${targetID}'==='sec_messages'){ event.preventDefault(); openModal('${item}'); }">${item}</a>`;
             });
             navLinks.innerHTML = navHTML;
         }
@@ -218,7 +219,7 @@ const i18n = {
                     </a>`;
                 }
             }
-            // التعديل الصحيح للرابط هنا: إضافة mailto
+            // إضافة رابط البريد الإلكتروني بشكل ثابت
             socialHtml += `<a href="mailto:civistories@gmail.com" style="color:#ffffff !important"><i class="fas fa-envelope"></i></a>`;
             socialIcons.innerHTML = socialHtml;
         }
@@ -268,6 +269,7 @@ const i18n = {
 
 window.addEventListener('DOMContentLoaded', () => {
     i18n.renderDropdown();
+    // تحميل اللغة العربية كافتراضية عند البدء
     i18n.loadLanguage('ar');
     i18n.init();
 });

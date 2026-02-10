@@ -310,19 +310,6 @@ document.addEventListener('click', function(e) {
         if(text.includes('من نحن') || text.includes('About Us')) openModal();
     }
 });
-
-// إصلاح رابط البريد الإلكتروني
-setTimeout(function() {
-    const socialIcons = document.getElementById('socialIcons');
-    if(socialIcons) {
-        const emailLink = document.createElement('a');
-        emailLink.href = 'mailto:civistories@gmail.com';
-        emailLink.target = '_blank';
-        emailLink.style.color = '#ffffff';
-        emailLink.innerHTML = '<i class="fas fa-envelope"></i>';
-        socialIcons.appendChild(emailLink);
-    }
-}, 2000);
 </script>
 </body>
 </html>

@@ -1,9 +1,10 @@
 /* =========================================
 نظام الترجمة الدولي - i18n.js
 ========================================= */
+
 const i18n = {
     currentLanguage: 'ar',
-
+    
     // قائمة اللغات (86 لغة) كاملة كما هي
     languages: [
         { code: 'ar', name: 'عربي', flag: 'https://flagcdn.com/w20/eg.png' },
@@ -31,9 +32,9 @@ const i18n = {
         { code: 'cs', name: 'Čeština', flag: 'https://flagcdn.com/w20/cz.png' },
         { code: 'ru', name: 'Русский', flag: 'https://flagcdn.com/w20/ru.png' },
         { code: 'uk', name: 'Українська', flag: 'https://flagcdn.com/w20/ua.png' },
-        { code: 'zh', name: ' 中文 ', flag: 'https://flagcdn.com/w20/cn.png' },
-        { code: 'ja', name: ' 日本語 ', flag: 'https://flagcdn.com/w20/jp.png' },
-        { code: 'ko', name: ' 한국어 ', flag: 'https://flagcdn.com/w20/kr.png' },
+        { code: 'zh', name: '中文', flag: 'https://flagcdn.com/w20/cn.png' },
+        { code: 'ja', name: '日本語', flag: 'https://flagcdn.com/w20/jp.png' },
+        { code: 'ko', name: '한국어', flag: 'https://flagcdn.com/w20/kr.png' },
         { code: 'hi', name: 'हिन्दी', flag: 'https://flagcdn.com/w20/in.png' },
         { code: 'th', name: 'ไทย', flag: 'https://flagcdn.com/w20/th.png' },
         { code: 'vi', name: 'Tiếng Việt', flag: 'https://flagcdn.com/w20/vn.png' },
@@ -45,7 +46,7 @@ const i18n = {
         { code: 'tl', name: 'Tagalog', flag: 'https://flagcdn.com/w20/ph.png' },
         { code: 'sw', name: 'Kiswahili', flag: 'https://flagcdn.com/w20/tz.png' },
         { code: 'so', name: 'Soomaali', flag: 'https://flagcdn.com/w20/so.png' },
-        { code: 'am', name: ' አማርኛ ', flag: 'https://flagcdn.com/w20/et.png' },
+        { code: 'am', name: 'አማርኛ', flag: 'https://flagcdn.com/w20/et.png' },
         { code: 'yo', name: 'Yorùbá', flag: 'https://flagcdn.com/w20/ng.png' },
         { code: 'ha', name: 'Hausa', flag: 'https://flagcdn.com/w20/ne.png' },
         { code: 'zu', name: 'isiZulu', flag: 'https://flagcdn.com/w20/za.png' },
@@ -82,15 +83,15 @@ const i18n = {
         { code: 'sd', name: 'سنڌي', flag: 'https://flagcdn.com/w20/pk.png' },
         { code: 'bal', name: 'Balochi', flag: 'https://flagcdn.com/w20/pk.png' },
         { code: 'si', name: 'සිංහල', flag: 'https://flagcdn.com/w20/lk.png' },
-        { code: 'dv', name: 'ދިވެහි', flag: 'https://flagcdn.com/w20/mv.png' },
+        { code: 'dv', name: 'ދިވެހި', flag: 'https://flagcdn.com/w20/mv.png' },
         { code: 'my', name: 'မြန်မာ', flag: 'https://flagcdn.com/w20/mm.png' },
-        { code: 'km', name: ' ភាសាខ្មែร ', flag: 'https://flagcdn.com/w20/kh.png' },
-        { code: 'lo', name: ' ລาว ', flag: 'https://flagcdn.com/w20/la.png' },
+        { code: 'km', name: 'ភាសាខ្មែរ', flag: 'https://flagcdn.com/w20/kh.png' },
+        { code: 'lo', name: 'ລາວ', flag: 'https://flagcdn.com/w20/la.png' },
         { code: 'mn', name: 'Монгол', flag: 'https://flagcdn.com/w20/mn.png' },
         { code: 'bo', name: 'བོད་སྐད', flag: 'https://flagcdn.com/w20/cn.png' },
         { code: 'dz', name: 'རྫོང་ཁ', flag: 'https://flagcdn.com/w20/bt.png' }
     ],
-
+    
     async loadLanguage(lang) {
         const selectedLang = this.languages.find(l => l.code === lang) || this.languages[0];
         try {
@@ -120,7 +121,7 @@ const i18n = {
             this.currentLanguage = lang;
         }
     },
-
+    
     getDefaultTranslations(lang) {
         if (lang === 'en') {
             return {
@@ -129,7 +130,9 @@ const i18n = {
                 bookLink: "https://heyzine.com/flip-book/48ab3792ec.html",
                 videoUrl: "https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&rel=0",
                 nav: ["About Us", "Our Goals", "Our Cry", "Our Messages", "National Awareness", "Media", "Statistics", "Losses", "Awareness Programs", "Human Vision", "Our Human Reference", "Our Partners"],
-                social: [{"icon": "fab fa-whatsapp", "color": "#25D366", "link": "https://wa.me/201009995015"}],
+                social: [
+                    {"icon": "fab fa-whatsapp", "color": "#25D366", "link": "https://wa.me/201009995015"}
+                ],
                 news: [
                     "Al-Azhar: Nearly one divorce case every two and a half minutes due to digital addiction",
                     "Ministry of Awqaf: Smartphones are one of the main causes of marital silence and coldness",
@@ -139,6 +142,7 @@ const i18n = {
                 ]
             };
         }
+        
         return {
             heroTitle: '<span style="color:#ff0000">تسونامي</span> <span style="color:#d4af37">الوهم الرقمي: من مهد الحضارة مصر إلى العالم... صرخة لإنقاذ الإنسانية</span>',
             bookBtnText: "تصفح الكتاب كاملاً",
@@ -169,7 +173,7 @@ const i18n = {
             ]
         };
     },
-
+    
     applyTranslations(data, currentLang) {
         const mainTitle = document.getElementById('mainTitle');
         if (mainTitle && data.heroTitle) { mainTitle.innerHTML = data.heroTitle; }
@@ -182,7 +186,7 @@ const i18n = {
         
         const mainVideo = document.getElementById('mainVideo');
         if (mainVideo && data.videoUrl) { mainVideo.src = data.videoUrl; }
-
+        
         const navLinks = document.getElementById('navLinks');
         if (navLinks && data.nav && Array.isArray(data.nav)) {
             // أسماء الـ IDs للأقسام بالترتيب
@@ -195,18 +199,18 @@ const i18n = {
             let navHTML = "";
             data.nav.forEach((item, index) => {
                 const targetID = sectionIDs[index] || "sec_about";
-                
                 // إضافة الروابط مع التأكد من بقاء وظيفة الـ Modal لـ "من نحن" و "رسالاتنا"
                 navHTML += `<a href="#${targetID}" onclick="if('${targetID}'==='sec_about' || '${targetID}'==='sec_messages'){ event.preventDefault(); openModal('${item}'); }">${item}</a>`;
             });
             navLinks.innerHTML = navHTML;
         }
-
+        
         const socialIcons = document.getElementById('socialIcons');
         if (socialIcons && data.social && Array.isArray(data.social)) {
             let socialHtml = "";
+            
             if (currentLang === 'ar') {
-                socialHtml = data.social.map(s =>
+                socialHtml = data.social.map(s => 
                     `<a href="${s.link}" target="_blank" style="color:${s.color} !important">
                     <i class="${s.icon}"></i>
                     </a>`
@@ -219,8 +223,10 @@ const i18n = {
                     </a>`;
                 }
             }
-            // إضافة رابط البريد الإلكتروني بشكل ثابت
-            socialHtml += `<a href="mailto:civistories@gmail.com" style="color:#ffffff !important"><i class="fas fa-envelope"></i></a>`;
+            
+            // إضافة رابط البريد الإلكتروني بشكل صحيح (هنا الإصلاح!)
+            socialHtml += `<a href="mailto:civistories@gmail.com" target="_blank" style="color:#ffffff !important"><i class="fas fa-envelope"></i></a>`;
+            
             socialIcons.innerHTML = socialHtml;
         }
         
@@ -230,10 +236,11 @@ const i18n = {
             tickerTrack.innerHTML = newsHTML + newsHTML;
         }
     },
-
+    
     renderDropdown() {
         const langMenu = document.getElementById('langMenu');
         if (!langMenu) return;
+        
         langMenu.innerHTML = '';
         this.languages.forEach(lang => {
             const div = document.createElement('div');
@@ -247,10 +254,11 @@ const i18n = {
             langMenu.appendChild(div);
         });
     },
-
+    
     init() {
         const langMenu = document.getElementById('langMenu');
         const currentFlag = document.getElementById('currentFlag');
+        
         if (currentFlag) {
             currentFlag.onclick = (e) => {
                 e.stopPropagation();
@@ -259,6 +267,7 @@ const i18n = {
                 }
             };
         }
+        
         document.addEventListener('click', (e) => {
             if (langMenu && currentFlag && !currentFlag.contains(e.target)) {
                 langMenu.style.display = 'none';

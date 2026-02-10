@@ -82,7 +82,7 @@ const i18n = {
         { code: 'sd', name: 'سنڌي', flag: 'https://flagcdn.com/w20/pk.png' },
         { code: 'bal', name: 'Balochi', flag: 'https://flagcdn.com/w20/pk.png' },
         { code: 'si', name: 'සිංහල', flag: 'https://flagcdn.com/w20/lk.png' },
-        { code: 'dv', name: 'ދިވެහි', flag: 'https://flagcdn.com/w20/mv.png' },
+        { code: 'dv', name: 'ދිވެහි', flag: 'https://flagcdn.com/w20/mv.png' },
         { code: 'my', name: 'မြန်မာ', flag: 'https://flagcdn.com/w20/mm.png' },
         { code: 'km', name: ' ភាសាខ្មែร ', flag: 'https://flagcdn.com/w20/kh.png' },
         { code: 'lo', name: ' ລาว ', flag: 'https://flagcdn.com/w20/la.png' },
@@ -218,7 +218,7 @@ const i18n = {
                     </a>`;
                 }
             }
-            // السطر المحدث: إضافة mailto لفتح تطبيق البريد مباشرة
+            // التعديل الصحيح للرابط هنا: إضافة mailto
             socialHtml += `<a href="mailto:civistories@gmail.com" style="color:#ffffff !important"><i class="fas fa-envelope"></i></a>`;
             socialIcons.innerHTML = socialHtml;
         }

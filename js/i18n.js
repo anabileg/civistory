@@ -218,8 +218,8 @@ const i18n = {
                     </a>`;
                 }
             }
-            // السطر المضاف لإظهار الإيميل في كل اللغات
-            socialHtml += `<a href="mailto:civistories@gmail.com" target="_blank" style="color:#ffffff !important"><i class="fas fa-envelope"></i></a>`;
+            // السطر المحدث: إضافة mailto لفتح تطبيق البريد مباشرة
+            socialHtml += `<a href="mailto:civistories@gmail.com" style="color:#ffffff !important"><i class="fas fa-envelope"></i></a>`;
             socialIcons.innerHTML = socialHtml;
         }
         

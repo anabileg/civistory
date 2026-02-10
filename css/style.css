@@ -1,6 +1,6 @@
 /* =========================================
-   ملف التنسيق الأساسي الكامل - style.css
-   تم الإصلاح الشامل للسرعة والمساحات والمربع الزائد
+   ملف التنسيق الأساسي الكامل المطور - style.css
+   تحسين سرعة التحميل وتفعيل تفاعلات البريد
    ========================================= */
 :root {
     --gold: #d4af37;
@@ -26,6 +26,9 @@ body {
     background: #000;
     overflow-x: hidden;
     font-weight: bold;
+    /* تحسين سلاسة التمرير لسرعة الاستجابة */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 .site-bg {
@@ -36,8 +39,11 @@ body {
     height: 100%;
     background-image: url('../assets/image_390e08.jpg');
     background-size: cover;
+    background-position: center;
     z-index: -1;
     filter: brightness(0.4);
+    /* منع إعادة تحميل الخلفية بشكل مجهد للمتصفح */
+    will-change: transform;
 }
 
 /* --- الهيدر والقائمة --- */
@@ -92,6 +98,19 @@ body {
 
 .nav-link:hover {
     color: var(--gold);
+}
+
+/* --- تنسيق أيقونة الإيميل لضمان العمل --- */
+a[href^="mailto:"] {
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a[href^="mailto:"]:hover {
+    color: var(--gold) !important;
+    transform: scale(1.1);
 }
 
 /* --- اللغات --- */
@@ -155,7 +174,7 @@ body {
     border: 2px solid var(--gold);
 }
 
-/* --- شريط الأخبار (إصلاح السرعة والمسافة) --- */
+/* --- شريط الأخبار --- */
 .news-ticker {
     background: var(--red-news);
     color: white;
@@ -174,7 +193,6 @@ body {
     display: flex;
     white-space: nowrap;
     will-change: transform;
-    /* السرعة المطلوبة للأخبار فقط 2500 ثانية كما طلبت */
     animation: marqueeNews 2500s linear infinite;
 }
 
@@ -184,7 +202,7 @@ body {
 }
 
 .ticker-track span {
-    padding: 0 25px; /* المسافة 25 بكسل بين الأخبار */
+    padding: 0 25px;
     font-size: 1.2rem;
     font-weight: bold;
     display: inline-block;
@@ -209,7 +227,7 @@ body {
     border: 2px solid #fff;
 }
 
-/* --- تنسيقات الأقسام وإلغاء المربع الزائد --- */
+/* --- تنسيقات الأقسام وتحسين سرعة الرندر --- */
 html { scroll-behavior: smooth; }
 
 .custom-section { 
@@ -218,6 +236,9 @@ html { scroll-behavior: smooth; }
     justify-content: center; 
     width: 100%;
     overflow: hidden;
+    /* تحسين السرعة: يخبر المتصفح أن القسم لا يؤثر على ما قبله */
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 500px;
 }
 
 .section-container {
@@ -233,7 +254,7 @@ html { scroll-behavior: smooth; }
     margin-bottom: 0;
 }
 
-/* --- تنسيق شريط الميديا (الصور) لضمان السرعة الصحيحة وظهور الصور --- */
+/* --- تنسيق شريط الميديا --- */
 .media-marquee-container {
     width: 100%;
     overflow: hidden;
@@ -244,8 +265,8 @@ html { scroll-behavior: smooth; }
     display: flex;
     width: max-content;
     gap: 0;
-    /* سرعة الميديا 350 ثانية لضمان انسيابية الصور وعدم اختفائها */
     animation: scrollRight 350s linear infinite;
+    will-change: transform;
 }
 
 .media-track img {
@@ -254,6 +275,8 @@ html { scroll-behavior: smooth; }
     object-fit: cover;
     display: block;
     filter: grayscale(100%);
+    /* تحسين استهلاك الذاكرة للصور */
+    image-rendering: -webkit-optimize-contrast;
 }
 
 @keyframes scrollRight {
@@ -261,7 +284,7 @@ html { scroll-behavior: smooth; }
     100% { transform: translateX(0); }
 }
 
-/* إخفاء المربع المزعج الذي قد يظهر في نهاية الصفحة */
+/* إخفاء المربع المزعج */
 body > div:last-child:not(#btnUp):not(.image-viewer):not(.modal) {
     display: none !important;
 }

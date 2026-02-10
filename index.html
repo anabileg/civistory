@@ -134,6 +134,31 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; overfl
     max-height: 90%;
     border: 3px solid var(--gold);
 }
+
+/* --- إضافات تنسيق ضرورية لتشغيل العناصر التي أضفتها أنت --- */
+.modal-overlay { 
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.85); z-index: 20000; align-items: center; justify-content: center; 
+}
+.modal-content { 
+    background: #111; border: 2px solid var(--gold); width: 90%; max-width: 900px; 
+    padding: 40px; border-radius: 15px; position: relative; max-height: 85vh; overflow-y: auto; 
+}
+.close-modal-btn { 
+    position: absolute; top: 15px; right: 15px; background: var(--gold); border: none; 
+    padding: 5px 12px; cursor: pointer; border-radius: 5px; font-weight: bold; 
+}
+#btnUp { 
+    position: fixed; bottom: 30px; left: 30px; width: 55px; height: 55px; 
+    background: var(--gold); color: #000; border-radius: 50%; display: none; 
+    align-items: center; justify-content: center; cursor: pointer; z-index: 9999; 
+    font-size: 24px; border: 2px solid #fff; 
+}
+.lang-dropdown {
+    position: absolute; top: 100%; right: 0; background: #000; border: 1px solid var(--gold);
+    display: none; flex-direction: column; min-width: 150px; z-index: 2000;
+}
+.lang-btn { height: 35px; cursor: pointer; border: 1px solid var(--gold); border-radius: 5px; padding: 2px; }
 </style>
 </head>
 <body>
@@ -217,6 +242,11 @@ window.onload = function() {
     }, 10);
 };
 
+function toggleMenu() {
+    const menu = document.getElementById('langMenu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+
 function viewImage(src) {
     document.getElementById('fullImage').src = src;
     document.getElementById('imageViewer').style.display = 'flex';
@@ -244,8 +274,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-function openModal(type) { document.getElementById('infoModal').style.display = 'flex'; }
-function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
+function openModal(type) { 
+    document.getElementById('infoModal').style.display = 'flex'; 
+}
+function closeModal() { 
+    document.getElementById('infoModal').style.display = 'none'; 
+}
+
 window.onscroll = function() {
     let btn = document.getElementById("btnUp");
     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
@@ -254,6 +289,7 @@ window.onscroll = function() {
         btn.style.display = "none";
     }
 };
+
 document.addEventListener('click', function(e) {
     if(e.target.tagName === 'A') {
         const text = e.target.innerText;

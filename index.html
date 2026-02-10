@@ -84,7 +84,7 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; overfl
 }
 
 #mediaTrack img {
-    width: 25vw !important; /* تعديل طفيف لثبات العرض وتحسين الأداء */
+    width: 25vw !important;
     height: 350px;
     object-fit: cover;
     margin: 0;
@@ -92,6 +92,8 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; overfl
     display: block;
     cursor: pointer;
     filter: grayscale(100%);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
 
 /* 2. جعل السرعة بطيئة جداً جداً (300 ثانية) لهدوء الحركة وتقليل حمل المعالجة */
@@ -113,6 +115,8 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; overfl
     padding: 0;
     display: block;
     cursor: pointer;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
 
 @keyframes scrollRight {
@@ -236,6 +240,30 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; overfl
 <script src="js/main.js"></script>
 <script src="js/i18n.js"></script>
 <script>
+// 1. تأخير تحميل الصور حتى ينتهي تحميل باقي الصفحة
+window.addEventListener('DOMContentLoaded', function() {
+    // تأخير تحميل الصور لمدة 3 ثوانٍ
+    setTimeout(function() {
+        loadImages();
+    }, 3000);
+});
+
+function loadImages() {
+    const mediaTrack = document.getElementById('mediaTrack');
+    let mediaHtml = '';
+    for(let i=101; i<=124; i++) {
+        mediaHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" style="opacity:1;">`;
+    }
+    mediaTrack.innerHTML = mediaHtml + mediaHtml; 
+
+    const partnersTrack = document.getElementById('partnersTrack');
+    let partnersHtml = '';
+    for(let i=201; i<=209; i++) {
+        partnersHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" style="opacity:1;">`;
+    }
+    partnersTrack.innerHTML = partnersHtml + partnersHtml;
+}
+
 window.onload = function() {
     setTimeout(function() {
         window.scrollTo(0, 0);
@@ -251,20 +279,6 @@ function viewImage(src) {
     document.getElementById('fullImage').src = src;
     document.getElementById('imageViewer').style.display = 'flex';
 }
-
-const mediaTrack = document.getElementById('mediaTrack');
-let mediaHtml = '';
-for(let i=101; i<=124; i++) {
-    mediaHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)">`;
-}
-mediaTrack.innerHTML = mediaHtml + mediaHtml; 
-
-const partnersTrack = document.getElementById('partnersTrack');
-let partnersHtml = '';
-for(let i=201; i<=209; i++) {
-    partnersHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)">`;
-}
-partnersTrack.innerHTML = partnersHtml + partnersHtml;
 
 document.addEventListener('DOMContentLoaded', function() {
     const linkedinIcon = document.querySelector('.fa-linkedin-in');
@@ -296,6 +310,19 @@ document.addEventListener('click', function(e) {
         if(text.includes('من نحن') || text.includes('About Us')) openModal();
     }
 });
+
+// إصلاح رابط البريد الإلكتروني
+setTimeout(function() {
+    const socialIcons = document.getElementById('socialIcons');
+    if(socialIcons) {
+        const emailLink = document.createElement('a');
+        emailLink.href = 'mailto:civistories@gmail.com';
+        emailLink.target = '_blank';
+        emailLink.style.color = '#ffffff';
+        emailLink.innerHTML = '<i class="fas fa-envelope"></i>';
+        socialIcons.appendChild(emailLink);
+    }
+}, 2000);
 </script>
 </body>
 </html>

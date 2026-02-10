@@ -155,7 +155,7 @@ const i18n = {
                 {"icon": "fab fa-x-twitter", "color": "#ffffff", "link": "https://x.com/civistories"},
                 {"icon": "fab fa-instagram", "color": "#E4405F", "link": "https://www.instagram.com/civi.stories"},
                 {"icon": "fab fa-pinterest", "color": "#E60023", "link": "https://www.pinterest.com/civistories/"},
-                {"icon": "fab fa-linkedin-in", "color": "#0077B5", "link": "https://www.linkedin.com/in/قصص-الحدارات-0a8917277"},
+                {"icon": "fab fa-linkedin-in", "color": "#0077B5", "link": "https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277"},
                 {"icon": "fab fa-whatsapp", "color": "#25D366", "link": "https://wa.me/201009995015"}
             ],
             news: [
@@ -223,8 +223,8 @@ const i18n = {
                 }
             }
             
-            // إضافة رابط البريد الإلكتروني بشكل صحيح مع حل المشكلة
-            socialHtml += `<a href="mailto:civistories@gmail.com" onclick="handleEmailClick(event)" style="color:#ffffff !important">
+            // إضافة رابط البريد الإلكتروني عبر Gmail مباشرة (الحل النهائي)
+            socialHtml += `<a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=civistories@gmail.com" target="_blank" style="color:#ffffff !important">
                 <i class="fas fa-envelope"></i>
             </a>`;
             
@@ -276,25 +276,6 @@ const i18n = {
         });
     }
 };
-
-// دالة خاصة لفتح البريد الإلكتروني بشكل صحيح
-function handleEmailClick(event) {
-    event.preventDefault();
-    
-    // فتح نافذة منبثقة للتأكد من البريد
-    const email = 'civistories@gmail.com';
-    const subject = 'رسالة من موقع قصص الحضارات';
-    const body = 'السلام عليكم ورحمة الله وبركاته،\n\n';
-    
-    // بناء الرابط الكامل
-    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    // فتح الرابط في نافذة جديدة
-    window.location.href = mailtoLink;
-    
-    // رسالة تأكيد للمستخدم
-    alert('تم فتح نافذة البريد الإلكتروني. إذا لم تفتح، يرجى التأكد من إعدادات المتصفح أو نسخ البريد يدويًا:\n\ncivistories@gmail.com');
-}
 
 window.addEventListener('DOMContentLoaded', () => {
     i18n.renderDropdown();

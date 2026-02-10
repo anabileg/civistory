@@ -1,9 +1,10 @@
 /* =========================================
 نظام الترجمة الدولي - i18n.js
 ========================================= */
+
 const i18n = {
     currentLanguage: 'ar',
-
+    
     // قائمة اللغات (86 لغة) كاملة كما هي
     languages: [
         { code: 'ar', name: 'عربي', flag: 'https://flagcdn.com/w20/eg.png' },
@@ -82,12 +83,12 @@ const i18n = {
         { code: 'sd', name: 'سنڌي', flag: 'https://flagcdn.com/w20/pk.png' },
         { code: 'bal', name: 'Balochi', flag: 'https://flagcdn.com/w20/pk.png' },
         { code: 'si', name: 'සිංහල', flag: 'https://flagcdn.com/w20/lk.png' },
-        { code: 'dv', name: 'ދިވެහි', flag: 'https://flagcdn.com/w20/mv.png' },
+        { code: 'dv', name: 'ދިވެހި', flag: 'https://flagcdn.com/w20/mv.png' },
         { code: 'my', name: 'မြန်မာ', flag: 'https://flagcdn.com/w20/mm.png' },
-        { code: 'km', name: ' ភាសាខ្មែร ', flag: 'https://flagcdn.com/w20/kh.png' },
-        { code: 'lo', name: ' ລาว ', flag: 'https://flagcdn.com/w20/la.png' },
+        { code: 'km', name: ' ភាសាខ្មែរ ', flag: 'https://flagcdn.com/w20/kh.png' },
+        { code: 'lo', name: ' ລາວ ', flag: 'https://flagcdn.com/w20/la.png' },
         { code: 'mn', name: 'Монгол', flag: 'https://flagcdn.com/w20/mn.png' },
-        { code: 'bo', name: 'བོད་སྐད', flag: 'https://flagcdn.com/w20/cn.png' },
+        { code: 'bo', name: 'བོད་སྐད་', flag: 'https://flagcdn.com/w20/cn.png' },
         { code: 'dz', name: 'རྫོང་ཁ', flag: 'https://flagcdn.com/w20/bt.png' }
     ],
 
@@ -97,8 +98,10 @@ const i18n = {
             const response = await fetch(`./locales/${lang}/translation.json`);
             const translations = response.ok ? await response.json() : this.getDefaultTranslations(lang);
             this.applyTranslations(translations, lang);
+            
             const flagImg = document.getElementById('currentFlag');
             if (flagImg) { flagImg.src = selectedLang.flag; }
+            
             const rtlLanguages = ['ar', 'ur', 'fa', 'sd', 'ps', 'ku', 'he', 'yi', 'ug', 'syr', 'dv', 'ckb'];
             document.documentElement.dir = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
@@ -107,8 +110,10 @@ const i18n = {
             console.error("فشل تحميل ملف اللغة:", lang, error);
             const translations = this.getDefaultTranslations(lang);
             this.applyTranslations(translations, lang);
+            
             const flagImg = document.getElementById('currentFlag');
             if (flagImg) { flagImg.src = selectedLang.flag; }
+            
             const rtlLanguages = ['ar', 'ur', 'fa', 'sd', 'ps', 'ku', 'he', 'yi', 'ug', 'syr', 'dv', 'ckb'];
             document.documentElement.dir = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
@@ -124,7 +129,10 @@ const i18n = {
                 bookLink: "https://heyzine.com/flip-book/48ab3792ec.html",
                 videoUrl: "https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&rel=0",
                 nav: ["About Us", "Our Goals", "Our Cry", "Our Messages", "National Awareness", "Media", "Statistics", "Losses", "Awareness Programs", "Human Vision", "Our Human Reference", "Our Partners"],
-                social: [{"icon": "fab fa-whatsapp", "color": "#25D366", "link": "https://wa.me/201009995015"}],
+                social: [
+                    {"icon": "fab fa-whatsapp", "color": "#25D366", "link": "https://wa.me/201009995015"},
+                    {"icon": "fas fa-envelope", "color": "#EA4335", "link": "mailto:civistories@gmail.com"}
+                ],
                 news: [
                     "Al-Azhar: Nearly one divorce case every two and a half minutes due to digital addiction",
                     "Ministry of Awqaf: Smartphones are one of the main causes of marital silence and coldness",
@@ -134,6 +142,7 @@ const i18n = {
                 ]
             };
         }
+        
         return {
             heroTitle: '<span style="color:#ff0000">تسونامي</span> <span style="color:#d4af37">الوهم الرقمي: من مهد الحضارة مصر إلى العالم... صرخة لإنقاذ الإنسانية</span>',
             bookBtnText: "تصفح الكتاب كاملاً",
@@ -147,8 +156,9 @@ const i18n = {
                 {"icon": "fab fa-x-twitter", "color": "#ffffff", "link": "https://x.com/civistories"},
                 {"icon": "fab fa-instagram", "color": "#E4405F", "link": "https://www.instagram.com/civi.stories"},
                 {"icon": "fab fa-pinterest", "color": "#E60023", "link": "https://www.pinterest.com/civistories/"},
-                {"icon": "fab fa-linkedin-in", "color": "#0077B5", "link": "https://www.linkedin.com/in/قصص-الحدارات-0a8917277"},
-                {"icon": "fab fa-whatsapp", "color": "#25D366", "link": "https://wa.me/201009995015"}
+                {"icon": "fab fa-linkedin-in", "color": "#0077B5", "link": "https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/"},
+                {"icon": "fab fa-whatsapp", "color": "#25D366", "link": "https://wa.me/201009995015"},
+                {"icon": "fas fa-envelope", "color": "#EA4335", "link": "mailto:civistories@gmail.com"}
             ],
             news: [
                 "الأزهر الشريف: حالة طلاق تقريباً كل دقيقتين ونصف بسبب الإدمان الرقمي",
@@ -168,25 +178,25 @@ const i18n = {
     applyTranslations(data, currentLang) {
         const mainTitle = document.getElementById('mainTitle');
         if (mainTitle && data.heroTitle) { mainTitle.innerHTML = data.heroTitle; }
-        
+
         const bookBtn = document.getElementById('bookBtn');
         if (bookBtn) {
             if (data.bookBtnText) bookBtn.textContent = data.bookBtnText;
             if (data.bookLink) bookBtn.href = data.bookLink;
         }
-        
+
         const mainVideo = document.getElementById('mainVideo');
         if (mainVideo && data.videoUrl) { mainVideo.src = data.videoUrl; }
-
+        
         const navLinks = document.getElementById('navLinks');
         if (navLinks && data.nav && Array.isArray(data.nav)) {
             // IDs للأقسام بالترتيب الصحيح
             const sectionIDs = [
-                "sec_about", "sec_goals", "sec_shout", "sec_awareness", "sec_media", 
-                "sec_stats", "sec_losses", "sec_programs", "sec_vision", 
+                "sec_about", "sec_goals", "sec_shout", "sec_awareness", "sec_media",
+                "sec_stats", "sec_losses", "sec_programs", "sec_vision",
                 "sec_reference", "sec_partners"
             ];
-            
+
             let navHTML = "";
             data.nav.forEach((item, index) => {
                 let href = "#";
@@ -206,21 +216,24 @@ const i18n = {
         const socialIcons = document.getElementById('socialIcons');
         if (socialIcons && data.social && Array.isArray(data.social)) {
             if (currentLang === 'ar') {
-                socialIcons.innerHTML = data.social.map(s =>
+                socialIcons.innerHTML = data.social.map(s => 
                     `<a href="${s.link}" target="_blank" style="color:${s.color} !important">
-                    <i class="${s.icon}"></i>
+                        <i class="${s.icon}"></i>
                     </a>`
                 ).join('');
             } else {
-                const whatsapp = data.social.find(s => s.icon.includes('whatsapp'));
-                if (whatsapp) {
-                    socialIcons.innerHTML = `<a href="${whatsapp.link}" target="_blank" style="color:${whatsapp.color} !important">
-                    <i class="${whatsapp.icon}"></i>
-                    </a>`;
-                } else { socialIcons.innerHTML = ''; }
+                // للغات الأخرى: نعرض الواتساب والإيميل فقط
+                const filteredSocial = data.social.filter(s => 
+                    s.icon.includes('whatsapp') || s.icon.includes('envelope')
+                );
+                socialIcons.innerHTML = filteredSocial.map(s => 
+                    `<a href="${s.link}" target="_blank" style="color:${s.color} !important">
+                        <i class="${s.icon}"></i>
+                    </a>`
+                ).join('');
             }
         }
-        
+
         const tickerTrack = document.getElementById('tickerTrack');
         if (tickerTrack && data.news && Array.isArray(data.news)) {
             const newsHTML = data.news.map(n => `<span>• ${n}</span>`).join('');
@@ -256,6 +269,7 @@ const i18n = {
                 }
             };
         }
+
         document.addEventListener('click', (e) => {
             if (langMenu && currentFlag && !currentFlag.contains(e.target)) {
                 langMenu.style.display = 'none';

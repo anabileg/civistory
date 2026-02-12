@@ -254,6 +254,13 @@ html { scroll-behavior: smooth; }
     margin-bottom: 0;
 }
 
+/* --- تطبيق الخلفية على قسم أهدافنا فقط --- */
+#sec_goals .section-container {
+    background-image: url('assets/image_3a7328.webp');
+    background-size: cover;
+    background-position: center;
+}
+
 /* --- تنسيق شريط الميديا --- */
 .media-marquee-container {
     width: 100%;

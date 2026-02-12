@@ -5,29 +5,29 @@
 window.onscroll = function() {
   const btnUp = document.getElementById('btnUp');
   if (btnUp) {
-  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-  btnUp.style.display = "flex";
-        } else {
-  btnUp.style.display = "none";
-        }
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      btnUp.style.display = "flex";
+    } else {
+      btnUp.style.display = "none";
     }
+  }
 };
 if (document.getElementById('btnUp')) {
   document.getElementById('btnUp').onclick = function() {
-  window.scrollTo({
-  top: 0,
-  behavior: "smooth"
-        });
-    };
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
 }
 // 2. وظائف التحكم في النوافذ المنبثقة (Modals)
 function openModal(title) {
   const modal = document.getElementById('infoModal');
   if (modal) {
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  console.log("تم فتح نافذة: " + title);
-    }
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    console.log("تم فتح نافذة: " + title);
+  }
 }
 function closeModal() {
   const modal = document.getElementById('infoModal');
@@ -39,70 +39,74 @@ function viewImage(src) {
   const viewer = document.getElementById('imageViewer');
   const fullImg = document.getElementById('fullImage');
   if (viewer && fullImg) {
-  viewer.style.display = 'flex';
-  fullImg.src = src;
-    }
+    viewer.style.display = 'flex';
+    fullImg.src = src;
+  }
 }
 // 4. تحميل الصور بشكل ذكي (Lazy Loading) لتسريع الموقع
 function lazyLoadImages() {
     // تحميل شريط الميديا (من 101 إلى 124)
-  const mediaTrack = document.getElementById('mediaTrack');
-  if (mediaTrack) {
-  let mediaHtml = '';
-  for(let i=101; i<=124; i++) {
-  mediaHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Media ${i}" loading="lazy" onerror="this.style.display='none'">`;
+    const mediaTrack = document.getElementById('mediaTrack');
+    if (mediaTrack) {
+        let mediaHtml = '';
+        for(let i=101; i<=124; i++) {
+            mediaHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Media ${i}" loading="lazy" onerror="this.style.display='none'">`;
         }
-  mediaTrack.innerHTML = mediaHtml + mediaHtml;
+        mediaTrack.innerHTML = mediaHtml + mediaHtml;
     }
     // تحميل شريط الشركاء (من 201 إلى 209)
-  const partnersTrack = document.getElementById('partnersTrack');
-  if (partnersTrack) {
-  let partnersHtml = '';
-  for(let i=201; i<=209; i++) {
-  partnersHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Partner ${i}" loading="lazy" onerror="this.style.display='none'">`;
+    const partnersTrack = document.getElementById('partnersTrack');
+    if (partnersTrack) {
+        let partnersHtml = '';
+        for(let i=201; i<=209; i++) {
+            partnersHtml += `<img src="assets/${i}.webp" onclick="viewImage(this.src)" alt="Partner ${i}" loading="lazy" onerror="this.style.display='none'">`;
         }
-  partnersTrack.innerHTML = partnersHtml + partnersHtml;
+        partnersTrack.innerHTML = partnersHtml + partnersHtml;
     }
 }
 // 5. إدارة الأحداث والروابط عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
     // تحميل الصور بعد تأخير قصير لتسريع التحميل الأولي
-  setTimeout(() => {
-  lazyLoadImages();
+    setTimeout(() => {
+        lazyLoadImages();
     }, 500);
+    
     // ربط أزرار الإغلاق
-  const closeBtn = document.querySelector('.close-modal-btn');
-  if (closeBtn) {
-  closeBtn.addEventListener('click', closeModal);
+    const closeBtn = document.querySelector('.close-modal-btn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
     }
+    
     // إغلاق عند الضغط في المنطقة المظلمة
-  const infoModal = document.getElementById('infoModal');
-  if (infoModal) {
-  infoModal.addEventListener('click', function(event) {
-  if (event.target === infoModal) {
-  closeModal();
+    const infoModal = document.getElementById('infoModal');
+    if (infoModal) {
+        infoModal.addEventListener('click', function(event) {
+            if (event.target === infoModal) {
+                closeModal();
             }
         });
     }
+    
     // تفعيل الروابط لفتح المودال
-  setTimeout(function() {
-  const links = document.querySelectorAll('#navLinks a');
-  links.forEach(link => {
-  const i18nKey = link.getAttribute('data-i18n');
-  const linkText = link.textContent.trim();
-  if (i18nKey === 'about' || i18nKey === 'messages' || 
-  linkText === 'من نحن' || linkText === 'About Us') {
-  link.addEventListener('click', function(e) {
-  e.preventDefault();
-  openModal(linkText);
+    setTimeout(function() {
+        const links = document.querySelectorAll('#navLinks a');
+        links.forEach(link => {
+            const i18nKey = link.getAttribute('data-i18n');
+            const linkText = link.textContent.trim();
+            if (i18nKey === 'about' || i18nKey === 'messages' || 
+                linkText === 'من نحن' || linkText === 'About Us') {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openModal(linkText);
                 });
             }
         });
     }, 1000);
+    
     // ضبط رابط LinkedIn
-  const linkedinIcon = document.querySelector('.fa-linkedin-in');
-  if(linkedinIcon && linkedinIcon.parentElement) {
-  linkedinIcon.parentElement.setAttribute('href', 'https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/');
-  linkedinIcon.parentElement.setAttribute('target', '_blank');
+    const linkedinIcon = document.querySelector('.fa-linkedin-in');
+    if(linkedinIcon && linkedinIcon.parentElement) {
+        linkedinIcon.parentElement.setAttribute('href', 'https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/');
+        linkedinIcon.parentElement.setAttribute('target', '_blank');
     }
 });

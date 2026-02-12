@@ -162,11 +162,11 @@ a[href^="mailto:"]:hover {
 }
 
 .modal-content {
-    background-color: #fcf9f2; 
+    background-color: #fcf9f2;  
     color: #222;
-    width: 95%; 
+    width: 95%;  
     max-width: 1300px;
-    height: 90vh; 
+    height: 90vh;  
     padding: 40px;
     border-radius: 10px;
     position: relative;
@@ -241,12 +241,16 @@ html { scroll-behavior: smooth; }
     contain-intrinsic-size: 1px 500px;
 }
 
+/* --- تطبيق الخلفية على جميع المربعات --- */
 .section-container {
     width: 95%; 
     max-width: 1400px; 
     min-height: auto; 
     height: auto; 
     background-color: #000;
+    background-image: url('assets/image_3a7328.webp');
+    background-size: cover;
+    background-position: center;
     border: 3px solid var(--gold);
     padding: 40px;
     text-align: center;
@@ -254,14 +258,30 @@ html { scroll-behavior: smooth; }
     margin-bottom: 0;
 }
 
-/* --- تطبيق الخلفية على قسم أهدافنا فقط --- */
-#sec_goals .section-container {
-    background-image: url('assets/image_3a7328.webp');
-    background-size: cover;
-    background-position: center;
+/* --- إعدادات الماركي (الميديا والشركاء) --- */
+#sec_media .section-container {
+    min-height: auto;
+    height: 350px;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
-/* --- تنسيق شريط الميديا --- */
+#sec_partners .section-container {
+    min-height: auto;
+    height: 150px; 
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background: #fff;
+}
+
+#sec_media h2, #sec_partners h2 {
+    display: none;
+}
+
 .media-marquee-container {
     width: 100%;
     overflow: hidden;
@@ -271,27 +291,86 @@ html { scroll-behavior: smooth; }
 .media-track {
     display: flex;
     width: max-content;
-    gap: 0;
-    animation: scrollRight 350s linear infinite;
-    will-change: transform;
+    align-items: center;
 }
 
-.media-track img {
-    width: 28vw;
+#mediaTrack img {
+    width: 25vw !important;
     height: 350px;
     object-fit: cover;
+    margin: 0;
+    padding: 0;
     display: block;
+    cursor: pointer;
     filter: grayscale(100%);
-    /* تحسين استهلاك الذاكرة للصور */
-    image-rendering: -webkit-optimize-contrast;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+/* 2. جعل السرعة بطيئة جداً جداً (300 ثانية) لهدوء الحركة وتقليل حمل المعالجة */
+#mediaTrack {
+    animation: scrollRight 300s linear infinite !important; 
+}
+
+/* 3. سرعة الشركاء */
+#partnersTrack {
+    animation: scrollRight 100s linear infinite;
+}
+
+#partnersTrack img {
+    filter: grayscale(0%);
+    width: auto; 
+    height: 150px; 
+    object-fit: stretch; 
+    background-color: transparent;
+    margin: 0; 
+    padding: 0;
+    display: block;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
 
 @keyframes scrollRight {
     0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
+    100% { transform: translateX(0); } 
 }
 
-/* إخفاء المربع المزعج */
-body > div:last-child:not(#btnUp):not(.image-viewer):not(.modal) {
-    display: none !important;
+.image-viewer {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 20000;
+    justify-content: center;
+    align-items: center;
 }
+
+.image-viewer img {
+    max-width: 90%;
+    max-height: 90%;
+    border: 3px solid var(--gold);
+}
+
+/* --- إضافات تنسيق ضرورية لتشغيل العناصر التي أضفتها أنت --- */
+.modal-overlay { 
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.85); z-index: 20000; align-items: center; justify-content: center; 
+}
+
+.modal-content { 
+    background: #111; border: 2px solid var(--gold); width: 90%; max-width: 900px; 
+    padding: 40px; border-radius: 15px; position: relative; max-height: 85vh; overflow-y: auto; 
+}
+
+.close-modal-btn { 
+    position: absolute; top: 15px; right: 15px; background: var(--gold); border: none; 
+    padding: 5px 12px; cursor: pointer; border-radius: 5px; font-weight: bold; 
+}
+
+.lang-dropdown {
+    position: absolute; top: 100%; right: 0; background: #000; border: 1px solid var(--gold);
+    display: none; flex-direction: column; min-width: 150px; z-index: 2000;
+}
+
+.lang-btn { height: 35px; cursor: pointer; border: 1px solid var(--gold); border-radius: 5px; padding: 2px; }

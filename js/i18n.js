@@ -120,7 +120,7 @@ const i18n = {
             bookBtnText: "Browse the Full Book",
             bookLink: "https://heyzine.com/flip-book/48ab3792ec.html",
             videoUrl: "https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&rel=0",
-            nav: ["Our Goals", "Our Cry", "National Awareness", "Media", "Statistics", "Losses", "Awareness Programs", "Human Vision", "Our Human Reference", "Our Partners"],
+            nav: ["About Us", "Our Messages", "Our Goals", "Our Cry", "National Awareness", "Media", "Statistics", "Losses", "Awareness Programs", "Human Vision", "Our Human Reference", "Our Partners"],
             social: [
                 {"icon": "fab fa-whatsapp", "color": "#25D366", "link": "https://wa.me/201009995015"}
             ],
@@ -138,7 +138,7 @@ const i18n = {
         bookBtnText: "تصفح الكتاب كاملاً",
         bookLink: "https://heyzine.com/flip-book/48ab3792ec.html",
         videoUrl: "https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&rel=0",
-        nav: ["أهدافنا", "صرختنا", "وعي وطني", "ميديا", "إحصائيات", "خسائر", "برامج توعوية", "رؤية إنسانية", "مرجعيتنا الإنسانية", "شركاؤنا"],
+        nav: ["من نحن", "رسالاتنا", "أهدافنا", "صرختنا", "وعي وطني", "ميديا", "إحصائيات", "خسائر", "برامج توعوية", "رؤية إنسانية", "مرجعيتنا الإنسانية", "شركاؤنا"],
         social: [
             {"icon": "fab fa-youtube", "color": "#FF0000", "link": "https://www.youtube.com/@CiviStories"},
             {"icon": "fab fa-facebook-f", "color": "#1877F2", "link": "https://www.facebook.com/profile.php?id=100093677167187"},
@@ -180,13 +180,15 @@ const i18n = {
     if (navLinks && data.nav && Array.isArray(data.nav)) {
         // أسماء الـ IDs للأقسام بالترتيب الجديد
         const sectionIDs = [
-            "sec_goals", "sec_shout", "sec_awareness", "sec_media", "sec_stats", 
-            "sec_losses", "sec_programs", "sec_vision", "sec_reference", "sec_partners"
+            "sec_about", "sec_messages", "sec_goals", "sec_shout", "sec_awareness", 
+            "sec_media", "sec_stats", "sec_losses", "sec_programs", "sec_vision", 
+            "sec_reference", "sec_partners"
         ];
         let navHTML = "";
         data.nav.forEach((item, index) => {
-            const targetID = sectionIDs[index] || "sec_goals";
-            navHTML += `<a href="#${targetID}">${item}</a>`;
+            const targetID = sectionIDs[index] || "sec_about";
+            // إضافة الروابط مع التأكد من بقاء وظيفة الـ Modal لـ "من نحن" و "رسالاتنا"
+            navHTML += `<a href="#${targetID}" onclick="if('${targetID}'==='sec_about' || '${targetID}'==='sec_messages'){ event.preventDefault(); openModal('${item}'); }">${item}</a>`;
         });
         navLinks.innerHTML = navHTML;
     }
@@ -230,6 +232,28 @@ const i18n = {
     const contentGoals = document.getElementById('content_goals');
     if (contentGoals && data.content_goals) {
         contentGoals.innerHTML = data.content_goals;
+    }
+    
+    // إضافة الترجمة لقسم من نحن
+    const titleAbout = document.getElementById('title_about');
+    if (titleAbout && data.title_about) {
+        titleAbout.textContent = data.title_about;
+    }
+    
+    const contentAbout = document.getElementById('content_about');
+    if (contentAbout && data.content_about) {
+        contentAbout.innerHTML = data.content_about;
+    }
+    
+    // إضافة الترجمة لقسم رسالاتنا
+    const titleMessages = document.getElementById('title_messages');
+    if (titleMessages && data.title_messages) {
+        titleMessages.textContent = data.title_messages;
+    }
+    
+    const contentMessages = document.getElementById('content_messages');
+    if (contentMessages && data.content_messages) {
+        contentMessages.innerHTML = data.content_messages;
     }
   },
   renderDropdown() {

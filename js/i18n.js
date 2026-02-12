@@ -2,10 +2,9 @@
 نظام الترجمة الدولي - i18n.js
 ========================================= */
 const i18n = {
-    currentLanguage: 'ar',
-    
+  currentLanguage: 'ar',
     // قائمة اللغات (86 لغة) كاملة كما هي
-    languages: [
+  languages: [
         { code: 'ar', name: 'عربي', flag: 'https://flagcdn.com/w20/eg.png' },
         { code: 'en', name: 'English', flag: 'https://flagcdn.com/w20/gb.png' },
         { code: 'fr', name: 'Français', flag: 'https://flagcdn.com/w20/fr.png' },
@@ -90,49 +89,45 @@ const i18n = {
         { code: 'bo', name: 'བོད་སྐད', flag: 'https://flagcdn.com/w20/cn.png' },
         { code: 'dz', name: 'རྫོང་ཁ', flag: 'https://flagcdn.com/w20/bt.png' }
     ],
-    
-    async loadLanguage(lang) {
-        const selectedLang = this.languages.find(l => l.code === lang) || this.languages[0];
-        try {
+  async loadLanguage(lang) {
+  const selectedLang = this.languages.find(l => l.code === lang) || this.languages[0];
+  try {
             // محاولة جلب ملف الترجمة الخارجي إذا وجد
-            const response = await fetch(`./locales/${lang}/translation.json`);
-            const translations = response.ok ? await response.json() : this.getDefaultTranslations(lang);
-            this.applyTranslations(translations, lang);
-            
-            const flagImg = document.getElementById('currentFlag');
-            if (flagImg) { flagImg.src = selectedLang.flag; }
-            
-            const rtlLanguages = ['ar', 'ur', 'fa', 'sd', 'ps', 'ku', 'he', 'yi', 'ug', 'syr', 'dv', 'ckb'];
-            document.documentElement.dir = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
-            document.documentElement.lang = lang;
-            this.currentLanguage = lang;
+  const response = await fetch(`./locales/${lang}/translation.json`);
+  const translations = response.ok ? await response.json() : this.getDefaultTranslations(lang);
+  this.applyTranslations(translations, lang);
+  const flagImg = document.getElementById('currentFlag');
+  if (flagImg) { flagImg.src = selectedLang.flag; }
+  const rtlLanguages = ['ar', 'ur', 'fa', 'sd', 'ps', 'ku', 'he', 'yi', 'ug', 'syr', 'dv', 'ckb'];
+  document.documentElement.dir = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
+  document.documentElement.lang = lang;
+  this.currentLanguage = lang;
         } catch (error) {
-            console.error("فشل تحميل ملف اللغة:", lang, error);
-            const translations = this.getDefaultTranslations(lang);
-            this.applyTranslations(translations, lang);
-            
-            const flagImg = document.getElementById('currentFlag');
-            if (flagImg) { flagImg.src = selectedLang.flag; }
-            
-            const rtlLanguages = ['ar', 'ur', 'fa', 'sd', 'ps', 'ku', 'he', 'yi', 'ug', 'syr', 'dv', 'ckb'];
-            document.documentElement.dir = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
-            document.documentElement.lang = lang;
-            this.currentLanguage = lang;
+  console.error("فشل تحميل ملف اللغة:", lang, error);
+  const translations = this.getDefaultTranslations(lang);
+  this.applyTranslations(translations, lang);
+  const flagImg = document.getElementById('currentFlag');
+  if (flagImg) { flagImg.src = selectedLang.flag; }
+  const rtlLanguages = ['ar', 'ur', 'fa', 'sd', 'ps', 'ku', 'he', 'yi', 'ug', 'syr', 'dv', 'ckb'];
+  document.documentElement.dir = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
+  document.documentElement.lang = lang;
+  this.currentLanguage = lang;
         }
     },
-    
-    getDefaultTranslations(lang) {
-        if (lang === 'en') {
-            return {
-                heroTitle: '<span style="color:#ff0000">Tsunami</span> <span style="color:#d4af37">of Digital Illusion: From the Cradle of Civilization Egypt to the World... A Cry to Save Humanity</span>',
-                bookBtnText: "Browse the Full Book",
-                bookLink: "https://heyzine.com/flip-book/48ab3792ec.html",
-                videoUrl: "https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&rel=0",
-                nav: ["About Us", "Our Goals", "Our Cry", "Our Messages", "National Awareness", "Media", "Statistics", "Losses", "Awareness Programs", "Human Vision", "Our Human Reference", "Our Partners"],
-                social: [
+  getDefaultTranslations(lang) {
+  if (lang === 'en') {
+  return {
+  heroTitle: '<span style="color:#ff0000">Tsunami</span> <span style="color:#d4af37">of Digital Illusion: From the Cradle of Civilization Egypt to the World... A Cry to Save Humanity</span>',
+  bookBtnText: "Browse the Full Book",
+  bookLink: "https://heyzine.com/flip-book/48ab3792ec.html",
+  videoUrl: "https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&rel=0",
+  nav: ["About Us", "Our Goals", "Our Cry", "Our Messages", "National Awareness", "Media", "Statistics", "Losses", "Awareness Programs", "Human Vision", "Our Human Reference", "Our Partners"],
+  title_goals: "Our Strategic Goals",
+  content_goals: "We aim through the \"CiviStories\" initiative to protect the Egyptian social fabric from the risks of digital fragmentation, by empowering families and restoring psychological and social balance. We started from Egypt, where digital illusion threatens family and community stability, and we aspire to launch a global cry to protect humanity from the dangers of digital addiction — through family empowerment, psychological balance restoration, and building a human digital space.",
+  social: [
                     {"icon": "fab fa-whatsapp", "color": "#25D366", "link": "https://wa.me/201009995015"}
                 ],
-                news: [
+  news: [
                     "Al-Azhar: Nearly one divorce case every two and a half minutes due to digital addiction",
                     "Ministry of Awqaf: Smartphones are one of the main causes of marital silence and coldness",
                     "Red Alert: Family breakdown threatens social and community stability in Egypt",
@@ -141,14 +136,15 @@ const i18n = {
                 ]
             };
         }
-        
-        return {
-            heroTitle: '<span style="color:#ff0000">تسونامي</span> <span style="color:#d4af37">الوهم الرقمي: من مهد الحضارة مصر إلى العالم... صرخة لإنقاذ الإنسانية</span>',
-            bookBtnText: "تصفح الكتاب كاملاً",
-            bookLink: "https://heyzine.com/flip-book/48ab3792ec.html",
-            videoUrl: "https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&rel=0",
-            nav: ["من نحن", "أهدافنا", "صرختنا", "رسالاتنا", "وعي وطني", "ميديا", "إحصائيات", "خسائر", "برامج توعوية", "رؤية إنسانية", "مرجعيتنا الإنسانية", "شركاؤنا"],
-            social: [
+  return {
+  heroTitle: '<span style="color:#ff0000">تسونامي</span> <span style="color:#d4af37">الوهم الرقمي: من مهد الحضارة مصر إلى العالم... صرخة لإنقاذ الإنسانية</span>',
+  bookBtnText: "تصفح الكتاب كاملاً",
+  bookLink: "https://heyzine.com/flip-book/48ab3792ec.html",
+  videoUrl: "https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&rel=0",
+  nav: ["من نحن", "أهدافنا", "صرختنا", "رسالاتنا", "وعي وطني", "ميديا", "إحصائيات", "خسائر", "برامج توعوية", "رؤية إنسانية", "مرجعيتنا الإنسانية", "شركاؤنا"],
+  title_goals: "أهدافنا الاستراتيجية",
+  content_goals: "نهدف من خلال مبادرة \"قصص الحضارات\" إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي. بدأنا من مصر، حيث يهدد الوهم الرقمي استقرار الأسرة والمجتمع، ونطمح إلى إطلاق صرخة عالمية لحماية الإنسانية من مخاطر الإدمان الرقمي — عبر تمكين الأسرة، واستعادة التوازن النفسي، وبناء فضاء رقمي إنساني.",
+  social: [
                 {"icon": "fab fa-youtube", "color": "#FF0000", "link": "https://www.youtube.com/@CiviStories"},
                 {"icon": "fab fa-facebook-f", "color": "#1877F2", "link": "https://www.facebook.com/profile.php?id=100093677167187"},
                 {"icon": "fab fa-tiktok", "color": "#ffffff", "link": "https://www.tiktok.com/@civistoriesarabic"},
@@ -158,7 +154,7 @@ const i18n = {
                 {"icon": "fab fa-linkedin-in", "color": "#0077B5", "link": "https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277"},
                 {"icon": "fab fa-whatsapp", "color": "#25D366", "link": "https://wa.me/201009995015"}
             ],
-            news: [
+  news: [
                 "الأزهر الشريف: حالة طلاق تقريباً كل دقيقتين ونصف بسبب الإدمان الرقمي",
                 "وزارة الأوقاف: الهواتف الذكية أحد أسباب الخرس والبرود الزوجي الرئيسية",
                 "إنذار أحمر: تفكك الأسر يُهدد الاستقرار الاجتماعي والمجتمعي في مصر",
@@ -172,114 +168,107 @@ const i18n = {
             ]
         };
     },
-    
-    applyTranslations(data, currentLang) {
-        const mainTitle = document.getElementById('mainTitle');
-        if (mainTitle && data.heroTitle) { mainTitle.innerHTML = data.heroTitle; }
-        
-        const bookBtn = document.getElementById('bookBtn');
-        if (bookBtn) {
-            if (data.bookBtnText) bookBtn.textContent = data.bookBtnText;
-            if (data.bookLink) bookBtn.href = data.bookLink;
+  applyTranslations(data, currentLang) {
+  const mainTitle = document.getElementById('mainTitle');
+  if (mainTitle && data.heroTitle) { mainTitle.innerHTML = data.heroTitle; }
+  const bookBtn = document.getElementById('bookBtn');
+  if (bookBtn) {
+  if (data.bookBtnText) bookBtn.textContent = data.bookBtnText;
+  if (data.bookLink) bookBtn.href = data.bookLink;
         }
-        
-        const mainVideo = document.getElementById('mainVideo');
-        if (mainVideo && data.videoUrl) { mainVideo.src = data.videoUrl; }
-        
-        const navLinks = document.getElementById('navLinks');
-        if (navLinks && data.nav && Array.isArray(data.nav)) {
+  const mainVideo = document.getElementById('mainVideo');
+  if (mainVideo && data.videoUrl) { mainVideo.src = data.videoUrl; }
+  const navLinks = document.getElementById('navLinks');
+  if (navLinks && data.nav && Array.isArray(data.nav)) {
             // أسماء الـ IDs للأقسام بالترتيب
-            const sectionIDs = [
+  const sectionIDs = [
                 "sec_about", "sec_goals", "sec_shout", "sec_messages", "sec_awareness", 
                 "sec_media", "sec_stats", "sec_losses", "sec_programs", "sec_vision", 
                 "sec_reference", "sec_partners"
             ];
-            
-            let navHTML = "";
-            data.nav.forEach((item, index) => {
-                const targetID = sectionIDs[index] || "sec_about";
+  let navHTML = "";
+  data.nav.forEach((item, index) => {
+  const targetID = sectionIDs[index] || "sec_about";
                 // إضافة الروابط مع التأكد من بقاء وظيفة الـ Modal لـ "من نحن" و "رسالاتنا"
-                navHTML += `<a href="#${targetID}" onclick="if('${targetID}'==='sec_about' || '${targetID}'==='sec_messages'){ event.preventDefault(); openModal('${item}'); }">${item}</a>`;
+  navHTML += `<a href="#${targetID}" onclick="if('${targetID}'==='sec_about' || '${targetID}'==='sec_messages'){ event.preventDefault(); openModal('${item}'); }">${item}</a>`;
             });
-            navLinks.innerHTML = navHTML;
+  navLinks.innerHTML = navHTML;
         }
-        
-        const socialIcons = document.getElementById('socialIcons');
-        if (socialIcons && data.social && Array.isArray(data.social)) {
-            let socialHtml = "";
-            
-            if (currentLang === 'ar') {
-                socialHtml = data.social.map(s => 
+  const socialIcons = document.getElementById('socialIcons');
+  if (socialIcons && data.social && Array.isArray(data.social)) {
+  let socialHtml = "";
+  if (currentLang === 'ar') {
+  socialHtml = data.social.map(s => 
                     `<a href="${s.link}" target="_blank" style="color:${s.color} !important">
                     <i class="${s.icon}"></i>
                     </a>`
                 ).join('');
             } else {
-                const whatsapp = data.social.find(s => s.icon.includes('whatsapp'));
-                if (whatsapp) {
-                    socialHtml = `<a href="${whatsapp.link}" target="_blank" style="color:${whatsapp.color} !important">
+  const whatsapp = data.social.find(s => s.icon.includes('whatsapp'));
+  if (whatsapp) {
+  socialHtml = `<a href="${whatsapp.link}" target="_blank" style="color:${whatsapp.color} !important">
                     <i class="${whatsapp.icon}"></i>
                     </a>`;
                 }
             }
-            
             // إضافة رابط البريد الإلكتروني عبر Gmail مباشرة (الحل النهائي)
-            socialHtml += `<a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=civistories@gmail.com" target="_blank" style="color:#ffffff !important">
+  socialHtml += `<a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=civistories@gmail.com" target="_blank" style="color:#ffffff !important">
                 <i class="fas fa-envelope"></i>
             </a>`;
-            
-            socialIcons.innerHTML = socialHtml;
+  socialIcons.innerHTML = socialHtml;
         }
-        
-        const tickerTrack = document.getElementById('tickerTrack');
-        if (tickerTrack && data.news && Array.isArray(data.news)) {
-            const newsHTML = data.news.map(n => `<span>• ${n}</span>`).join('');
-            tickerTrack.innerHTML = newsHTML + newsHTML;
+  const tickerTrack = document.getElementById('tickerTrack');
+  if (tickerTrack && data.news && Array.isArray(data.news)) {
+  const newsHTML = data.news.map(n => `<span>• ${n}</span>`).join('');
+  tickerTrack.innerHTML = newsHTML + newsHTML;
+        }
+  // إضافة الترجمة لقسم أهدافنا
+  const titleGoals = document.getElementById('title_goals');
+  if (titleGoals && data.title_goals) {
+  titleGoals.textContent = data.title_goals;
+        }
+  const contentGoals = document.getElementById('content_goals');
+  if (contentGoals && data.content_goals) {
+  contentGoals.innerHTML = data.content_goals;
         }
     },
-    
-    renderDropdown() {
-        const langMenu = document.getElementById('langMenu');
-        if (!langMenu) return;
-        
-        langMenu.innerHTML = '';
-        this.languages.forEach(lang => {
-            const div = document.createElement('div');
-            div.className = 'lang-item';
-            div.innerHTML = `<img src="${lang.flag}" width="20"> ${lang.name}`;
-            div.onclick = (e) => {
-                e.stopPropagation();
-                this.loadLanguage(lang.code);
-                langMenu.style.display = 'none';
+  renderDropdown() {
+  const langMenu = document.getElementById('langMenu');
+  if (!langMenu) return;
+  langMenu.innerHTML = '';
+  this.languages.forEach(lang => {
+  const div = document.createElement('div');
+  div.className = 'lang-item';
+  div.innerHTML = `<img src="${lang.flag}" width="20"> ${lang.name}`;
+  div.onclick = (e) => {
+  e.stopPropagation();
+  this.loadLanguage(lang.code);
+  langMenu.style.display = 'none';
             };
-            langMenu.appendChild(div);
+  langMenu.appendChild(div);
         });
     },
-    
-    init() {
-        const langMenu = document.getElementById('langMenu');
-        const currentFlag = document.getElementById('currentFlag');
-        
-        if (currentFlag) {
-            currentFlag.onclick = (e) => {
-                e.stopPropagation();
-                if (langMenu) {
-                    langMenu.style.display = langMenu.style.display === 'block' ? 'none' : 'block';
+  init() {
+  const langMenu = document.getElementById('langMenu');
+  const currentFlag = document.getElementById('currentFlag');
+  if (currentFlag) {
+  currentFlag.onclick = (e) => {
+  e.stopPropagation();
+  if (langMenu) {
+  langMenu.style.display = langMenu.style.display === 'block' ? 'none' : 'block';
                 }
             };
         }
-        
-        document.addEventListener('click', (e) => {
-            if (langMenu && currentFlag && !currentFlag.contains(e.target)) {
-                langMenu.style.display = 'none';
+  document.addEventListener('click', (e) => {
+  if (langMenu && currentFlag && !currentFlag.contains(e.target)) {
+  langMenu.style.display = 'none';
             }
         });
     }
 };
-
 window.addEventListener('DOMContentLoaded', () => {
-    i18n.renderDropdown();
+  i18n.renderDropdown();
     // تحميل اللغة العربية كافتراضية عند البدء
-    i18n.loadLanguage('ar');
-    i18n.init();
+  i18n.loadLanguage('ar');
+  i18n.init();
 });

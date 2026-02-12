@@ -145,11 +145,11 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; overfl
     background: rgba(0,0,0,0.85); z-index: 20000; align-items: center; justify-content: center; 
 }
 .modal-content { 
-    background: #111; border: 2px solid var(--gold); width: 90%; max-width: 900px; 
+    background: #fcf9f2; border: 2px solid var(--gold); width: 90%; max-width: 900px; 
     padding: 40px; border-radius: 15px; position: relative; max-height: 85vh; overflow-y: auto; 
 }
 .close-modal-btn { 
-    position: absolute; top: 15px; right: 15px; background: var(--gold); border: none; 
+    position: absolute; top: 15px; right: 15px; background: #ff0000; border: none; 
     padding: 5px 12px; cursor: pointer; border-radius: 5px; font-weight: bold; 
 }
 #btnUp { 
@@ -194,9 +194,7 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; overfl
 </div>
 </section>
 
-<!-- إعادة إضافة "من نحن" و"رسالاتنا" -->
-<section class="custom-section" id="sec_about"><div class="section-container"><h2 id="title_about"></h2><div id="content_about"></div></div></section>
-<section class="custom-section" id="sec_messages"><div class="section-container"><h2 id="title_messages"></h2><div id="content_messages"></div></div></section>
+<!-- المربع الأول هو أهدافنا (بدون أي مربعات قبله) -->
 <section class="custom-section" id="sec_goals"><div class="section-container"><h2 id="title_goals"></h2><div id="content_goals"></div></div></section>
 <section class="custom-section" id="sec_shout"><div class="section-container"><h2 id="title_shout"></h2><div id="content_shout"></div></div></section>
 <section class="custom-section" id="sec_awareness"><div class="section-container"><h2 id="title_awareness"></h2><div id="content_awareness"></div></div></section>
@@ -287,8 +285,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-function openModal(type) { 
+function openModal(title) { 
     document.getElementById('infoModal').style.display = 'flex'; 
+    document.getElementById('modalInnerContent').innerHTML = `
+        <h3>${title}</h3>
+        <p>محتوى النصوص هنا سيتم تحميله من ملف الترجمة</p>
+    `;
 }
 function closeModal() { 
     document.getElementById('infoModal').style.display = 'none'; 
@@ -306,7 +308,14 @@ window.onscroll = function() {
 document.addEventListener('click', function(e) {
     if(e.target.tagName === 'A') {
         const text = e.target.innerText;
-        if(text.includes('من نحن') || text.includes('About Us')) openModal();
+        if(text.includes('من نحن') || text.includes('About Us')) {
+            e.preventDefault();
+            openModal('من نحن');
+        }
+        if(text.includes('رسالاتنا') || text.includes('Messages')) {
+            e.preventDefault();
+            openModal('رسالاتنا');
+        }
     }
 });
 </script>

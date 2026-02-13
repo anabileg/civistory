@@ -239,10 +239,10 @@ position: relative; padding: 80px 50px; box-shadow: inset 0 0 100px #000; overfl
 <script>
 // 1. تأخير تحميل الصور حتى ينتهي تحميل باقي الصفحة
 window.addEventListener('DOMContentLoaded', function() {
-    // تأخير تحميل الصور لمدة 3 ثوانٍ
+    // تأخير تحميل الصور لمدة 500 مللي ثانية فقط (تم تغييرها من 3000 إلى 500)
     setTimeout(function() {
         loadImages();
-    }, 3000);
+    }, 500); // <-- هذا هو التعديل الوحيد: من 3000 إلى 500
 });
 
 function loadImages() {

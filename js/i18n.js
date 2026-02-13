@@ -255,6 +255,18 @@ const i18n = {
     if (contentMessages && data.content_messages) {
         contentMessages.innerHTML = data.content_messages;
     }
+    
+    // === إضافة الترجمة لقسم صرختنا (التعديل الوحيد المطلوب) ===
+    const titleShout = document.getElementById('title_shout');
+    if (titleShout && data.title_shout) {
+        titleShout.textContent = data.title_shout;
+    }
+    
+    const contentShout = document.getElementById('content_shout');
+    if (contentShout && data.content_shout) {
+        contentShout.innerHTML = data.content_shout;
+    }
+    // === نهاية التعديل ===
   },
   renderDropdown() {
     const langMenu = document.getElementById('langMenu');
